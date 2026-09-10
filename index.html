@@ -1,0 +1,2063 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mãe Karina de Iemanjá · Consulta, trabalho e escuta</title>
+<meta name="description" content="Casa de Iemanjá com atendimento online. Jogo de búzios, consulta, trabalhos à distância e cursos. Escuta antes de tudo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500..900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080808; --bg2:#0E0E0E; --surface:#141414; --surface2:#1A1A1A;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16);
+  --ink:#F3EFE6; --ink2:#B9B3A6; --muted:#7D786E;
+  --gold:#C9A552; --gold2:#E6C77A; --gold3:#8A7136;
+  --hot:#F26A2E; --tkp:#FE2C55; --pix:#32BCAD; --mp:#009EE3;
+  --display:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
+  --accent:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1); --spring:cubic-bezier(.34,1.45,.64,1);
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.65;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body.lock{overflow:hidden}
+img{max-width:100%;display:block}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:#080808}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px;border-radius:2px}
+
+/* ---------- grão ---------- */
+.grain{
+  position:fixed;inset:-50%;z-index:9;pointer-events:none;
+  opacity:.055;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 6s steps(6) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)} 16%{transform:translate(-3%,-2%)}
+  33%{transform:translate(2%,-3%)} 50%{transform:translate(-2%,3%)}
+  66%{transform:translate(3%,2%)} 83%{transform:translate(-3%,1%)}
+}
+
+/* ---------- preloader ---------- */
+.pre{
+  position:fixed;inset:0;z-index:100;background:var(--bg);
+  display:grid;place-items:center;
+  transition:opacity .7s var(--ease),visibility .7s;
+}
+.pre.out{opacity:0;visibility:hidden}
+.pre .w{text-align:center}
+.pre .mark{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(28px,7vw,54px);letter-spacing:.14em;line-height:1;
+  color:var(--ink);overflow:hidden;padding:.08em 0 .14em;
+}
+.pre .mark span{display:block;transform:translateY(105%);animation:up .9s var(--ease) .1s forwards}
+@keyframes up{to{transform:translateY(0)}}
+.pre .rule{
+  height:1px;background:var(--gold);margin:20px auto 0;width:min(240px,52vw);
+  transform:scaleX(0);transform-origin:left;animation:sx 1.1s var(--ease) .45s forwards;
+}
+@keyframes sx{to{transform:scaleX(1)}}
+.pre .n{
+  font-family:var(--display);font-size:13px;letter-spacing:.24em;color:var(--muted);
+  margin-top:14px;font-variant-numeric:tabular-nums;opacity:0;animation:fi .5s .5s forwards;
+}
+@keyframes fi{to{opacity:1}}
+
+/* ---------- progresso + nav ---------- */
+.prog{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--gold3),var(--gold2));z-index:60;transition:width .1s linear}
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:18px var(--pad);
+  transition:transform .5s var(--ease),background .4s var(--ease),border-color .4s,padding .4s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.nav.solid{background:rgba(8,8,8,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line);padding-top:13px;padding-bottom:13px}
+.nav.hide{transform:translateY(-102%)}
+.brand{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:19px;letter-spacing:.16em;display:flex;align-items:center;gap:10px;white-space:nowrap;
+}
+.brand i{width:7px;height:7px;background:var(--gold);border-radius:50%;flex:none}
+.nav .links{display:flex;align-items:center;gap:30px}
+.nav .links a{
+  font-family:var(--display);text-transform:uppercase;font-size:15px;
+  letter-spacing:.15em;font-weight:600;color:var(--ink2);position:relative;padding:4px 0;
+  transition:color .3s var(--ease);
+}
+.nav .links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--gold);
+  transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);
+}
+.nav .links a:hover{color:var(--ink)}
+.nav .links a:hover::after{transform:scaleX(1);transform-origin:left}
+.wa{
+  font-family:var(--display);text-transform:uppercase;font-size:15px;letter-spacing:.14em;
+  font-weight:700;border:1px solid var(--line2);border-radius:999px;padding:9px 20px;
+  color:var(--ink);position:relative;overflow:hidden;transition:color .4s var(--ease),border-color .4s;
+}
+.wa span{position:relative;z-index:1}
+.wa::before{
+  content:"";position:absolute;inset:0;background:var(--gold);
+  transform:translateY(101%);transition:transform .45s var(--ease);
+}
+.wa:hover{color:#080808;border-color:var(--gold)}
+.wa:hover::before{transform:translateY(0)}
+.burger{display:none;width:40px;height:40px;position:relative;z-index:52}
+.burger u{position:absolute;left:9px;width:22px;height:1.5px;background:var(--ink);transition:transform .45s var(--ease),opacity .3s}
+.burger u:nth-child(1){top:16px}
+.burger u:nth-child(2){top:23px}
+.burger.on u:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+.burger.on u:nth-child(2){transform:translateY(-3.5px) rotate(-45deg)}
+.sheetnav{
+  position:fixed;inset:0;z-index:51;background:var(--bg);
+  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 var(--pad);
+  opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s;
+}
+.sheetnav.on{opacity:1;visibility:visible}
+.sheetnav a{
+  font-family:var(--display);text-transform:uppercase;font-weight:700;
+  font-size:clamp(34px,11vw,60px);letter-spacing:.04em;line-height:1.14;
+  border-bottom:1px solid var(--line);padding:14px 0;
+  opacity:0;transform:translateY(22px);transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.sheetnav.on a{opacity:1;transform:none}
+.sheetnav.on a:nth-child(1){transition-delay:.08s}
+.sheetnav.on a:nth-child(2){transition-delay:.14s}
+.sheetnav.on a:nth-child(3){transition-delay:.2s}
+.sheetnav.on a:nth-child(4){transition-delay:.26s;color:var(--gold)}
+.sheetnav.on a:nth-child(5){transition-delay:.32s}
+.sheetnav.on a:nth-child(6){transition-delay:.38s}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;align-items:flex-end;padding:clamp(88px,14vh,132px) var(--pad) clamp(40px,9vh,86px)}
+.hero .bg{position:absolute;inset:-6%;background:#101010 center/cover no-repeat;transform:scale(1.06);animation:drift 24s var(--ease) infinite alternate;will-change:transform}
+@keyframes drift{to{transform:scale(1.14) translate(1.5%,-1.5%)}}
+.hero .tone{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(120% 90% at 78% 18%,rgba(201,165,82,.16),transparent 58%),
+    linear-gradient(90deg,rgba(8,8,8,.9) 0%,rgba(8,8,8,.72) 34%,rgba(8,8,8,.15) 68%,transparent 100%),
+    linear-gradient(180deg,rgba(8,8,8,.72) 0%,rgba(8,8,8,.3) 34%,rgba(8,8,8,.9) 84%,var(--bg) 100%);
+}
+.hero .vig{position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 50%,transparent 42%,rgba(0,0,0,.62) 100%)}
+.hero .in{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto}
+.eyebrow{
+  font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.3em;
+  color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:20px;
+  opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .7s var(--ease);
+}
+.eyebrow u{width:30px;height:1px;background:var(--gold);display:block}
+.hero.in .eyebrow{opacity:1;transform:none;transition-delay:.15s}
+.hero h1{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(44px,11.2vw,150px);line-height:.9;letter-spacing:-.005em;margin-bottom:6px;
+  text-shadow:0 4px 40px rgba(8,8,8,.5);
+}
+/* padding dá espaço aos descendentes e ao itálico; a margem negativa devolve o ritmo */
+.hero h1 .ln{display:block;overflow:hidden;white-space:nowrap;padding:.12em 0 .2em;margin-bottom:-.24em}
+/* a serifada desce muito mais que a condensada: a linha mista precisa de mais folga */
+.hero h1 .ln.mix{padding-bottom:.34em;margin-bottom:-.34em}
+.hero h1 .ln span{display:block;transform:translateY(106%);transition:transform 1.05s var(--ease)}
+.hero.in h1 .ln:nth-child(1) span{transition-delay:.25s}
+.hero.in h1 .ln:nth-child(2) span{transition-delay:.36s}
+.hero.in h1 .ln:nth-child(3) span{transition-delay:.47s}
+.hero.in h1 .ln span{transform:translateY(0)}
+.hero h1 em{font-family:var(--accent);font-style:italic;font-weight:600;text-transform:none;color:var(--gold2);letter-spacing:-.01em;font-size:.92em}
+.hero .sub{
+  font-family:var(--accent);font-style:italic;font-size:clamp(19px,2.5vw,29px);
+  color:var(--ink);max-width:34ch;margin-top:22px;line-height:1.45;
+  text-shadow:0 2px 18px rgba(8,8,8,.85);
+  opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease);
+}
+.hero.in .sub{opacity:1;transform:none;transition-delay:.72s}
+.hero .rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:30px 0;transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease) .82s}
+.hero.in .rule{transform:scaleX(1)}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.hero.in .ctas{opacity:1;transform:none;transition-delay:.95s}
+.btn{
+  font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:16px;letter-spacing:.15em;
+  border:1px solid var(--gold);border-radius:999px;padding:15px 32px;
+  position:relative;overflow:hidden;color:var(--gold2);display:inline-flex;align-items:center;gap:11px;
+  transition:color .45s var(--ease);will-change:transform;
+}
+.btn span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:11px}
+.btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .5s var(--ease)}
+.btn:hover{color:#080808}
+.btn:hover::before{transform:translateY(0)}
+.btn svg{width:15px;height:15px;flex:none;transition:transform .45s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn.ghost{border-color:rgba(255,255,255,.34);color:var(--ink);background:rgba(8,8,8,.35);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.btn.ghost::before{background:var(--ink)}
+.btn.ghost:hover{color:#080808;border-color:var(--ink)}
+.cue{position:absolute;left:var(--pad);bottom:18px;z-index:2;display:flex;align-items:center;gap:10px;font-family:var(--display);text-transform:uppercase;font-size:11px;letter-spacing:.26em;color:var(--muted);opacity:0;transition:opacity .8s 1.3s}
+.hero.in .cue{opacity:1}
+.cue u{width:1px;height:34px;background:linear-gradient(180deg,var(--gold),transparent);display:block;animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* ---------- ticker ---------- */
+.ticker{border-block:1px solid var(--line);background:var(--bg2);overflow:hidden;padding:15px 0}
+.ticker .row{display:flex;width:max-content;animation:tick 42s linear infinite}
+.ticker:hover .row{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+.ticker b{
+  font-family:var(--display);text-transform:uppercase;font-weight:600;font-size:16px;
+  letter-spacing:.2em;color:var(--ink2);padding:0 26px;display:flex;align-items:center;gap:26px;white-space:nowrap;
+}
+.ticker b::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);flex:none}
+
+/* ---------- seções ---------- */
+.sec{padding:clamp(72px,12vh,140px) var(--pad);max-width:1400px;margin:0 auto;position:relative}
+.ix{
+  font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.3em;
+  color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.ix u{width:26px;height:1px;background:var(--gold3);display:block}
+h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(34px,6.5vw,78px);line-height:.95;letter-spacing:-.005em}
+h2 .ln{display:block;overflow:hidden;padding:.1em 0 .18em;margin-bottom:-.22em}
+h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s var(--ease)}
+.rv.in h2 .ln span{transform:translateY(0)}
+.rv.in h2 .ln:nth-child(2) span{transition-delay:.09s}
+.lede{color:var(--ink2);max-width:56ch;margin-top:18px;font-size:clamp(15px,1.6vw,18px)}
+.rv .lede,.rv .ix,.rv .shead .chips{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in .lede,.rv.in .ix,.rv.in .shead .chips{opacity:1;transform:none}
+.rv.in .lede{transition-delay:.22s}
+.rv.in .shead .chips{transition-delay:.3s}
+.shead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.16em;font-weight:600;
+  border:1px solid var(--line2);border-radius:999px;padding:6px 14px;color:var(--ink2);
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+}
+.chip u{width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none}
+.chip.tk u{background:var(--tkp)} .chip.hot u{background:var(--hot)} .chip.px u{background:var(--pix)}
+
+/* ---------- manifesto ---------- */
+.manif{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center}
+.manif .txt p{color:var(--ink2);margin-top:16px;max-width:46ch}
+.manif .txt p.big{font-family:var(--accent);font-style:italic;font-size:clamp(21px,2.7vw,32px);color:var(--ink);line-height:1.4;max-width:22ch}
+.manif .fig{position:relative;aspect-ratio:4/5;border:1px solid var(--line);overflow:hidden;background:var(--surface)}
+.manif .fig .ph{position:absolute;inset:0}
+.manif .fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s var(--ease)}
+.manif .fig img.ok{opacity:1}
+.manif .fig .wipe{position:absolute;inset:0;background:var(--bg);transform-origin:top;transition:transform 1.15s var(--ease) .2s}
+.rv.in .manif .fig .wipe{transform:scaleY(0)}
+
+/* placeholder tonal — usado sempre que não há foto */
+.ph{
+  background:
+    radial-gradient(85% 65% at 50% 22%,rgba(201,165,82,.15),transparent 62%),
+    linear-gradient(160deg,var(--surface2),#0D0D0D);
+  position:relative;overflow:hidden;
+}
+.ph::after{
+  content:"";position:absolute;left:50%;top:50%;width:44%;aspect-ratio:1;
+  transform:translate(-50%,-50%) rotate(45deg);
+  border:1px solid rgba(201,165,82,.26);
+}
+.ph::before{
+  content:"";position:absolute;left:50%;top:50%;width:22%;aspect-ratio:1;
+  transform:translate(-50%,-50%) rotate(45deg);
+  border:1px solid rgba(201,165,82,.4);z-index:1;
+}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,22px);margin-top:clamp(32px,5vw,58px)}
+.card{
+  position:relative;cursor:pointer;background:var(--surface);border:1px solid var(--line);
+  opacity:0;transform:translateY(30px);
+  transition:opacity .75s var(--ease),transform .75s var(--ease),border-color .4s;
+  transition-delay:calc(var(--i) * 75ms);
+  will-change:transform;
+}
+.rv.in .card{opacity:1;transform:translateY(0)}
+.card:hover{border-color:var(--line2)}
+.card .fig{position:relative;aspect-ratio:4/5;overflow:hidden}
+.card .fig .ph{position:absolute;inset:0}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s var(--ease),transform 1.1s var(--ease)}
+.card img.ok{opacity:1}
+.card:hover img.ok{transform:scale(1.07)}
+.card .glow{
+  position:absolute;inset:0;opacity:0;transition:opacity .45s var(--ease);pointer-events:none;
+  background:radial-gradient(190px circle at var(--mx,50%) var(--my,50%),rgba(201,165,82,.2),transparent 65%);
+}
+.card:hover .glow{opacity:1}
+.card .veil{position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(8,8,8,.9) 100%)}
+.card .tag{position:absolute;top:12px;left:12px;z-index:2;background:rgba(8,8,8,.72);backdrop-filter:blur(6px)}
+.card .body{padding:18px 18px 20px;position:relative}
+.card h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(18px,1.9vw,23px);letter-spacing:.03em;line-height:1.08}
+.card .d{color:var(--muted);font-size:13.5px;margin-top:7px;line-height:1.5}
+.card .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.card .act{font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.18em;color:var(--gold);display:flex;align-items:center;gap:8px}
+.card .act svg{width:13px;height:13px;transition:transform .4s var(--ease)}
+.card:hover .act svg{transform:translateX(4px)}
+.card .price{
+  font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;color:var(--ink);
+  opacity:0;transform:translateX(8px);transition:opacity .4s var(--ease),transform .4s var(--ease);
+}
+@media (hover:hover){.card:hover .price{opacity:1;transform:none}}
+@media (hover:none){.card .price{display:none}}
+
+/* ---------- tarot horizontal ---------- */
+.hpin{position:relative}
+.hstick{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.htop{padding:0 var(--pad);max-width:1400px;margin:0 auto 32px;width:100%}
+.htrack{display:flex;gap:clamp(12px,1.6vw,22px);padding:0 var(--pad);will-change:transform}
+.htrack .card{flex:0 0 clamp(240px,26vw,330px);opacity:1;transform:none}
+.hbar{margin:26px auto 0;max-width:1400px;width:100%;padding:0 var(--pad)}
+.hbar u{display:block;height:1px;background:var(--line)}
+.hbar u i{display:block;height:100%;width:0;background:var(--gold);transition:width .1s linear}
+
+/* ---------- cursos ---------- */
+.rows{margin-top:clamp(28px,4vw,52px);border-top:1px solid var(--line)}
+.row{
+  display:grid;grid-template-columns:auto 1fr auto auto;gap:clamp(16px,3vw,42px);align-items:center;
+  padding:clamp(20px,3vw,34px) 0;border-bottom:1px solid var(--line);cursor:pointer;position:relative;
+  opacity:0;transform:translateY(24px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease),padding-left .5s var(--ease);
+  transition-delay:calc(var(--i) * 90ms);
+}
+.rv.in .row{opacity:1;transform:none}
+.row:hover{padding-left:14px}
+.row .num{font-family:var(--display);font-size:15px;letter-spacing:.2em;color:var(--gold3);font-variant-numeric:tabular-nums}
+.row h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(23px,4vw,44px);line-height:1.02;letter-spacing:.01em;transition:color .4s var(--ease)}
+.row:hover h3{color:var(--gold2)}
+.row .d{color:var(--muted);font-size:13.5px;margin-top:5px}
+.row .thumb{width:0;height:78px;overflow:hidden;transition:width .6s var(--ease);position:relative}
+.row:hover .thumb{width:112px}
+.row .thumb .ph{position:absolute;inset:0;width:112px}
+.row .thumb img{position:absolute;inset:0;width:112px;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.row .thumb img.ok{opacity:1}
+.row .meta{text-align:right;white-space:nowrap}
+.row .price{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.04em;font-variant-numeric:tabular-nums;opacity:0;transition:opacity .4s var(--ease)}
+@media (hover:hover){.row:hover .price{opacity:1}}
+@media (hover:none){.row .price{display:none}}
+.row .parc{color:var(--muted);font-size:12px;margin-top:2px}
+
+/* ---------- como funciona ---------- */
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px);margin-top:clamp(34px,5vw,60px);position:relative}
+.step{position:relative;padding-top:26px;border-top:1px solid var(--line);opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i) * 130ms)}
+.rv.in .step{opacity:1;transform:none}
+.step .n{font-family:var(--display);font-size:13px;letter-spacing:.24em;color:var(--gold);margin-bottom:12px}
+.step h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(19px,2.4vw,27px);line-height:1.1;letter-spacing:.02em}
+.step p{color:var(--ink2);margin-top:10px;font-size:14.5px;max-width:34ch}
+.step::before{content:"";position:absolute;top:-1px;left:0;height:1px;width:0;background:var(--gold);transition:width .9s var(--ease);transition-delay:calc(.2s + var(--i) * 130ms)}
+.rv.in .step::before{width:100%}
+
+/* ---------- banda whatsapp ---------- */
+.band{border-block:1px solid var(--line);background:var(--bg2);padding:clamp(60px,10vh,120px) var(--pad);text-align:center;position:relative;overflow:hidden}
+.band .aura{position:absolute;left:50%;top:50%;width:min(760px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(201,165,82,.1),transparent 62%);pointer-events:none}
+.band .in{position:relative;max-width:900px;margin:0 auto}
+.band h2{font-size:clamp(30px,6vw,68px)}
+.band p{color:var(--ink2);margin:18px auto 30px;max-width:44ch}
+
+/* ---------- footer ---------- */
+footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;overflow:hidden}
+.frow{display:flex;flex-wrap:wrap;gap:22px 40px;justify-content:space-between;padding-bottom:38px;border-bottom:1px solid var(--line)}
+.frow .col h4{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.24em;color:var(--muted);margin-bottom:12px}
+.frow .col a,.frow .col span{display:block;color:var(--ink2);font-size:14px;margin-bottom:6px;transition:color .3s}
+.frow .col a:hover{color:var(--gold2)}
+.fmark{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(56px,17vw,230px);line-height:.78;letter-spacing:-.01em;
+  color:transparent;-webkit-text-stroke:1px var(--line2);
+  margin:34px 0 -.16em;text-align:center;user-select:none;white-space:nowrap;
+}
+.fbot{display:flex;flex-wrap:wrap;gap:12px 26px;justify-content:space-between;padding:20px 0 26px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+
+/* ---------- modal ---------- */
+.ov{position:fixed;inset:0;z-index:80;background:rgba(4,4,4,.76);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s;display:flex;align-items:flex-end;justify-content:center}
+.ov.on{opacity:1;visibility:visible}
+.sheet{
+  background:var(--surface);border:1px solid var(--line2);border-bottom:0;
+  width:min(560px,100%);max-height:92svh;overflow-y:auto;position:relative;
+  transform:translateY(28px);transition:transform .5s var(--ease);
+}
+.ov.on .sheet{transform:none}
+@media (min-width:760px){.ov{align-items:center}.sheet{border-bottom:1px solid var(--line2);max-height:88svh}}
+.sh-body{padding:28px}
+.x{position:absolute;top:12px;right:12px;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--ink2);font-size:19px;line-height:1;transition:border-color .3s,color .3s}
+.x:hover{border-color:var(--gold);color:var(--gold)}
+.steps{display:flex;align-items:center;gap:9px;margin-bottom:22px;flex-wrap:wrap}
+.steps b{font-family:var(--display);text-transform:uppercase;font-size:11.5px;letter-spacing:.18em;color:var(--muted);font-weight:600;transition:color .4s}
+.steps b.on{color:var(--gold)}
+.steps i{flex:1;min-width:14px;height:1px;background:var(--line2);position:relative}
+.steps i::after{content:"";position:absolute;inset:0;width:0;background:var(--gold);transition:width .5s var(--ease)}
+.steps i.on::after{width:100%}
+.sheet h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(23px,4vw,32px);line-height:1.05;letter-spacing:.02em}
+.mini{color:var(--muted);font-size:13.5px;margin-top:6px}
+.pr{font-family:var(--display);font-weight:700;font-size:32px;letter-spacing:.03em;font-variant-numeric:tabular-nums;margin-top:14px;color:var(--gold2)}
+.lbl{font-family:var(--display);text-transform:uppercase;font-size:11.5px;letter-spacing:.2em;color:var(--muted);margin:22px 0 10px}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slot,.pay{border:1px solid var(--line);background:var(--surface2);padding:11px 12px;cursor:pointer;font-size:13.5px;transition:border-color .3s,background .3s,transform .3s var(--spring)}
+.slot{text-align:center;font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:13px;font-weight:600}
+.slot:hover,.pay:hover{border-color:var(--line2)}
+.slot.sel,.pay.sel{border-color:var(--gold);background:rgba(201,165,82,.08);transform:translateY(-2px)}
+.pays{display:grid;gap:8px}
+.pay{display:flex;align-items:center;gap:11px;position:relative}
+.pay .rd{width:15px;height:15px;border:1px solid var(--line2);border-radius:50%;flex:none;position:relative;transition:border-color .3s}
+.pay.sel .rd{border-color:var(--gold)}
+.pay .rd::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform .35s var(--spring)}
+.pay.sel .rd::after{transform:scale(1)}
+.pay u{width:8px;height:8px;border-radius:50%;flex:none}
+.pay small{color:var(--muted);font-size:12px;margin-left:auto}
+.go{
+  width:100%;margin-top:20px;font-family:var(--display);text-transform:uppercase;font-weight:700;
+  font-size:15px;letter-spacing:.16em;padding:15px;border:1px solid var(--gold);color:var(--gold2);
+  position:relative;overflow:hidden;transition:color .4s var(--ease),opacity .3s;
+}
+.go span.lb{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px}
+.go::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .45s var(--ease)}
+.go:hover:not(:disabled){color:#080808}
+.go:hover:not(:disabled)::before{transform:translateY(0)}
+.go:disabled{opacity:.35;cursor:not-allowed}
+.go svg{width:14px;height:14px}
+.go .sp{display:none;width:15px;height:15px;border:1.5px solid rgba(8,8,8,.3);border-top-color:#080808;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto}
+.go.busy .lb{display:none} .go.busy .sp{display:block} .go.busy{color:#080808} .go.busy::before{transform:translateY(0)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.go.hot{border-color:var(--hot);color:var(--hot)} .go.hot::before{background:var(--hot)}
+.go.tk{border-color:var(--tkp);color:var(--tkp)} .go.tk::before{background:var(--tkp)}
+
+.pixwrap{margin-top:18px}
+.qr{width:170px;height:170px;margin:0 auto;background:#fff;padding:10px;position:relative;overflow:hidden}
+.qr .m{width:100%;height:100%;background-image:repeating-linear-gradient(90deg,#080808 0 5px,transparent 5px 10px),repeating-linear-gradient(0deg,#080808 0 5px,transparent 5px 10px);background-size:10px 10px;opacity:.9}
+.qr .k{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:38px;height:38px;background:#fff;border:5px solid #080808}
+.qr .scan{position:absolute;left:0;right:0;height:36px;background:linear-gradient(180deg,transparent,rgba(50,188,173,.5),transparent);animation:scan 2.1s var(--ease) infinite}
+@keyframes scan{0%{top:-36px}100%{top:100%}}
+.pixmeta{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.pixmeta b{font-family:var(--display);color:var(--ink);font-size:17px;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.code{background:var(--bg);border:1px solid var(--line);padding:11px;font-size:10.5px;color:var(--muted);word-break:break-all;margin-top:14px;line-height:1.5;font-family:ui-monospace,Menlo,monospace}
+.copy{width:100%;margin-top:9px;border:1px solid var(--line2);padding:12px;font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.16em;font-weight:600;transition:border-color .3s,color .3s}
+.copy:hover{border-color:var(--gold);color:var(--gold)}
+.copy.ok{border-color:var(--pix);color:var(--pix)}
+.waiting{display:flex;align-items:center;gap:9px;justify-content:center;margin-top:16px;color:var(--muted);font-size:13px}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--pix);animation:pl 1.5s ease-in-out infinite}
+@keyframes pl{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+
+.ext{margin-top:18px;border:1px solid var(--line)}
+.eh{padding:13px 15px;display:flex;align-items:center;gap:10px;font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.14em;font-weight:700;background:var(--surface2);border-bottom:1px solid var(--line)}
+.eh u{width:8px;height:8px;border-radius:50%;flex:none;background:var(--gold)}
+.eh span{margin-left:auto;font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:11.5px;color:var(--muted);font-weight:400}
+.ext.hot .eh u{background:var(--hot)} .ext.hot .eh{color:var(--hot)}
+.ext.tk .eh u{background:var(--tkp)} .ext.tk .eh{color:var(--tkp)}
+.ext.mp .eh u{background:var(--mp)} .ext.mp .eh{color:var(--mp)}
+.eb{padding:15px}
+.prod{display:flex;gap:12px;align-items:center;padding-bottom:13px;border-bottom:1px solid var(--line);margin-bottom:13px}
+.prod .im{width:52px;height:65px;flex:none;position:relative;overflow:hidden}
+.prod .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.prod .im img.ok{opacity:1}
+.prod b{font-family:var(--display);text-transform:uppercase;font-size:15px;letter-spacing:.04em;display:block}
+.prod i{color:var(--muted);font-size:12.5px;font-style:normal}
+.field{padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.field small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-family:var(--display);margin-bottom:2px}
+.inst{display:flex;justify-content:space-between;align-items:center;padding:14px 0 4px;font-size:13px;color:var(--muted)}
+.inst b{font-family:var(--display);font-size:22px;color:var(--ink);letter-spacing:.03em;font-variant-numeric:tabular-nums}
+.proc{padding:22px 0;text-align:center}
+.proc p{color:var(--ink2);font-size:14px;margin-bottom:14px}
+.bar{height:2px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--gold);transition:width 1.9s var(--ease)}
+
+/* ---------- entrada no painel ---------- */
+.lg{display:grid;gap:15px;margin-top:20px}
+.lg .fg{display:grid;gap:7px}
+.lg label{font-family:var(--display);text-transform:uppercase;font-size:11px;letter-spacing:.2em;color:var(--muted)}
+.lg .inp{
+  width:100%;border:1px solid var(--line);background:var(--surface2);padding:12px 13px;
+  font-size:14px;color:var(--ink);transition:border-color .3s,background .3s;
+}
+.lg .inp::placeholder{color:var(--muted)}
+.lg .inp:hover{border-color:var(--line2)}
+.lg .inp:focus{outline:none;border-color:var(--gold);background:var(--bg)}
+.lg .pw{position:relative}
+.lg .pw .inp{padding-right:52px}
+.lg .olho{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;
+  display:grid;place-items:center;color:var(--muted);transition:color .3s;
+}
+.lg .olho:hover{color:var(--gold)}
+.lg .olho svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.6}
+.lg .erro{
+  color:var(--vinho,#C24A50);font-size:12.5px;display:none;align-items:center;gap:7px;
+}
+.lg .erro.on{display:flex}
+.lgnota{
+  margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:11.5px;line-height:1.6;display:flex;gap:10px;align-items:flex-start;
+}
+.lgnota u{width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none;margin-top:6px}
+
+.okwrap{text-align:center;padding-top:6px}
+.okwrap svg{width:66px;height:66px;margin:0 auto 14px;display:block}
+.okwrap .c{stroke-dasharray:208;stroke-dashoffset:208;animation:dash .8s var(--ease) forwards}
+.okwrap .t{stroke-dasharray:44;stroke-dashoffset:44;animation:dash .45s var(--ease) .55s forwards}
+@keyframes dash{to{stroke-dashoffset:0}}
+.flow{text-align:left;margin-top:20px;position:relative;padding-left:22px}
+.flow .ln{position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--line2);transform:scaleY(0);transform-origin:top;transition:transform .9s var(--ease)}
+.flow.in .ln{transform:scaleY(1)}
+.flow .st{position:relative;padding:7px 0;font-size:13.5px;color:var(--ink2);opacity:0;transform:translateX(-8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.flow.in .st{opacity:1;transform:none}
+.flow.in .st:nth-child(2){transition-delay:.2s} .flow.in .st:nth-child(3){transition-delay:.42s}
+.flow.in .st:nth-child(4){transition-delay:.64s} .flow.in .st:nth-child(5){transition-delay:.86s}
+.flow .st u{position:absolute;left:-22px;top:14px;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--surface)}
+
+/* ---------- guia por dificuldades ---------- */
+.dores{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:12px;margin-top:clamp(28px,4vw,46px)}
+.dor{
+  text-align:left;border:1px solid var(--line);background:var(--surface);padding:20px;
+  cursor:pointer;position:relative;overflow:hidden;
+  opacity:0;transform:translateY(22px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease),border-color .4s,background .4s;
+  transition-delay:calc(var(--i) * 65ms);
+}
+.rv.in .dor{opacity:1;transform:none}
+.dor:hover,.dor:focus-visible{border-color:var(--gold);background:var(--surface2)}
+.dor h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:19px;letter-spacing:.03em;line-height:1.12}
+.dor p{color:var(--ink2);font-size:13.5px;margin-top:8px;line-height:1.55}
+.dor .go2{
+  font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.18em;color:var(--gold);
+  margin-top:14px;display:flex;align-items:center;gap:8px;opacity:0;transform:translateX(-6px);
+  transition:opacity .4s var(--ease),transform .4s var(--ease);
+}
+.dor:hover .go2,.dor:focus-visible .go2{opacity:1;transform:none}
+.dor .go2 svg{width:13px;height:13px;flex:none}
+.dor.on{border-color:var(--gold);background:var(--surface2)}
+
+.sug{margin-top:clamp(26px,4vw,44px);border-top:1px solid var(--gold3);padding-top:26px;animation:sugIn .6s var(--ease)}
+@keyframes sugIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.sug-h{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.sug-h span{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(20px,3vw,28px);letter-spacing:.03em}
+.sug-x{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.18em;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:8px 16px;transition:border-color .3s,color .3s}
+.sug-x:hover{border-color:var(--gold);color:var(--gold)}
+.sug-d{color:var(--ink2);margin-top:10px;max-width:56ch}
+.sug .grid{margin-top:24px}
+.sug-n{color:var(--muted);font-size:13.5px;margin-top:22px}
+.lk{color:var(--gold2);border-bottom:1px solid var(--gold3);padding-bottom:1px;transition:color .3s,border-color .3s;font:inherit;cursor:pointer}
+.lk:hover{color:var(--gold);border-color:var(--gold)}
+.lk-b{display:inline-block;margin-top:20px;font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.16em}
+
+/* ---------- lives ---------- */
+.live-box{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+.live-when{
+  display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:10px 16px;
+  border:1px solid var(--line);background:var(--surface);font-size:13.5px;color:var(--ink2);
+}
+.live-when b{color:var(--ink);font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:14px}
+.live-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.live-card{border:1px solid var(--line);background:var(--surface);overflow:hidden;transition:border-color .5s}
+.live-card.ao-vivo{border-color:var(--tkp)}
+.live-top{display:flex;align-items:center;gap:9px;padding:13px 15px;border-bottom:1px solid var(--line)}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none;transition:background .4s}
+.live-card.ao-vivo .live-dot{background:var(--tkp);animation:pl 1.5s ease-in-out infinite}
+.live-st{font-family:var(--display);text-transform:uppercase;font-size:12.5px;letter-spacing:.18em;font-weight:600;color:var(--ink2)}
+.live-card.ao-vivo .live-st{color:var(--tkp)}
+.live-ph{position:relative;aspect-ratio:9/13;overflow:hidden}
+.live-ph .ph{position:absolute;inset:0}
+.live-play{
+  position:absolute;left:50%;top:50%;width:56px;height:56px;transform:translate(-50%,-50%);
+  border:1px solid var(--line2);border-radius:50%;
+}
+.live-play::after{content:"";position:absolute;left:53%;top:50%;transform:translate(-50%,-50%);border-left:13px solid var(--ink2);border-block:8px solid transparent}
+.live-card.ao-vivo .live-play{border-color:var(--tkp)}
+.live-card.ao-vivo .live-play::after{border-left-color:var(--tkp)}
+.live-meta{padding:13px 15px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.live-meta b{font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.08em}
+.live-meta span{color:var(--muted);font-size:12px}
+
+/* ---------- chat de acolhimento ---------- */
+.chat-fab{
+  position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:70;
+  display:flex;align-items:center;gap:11px;padding:13px 20px;border-radius:999px;
+  background:var(--gold);color:#080808;font-family:var(--display);text-transform:uppercase;
+  font-size:14px;letter-spacing:.14em;font-weight:700;
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.9);
+  transform:translateY(90px);opacity:0;transition:transform .6s var(--spring),opacity .5s var(--ease),background .3s;
+}
+.chat-fab.on{transform:none;opacity:1}
+.chat-fab:hover{background:var(--gold2)}
+.chat-fab u{width:8px;height:8px;border-radius:50%;background:#080808;flex:none;animation:pl 2s ease-in-out infinite}
+.chat-fab.hide{transform:translateY(90px);opacity:0;pointer-events:none}
+
+.chat{
+  position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:85;
+  width:min(392px,calc(100vw - 32px));height:min(620px,calc(100svh - 32px));
+  background:var(--surface);border:1px solid var(--line2);display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transform:translateY(22px) scale(.98);transform-origin:bottom right;
+  transition:opacity .4s var(--ease),transform .45s var(--ease),visibility .45s;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.95);
+}
+.chat.on{opacity:1;visibility:visible;transform:none}
+.chat-h{display:flex;align-items:center;gap:12px;padding:15px 16px;border-bottom:1px solid var(--line);flex:none}
+.chat-av{width:38px;height:38px;border-radius:50%;flex:none;background:linear-gradient(150deg,var(--gold),var(--gold3));display:grid;place-items:center;font-family:var(--display);font-weight:800;color:#080808;font-size:15px}
+.chat-h b{font-family:var(--display);text-transform:uppercase;font-size:14.5px;letter-spacing:.1em;display:block;line-height:1.2}
+.chat-h small{color:var(--muted);font-size:11.5px}
+.chat-x{margin-left:auto;width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--ink2);font-size:18px;line-height:1;transition:border-color .3s,color .3s;flex:none}
+.chat-x:hover{border-color:var(--gold);color:var(--gold)}
+.chat-b{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:11px;scroll-behavior:smooth}
+.msg{max-width:86%;padding:11px 14px;font-size:14px;line-height:1.55;animation:msgIn .45s var(--ease)}
+@keyframes msgIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.msg.dela{background:var(--surface2);border:1px solid var(--line);align-self:flex-start;color:var(--ink)}
+.msg.eu{background:var(--gold);color:#080808;align-self:flex-end;font-weight:500}
+.msg.aviso{background:rgba(201,165,82,.08);border:1px solid var(--gold3);align-self:stretch;max-width:100%;color:var(--ink2);font-size:13px}
+.msg.aviso b{color:var(--gold2);display:block;margin-bottom:4px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:12px}
+.dig{display:flex;gap:4px;align-self:flex-start;padding:13px 15px;background:var(--surface2);border:1px solid var(--line)}
+.dig u{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:dig 1.3s ease-in-out infinite}
+.dig u:nth-child(2){animation-delay:.18s} .dig u:nth-child(3){animation-delay:.36s}
+@keyframes dig{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+.chat-op{padding:12px 16px 16px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;flex:none}
+.op{
+  border:1px solid var(--line2);background:var(--surface2);padding:9px 14px;font-size:13.5px;
+  cursor:pointer;text-align:left;transition:border-color .3s,background .3s,transform .3s var(--spring);
+  animation:msgIn .4s var(--ease) backwards;
+}
+.op:nth-child(2){animation-delay:.06s} .op:nth-child(3){animation-delay:.12s} .op:nth-child(4){animation-delay:.18s}
+.op:hover{border-color:var(--gold);background:rgba(201,165,82,.1);transform:translateY(-2px)}
+.op.forte{border-color:var(--gold);color:var(--gold2)}
+.chat-pv{padding:9px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.5;flex:none;display:flex;align-items:center;gap:7px}
+.chat-pv u{width:5px;height:5px;border-radius:50%;background:var(--gold3);flex:none}
+
+@media (max-width:940px){
+  .live-box{grid-template-columns:1fr}
+  .live-r{max-width:340px}
+}
+@media (max-width:560px){
+  .chat{right:0;bottom:0;width:100vw;height:100svh;border:0}
+  .chat-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px}
+}
+
+/* ---------- vozes (depoimentos em áudio) ---------- */
+.vozes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(28px,4vw,46px)}
+@media (max-width:940px){.vozes{grid-template-columns:1fr}}
+.voz{
+  border:1px solid var(--line);background:var(--surface);padding:20px;
+  opacity:0;transform:translateY(22px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease),border-color .4s;
+  transition-delay:calc(var(--i) * 80ms);
+}
+.rv.in .voz{opacity:1;transform:none}
+.voz.tocando{border-color:var(--gold)}
+.voz-t{display:flex;align-items:center;gap:13px}
+.voz-p{
+  width:46px;height:46px;flex:none;border:1px solid var(--gold3);border-radius:50%;
+  display:grid;place-items:center;color:var(--gold);cursor:pointer;position:relative;
+  transition:background .35s var(--ease),border-color .35s,color .35s;
+}
+.voz-p:hover{background:rgba(201,165,82,.12);border-color:var(--gold)}
+.voz.tocando .voz-p{background:var(--gold);color:#080808;border-color:var(--gold)}
+.voz-p svg{width:15px;height:15px}
+.voz-n b{font-family:var(--display);text-transform:uppercase;font-size:16px;letter-spacing:.06em;display:block;line-height:1.2}
+.voz-n span{color:var(--muted);font-size:12.5px}
+.voz-w{display:flex;align-items:center;justify-content:space-between;gap:2px;height:34px;margin-top:16px}
+.voz-w u{width:3px;flex:none;background:var(--line2);border-radius:2px;transition:background .3s,transform .3s var(--ease);transform-origin:center}
+.voz.tocando .voz-w u.pass{background:var(--gold)}
+.voz.tocando .voz-w u.agora{background:var(--gold2);transform:scaleY(1.25)}
+.voz-d{color:var(--ink2);font-size:13.5px;line-height:1.6;margin-top:15px;font-style:italic;font-family:var(--accent);font-size:16px}
+.voz-f{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.voz-f span{color:var(--muted);font-size:11.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em}
+.voz-f b{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:12px;font-family:var(--display);letter-spacing:.08em}
+.voz-nota{color:var(--muted);font-size:13.5px;margin-top:22px;max-width:64ch}
+
+/* ---------- fila de espera ---------- */
+.fila{
+  margin-top:16px;border:1px solid var(--line);background:var(--bg);padding:14px 15px;
+}
+.fila-t{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink2)}
+.fila-t u{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;animation:pl 2s ease-in-out infinite}
+.fila-t b{font-family:var(--display);color:var(--ink);letter-spacing:.06em;font-size:15px;text-transform:uppercase}
+.fila-b{height:3px;background:var(--line);margin-top:11px;overflow:hidden}
+.fila-b i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold3),var(--gold2));transition:width 1.1s var(--ease)}
+.fila-n{color:var(--muted);font-size:11.5px;margin-top:9px;line-height:1.5}
+
+/* ---------- diário do trabalho ---------- */
+.diario{margin-top:20px;border:1px solid var(--line);background:var(--bg);padding:16px}
+.diario-t{font-family:var(--display);text-transform:uppercase;font-size:11.5px;letter-spacing:.2em;color:var(--muted);margin-bottom:14px}
+.diario-l{position:relative;padding-left:20px}
+.diario-l::before{content:"";position:absolute;left:4px;top:9px;bottom:9px;width:1px;background:var(--line2)}
+.di{position:relative;padding:6px 0;display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted)}
+.di u{position:absolute;left:-20px;width:9px;height:9px;border-radius:50%;background:var(--surface);border:1px solid var(--line2);box-shadow:0 0 0 3px var(--bg)}
+.di.ok{color:var(--ink)}
+.di.ok u{background:var(--gold);border-color:var(--gold)}
+.di b{margin-left:auto;font-family:var(--display);text-transform:uppercase;font-size:10.5px;letter-spacing:.16em;color:var(--gold)}
+.diario-n{color:var(--muted);font-size:11.5px;margin-top:12px;line-height:1.5}
+
+/* ---------- veio do TikTok ---------- */
+.veio{
+  position:fixed;left:50%;top:14px;z-index:75;transform:translate(-50%,-130%);
+  display:flex;align-items:center;gap:11px;padding:11px 14px 11px 16px;
+  background:var(--surface);border:1px solid var(--tkp);
+  font-size:13px;color:var(--ink);max-width:calc(100vw - 24px);
+  box-shadow:0 20px 44px -22px rgba(0,0,0,.95);
+  transition:transform .6s var(--spring);
+}
+.veio.on{transform:translate(-50%,0)}
+.veio-i{width:8px;height:8px;border-radius:50%;background:var(--tkp);flex:none;animation:pl 2s ease-in-out infinite}
+.veio-x{width:24px;height:24px;display:grid;place-items:center;color:var(--muted);font-size:17px;line-height:1;flex:none;transition:color .3s}
+.veio-x:hover{color:var(--ink)}
+
+/* ---------- retorno silencioso ---------- */
+.ret{border:1px solid var(--line);background:var(--surface);padding:clamp(20px,3vw,30px);margin-top:clamp(28px,4vw,44px)}
+.ret-h{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;justify-content:space-between}
+.ret-h h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(19px,2.5vw,26px);letter-spacing:.03em;line-height:1.1}
+.ret-h p{color:var(--ink2);font-size:14px;margin-top:8px;max-width:52ch}
+.ret-c{display:flex;flex-direction:column;gap:9px;margin-top:20px;min-height:8px}
+.ret-go{
+  font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.16em;font-weight:700;
+  border:1px solid var(--gold);color:var(--gold2);padding:11px 20px;border-radius:999px;flex:none;
+  transition:background .35s var(--ease),color .35s;
+}
+.ret-go:hover{background:var(--gold);color:#080808}
+.ret-n{color:var(--muted);font-size:12.5px;margin-top:16px;line-height:1.6}
+
+/* ---------- cursor ---------- */
+.cur,.cur2{position:fixed;top:0;left:0;z-index:95;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
+.cur{width:6px;height:6px;background:#fff;margin:-3px 0 0 -3px}
+.cur2{width:34px;height:34px;border:1px solid rgba(255,255,255,.5);margin:-17px 0 0 -17px;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),opacity .35s}
+.cur2.big{width:74px;height:74px;margin:-37px 0 0 -37px;background:rgba(255,255,255,.1);border-color:transparent}
+.cur2 span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);text-transform:uppercase;font-size:11px;letter-spacing:.14em;opacity:0;transition:opacity .3s}
+.cur2.big span{opacity:1}
+@media (hover:none),(pointer:coarse){.cur,.cur2{display:none}}
+
+/* ---------- responsivo ---------- */
+@media (max-width:1080px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:940px){
+  .nav .links,.nav .wa{display:none}
+  .burger{display:block}
+  .manif{grid-template-columns:1fr}
+  .steps3{grid-template-columns:1fr}
+  .hstick{position:static;height:auto;display:block}
+  .htrack{transform:none!important;display:grid;grid-template-columns:repeat(2,1fr);padding:0 var(--pad)}
+  .htrack .card{flex:none}
+  .hbar{display:none}
+  .htop{margin-bottom:26px}
+  .row{grid-template-columns:auto 1fr auto;gap:14px}
+  .row .thumb{display:none}
+}
+@media (max-width:560px){
+  .hero h1{font-size:clamp(38px,10.4vw,64px)}
+  .eyebrow{font-size:11px;letter-spacing:.2em;flex-wrap:wrap}
+  .eyebrow u{width:20px}
+  .grid,.htrack{grid-template-columns:1fr}
+  .slots{grid-template-columns:repeat(2,1fr)}
+  .sh-body{padding:22px 18px}
+  .frow{gap:20px}
+  .frow .col{min-width:44%}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .pre{display:none}
+  .grain{animation:none}
+  .hero .bg{transform:none}
+  .hero h1 .ln span,.h2 .ln span,h2 .ln span{transform:none!important}
+  .hero .eyebrow,.hero .sub,.hero .ctas,.hero .cue{opacity:1!important;transform:none!important}
+  .hero .rule{transform:scaleX(1)!important}
+  .rv .lede,.rv .ix,.rv .shead .chips{opacity:1!important;transform:none!important}
+  .card,.row,.step,.dor,.voz{opacity:1!important;transform:none!important}
+  .fila-b i{transition:none!important}
+  .chat-fab{opacity:1!important;transform:none!important}
+  .chat-fab.hide{opacity:0!important}
+  .sug{animation:none}
+  .msg,.op{animation:none!important}
+  .dor .go2{opacity:1!important;transform:none!important}
+  .step::before{width:100%!important}
+  .manif .fig .wipe{transform:scaleY(0)!important}
+  .card .price,.row .price{opacity:1!important;transform:none!important}
+  .flow .ln{transform:scaleY(1)!important}
+  .flow .st{opacity:1!important;transform:none!important}
+  .okwrap .c,.okwrap .t{stroke-dashoffset:0!important}
+  .hstick{position:static;height:auto;display:block}
+  .htrack{transform:none!important;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .htrack .card{flex:none}
+  .hbar{display:none}
+  .cur,.cur2{display:none}
+  .ticker .row{animation:none;width:auto;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="pre" id="pre" aria-hidden="true">
+  <div class="w">
+    <div class="mark"><span>Mãe Karina de Iemanjá</span></div>
+    <div class="rule"></div>
+    <div class="n" id="pren">00</div>
+  </div>
+</div>
+
+<div class="prog" id="prog" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#topo"><i aria-hidden="true"></i>Mãe Karina de Iemanjá</a>
+  <nav class="links" aria-label="Seções">
+    <a href="#guia">Começar</a>
+    <a href="#consultas">Consultas</a>
+    <a href="#trabalhos">Trabalhos</a>
+    <a href="#lives">Ao vivo</a>
+  </nav>
+  <a class="wa" href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener"><span>WhatsApp</span></a>
+  <button class="burger" id="burger" aria-label="Abrir o menu" aria-expanded="false"><u></u><u></u></button>
+</header>
+
+<nav class="sheetnav" id="sheetnav" aria-label="Menu">
+  <a href="#guia">Começar</a>
+  <a href="#consultas">Consultas</a>
+  <a href="#trabalhos">Trabalhos</a>
+  <a href="#lives">Ao vivo</a>
+  <a href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener">WhatsApp</a>
+</nav>
+
+<main id="topo">
+
+  <section class="hero" id="hero">
+    <span class="bg ph" id="herobg" aria-hidden="true"></span>
+    <span class="tone" aria-hidden="true"></span>
+    <span class="vig" aria-hidden="true"></span>
+    <div class="in">
+      <div class="eyebrow"><u aria-hidden="true"></u>Atendimento online, de onde você estiver</div>
+      <h1>
+        <span class="ln"><span>Ninguém</span></span>
+        <span class="ln"><span>precisa passar</span></span>
+        <span class="ln mix"><span>por isso <em>sozinho</em>.</span></span>
+      </h1>
+      <p class="sub">Casa de Iemanjá. Consulta, trabalho e escuta — para quando a vida aperta e falta com quem conversar.</p>
+      <div class="rule" aria-hidden="true"></div>
+      <div class="ctas">
+        <a class="btn mag" href="#guia"><span>Ver o que pode ajudar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+        <button class="btn ghost mag" type="button" data-abrechat><span>Conversar primeiro</span></button>
+      </div>
+    </div>
+    <div class="cue" aria-hidden="true"><u></u>Role</div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="row" id="tick"></div></div>
+
+  <section class="sec rv" id="guia">
+    <div class="ix"><u aria-hidden="true"></u>01 — Por onde começar</div>
+    <h2><span class="ln"><span>O que está</span></span><span class="ln"><span>pesando hoje?</span></span></h2>
+    <p class="lede">Não precisa saber o nome do trabalho. Diga o que está sentindo, e a casa mostra o caminho.</p>
+    <div class="dores" id="dores"></div>
+    <div class="sug" id="sug" hidden>
+      <div class="sug-h">
+        <span id="sugt"></span>
+        <button class="sug-x" id="sugx" type="button" aria-label="Fechar a sugestão">Voltar</button>
+      </div>
+      <p class="sug-d" id="sugd"></p>
+      <div class="grid" id="sugg"></div>
+      <p class="sug-n">Se preferir conversar antes de escolher, <button class="lk" type="button" data-abrechat>fale com a casa</button>. Sem compromisso.</p>
+    </div>
+  </section>
+
+  <section class="sec rv" id="casa">
+    <div class="manif">
+      <div class="txt">
+        <div class="ix"><u aria-hidden="true"></u>02 — A casa</div>
+        <h2><span class="ln"><span>Quem</span></span><span class="ln"><span>te atende</span></span></h2>
+        <p class="big">Você não vai falar com um robô o tempo todo.</p>
+        <p>Mãe Karina de Iemanjá atende online, de onde você estiver. Cada trabalho é feito na casa dela, com o tempo que ele pede, e você recebe foto da oferenda quando é o caso.</p>
+        <p>Assunto delicado não passa por atendente: quem responde é ela.</p>
+        <a class="lk lk-b" href="https://www.tiktok.com/@maekarinadeiemanja333" target="_blank" rel="noopener">Ver o TikTok da casa</a>
+      </div>
+      <div class="fig">
+        <span class="ph" aria-hidden="true"></span>
+        <img alt="" loading="lazy" decoding="async" id="manifimg">
+        <span class="wipe" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec rv" id="vozes">
+    <div class="ix"><u aria-hidden="true"></u>03 — Quem já passou por aqui</div>
+    <h2><span class="ln"><span>Não é promessa.</span></span><span class="ln"><span>É gente falando.</span></span></h2>
+    <p class="lede">Pessoas que autorizaram a casa a publicar. Só o primeiro nome, e nada do que foi conversado em particular.</p>
+    <div class="vozes" id="g-vozes"></div>
+    <p class="voz-nota">Cada história é uma história. O que ajudou uma pessoa pode não ser o seu caminho — por isso a Mãe Karina olha antes.</p>
+
+    <div class="ret" id="retorno">
+      <div class="ret-h">
+        <div>
+          <h3>A casa lembra de você</h3>
+          <p>Uns dias depois do trabalho terminar, chega uma mensagem. Não é oferta, não é promoção: é só para saber como você está.</p>
+        </div>
+        <button class="ret-go" type="button">Ver a mensagem</button>
+      </div>
+      <div class="ret-c"></div>
+      <p class="ret-n" hidden>Foi isso. Nenhum link, nenhum preço, nenhuma oferta. Quem quiser voltar, volta — e quem não quiser fica em paz.</p>
+    </div>
+  </section>
+
+  <section class="sec rv" id="consultas">
+    <div class="shead">
+      <div>
+        <div class="ix"><u aria-hidden="true"></u>04 — Consultas</div>
+        <h2><span class="ln"><span>Uma conversa</span></span><span class="ln"><span>para clarear</span></span></h2>
+      </div>
+      <div class="chips">
+        <span class="chip px"><u aria-hidden="true"></u>Pix</span>
+        <span class="chip"><u aria-hidden="true"></u>Mercado Pago</span>
+      </div>
+    </div>
+    <p class="lede">Tudo por vídeo, de onde você estiver. Escolha o horário e pague na hora: a vaga fica reservada assim que o pagamento entra.</p>
+    <div class="grid" id="g-consultas"></div>
+  </section>
+
+  <section class="sec rv" id="trabalhos">
+    <div class="shead">
+      <div>
+        <div class="ix"><u aria-hidden="true"></u>05 — Trabalhos</div>
+        <h2><span class="ln"><span>Feitos na casa,</span></span><span class="ln"><span>à distância</span></span></h2>
+      </div>
+      <div class="chips"><span class="chip px"><u aria-hidden="true"></u>Pix e Mercado Pago</span></div>
+    </div>
+    <p class="lede">Você não precisa estar presente. O trabalho é feito na casa da Mãe Karina e você acompanha por mensagem, com foto da oferenda quando é o caso.</p>
+    <div class="grid" id="g-trabalhos"></div>
+  </section>
+
+  <section class="hpin rv" id="produtos">
+    <div class="hstick">
+      <div class="htop">
+        <div class="shead">
+          <div>
+            <div class="ix"><u aria-hidden="true"></u>06 — Para receber em casa</div>
+            <h2><span class="ln"><span>Preparados</span></span><span class="ln"><span>e enviados</span></span></h2>
+          </div>
+          <div class="chips"><span class="chip tk"><u aria-hidden="true"></u>TikTok Shop</span></div>
+        </div>
+        <p class="lede">Banhos, velas e guias preparados na casa. A compra é feita pelo TikTok Shop, com frete e rastreio por lá.</p>
+      </div>
+      <div class="htrack" id="g-produtos"></div>
+      <div class="hbar" aria-hidden="true"><u><i id="hbar"></i></u></div>
+    </div>
+  </section>
+
+  <section class="sec rv" id="cursos">
+    <div class="shead">
+      <div>
+        <div class="ix"><u aria-hidden="true"></u>07 — Cursos</div>
+        <h2><span class="ln"><span>Para quem quer</span></span><span class="ln"><span>entender</span></span></h2>
+      </div>
+      <div class="chips"><span class="chip hot"><u aria-hidden="true"></u>Hotmart</span></div>
+    </div>
+    <p class="lede">Compra aprovada, acesso liberado no e-mail. Sem link mandado à mão.</p>
+    <div class="rows" id="g-cursos"></div>
+  </section>
+
+  <section class="sec rv" id="lives">
+    <div class="live-box" id="livebox">
+      <div class="live-l">
+        <div class="ix"><u aria-hidden="true"></u>08 — Ao vivo</div>
+        <h2><span class="ln"><span>Encontre a casa</span></span><span class="ln"><span>ao vivo</span></span></h2>
+        <p class="lede">Mãe Karina faz lives no TikTok. É lá que ela responde perguntas, joga para quem está assistindo e conversa com a comunidade.</p>
+        <div class="live-when" id="livewhen"></div>
+        <div class="live-cta">
+          <a class="btn mag" id="livego" href="https://www.tiktok.com/@maekarinadeiemanja333/live" target="_blank" rel="noopener"><span id="livegot">Ver no TikTok <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+          <button class="btn ghost mag" id="liveav" type="button"><span>Avisar quando abrir</span></button>
+        </div>
+      </div>
+      <div class="live-r">
+        <div class="live-card" id="livecard">
+          <div class="live-top">
+            <span class="live-dot" id="livedot" aria-hidden="true"></span>
+            <span class="live-st" id="livest">verificando…</span>
+          </div>
+          <div class="live-ph"><span class="ph" aria-hidden="true"></span><span class="live-play" aria-hidden="true"></span></div>
+          <div class="live-meta">
+            <b>@maekarinadeiemanja333</b>
+            <span id="livesub">TikTok</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band rv" id="ajuda">
+    <span class="aura" aria-hidden="true"></span>
+    <div class="in">
+      <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>09 — Fale com a casa</div>
+      <h2><span class="ln"><span>Não sabe</span></span><span class="ln"><span>por onde começar?</span></span></h2>
+      <p>Conte o que está acontecendo. A casa escuta primeiro e só depois fala em trabalho.</p>
+      <div class="ctas" style="justify-content:center">
+        <button class="btn mag" type="button" data-abrechat><span>Conversar agora <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></button>
+        <a class="btn ghost mag" href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener"><span>Falar no WhatsApp</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="frow">
+    <div class="col">
+      <h4>A casa</h4>
+      <span>Atendimento 100% online</span>
+      <span>Para todo o Brasil e exterior</span>
+    </div>
+    <div class="col">
+      <h4>Seções</h4>
+      <a href="#guia">Por onde começar</a>
+      <a href="#consultas">Consultas</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#lives">Lives no TikTok</a>
+    </div>
+    <div class="col">
+      <h4>Contato</h4>
+      <a href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#privacidade">Política de privacidade</a>
+    </div>
+  </div>
+  <div class="fmark" aria-hidden="true">Mãe Karina de Iemanjá</div>
+  <div class="fbot">
+    <span>© <span id="ano"></span> Mãe Karina de Iemanjá</span>
+    <span>Atendimento pelo WhatsApp a qualquer hora</span>
+  </div>
+</footer>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Detalhe do item" hidden><div class="sheet" id="sheet"></div></div>
+
+<button class="chat-fab" id="fab" type="button" aria-label="Abrir a conversa com a casa">
+  <u aria-hidden="true"></u>Conversar
+</button>
+
+<div class="chat" id="chat" role="dialog" aria-modal="false" aria-label="Conversa com a casa">
+  <div class="chat-h">
+    <span class="chat-av" aria-hidden="true">K</span>
+    <span>
+      <b>Casa de Iemanjá</b>
+      <small id="chatst">atendimento da casa</small>
+    </span>
+    <button class="chat-x" id="chatx" type="button" aria-label="Fechar a conversa">×</button>
+  </div>
+  <div class="chat-b" id="chatb" role="log" aria-live="polite"></div>
+  <div class="chat-op" id="chatop"></div>
+  <div class="chat-pv"><u aria-hidden="true"></u><span>Esta conversa não fica guardada no seu aparelho. Ao fechar, some.</span></div>
+</div>
+
+<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="cur2" id="cur2" aria-hidden="true"><span id="curtxt"></span></div>
+
+<script>
+(function(){
+"use strict";
+var $ = function(id){ return document.getElementById(id); };
+var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+var fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
+var ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+
+/* ---------- dados ----------
+   ATENÇÃO — PROVISÓRIO: nomes, descrições e preços abaixo são típicos de uma casa
+   de Iemanjá que atende online. NÃO foram confirmados com a Mãe Karina.
+   Trocar por serviços e valores reais antes de mostrar para a cliente.
+   O campo `dor` liga o serviço à dificuldade: alimenta o guia e o bot.
+   Tudo é atendimento online e à distância — a casa não atende presencialmente.  */
+var itens = [
+  {id:1,  g:"consultas", t:"Jogo de búzios",            p:90,  d:"Leitura completa por vídeo, 40 minutos", canal:"site", dor:["encruzilhada","tudo"],            img:"photo-1706922122654-e209628fdd48"},
+  {id:2,  g:"consultas", t:"Consulta com a Mãe Karina", p:150, d:"Uma hora por vídeo, com orientação",     canal:"site", dor:["encruzilhada","luto","tudo"],     img:"photo-1607773709367-06b7a91f7e4a"},
+  {id:3,  g:"consultas", t:"Leitura de tarot",          p:70,  d:"30 minutos por vídeo ou áudio",          canal:"site", dor:["amor","encruzilhada"],           img:"photo-1600429991827-5224817554f8"},
+  {id:4,  g:"trabalhos", t:"Descarrego à distância",    p:180, d:"Feito na casa, com foto da oferenda",    canal:"site", dor:["peso","saude"],                  img:"photo-1627323678334-3a5d164b0e24"},
+  {id:5,  g:"trabalhos", t:"Abertura de caminhos",      p:250, d:"Trabalho completo, com consulta junto",  canal:"site", dor:["dinheiro","encruzilhada"],       img:"photo-1489101960932-eb71762e6bc8"},
+  {id:6,  g:"trabalhos", t:"Firmeza de proteção",       p:200, d:"Para você, a casa ou o negócio",         canal:"site", dor:["peso","medo"],                   img:"photo-1518528802892-ec2191995c99"},
+  {id:7,  g:"trabalhos", t:"Trabalho de Iemanjá",       p:280, d:"Para a família e a vida amorosa",        canal:"site", dor:["amor","familia"],                img:"photo-1602523961358-f9f03dd557db"},
+  {id:8,  g:"produtos",  t:"Banho de ervas",            p:75,  d:"Preparado e enviado pronto para usar",   canal:"tk",   dor:["peso","saude"],                  img:"photo-1509156396595-449e10c5cd3e"},
+  {id:9,  g:"produtos",  t:"Vela de sete dias",         p:45,  d:"Firmada na casa e enviada",              canal:"tk",   dor:["medo","peso"],                   img:"photo-1664743680476-f3ee2680c8c5"},
+  {id:10, g:"produtos",  t:"Guia de proteção",          p:120, d:"Feito à mão, na cor do seu orixá",       canal:"tk",   dor:["medo"],                          img:"photo-1637757969279-c4d028905131"},
+  {id:11, g:"cursos",    t:"Iemanjá e as águas",        p:197, d:"8 aulas sobre a linha de Iemanjá",       canal:"hot",  dor:["aprender"], parc:"12x de R$ 19,70", img:"photo-1600429753199-5376c2738737"},
+  {id:12, g:"cursos",    t:"Umbanda para iniciantes",   p:97,  d:"Fundamentos, 5 aulas",                   canal:"hot",  dor:["aprender"], parc:"6x de R$ 17,55",  img:"photo-1623230951203-1f8fa5298426"}
+];
+
+/* dificuldades pelas quais o site guia — cada uma leva aos serviços que ajudam */
+var DORES = [
+  {k:"amor",          t:"Amor e relações",     d:"Relação que travou, alguém que se afastou, ciúme que não passa."},
+  {k:"dinheiro",      t:"Trabalho e dinheiro", d:"Emprego que não vem, dívida que aperta, negócio parado."},
+  {k:"peso",          t:"Um peso que não sai", d:"Cansaço sem explicação, tudo dando errado, casa pesada."},
+  {k:"familia",       t:"Família",             d:"Briga que não acaba, filho que preocupa, casa dividida."},
+  {k:"medo",          t:"Medo e proteção",     d:"Sensação de estar exposto, medo de inveja, insegurança."},
+  {k:"encruzilhada",  t:"Não sei o que fazer", d:"Uma decisão grande na frente e nenhuma certeza."},
+  {k:"aprender",      t:"Quero aprender",      d:"Vontade de entender a Umbanda e a linha de Iemanjá."}
+];
+var CANAL = { site:{n:"Site", cls:"px"}, tk:{n:"TikTok Shop", cls:"tk"}, hot:{n:"Hotmart", cls:"hot"} };
+/* fotos que já temos em img/ (9), remapeadas para os serviços atuais */
+var LOCAL = {1:"baralho-da-casa",2:"consulta-espiritual",3:"leitura-de-tarot",4:"banho-de-descarrego",5:"abertura-de-caminhos",6:"firmeza-de-protecao",7:"toalha-de-leitura",8:"kit-iniciante-de-tarot",9:"vela-de-sete-dias"};
+var horarios = ["Qui 14h","Qui 16h","Sex 10h","Sex 15h","Sáb 9h","Sáb 11h"];
+var escolha = null, cron = null, ultimoFoco = null;
+
+function brl(v){ return "R$ " + v.toLocaleString("pt-BR"); }
+function foto(id,w,h){ return "https://images.unsplash.com/" + id + "?w=" + w + "&h=" + h + "&fit=crop&q=70&auto=format"; }
+function fontes(i,w,h){
+  var l = [];
+  if(LOCAL[i.id]) l.push("img/" + LOCAL[i.id] + ".jpg");
+  l.push(foto(i.img,w,h));
+  return l;
+}
+/* cascata: arquivo local -> banco de imagens. Sem foto, o bloco tonal fica: nunca um buraco. */
+function encadear(im, lista){
+  var k = 0;
+  im.addEventListener("load", function(){ im.classList.add("ok"); });
+  im.addEventListener("error", function(){ k++; if(k < lista.length) im.src = lista[k]; else im.remove(); });
+  im.src = lista[0];
+}
+
+/* ---------- preloader ---------- */
+function preloader(){
+  var pre = $("pre");
+  if(reduce){ pre.remove(); document.body.classList.remove("lock"); arrancar(); return; }
+  document.body.classList.add("lock");
+  var n = 0, alvo = $("pren");
+  var t = setInterval(function(){
+    n = Math.min(100, n + Math.ceil(Math.random()*11));
+    alvo.textContent = n < 10 ? "0" + n : n;
+    if(n >= 100){ clearInterval(t); }
+  }, 90);
+  setTimeout(function(){
+    clearInterval(t); alvo.textContent = "100";
+    pre.classList.add("out");
+    document.body.classList.remove("lock");
+    arrancar();
+    setTimeout(function(){ pre.remove(); }, 800);
+  }, 1300);
+}
+/* só anima depois das fontes: o condensado e a serifada medem muito diferente */
+function arrancar(){
+  var vai = function(){ requestAnimationFrame(function(){ $("hero").classList.add("in"); }); };
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(vai).catch(vai);
+  else vai();
+}
+
+/* ---------- ticker ---------- */
+(function(){
+  var t = ["Consulta espiritual","Abertura de caminhos","Banho de descarrego","Firmeza de proteção","Leitura de tarot","Baralho da casa","Cursos pela Hotmart","Produtos no TikTok Shop","Pix e Mercado Pago"];
+  var h = t.map(function(x){ return "<b>" + x + "</b>"; }).join("");
+  $("tick").innerHTML = h + h;
+})();
+
+/* ---------- cards ---------- */
+function cardHTML(i){
+  var tag = i.canal !== "site" ? '<span class="chip ' + CANAL[i.canal].cls + ' tag"><u aria-hidden="true"></u>' + CANAL[i.canal].n + '</span>' : '';
+  return tag +
+    '<div class="fig"><span class="ph" aria-hidden="true"></span>' +
+    '<img alt="" loading="lazy" decoding="async">' +
+    '<span class="veil" aria-hidden="true"></span><span class="glow" aria-hidden="true"></span></div>' +
+    '<div class="body"><h3>' + i.t + '</h3><p class="d">' + i.d + '</p>' +
+    '<div class="foot"><span class="act">' + (i.canal === "site" ? "Agendar" : "Comprar") + ARROW + '</span>' +
+    '<span class="price">' + brl(i.p) + '</span></div></div>';
+}
+function montarCards(g, box){
+  box.innerHTML = "";
+  itens.filter(function(i){ return i.g === g; }).forEach(function(i,k){
+    var d = document.createElement("button");
+    d.className = "card"; d.type = "button"; d.style.setProperty("--i", k);
+    d.setAttribute("aria-label", i.t + ", " + brl(i.p));
+    d.innerHTML = cardHTML(i);
+    encadear(d.querySelector("img"), fontes(i,640,800));
+    d.addEventListener("click", function(){ abrir(i, d); });
+    if(fine) d.addEventListener("mousemove", function(e){
+      var r = d.getBoundingClientRect();
+      d.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      d.style.setProperty("--my", (e.clientY - r.top) + "px");
+    });
+    box.appendChild(d);
+  });
+}
+function montarRows(box){
+  box.innerHTML = "";
+  itens.filter(function(i){ return i.g === "cursos"; }).forEach(function(i,k){
+    var d = document.createElement("button");
+    d.className = "row"; d.type = "button"; d.style.setProperty("--i", k);
+    d.setAttribute("aria-label", i.t + ", " + brl(i.p));
+    d.innerHTML =
+      '<span class="num">0' + (k+1) + '</span>' +
+      '<span><h3>' + i.t + '</h3><span class="d">' + i.d + '</span></span>' +
+      '<span class="thumb"><span class="ph" aria-hidden="true"></span><img alt="" loading="lazy" decoding="async"></span>' +
+      '<span class="meta"><span class="price">' + brl(i.p) + '</span><span class="parc">' + (i.parc || "") + '</span></span>';
+    encadear(d.querySelector("img"), fontes(i,240,160));
+    d.addEventListener("click", function(){ abrir(i, d); });
+    box.appendChild(d);
+  });
+}
+montarCards("consultas", $("g-consultas"));
+montarCards("trabalhos", $("g-trabalhos"));
+montarCards("produtos", $("g-produtos"));
+montarRows($("g-cursos"));
+encadear($("manifimg"), ["img/consulta-espiritual.jpg", foto("photo-1706922122654-e209628fdd48",900,1125)]);
+(function(){
+  var b = $("herobg"), u = foto("photo-1602523961358-f9f03dd557db",1800,1200);
+  var t = new Image();
+  t.onload = function(){ b.style.backgroundImage = "url(" + u + ")"; };
+  t.src = u;
+})();
+
+/* ---------- reveals ---------- */
+(function(){
+  var alvos = document.querySelectorAll(".rv");
+  if(reduce || !("IntersectionObserver" in window)){
+    alvos.forEach(function(e){ e.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, {threshold:.12, rootMargin:"0px 0px -8% 0px"});
+  alvos.forEach(function(e){ io.observe(e); });
+})();
+
+/* ---------- scroll: nav, progresso, faixa horizontal ---------- */
+(function(){
+  var nav = $("nav"), prog = $("prog"), pin = $("produtos"), track = $("g-produtos"), bar = $("hbar");
+  var ultimo = 0, tick = false;
+  var horizontal = !reduce && matchMedia("(min-width:941px)").matches;
+
+  function passo(){
+    var y = window.pageYOffset;
+    var alt = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (alt > 0 ? (y / alt) * 100 : 0) + "%";
+
+    nav.classList.toggle("solid", y > 40);
+    if(y > 200 && y > ultimo) nav.classList.add("hide");
+    else nav.classList.remove("hide");
+    ultimo = y;
+
+    if(horizontal){
+      var r = pin.getBoundingClientRect();
+      var total = pin.offsetHeight - window.innerHeight;
+      if(total > 0){
+        var p = Math.min(1, Math.max(0, -r.top / total));
+        var dist = Math.max(0, track.scrollWidth - window.innerWidth + 40);
+        track.style.transform = "translateX(" + (-p * dist) + "px)";
+        bar.style.width = (p * 100) + "%";
+      }
+    }
+    tick = false;
+  }
+  function alturaPin(){
+    if(!horizontal){ pin.style.height = ""; return; }
+    var dist = Math.max(0, track.scrollWidth - window.innerWidth + 40);
+    pin.style.height = (window.innerHeight + dist) + "px";
+  }
+  addEventListener("scroll", function(){ if(!tick){ tick = true; requestAnimationFrame(passo); } }, {passive:true});
+  addEventListener("resize", function(){
+    horizontal = !reduce && matchMedia("(min-width:941px)").matches;
+    if(!horizontal) track.style.transform = "";
+    alturaPin(); passo();
+  });
+  setTimeout(function(){ alturaPin(); passo(); }, 120);
+})();
+
+/* ---------- menu mobile ---------- */
+(function(){
+  var b = $("burger"), s = $("sheetnav");
+  function alterna(estado){
+    b.classList.toggle("on", estado);
+    s.classList.toggle("on", estado);
+    b.setAttribute("aria-expanded", estado ? "true" : "false");
+    b.setAttribute("aria-label", estado ? "Fechar o menu" : "Abrir o menu");
+    document.body.classList.toggle("lock", estado);
+  }
+  b.addEventListener("click", function(){ alterna(!s.classList.contains("on")); });
+  s.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ alterna(false); }); });
+  addEventListener("keydown", function(e){ if(e.key === "Escape" && s.classList.contains("on")) alterna(false); });
+})();
+
+/* ---------- cursor ---------- */
+if(fine && !reduce){
+  var c1 = $("cur"), c2 = $("cur2"), ct = $("curtxt");
+  var x = innerWidth/2, y = innerHeight/2, x2 = x, y2 = y;
+  addEventListener("mousemove", function(e){
+    x = e.clientX; y = e.clientY;
+    c1.style.transform = "translate(" + x + "px," + y + "px)";
+  }, {passive:true});
+  (function laco(){
+    x2 += (x - x2) * .16; y2 += (y - y2) * .16;
+    c2.style.transform = "translate(" + x2 + "px," + y2 + "px)";
+    requestAnimationFrame(laco);
+  })();
+  document.addEventListener("mouseover", function(e){
+    var card = e.target.closest(".card,.row");
+    var link = e.target.closest("a,button");
+    if(card){ c2.classList.add("big"); ct.textContent = "ver"; }
+    else if(link){ c2.classList.add("big"); ct.textContent = ""; }
+    else { c2.classList.remove("big"); ct.textContent = ""; }
+  });
+}
+
+/* ---------- botões magnéticos ---------- */
+if(fine && !reduce){
+  document.querySelectorAll(".mag").forEach(function(b){
+    b.addEventListener("mousemove", function(e){
+      var r = b.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width/2)) * .22;
+      var dy = (e.clientY - (r.top + r.height/2)) * .3;
+      b.style.transform = "translate(" + dx + "px," + dy + "px)";
+    });
+    b.addEventListener("mouseleave", function(){ b.style.transform = ""; });
+  });
+}
+
+/* ---------- modal ---------- */
+function shell(passos, atual, corpo){
+  var st = '<div class="steps">';
+  passos.forEach(function(p,k){
+    st += '<b class="' + (k <= atual ? "on" : "") + '">' + p + '</b>';
+    if(k < passos.length - 1) st += '<i class="' + (k < atual ? "on" : "") + '"></i>';
+  });
+  st += '</div>';
+  $("sheet").innerHTML = '<button class="x" id="x" aria-label="Fechar">×</button><div class="sh-body">' + st + corpo + '</div>';
+  $("x").addEventListener("click", fechar);
+  $("sheet").scrollTop = 0;
+  var f = $("sheet").querySelector("button:not(.x), .slot");
+  (f || $("x")).focus({preventScroll:true});
+}
+function abrir(i, origem){
+  ultimoFoco = origem || null;
+  escolha = { item:i, slot:null, pg:null };
+  var ov = $("ov");
+  ov.hidden = false;
+  requestAnimationFrame(function(){ ov.classList.add("on"); });
+  document.body.classList.add("lock");
+  if(i.canal === "site") modalSite(i);
+  else if(i.canal === "hot") modalHotmart(i);
+  else modalTikTok(i);
+}
+function fechar(){
+  var ov = $("ov");
+  ov.classList.remove("on");
+  document.body.classList.remove("lock");
+  clearInterval(cron);
+  setTimeout(function(){ ov.hidden = true; $("sheet").innerHTML = ""; }, 460);
+  if(ultimoFoco) ultimoFoco.focus({preventScroll:true});
+}
+addEventListener("keydown", function(e){
+  var ov = $("ov");
+  if(ov.hidden) return;
+  if(e.key === "Escape"){ fechar(); return; }
+  if(e.key !== "Tab") return;
+  var f = ov.querySelectorAll('button:not(:disabled),[href],[tabindex]:not([tabindex="-1"])');
+  if(!f.length) return;
+  var pri = f[0], ult = f[f.length-1];
+  if(e.shiftKey && document.activeElement === pri){ e.preventDefault(); ult.focus(); }
+  else if(!e.shiftKey && document.activeElement === ult){ e.preventDefault(); pri.focus(); }
+});
+$("ov").addEventListener("click", function(e){ if(e.target === $("ov")) fechar(); });
+function botao(txt, cls){
+  return '<button class="go ' + (cls||"") + '" id="go" type="button"><span class="lb">' + txt + ' ' + ARROW + '</span><span class="sp" aria-hidden="true"></span></button>';
+}
+
+/* ---------- entrada no painel ----------
+   DEMONSTRAÇÃO: qualquer e-mail e senha entram. Não existe conta, não existe
+   verificação e nada sai do navegador. Quando houver backend, isto vira uma
+   chamada de verdade e a sessão passa a ser um cookie assinado pelo servidor —
+   nunca uma checagem feita aqui no navegador, que qualquer pessoa contorna. */
+function login(origem){
+  ultimoFoco = origem || null;
+  var ov = $("ov");
+  ov.hidden = false;
+  requestAnimationFrame(function(){ ov.classList.add("on"); });
+  document.body.classList.add("lock");
+
+  $("sheet").innerHTML =
+    '<button class="x" id="x" type="button" aria-label="Fechar">×</button>' +
+    '<div class="sh-body">' +
+      '<h3>Painel da casa</h3>' +
+      '<p class="mini">Entre para cuidar do catálogo, dos eventos e do recebimento.</p>' +
+      '<form class="lg" id="flog" novalidate>' +
+        '<div class="fg">' +
+          '<label for="lg-m">E-mail</label>' +
+          '<input class="inp" id="lg-m" type="email" autocomplete="username" placeholder="voce@email.com" required>' +
+        '</div>' +
+        '<div class="fg">' +
+          '<label for="lg-s">Senha</label>' +
+          '<div class="pw">' +
+            '<input class="inp" id="lg-s" type="password" autocomplete="current-password" placeholder="••••••••" required>' +
+            '<button class="olho" id="lg-o" type="button" aria-label="Mostrar a senha" aria-pressed="false">' +
+              '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M1.5 10S4.5 4.5 10 4.5 18.5 10 18.5 10 15.5 15.5 10 15.5 1.5 10 1.5 10z"/><circle cx="10" cy="10" r="2.6"/></svg>' +
+            '</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="erro" id="lg-e"><span aria-hidden="true">!</span><span id="lg-et"></span></div>' +
+        botao("Entrar") +
+      '</form>' +
+      '<div class="lgnota"><u aria-hidden="true"></u>' +
+        '<span>Demonstração: qualquer e-mail e senha abrem o painel. No sistema de verdade, só a sua conta entra.</span>' +
+      '</div>' +
+    '</div>';
+
+  $("x").addEventListener("click", fechar);
+  $("sheet").scrollTop = 0;
+
+  var olho = $("lg-o");
+  olho.addEventListener("click", function(){
+    var s = $("lg-s"), ver = s.type === "password";
+    s.type = ver ? "text" : "password";
+    olho.setAttribute("aria-pressed", String(ver));
+    olho.setAttribute("aria-label", ver ? "Esconder a senha" : "Mostrar a senha");
+  });
+
+  function falha(msg, campo){
+    $("lg-et").textContent = msg;
+    $("lg-e").classList.add("on");
+    campo.focus();
+  }
+
+  $("flog").addEventListener("submit", function(e){
+    e.preventDefault();
+    var m = $("lg-m").value.trim(), s = $("lg-s").value;
+    $("lg-e").classList.remove("on");
+
+    if(m.indexOf("@") < 1 || m.indexOf(".") < 0){ falha("Digite um e-mail válido.", $("lg-m")); return; }
+    if(s.length < 4){ falha("A senha precisa de pelo menos 4 caracteres.", $("lg-s")); return; }
+
+    var b = $("go");
+    b.classList.add("busy");
+    b.disabled = true;
+    setTimeout(function(){ location.href = "/painel"; }, reduce ? 60 : 900);
+  });
+
+  $("lg-m").focus({preventScroll:true});
+}
+/* ---------- rota de entrada ----------
+   Não existe botão de "Entrar" no site: quem atende é a casa, não o visitante.
+   A Mãe Karina chega ao painel por um endereço que só ela conhece.
+
+   Funciona de três formas, para aguentar qualquer hospedagem:
+     /login          (quando o servidor reescreve para o site)
+     ?login          (sempre, mesmo em hospedagem estática simples)
+     #login          (atalho, e serve para guardar nos favoritos)
+
+   No sistema de verdade quem valida é o servidor, não isto aqui.               */
+(function(){
+  function pedeEntrada(){
+    var caminho = location.pathname.replace(/\/+$/, "");
+    return /\/login$/i.test(caminho) ||
+           /(^|[?&])login($|=|&)/i.test(location.search) ||
+           /^#login$/i.test(location.hash);
+  }
+  function abrirEntrada(){
+    /* tira o rasto do endereço: quem olhar o histórico não vê o caminho */
+    try{ history.replaceState(null, "", location.pathname.replace(/\/login\/?$/i, "/")); }catch(e){}
+    login(null);
+  }
+  if(pedeEntrada()){
+    /* espera o preloader sair, senão o modal abre por baixo dele */
+    setTimeout(abrirEntrada, reduce ? 60 : 1500);
+  }
+  addEventListener("hashchange", function(){
+    if(/^#login$/i.test(location.hash)) abrirEntrada();
+  });
+})();
+
+/* ---------- fila de espera ----------
+   PROVISÓRIO: o número vem de uma conta local. Quando existir backend, trocar
+   por leitura real da agenda. O que importa é a pessoa saber o lugar dela em vez
+   de ficar no silêncio — silêncio é o que mais faz desistir.                     */
+var FILA = { max:8 };
+
+/* ---------- diário do trabalho ----------
+   Depois de fechar, a pessoa vê as etapas do que contratou e onde está.
+   Reduz a ansiedade de quem pagou e não sabe se está andando — é o que mais
+   gera mensagem de "e aí, como está?" no WhatsApp.                              */
+var DIARIO = {
+  site: ["Pedido recebido","Trabalho começado na casa","Foto da oferenda enviada","Retorno da Mãe Karina"],
+  hot:  ["Compra aprovada","Acesso liberado no e-mail","Primeira aula disponível"],
+  tk:   ["Pedido confirmado","Preparado na casa","Postado com rastreio","A caminho de você"]
+};
+function diarioHTML(canal){
+  var etapas = DIARIO[canal] || DIARIO.site;
+  var h = '<div class="diario"><div class="diario-t">Como você vai acompanhar</div><div class="diario-l">';
+  etapas.forEach(function(e,k){
+    h += '<div class="di' + (k === 0 ? " ok" : "") + '"><u aria-hidden="true"></u>' +
+         '<span>' + e + '</span><b>' + (k === 0 ? "agora" : "") + '</b></div>';
+  });
+  return h + '</div><p class="diario-n">Cada passo chega para você por WhatsApp. Não precisa perguntar.</p></div>';
+}
+
+function filaHTML(i){
+  var n = 1 + (i.id * 3) % FILA.max;              /* estável por serviço */
+  var pct = Math.round(((FILA.max - n) / FILA.max) * 100);
+  return '<div class="fila">' +
+    '<div class="fila-t"><u aria-hidden="true"></u>Você seria a <b>' + n + 'ª</b> pessoa na fila desta semana</div>' +
+    '<div class="fila-b" aria-hidden="true"><i data-w="' + pct + '"></i></div>' +
+    '<p class="fila-n">A Mãe Karina atende ' + FILA.max + ' pessoas por semana para dar atenção de verdade a cada uma. ' +
+    'Quando a semana enche, a próxima vaga passa para a seguinte.</p>' +
+    '</div>';
+}
+
+function modalSite(i){
+  var html = '<h3>' + i.t + '</h3><p class="mini">' + i.d + '</p><div class="pr">' + brl(i.p) + '</div>' +
+    '<div class="lbl">Escolha um horário</div><div class="slots">';
+  horarios.forEach(function(h,k){ html += '<button class="slot" type="button" data-h="' + k + '">' + h + '</button>'; });
+  html += '</div>' + filaHTML(i) +
+    '<div class="lbl">Como você prefere pagar</div><div class="pays">' +
+    '<button class="pay" type="button" data-p="pix"><span class="rd" aria-hidden="true"></span><u style="background:var(--pix)" aria-hidden="true"></u>Pix<small>cai na hora</small></button>' +
+    '<button class="pay" type="button" data-p="mp"><span class="rd" aria-hidden="true"></span><u style="background:var(--mp)" aria-hidden="true"></u>Mercado Pago<small>cartão ou boleto</small></button>' +
+    '</div>' + botao("Continuar");
+  shell(["Horário","Pagamento","Confirmação"], 0, html);
+  var s = $("sheet");
+  $("go").disabled = true;
+  var fb = s.querySelector(".fila-b i");
+  if(fb) requestAnimationFrame(function(){ fb.style.width = fb.dataset.w + "%"; });
+  s.querySelectorAll(".slot").forEach(function(el){
+    el.addEventListener("click", function(){
+      s.querySelectorAll(".slot").forEach(function(x){ x.classList.remove("sel"); });
+      el.classList.add("sel"); escolha.slot = +el.dataset.h; checar();
+    });
+  });
+  s.querySelectorAll(".pay").forEach(function(el){
+    el.addEventListener("click", function(){
+      s.querySelectorAll(".pay").forEach(function(x){ x.classList.remove("sel"); });
+      el.classList.add("sel"); escolha.pg = el.dataset.p; checar();
+    });
+  });
+  $("go").addEventListener("click", function(){
+    $("go").classList.add("busy");
+    setTimeout(escolha.pg === "pix" ? pix : mercadoPago, 550);
+  });
+}
+function checar(){
+  $("go").disabled = !(escolha.pg && escolha.slot !== null);
+  var st = document.querySelectorAll(".steps b"), ln = document.querySelectorAll(".steps i");
+  if(escolha.slot !== null && st[1]){ st[1].classList.add("on"); ln[0].classList.add("on"); }
+}
+
+function pix(){
+  var i = escolha.item;
+  var codigo = "00020126580014BR.GOV.BCB.PIX0136" + Math.random().toString(36).slice(2,14) + "52040000530398654" + ("0" + i.p).slice(-4) + "5802BR6009SAO PAULO";
+  shell(["Horário","Pagamento","Confirmação"], 1,
+    '<h3>Pague com Pix</h3><p class="mini">' + i.t + ' · ' + horarios[escolha.slot] + '</p>' +
+    '<div class="pixwrap"><div class="qr" aria-hidden="true"><div class="m"></div><span class="k"></span><span class="scan"></span></div>' +
+    '<div class="pixmeta"><span>Valor</span><b>' + brl(i.p) + '</b></div>' +
+    '<div class="pixmeta"><span>Expira em</span><b id="cd">10:00</b></div>' +
+    '<div class="code" id="cod">' + codigo + '</div>' +
+    '<button class="copy" id="cp" type="button">Copiar código</button>' +
+    '<div class="waiting"><span class="pulse" aria-hidden="true"></span>aguardando o pagamento</div></div>');
+  var seg = 600;
+  cron = setInterval(function(){
+    seg--; var m = Math.floor(seg/60), s2 = ("0" + seg%60).slice(-2);
+    var el = $("cd"); if(el) el.textContent = m + ":" + s2;
+  }, 1000);
+  $("cp").addEventListener("click", function(){
+    var b = $("cp");
+    try{ navigator.clipboard.writeText(codigo); }catch(e){}
+    b.textContent = "Copiado"; b.classList.add("ok");
+    setTimeout(function(){ b.textContent = "Copiar código"; b.classList.remove("ok"); }, 1600);
+  });
+  setTimeout(function(){ clearInterval(cron); concluir("site","Pix"); }, 3400);
+}
+
+function mercadoPago(){
+  var i = escolha.item;
+  shell(["Horário","Pagamento","Confirmação"], 1,
+    '<h3>Mercado Pago</h3><p class="mini">' + i.t + ' · ' + horarios[escolha.slot] + '</p>' +
+    '<div class="ext mp"><div class="eh"><u aria-hidden="true"></u>Mercado Pago<span>pagamento protegido</span></div>' +
+    '<div class="eb"><div class="proc"><p>Abrindo o checkout seguro</p><div class="bar"><i id="pb"></i></div></div></div></div>');
+  requestAnimationFrame(function(){ var b = $("pb"); if(b) b.style.width = "100%"; });
+  setTimeout(function(){ concluir("site","Mercado Pago"); }, 2100);
+}
+
+function modalHotmart(i){
+  shell(["Checkout Hotmart","Confirmação"], 0,
+    '<h3>' + i.t + '</h3><p class="mini">Você vai para o checkout da Hotmart, já com os seus dados.</p>' +
+    '<div class="ext hot"><div class="eh"><u aria-hidden="true"></u>Hotmart<span>compra segura</span></div><div class="eb">' +
+    '<div class="prod"><span class="im"><span class="ph" aria-hidden="true"></span><img alt="" decoding="async"></span><div><b>' + i.t + '</b><i>' + i.d + '</i></div></div>' +
+    '<div class="field"><small>Nome</small>Cliente da casa</div>' +
+    '<div class="field"><small>E-mail para o acesso</small>cliente@email.com</div>' +
+    '<div class="field"><small>Pagamento</small>Cartão · ' + i.parc + '</div>' +
+    '<p class="inst"><span>Total</span><b>' + brl(i.p) + '</b></p>' + botao("Comprar agora","hot") + '</div></div>');
+  encadear($("sheet").querySelector(".prod img"), fontes(i,120,150));
+  $("go").addEventListener("click", function(){
+    $("go").classList.add("busy");
+    setTimeout(function(){
+      $("sheet").querySelector(".eb").innerHTML = '<div class="proc"><p>Processando na Hotmart</p><div class="bar"><i id="pb"></i></div></div>';
+      requestAnimationFrame(function(){ var b = $("pb"); if(b) b.style.width = "100%"; });
+      setTimeout(function(){ concluir("hot","Hotmart"); }, 2100);
+    }, 500);
+  });
+}
+
+function modalTikTok(i){
+  shell(["TikTok Shop","Confirmação"], 0,
+    '<h3>' + i.t + '</h3><p class="mini">Produto físico: a compra é feita no TikTok Shop, com frete e etiqueta por lá.</p>' +
+    '<div class="ext tk"><div class="eh"><u aria-hidden="true"></u>TikTok Shop<span>loja oficial</span></div><div class="eb">' +
+    '<div class="prod"><span class="im"><span class="ph" aria-hidden="true"></span><img alt="" decoding="async"></span><div><b>' + i.t + '</b><i>' + i.d + '</i></div></div>' +
+    '<div class="field"><small>Entregar em</small>Rua das Flores, 120 · Porto Alegre, RS</div>' +
+    '<div class="field"><small>Frete</small>Grátis · chega em 4 a 7 dias</div>' +
+    '<p class="inst"><span>Total</span><b>' + brl(i.p) + '</b></p>' + botao("Comprar agora","tk") + '</div></div>');
+  encadear($("sheet").querySelector(".prod img"), fontes(i,120,150));
+  $("go").addEventListener("click", function(){
+    $("go").classList.add("busy");
+    setTimeout(function(){
+      $("sheet").querySelector(".eb").innerHTML = '<div class="proc"><p>Confirmando no TikTok Shop</p><div class="bar"><i id="pb"></i></div></div>';
+      requestAnimationFrame(function(){ var b = $("pb"); if(b) b.style.width = "100%"; });
+      setTimeout(function(){ concluir("tk","TikTok Shop"); }, 2100);
+    }, 500);
+  });
+}
+
+function concluir(canal, via){
+  var i = escolha.item, passos, etapas;
+  if(canal === "site"){
+    etapas = ["Horário","Pagamento","Confirmação"];
+    passos = ["Pagamento aprovado via " + via, "Horário " + horarios[escolha.slot] + " reservado na agenda", "Confirmação enviada para você"];
+  } else if(canal === "hot"){
+    etapas = ["Checkout Hotmart","Confirmação"];
+    passos = ["Hotmart aprovou a compra", "Acesso ao curso liberado por e-mail", "Aluno registrado"];
+  } else {
+    etapas = ["TikTok Shop","Confirmação"];
+    passos = ["TikTok Shop confirmou o pedido", "Etiqueta de envio gerada", "Pedido na fila de postagem"];
+  }
+  var html = '<div class="okwrap"><svg viewBox="0 0 74 74" fill="none" aria-hidden="true"><circle class="c" cx="37" cy="37" r="33" stroke="#C9A552" stroke-width="1.5"/>' +
+    '<path class="t" d="M23 38l9 9 19-20" stroke="#C9A552" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+    '<h3>Pronto</h3><p class="mini">' + i.t + ' · ' + brl(i.p) + '</p><div class="flow" id="flow"><span class="ln" aria-hidden="true"></span>';
+  passos.forEach(function(p){ html += '<div class="st"><u aria-hidden="true"></u>' + p + '</div>'; });
+  html += '</div>' + diarioHTML(canal) + botao("Voltar para o site") + '</div>';
+  shell(etapas, etapas.length - 1, html);
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ var f = $("flow"); if(f) f.classList.add("in"); }); });
+  $("go").addEventListener("click", fechar);
+}
+
+/* ---------- vozes ----------
+   PROVISÓRIO: depoimentos de exemplo. Trocar por áudios reais de clientes que
+   autorizaram por escrito. Cada item ganha `src:"audio/<arquivo>.mp3"` e o player
+   passa a usar <audio> de verdade — a onda já lê o tempo do elemento.
+   Sem `src`, roda em modo demonstração (a onda anda sozinha).                    */
+var VOZES = [
+  {n:"Rita",    l:"São Paulo, SP", s:42, d:"Cheguei sem saber o que pedir. Ela me escutou primeiro, e só depois falou de trabalho."},
+  {n:"Jocelia", l:"Salvador, BA",  s:35, d:"Achei que ia ser aquela coisa de prometer o mundo. Não foi. Ela me disse o que dava e o que não dava."},
+  {n:"Marcos",  l:"Porto, PT",     s:51, d:"Moro fora e achei que não ia dar. Foi tudo por vídeo, e recebi a foto da oferenda no mesmo dia."}
+];
+(function(){
+  var box = $("g-vozes");
+  if(!box) return;
+  var BARRAS = 26, pararAtual = null, timer = null;
+  var PLAY = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>';
+  var PAUSE = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="3" height="10"/><rect x="9" y="3" width="3" height="10"/></svg>';
+
+  function tempo(s){ return Math.floor(s/60) + ":" + ("0" + Math.round(s%60)).slice(-2); }
+
+  VOZES.forEach(function(v,k){
+    var d = document.createElement("div");
+    d.className = "voz"; d.style.setProperty("--i", k);
+    var ondas = "";
+    for(var i = 0; i < BARRAS; i++){
+      /* alturas fixas por índice: a onda é sempre a mesma, não pisca a cada render */
+      var h = 22 + Math.round(Math.abs(Math.sin(i * 1.7 + k)) * 62);
+      ondas += '<u style="height:' + h + '%"></u>';
+    }
+    d.innerHTML =
+      '<div class="voz-t">' +
+        '<button class="voz-p" type="button" aria-label="Ouvir o depoimento de ' + v.n + '">' + PLAY + '</button>' +
+        '<span class="voz-n"><b>' + v.n + '</b><span>' + v.l + '</span></span>' +
+      '</div>' +
+      '<div class="voz-w" aria-hidden="true">' + ondas + '</div>' +
+      '<p class="voz-d">“' + v.d + '”</p>' +
+      '<div class="voz-f"><span>Depoimento autorizado</span><b class="t">' + tempo(v.s) + '</b></div>';
+
+    var bt = d.querySelector(".voz-p"), barras = d.querySelectorAll(".voz-w u"), rel = d.querySelector(".t");
+    var pos = 0;
+
+    function parar(){
+      clearInterval(timer); timer = null; pararAtual = null;
+      d.classList.remove("tocando"); bt.innerHTML = PLAY;
+      bt.setAttribute("aria-label", "Ouvir o depoimento de " + v.n);
+      barras.forEach(function(b){ b.className = ""; });
+      rel.textContent = tempo(v.s); pos = 0;
+    }
+    function tocar(){
+      if(pararAtual) pararAtual();          /* só um áudio de cada vez */
+      pararAtual = parar;
+      d.classList.add("tocando"); bt.innerHTML = PAUSE;
+      bt.setAttribute("aria-label", "Pausar o depoimento de " + v.n);
+      if(reduce){ rel.textContent = tempo(v.s); return; }
+      timer = setInterval(function(){
+        pos += 0.25;
+        if(pos >= v.s){ parar(); return; }
+        var ate = Math.floor((pos / v.s) * BARRAS);
+        barras.forEach(function(b,i){ b.className = i < ate ? "pass" : (i === ate ? "agora" : ""); });
+        rel.textContent = tempo(v.s - pos);
+      }, 250);
+    }
+    bt.addEventListener("click", function(){ d.classList.contains("tocando") ? parar() : tocar(); });
+    box.appendChild(d);
+  });
+})();
+
+/* ---------- guia por dificuldades ---------- */
+(function(){
+  var box = $("dores"), sug = $("sug"), atual = null;
+  DORES.forEach(function(d,k){
+    var b = document.createElement("button");
+    b.className = "dor"; b.type = "button"; b.style.setProperty("--i", k);
+    b.innerHTML = '<h3>' + d.t + '</h3><p>' + d.d + '</p>' +
+      '<span class="go2">Ver o que ajuda ' + ARROW + '</span>';
+    b.addEventListener("click", function(){ mostrar(d, b); });
+    box.appendChild(b);
+  });
+  function mostrar(d, botao){
+    box.querySelectorAll(".dor").forEach(function(x){ x.classList.remove("on"); });
+    botao.classList.add("on");
+    atual = d.k;
+    $("sugt").textContent = d.t;
+    $("sugd").textContent = d.d + " Veja o que a casa costuma indicar nesses casos.";
+    var alvo = $("sugg"); alvo.innerHTML = "";
+    itens.filter(function(i){ return i.dor && i.dor.indexOf(d.k) >= 0; }).forEach(function(i,k){
+      var c = document.createElement("button");
+      c.className = "card"; c.type = "button"; c.style.setProperty("--i", k);
+      c.style.opacity = "1"; c.style.transform = "none";
+      c.setAttribute("aria-label", i.t + ", " + brl(i.p));
+      c.innerHTML = cardHTML(i);
+      encadear(c.querySelector("img"), fontes(i,640,800));
+      c.addEventListener("click", function(){ abrir(i, c); });
+      alvo.appendChild(c);
+    });
+    sug.hidden = false;
+    if(!reduce) sug.scrollIntoView({behavior:"smooth", block:"nearest"});
+  }
+  $("sugx").addEventListener("click", function(){
+    sug.hidden = true; atual = null;
+    box.querySelectorAll(".dor").forEach(function(x){ x.classList.remove("on"); });
+  });
+})();
+
+/* ---------- lives do TikTok ----------
+   A API pública do TikTok não diz se um perfil está ao vivo sem chave de acesso.
+   Enquanto não houver integração real, a casa informa o horário combinado e o
+   botão leva direto para o perfil. Trocar `AO_VIVO` por uma checagem real
+   (webhook da própria casa, ou TikTok Display API) quando existir.               */
+var LIVES = { dias:[2,4,6], hora:20, fim:22, tz:"America/Sao_Paulo" };
+var DIAS = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
+(function(){
+  var card = $("livecard"), st = $("livest"), sub = $("livesub"), quando = $("livewhen");
+  var agora = new Date();
+  var d = agora.getDay(), h = agora.getHours();
+  var aoVivo = LIVES.dias.indexOf(d) >= 0 && h >= LIVES.hora && h < LIVES.fim;
+
+  if(aoVivo){
+    card.classList.add("ao-vivo");
+    st.textContent = "ao vivo agora";
+    sub.textContent = "entre na live";
+    $("livegot").innerHTML = 'Entrar na live ' + ARROW;
+    $("liveav").hidden = true;
+  } else {
+    st.textContent = "fora do ar";
+    sub.textContent = "próxima live";
+  }
+  var prox = null;
+  for(var i = 0; i < 8 && prox === null; i++){
+    var dia = (d + i) % 7;
+    if(LIVES.dias.indexOf(dia) >= 0 && (i > 0 || h < LIVES.hora)) prox = {dia:dia, dias:i};
+  }
+  quando.innerHTML = aoVivo
+    ? '<b>Ao vivo</b><span>agora no TikTok</span>'
+    : '<b>' + (prox ? (prox.dias === 0 ? "Hoje" : prox.dias === 1 ? "Amanhã" : DIAS[prox.dia]) : DIAS[LIVES.dias[0]]) +
+      ' às ' + LIVES.hora + 'h</b><span>horário de Brasília</span>';
+
+  $("liveav").addEventListener("click", function(){
+    var b = $("liveav");
+    b.querySelector("span").textContent = "Te avisamos pelo WhatsApp";
+    setTimeout(function(){ window.open("https://wa.me/[SEU WHATSAPP]?text=" + encodeURIComponent("Oi! Quero ser avisada quando a Mãe Karina abrir a live."), "_blank", "noopener"); }, 500);
+  });
+})();
+
+/* ---------- chat de acolhimento ----------
+   Regras, nesta ordem:
+   1. Escuta antes de vender.
+   2. Tema delicado (doença, luto, dívida, violência, ideia de morte) NÃO recebe
+      oferta de serviço: acolhe e passa para a Mãe Karina.
+   3. Nunca promete cura, resultado ou prazo.
+   4. A conversa vive só em memória. Ao fechar, some. Nada em localStorage.      */
+(function(){
+  var fab = $("fab"), cx = $("chat"), corpo = $("chatb"), ops = $("chatop");
+  var conversa = [];        /* só em memória, nunca persistido */
+  var aberto = false, ocupado = false;
+
+  var DELICADO = ["doenca","luto","divida","violencia","desespero"];
+
+  var ARVORE = {
+    inicio: {
+      fala: ["Oi. Que bom que você veio.", "Me conta: o que está pesando mais agora?"],
+      ops: [
+        {t:"Amor e relações", v:"amor"},
+        {t:"Trabalho e dinheiro", v:"dinheiro"},
+        {t:"Sinto um peso, não sei explicar", v:"peso"},
+        {t:"Família", v:"familia"},
+        {t:"Estou passando por algo difícil", v:"desespero", forte:true}
+      ]
+    },
+    amor: {
+      fala: ["Entendo. Amor mexe com a gente de um jeito que nada mexe.", "É uma relação que travou, alguém que se afastou, ou uma dúvida sobre continuar?"],
+      ops: [
+        {t:"Travou, não anda", v:"amor2"},
+        {t:"Alguém se afastou", v:"amor2"},
+        {t:"Não sei se continuo", v:"amor2"},
+        {t:"É mais grave que isso", v:"violencia", forte:true}
+      ]
+    },
+    amor2: {
+      fala: ["Obrigada por confiar isso aqui.", "Nesses casos a Mãe Karina costuma começar com uma leitura, para enxergar o que está por trás. Depois ela diz se cabe um trabalho ou não — e às vezes diz que não cabe."],
+      sugere: "amor"
+    },
+    dinheiro: {
+      fala: ["Isso aperta o peito, eu sei.", "É emprego que não vem, dívida que está sufocando, ou negócio parado?"],
+      ops: [
+        {t:"Emprego não vem", v:"dinheiro2"},
+        {t:"Negócio parado", v:"dinheiro2"},
+        {t:"Dívida me sufocando", v:"divida", forte:true}
+      ]
+    },
+    dinheiro2: {
+      fala: ["Certo.", "Para caminho travado, a casa costuma indicar uma leitura primeiro e, se fizer sentido, uma abertura de caminhos."],
+      sugere: "dinheiro"
+    },
+    peso: {
+      fala: ["Esse cansaço que não passa, tudo dando errado sem motivo.", "Isso começou depois de alguma coisa, ou foi chegando aos poucos?"],
+      ops: [
+        {t:"Foi chegando aos poucos", v:"peso2"},
+        {t:"Depois de um acontecimento", v:"peso2"},
+        {t:"Estou muito mal mesmo", v:"desespero", forte:true}
+      ]
+    },
+    peso2: {
+      fala: ["Entendi.", "Nesses casos a casa costuma começar com um descarrego ou um banho, e a leitura mostra se precisa de mais."],
+      sugere: "peso"
+    },
+    familia: {
+      fala: ["Casa dividida cansa mais que trabalho.", "É briga que não acaba, um filho que preocupa, ou distância entre vocês?"],
+      ops: [
+        {t:"Briga que não acaba", v:"familia2"},
+        {t:"Filho que preocupa", v:"familia2"},
+        {t:"Perdi alguém da família", v:"luto", forte:true}
+      ]
+    },
+    familia2: {
+      fala: ["Obrigada por contar.", "Para família, a Mãe Karina costuma trabalhar na linha de Iemanjá, que é a mãe. Mas ela olha primeiro."],
+      sugere: "familia"
+    }
+  };
+
+  /* temas delicados: nunca oferecem serviço, sempre encaminham */
+  var CUIDADO = {
+    desespero: {
+      fala: ["Sinto muito que você esteja passando por isso.",
+             "Não vou te oferecer nada agora. Isso aqui não é hora de falar em trabalho.",
+             "Quem precisa te escutar é a Mãe Karina, direto. Ela responde pessoalmente."],
+      cvv: true
+    },
+    luto: {
+      fala: ["Sinto muito pela sua perda.",
+             "Perder alguém não é coisa que se resolve com serviço nenhum, e eu não vou fingir que resolve.",
+             "A Mãe Karina conversa com você sobre isso, sem pressa e sem cobrança."]
+    },
+    doenca: {
+      fala: ["Sinto muito.",
+             "Preciso ser honesta com você: a casa acompanha e ampara, mas nunca substitui médico nem tratamento.",
+             "A Mãe Karina fala com você diretamente sobre isso."]
+    },
+    divida: {
+      fala: ["Dívida sufocando é desespero de verdade, e eu não vou te empurrar um serviço agora.",
+             "Se você está no aperto, gastar com trabalho espiritual não é a primeira coisa.",
+             "Fale com a Mãe Karina. Ela vai te escutar antes de qualquer outra coisa."]
+    },
+    violencia: {
+      fala: ["Sua segurança vem antes de tudo.",
+             "Se você está em perigo, procure ajuda: Central da Mulher 180, Polícia 190.",
+             "A Mãe Karina também está aqui para te escutar, mas isso primeiro."]
+    }
+  };
+
+  function limpar(){ ops.innerHTML = ""; }
+  function bolha(txt, tipo){
+    var d = document.createElement("div");
+    d.className = "msg " + tipo;
+    d.textContent = txt;
+    corpo.appendChild(d);
+    corpo.scrollTop = corpo.scrollHeight;
+    conversa.push({de:tipo, txt:txt});
+  }
+  function aviso(titulo, txt){
+    var d = document.createElement("div");
+    d.className = "msg aviso";
+    d.innerHTML = "<b>" + titulo + "</b>" + txt;
+    corpo.appendChild(d);
+    corpo.scrollTop = corpo.scrollHeight;
+  }
+  function digitando(){
+    var d = document.createElement("div");
+    d.className = "dig"; d.id = "dig";
+    d.innerHTML = "<u></u><u></u><u></u>";
+    corpo.appendChild(d);
+    corpo.scrollTop = corpo.scrollHeight;
+  }
+  function pararDigitar(){ var d = $("dig"); if(d) d.remove(); }
+
+  /* fala em sequência, com pausa: dá tempo de ler e parece gente */
+  function falar(linhas, depois){
+    ocupado = true; limpar();
+    var k = 0;
+    (function proxima(){
+      if(k >= linhas.length){ ocupado = false; if(depois) depois(); return; }
+      digitando();
+      setTimeout(function(){
+        pararDigitar();
+        bolha(linhas[k], "dela");
+        k++;
+        setTimeout(proxima, 320);
+      }, reduce ? 60 : Math.min(1100, 380 + linhas[k].length * 16));
+    })();
+  }
+  function opcoes(lista){
+    limpar();
+    lista.forEach(function(o){
+      var b = document.createElement("button");
+      b.className = "op" + (o.forte ? " forte" : "");
+      b.type = "button"; b.textContent = o.t;
+      b.addEventListener("click", function(){
+        if(ocupado) return;
+        bolha(o.t, "eu");
+        ir(o.v);
+      });
+      ops.appendChild(b);
+    });
+  }
+  function botaoWhats(txt){
+    limpar();
+    var resumo = conversa.filter(function(m){ return m.de === "eu"; }).map(function(m){ return m.txt; }).join(" · ");
+    var msg = "Oi, Mãe Karina. Vim pelo site." + (resumo ? " Falei sobre: " + resumo : "");
+    var a = document.createElement("a");
+    a.className = "op forte"; a.href = "https://wa.me/[SEU WHATSAPP]?text=" + encodeURIComponent(msg);
+    a.target = "_blank"; a.rel = "noopener"; a.textContent = txt || "Falar com a Mãe Karina";
+    ops.appendChild(a);
+    var b = document.createElement("button");
+    b.className = "op"; b.type = "button"; b.textContent = "Começar de novo";
+    b.addEventListener("click", function(){ reiniciar(); });
+    ops.appendChild(b);
+  }
+
+  function ir(chave){
+    if(CUIDADO[chave]){
+      var c = CUIDADO[chave];
+      falar(c.fala, function(){
+        if(c.cvv) aviso("Se a dor for grande demais", "O CVV atende de graça, 24 horas, no 188. Ligar não custa nada e não é fraqueza.");
+        botaoWhats("Falar agora com a Mãe Karina");
+      });
+      return;
+    }
+    var n = ARVORE[chave];
+    if(!n){ reiniciar(); return; }
+    falar(n.fala, function(){
+      if(n.ops) return opcoes(n.ops);
+      if(n.sugere){
+        var achados = itens.filter(function(i){ return i.dor && i.dor.indexOf(n.sugere) >= 0; }).slice(0,3);
+        limpar();
+        achados.forEach(function(i){
+          var b = document.createElement("button");
+          b.className = "op"; b.type = "button";
+          b.textContent = i.t + " · " + brl(i.p);
+          b.addEventListener("click", function(){
+            bolha("Quero saber sobre " + i.t, "eu");
+            fechar2();
+            abrir(i, null);
+          });
+          ops.appendChild(b);
+        });
+        var w = document.createElement("button");
+        w.className = "op forte"; w.type = "button"; w.textContent = "Prefiro falar com ela antes";
+        w.addEventListener("click", function(){ bolha("Prefiro falar antes", "eu"); botaoWhats(); });
+        ops.appendChild(w);
+      }
+    });
+  }
+  function reiniciar(){
+    corpo.innerHTML = ""; conversa = [];
+    ir("inicio");
+  }
+  function abrir2(){
+    if(aberto) return;
+    aberto = true;
+    cx.classList.add("on");
+    fab.classList.add("hide");
+    if(!corpo.children.length) reiniciar();
+    setTimeout(function(){ $("chatx").focus({preventScroll:true}); }, 420);
+  }
+  function fechar2(){
+    aberto = false;
+    cx.classList.remove("on");
+    fab.classList.remove("hide");
+    /* a conversa some: nada é guardado */
+    setTimeout(function(){ if(!aberto){ corpo.innerHTML = ""; conversa = []; limpar(); } }, 500);
+  }
+  fab.addEventListener("click", abrir2);
+  $("chatx").addEventListener("click", fechar2);
+  addEventListener("keydown", function(e){ if(e.key === "Escape" && aberto) fechar2(); });
+  document.querySelectorAll("[data-abrechat]").forEach(function(b){
+    b.addEventListener("click", function(e){ e.preventDefault(); abrir2(); });
+  });
+  /* o botão aparece depois de a pessoa já ter visto alguma coisa */
+  setTimeout(function(){ if(!aberto) fab.classList.add("on"); }, reduce ? 300 : 2600);
+})();
+
+/* ---------- veio do TikTok ----------
+   Ela põe na bio um link com ?v=<id do serviço> e o site abre já naquele serviço,
+   com uma faixa reconhecendo de onde a pessoa veio. Sem isso, quem vem do vídeo
+   cai na home e tem de procurar sozinho o que ela acabou de mencionar.
+   Também aceita ?d=<dificuldade> para abrir direto no guia.                      */
+(function(){
+  var q = new URLSearchParams(location.search);
+  var v = q.get("v"), d = q.get("d");
+  if(!v && !d) return;
+
+  var faixa = document.createElement("div");
+  faixa.className = "veio";
+  faixa.innerHTML = '<span class="veio-i" aria-hidden="true"></span>' +
+    '<span>Você veio do TikTok da Mãe Karina</span>' +
+    '<button class="veio-x" type="button" aria-label="Fechar o aviso">×</button>';
+  document.body.appendChild(faixa);
+  requestAnimationFrame(function(){ faixa.classList.add("on"); });
+  faixa.querySelector(".veio-x").addEventListener("click", function(){ faixa.classList.remove("on"); });
+
+  setTimeout(function(){
+    if(v){
+      var item = itens.filter(function(i){ return String(i.id) === String(v); })[0];
+      if(item) abrir(item, null);
+    } else if(d){
+      var alvo = $("guia");
+      if(alvo) alvo.scrollIntoView({behavior: reduce ? "auto" : "smooth"});
+      var bt = document.querySelectorAll("#dores .dor")[DORES.map(function(x){ return x.k; }).indexOf(d)];
+      if(bt) setTimeout(function(){ bt.click(); }, reduce ? 0 : 700);
+    }
+  }, reduce ? 100 : 1700);
+})();
+
+/* ---------- retorno silencioso ----------
+   Quem já foi atendido recebe um "como você está?" sem venda nenhuma.
+   Aqui é só a demonstração: no sistema real, quem dispara é a Fase 1 pelo
+   WhatsApp, alguns dias depois do trabalho terminar.                            */
+(function(){
+  var box = $("retorno");
+  if(!box) return;
+  box.querySelector(".ret-go").addEventListener("click", function(){
+    var c = box.querySelector(".ret-c");
+    c.innerHTML = '<div class="msg dela">Oi. Faz uns dias que a gente conversou.</div>' +
+      '<div class="msg dela">Não é para vender nada. Só queria saber como você está.</div>';
+    box.querySelector(".ret-go").hidden = true;
+    box.querySelector(".ret-n").hidden = false;
+  });
+})();
+
+$("ano").textContent = new Date().getFullYear();
+preloader();
+})();
+</script>
+</body>
+</html>

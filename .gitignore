@@ -1,0 +1,16 @@
+# notas internas: valores, margens e estratégia comercial
+CLAUDE.md
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# editores
+.vscode/
+.idea/
+*.swp
+
+# temporários de trabalho
+_*.html
+*.tmp
+.vercel
