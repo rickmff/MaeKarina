@@ -3,9 +3,9 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/login", "destination": "/index.html" },
-    { "source": "/painel", "destination": "/backoffice.html" },
-    { "source": "/proposta", "destination": "/proposta-site.html" }
+    { "source": "/login", "destination": "/" },
+    { "source": "/painel", "destination": "/backoffice" },
+    { "source": "/proposta", "destination": "/proposta-site" }
   ],
   "headers": [
     {
@@ -23,13 +23,7 @@
       ]
     },
     {
-      "source": "/painel",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
-      ]
-    },
-    {
-      "source": "/proposta",
+      "source": "/(painel|backoffice|proposta|proposta-site)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]
