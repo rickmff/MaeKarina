@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Proposta · O site da casa · Mãe Karina de Iemanjá</title>
+<title>Proposta · O site de Mãe Karina de Iemanjá</title>
 <meta name="description" content="Proposta do site: o que inclui, prazo, valor e custo para manter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -170,6 +170,7 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .sem .vc b{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:14px;color:var(--gold);display:block;margin-bottom:2px}
 
 .esf{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:clamp(26px,4vw,42px)}
+.esf.dois{grid-template-columns:repeat(2,1fr)}
 @media (max-width:900px){.esf{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.esf{grid-template-columns:1fr}}
 .ef{border:1px solid var(--line);background:var(--surface);padding:22px;opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease);transition-delay:calc(var(--i) * 70ms)}
@@ -201,6 +202,16 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .cu.free .val{color:var(--gold2)}
 .cu p{color:var(--ink2);font-size:16px;line-height:1.55;margin-top:11px}
 
+.fontes{margin-top:clamp(26px,4vw,42px);border-top:1px solid var(--line)}
+.fontes-t{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:14px;color:var(--gold2);margin:20px 0 4px}
+.fo{padding:16px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:calc(var(--i) * 70ms)}
+.rv.in .fo{opacity:1;transform:none}
+.fo:last-child{border-bottom:0}
+.fo b{display:block;font-size:17px;color:var(--ink);font-weight:600;line-height:1.45}
+.fo span{display:block;font-size:16px;color:var(--ink2);margin-top:5px;line-height:1.5}
+.fo a{display:inline-block;margin-top:7px;font-size:15px;color:var(--gold2);border-bottom:1px solid var(--gold3);word-break:break-word}
+.fo a:hover{color:var(--gold)}
+
 .aviso{border:1px solid var(--gold3);background:rgba(201,165,82,.06);padding:22px 24px;margin-top:26px;font-size:17px;color:var(--ink2);line-height:1.65;max-width:62ch}
 .aviso b{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:14px;color:var(--gold2);display:block;margin-bottom:6px}
 
@@ -227,7 +238,8 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 @media print{
   .nav,.prog,.grain,.ctas{display:none}
   body{background:#fff;color:#111}
-  .preco,.ca,.dfc,.cu,.aviso,.ef,.cp{border-color:#ccc;background:#fff;break-inside:avoid}
+  .preco,.ca,.dfc,.cu,.aviso,.ef,.cp,.fo{border-color:#ccc;background:#fff;break-inside:avoid}
+  .fo a,.fontes-t{color:#333}
   .sec{break-before:page}
   .sem .vc{border-left-color:#999;color:#333}
   h1,h2,.preco .v b{color:#111}
@@ -236,7 +248,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   h1 .ln span,h2 .ln span{transform:none!important}
-  .hero .sub,.hero .meta,.rv .lede,.rv .ix,.ca,.li,.dfc,.sem,.cu,.mc,.po,.ef,.cp{opacity:1!important;transform:none!important}
+  .hero .sub,.hero .meta,.rv .lede,.rv .ix,.ca,.li,.dfc,.sem,.cu,.mc,.po,.ef,.cp,.fo{opacity:1!important;transform:none!important}
   .hero .rule{transform:scaleX(1)!important}
 }
 </style>
@@ -253,6 +265,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
     <a href="#combinado">O combinado</a>
     <a href="#presente">O presente</a>
     <a href="#quando">Como é feito</a>
+    <a href="#depois">Depois da entrega</a>
     <a href="#valor">O valor</a>
   </nav>
 </header>
@@ -264,10 +277,10 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
     <div class="in">
       <div class="eyebrow"><u aria-hidden="true"></u>Proposta do site · [DATA]</div>
       <h1>
-        <span class="ln"><span>O site</span></span>
-        <span class="ln"><span>da <em>casa</em>.</span></span>
+        <span class="ln"><span>O site de</span></span>
+        <span class="ln"><span><em>Mãe Karina</em>.</span></span>
       </h1>
-      <p class="sub">Um lugar seu na internet. Quem vê seus vídeos entra, entende o que você faz e paga ali mesmo.</p>
+      <p class="sub">Um lugar seu na internet. Quem vê seus vídeos entra, entende o seu trabalho e contrata ali mesmo.</p>
       <div class="rule" aria-hidden="true"></div>
       <div class="meta">
         <span>Para <b>Mãe Karina de Iemanjá</b></span>
@@ -279,18 +292,14 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
   <section class="sec rv" id="canais">
     <div class="ix"><u aria-hidden="true"></u>01 — Onde cada coisa vende</div>
     <h2><span class="ln"><span>Três lugares,</span></span><span class="ln"><span>um site só</span></span></h2>
-    <p class="lede">Cada coisa que você vende tem o seu lugar. O site leva a pessoa direto para lá.</p>
+    <p class="lede">Cada coisa que você vende tem o lugar certo para ser vendida. O site organiza isso e leva a pessoa até lá.</p>
     <div class="canais" id="g-canais"></div>
-    <div class="aviso">
-      <b>Por que os produtos vão pelo TikTok Shop</b>
-      No Brasil, o TikTok Shop só aceita produto físico: banho, vela, guia. Serviço e curso são proibidos lá. Por isso a consulta fica no site e o curso na Hotmart. É regra deles, não escolha minha.
-    </div>
   </section>
 
   <section class="sec rv" id="marca">
     <div class="ix"><u aria-hidden="true"></u>02 — A identidade</div>
-    <h2><span class="ln"><span>A cara</span></span><span class="ln"><span>da casa</span></span></h2>
-    <p class="lede">Antes do site, a marca. Um jeito de aparecer que se repete em tudo o que você publicar.</p>
+    <h2><span class="ln"><span>A identidade</span></span><span class="ln"><span>do seu nome</span></span></h2>
+    <p class="lede">Antes do site, a identidade. Um jeito próprio de aparecer, que se repete no site e em tudo o que você publicar.</p>
 
     <div class="marca">
       <div class="mc">
@@ -310,7 +319,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
           <span style="background:#F3EFE6" title="Creme"></span>
           <span style="background:#8A7136" title="Ouro escuro"></span>
         </div>
-        <p>Preto e ouro. Sóbrio, com cara de casa séria.</p>
+        <p>Preto e ouro. Sóbrio, à altura do seu trabalho.</p>
       </div>
 
       <div class="mc">
@@ -328,15 +337,15 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
       <div class="po"><span class="po-l">Post</span><b>Consulta<br>espiritual</b><u aria-hidden="true"></u></div>
       <div class="po alt"><span class="po-l">Story</span><b>Ao vivo<br>hoje 20h</b><u aria-hidden="true"></u></div>
       <div class="po"><span class="po-l">Post</span><b>Banho de<br>descarrego</b><u aria-hidden="true"></u></div>
-      <div class="po alt"><span class="po-l">Capa</span><b>Cursos<br>da casa</b><u aria-hidden="true"></u></div>
+      <div class="po alt"><span class="po-l">Capa</span><b>Cursos<br>on-line</b><u aria-hidden="true"></u></div>
     </div>
-    <p class="mnota">Modelos prontos: você põe sua foto e seu texto. Não precisa pagar designer para cada post.</p>
+    <p class="mnota">Os modelos são entregues prontos e ficam seus para usar sempre: você põe a sua foto e o seu texto. Não precisa contratar um designer a cada publicação.</p>
   </section>
 
   <section class="sec rv" id="site">
     <div class="ix"><u aria-hidden="true"></u>03 — O que o site tem</div>
-    <h2><span class="ln"><span>Onze coisas</span></span></h2>
-    <p class="lede">Nada de enfeite. Cada uma serve para a pessoa entender e conseguir pagar.</p>
+    <h2><span class="ln"><span>O que a pessoa</span></span><span class="ln"><span>encontra no site</span></span></h2>
+    <p class="lede">Onze itens, cada um com um motivo: ajudar quem chega a entender o seu trabalho e a contratar sem dificuldade.</p>
     <div class="lista" id="g-lista"></div>
   </section>
 
@@ -349,8 +358,8 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 
   <section class="sec rv" id="presente">
     <div class="ix"><u aria-hidden="true"></u>05 — Um presente</div>
-    <h2><span class="ln"><span>O site da ação</span></span><span class="ln"><span>social, de graça</span></span></h2>
-    <p class="lede">Você mantém uma frente de ação social. Esse segundo site é meu presente: não entra no valor e não atrasa o prazo.</p>
+    <h2><span class="ln"><span>O site da ação</span></span><span class="ln"><span>social, por minha conta</span></span></h2>
+    <p class="lede">Você mantém uma frente de ação social. Esse segundo site é um presente meu: não entra no valor e não altera o prazo.</p>
     <div class="dfc sim" style="margin-top:clamp(26px,4vw,42px)">
       <h3><u aria-hidden="true"></u>Presente · R$ 0</h3>
       <ul id="g-presente"></ul>
@@ -360,14 +369,21 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
   <section class="sec rv" id="quando">
     <div class="ix"><u aria-hidden="true"></u>06 — Como vai ser feito</div>
     <h2><span class="ln"><span>Um mês,</span></span><span class="ln"><span>passo a passo</span></span></h2>
-    <p class="lede">O mês começa a contar quando você me mandar a lista de serviços com os valores. Em cada passo você sabe o que eu faço e o que preciso de você.</p>
+    <p class="lede">O mês começa a contar quando você me enviar a lista de serviços com os valores. Em cada passo está o que eu faço e o que preciso de você.</p>
     <div class="crono" id="g-crono"></div>
   </section>
 
+  <section class="sec rv" id="depois">
+    <div class="ix"><u aria-hidden="true"></u>07 — Depois da entrega</div>
+    <h2><span class="ln"><span>O trabalho termina</span></span><span class="ln"><span>e o site fica seu</span></span></h2>
+    <p class="lede">Esta proposta não cria mensalidade nem dependência. Entrego tudo pronto e ensino todos os caminhos, para você conduzir o site sem mim.</p>
+    <div class="esf dois" id="g-depois"></div>
+  </section>
+
   <section class="sec rv" id="custo">
-    <div class="ix"><u aria-hidden="true"></u>07 — Custo para manter</div>
+    <div class="ix"><u aria-hidden="true"></u>08 — Custo para manter</div>
     <h2><span class="ln"><span>Sessenta reais</span></span><span class="ln"><span>por mês</span></span></h2>
-    <p class="lede">Não é meu. É o que você paga direto às empresas, em seu nome. Dá menos que uma consulta por mês.</p>
+    <p class="lede">Este valor não é meu. É o que você paga direto às empresas que hospedam e registram o site, com as contas no seu nome.</p>
     <div class="custos" id="g-custos"></div>
     <div class="preco" style="margin-top:14px">
       <div class="v">
@@ -378,20 +394,20 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
       </div>
       <div class="d">
         <p><b>Por que precisa de servidor:</b> a agenda, os pagamentos e a busca dos seus produtos precisam de um computador ligado o tempo todo. É ele.</p>
-        <p><b>Sem mensalidade minha:</b> você paga às empresas, não a mim. As contas ficam em seu nome.</p>
+        <p><b>Sem mensalidade minha:</b> você paga às empresas, não a mim. As contas ficam no seu nome e você cancela quando quiser.</p>
       </div>
     </div>
 
     <div class="aviso">
       <b>Sobre as taxas de venda</b>
-      Mercado Pago, Hotmart e TikTok Shop ficam com uma parte de cada venda. Pix não tem taxa. Isso é entre você e eles: eu não recebo nada disso.
+      Mercado Pago, Hotmart e TikTok Shop retêm uma parte de cada venda, direto com você. Pix pelo Mercado Pago não tem taxa. Essa relação é entre você e eles: eu não recebo nada dessas taxas.
     </div>
   </section>
 
   <section class="sec rv" id="valor">
-    <div class="ix"><u aria-hidden="true"></u>08 — O valor</div>
+    <div class="ix"><u aria-hidden="true"></u>09 — O valor</div>
     <h2><span class="ln"><span>Quinze mil,</span></span><span class="ln"><span>em três vezes</span></span></h2>
-    <p class="lede">Um mês de trabalho, cerca de 240 horas. Abaixo, onde elas vão.</p>
+    <p class="lede">Um mês de trabalho, cerca de 240 horas. Abaixo, como elas se dividem.</p>
 
     <div class="preco">
       <div class="v">
@@ -401,40 +417,40 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
         <i>Pronto em 1 mês</i>
       </div>
       <div class="d">
-        <p><b>Como paga:</b> uma parcela para começar, uma no meio e a última quando o site estiver no ar e você aprovar.</p>
-        <p><b>Garantia:</b> 90 dias para corrigir qualquer defeito, sem cobrar nada.</p>
+        <p><b>Como paga:</b> uma parcela para começar, uma no meio do trabalho e a última quando o site estiver no ar e você aprovar.</p>
+        <p><b>Garantia:</b> 90 dias para ajustar o que não tiver ficado como combinado. Defeitos do site eu corrijo sempre, sem prazo e sem custo.</p>
       </div>
     </div>
 
     <div class="esf" id="g-esforco"></div>
 
     <h2 style="margin-top:clamp(46px,7vw,80px)"><span class="ln"><span>O mesmo trabalho,</span></span><span class="ln"><span>numa agência</span></span></h2>
+    <p class="lede">A comparação é com trabalho do mesmo porte: conta de cliente, painel de gestão, agenda, pagamento e ligação com outras plataformas. Não com site de apresentação, que é bem mais simples e bem mais barato.</p>
     <div class="comp">
       <div class="cp">
-        <h3>Numa agência</h3>
-        <div class="num">R$ 35.000 a R$ 80.000</div>
+        <div class="num">R$ 25.000 a R$ 45.000</div>
         <ul>
-          <li>3 a 5 meses de espera</li>
-          <li>Mensalidade de R$ 500 a R$ 1.500 para manter</li>
-          <li>Marca, site, painel e ligações cobrados à parte</li>
-          <li>Você fala com atendente, não com quem faz</li>
+          <li>2 a 3 meses de prazo</li>
+          <li>Manutenção de R$ 300 a R$ 800 por mês</li>
+          <li>Identidade, site, painel e ligações orçados à parte</li>
+          <li>Você fala com um atendente, não com quem faz</li>
         </ul>
       </div>
       <div class="cp eu">
-        <h3>Comigo</h3>
         <div class="num">R$ 15.000</div>
         <ul>
-          <li>1 mês, com data marcada</li>
+          <li>4 semanas, com data marcada</li>
           <li>Sem mensalidade minha: só os R$ 65 das empresas</li>
-          <li>Tudo junto, num preço só</li>
+          <li>Identidade, site, painel e ligações num preço só</li>
           <li>Você fala direto comigo, do começo ao fim</li>
+          <li>Treinamento e suporte a defeitos inclusos</li>
         </ul>
       </div>
     </div>
 
-    <div class="aviso">
-      <b>De onde vem essa conta</b>
-      Os valores de agência são a faixa cobrada no mercado por um trabalho deste tamanho. Estão aqui só para você comparar.
+    <div class="fontes">
+      <p class="fontes-t">De onde vêm esses números</p>
+      <div id="g-fontes"></div>
     </div>
   </section>
 
@@ -443,7 +459,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 <section class="fim rv">
   <span class="aura" aria-hidden="true"></span>
   <div class="in">
-    <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>09 — Para começar</div>
+    <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>10 — Para começar</div>
     <h2 style="text-align:center"><span class="ln"><span>O primeiro passo</span></span></h2>
     <p>Uma conversa de uma hora para levantar seus serviços, seus valores e as fotos que você já tem. Depois disso, o mês começa.</p>
     <div class="ctas">
@@ -456,7 +472,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 
 <footer style="margin-top:auto">
   <div class="f-in">
-    <span class="f-m">Proposta · O site da casa</span>
+    <span class="f-m">Proposta · O site de Mãe Karina</span>
     <span class="f-d">Para Mãe Karina de Iemanjá</span>
     <span class="f-v">Válida por 30 dias a partir do envio</span>
   </div>
@@ -481,7 +497,7 @@ var CANAIS = [
 ];
 
 var TEM = [
-  {t:"Identidade da casa", d:"Logo, cores, letras e modelos prontos para os seus posts."},
+  {t:"A sua identidade", d:"Logo, cores, letras e modelos prontos para os seus posts."},
   {t:"Seus serviços organizados", d:"Consultas, trabalhos, produtos e cursos, cada um com preço à vista."},
   {t:"Guia para quem não sabe pedir", d:"A pessoa escolhe o que está sentindo e o site mostra o que costuma ajudar."},
   {t:"Cada serviço pede o que precisa", d:"Você define o que a pessoa tem de enviar. Sem isso o pedido não fecha."},
@@ -496,14 +512,14 @@ var TEM = [
 
 var SIM = [
   {g:"Marca e identidade", itens:[
-    "Logo, cores e letras da casa",
-    "Modelos prontos para post e story",
-    "Tratamento das fotos que você enviar"
+    "Logo, cores e letras da sua marca",
+    "Modelos de post e story, entregues prontos e seus para usar sempre",
+    "Tratamento das fotos que você enviar para o site"
   ]},
   {g:"O site", itens:[
     "O site inteiro, com todas as páginas",
     "Seus serviços, valores e fotos",
-    "A história da casa, com foto e texto",
+    "A sua história, com foto e texto",
     "Guia por dificuldade, para quem não sabe o que pedir",
     "Depoimentos em áudio de quem já foi atendido",
     "Vitrine dos produtos, de passar com o dedo",
@@ -531,7 +547,7 @@ var SIM = [
     "Quanto cada um comprou, o quê e quando",
     "Base de clientes pronta para o CRM depois"
   ]},
-  {g:"Painel da casa", itens:[
+  {g:"O seu painel", itens:[
     "Entrada só sua, por endereço próprio",
     "Ficha de cada pedido, campo por campo",
     "Agenda dos serviços comprados, para tocar a execução",
@@ -551,10 +567,14 @@ var SIM = [
     "Cursos da Hotmart puxados sozinhos",
     "Sua loja e seu curso configurados"
   ]},
-  {g:"Entrega e garantia", itens:[
+  {g:"Entrega, treinamento e garantia", itens:[
     "Configuração dos anúncios",
     "No ar, no seu domínio e em seu nome",
-    "Treino em vídeo e 90 dias de garantia",
+    "Treinamento em vídeo de todos os caminhos do painel",
+    "90 dias para ajustar o que não ficou como combinado",
+    "Suporte a defeitos do site para sempre, sem custo",
+    "Nenhum serviço recorrente: nada a me pagar depois da entrega",
+    "Trabalho novo depois da entrega: R$ 200 por hora, orçado antes",
     "De presente: o site da sua ação social"
   ]}
 ];
@@ -562,13 +582,13 @@ var SIM = [
 /* TROCAR: conferir com a Mãe Karina o que entra no site da ação social */
 var PRESENTE = [
   "Site próprio da ação social, em endereço separado",
-  "Quem é a casa, o que a ação faz e quem ela atende",
+  "Quem é você, o que a ação faz e quem ela atende",
   "Espaço para as fotos e as histórias do trabalho",
   "Página de como ajudar, com Pix para doação",
   "Contato para quem quiser apoiar",
   "Feito para o celular",
   "No mesmo servidor, sem custo a mais",
-  "Feito depois do site da casa, sem atrasar o prazo",
+  "Feito depois do seu site, sem atrasar o prazo",
   "Sem cobrança: é presente"
 ];
 
@@ -577,29 +597,57 @@ var CRONO = [
    eu:"Anoto seus serviços, seus valores e vejo as fotos que você já tem.",
    vc:"Me manda a lista dos serviços com os preços, e as fotos que tiver."},
   {s:"Semana 1", t:"A marca e seus serviços",
-   eu:"Fecho o logo, as cores e as letras da casa. Monto a ficha de cada serviço: o que a pessoa precisa enviar.",
-   vc:"Olha a marca e me diz se ficou com a cara da casa."},
+   eu:"Fecho o logo, as cores e as letras da sua marca. Monto a ficha de cada serviço: o que a pessoa precisa enviar.",
+   vc:"Olha a marca e me diz se ficou com a sua cara."},
   {s:"Semana 2", t:"O site e o painel",
    eu:"Monto as páginas do site e o painel onde os pedidos vão cair.",
-   vc:"Nada. Esta semana é minha."},
+   vc:"Nesta semana não preciso de nada. O trabalho é meu."},
   {s:"Semana 3", t:"Pagamento e ligações",
    eu:"Ligo o Pix e o Mercado Pago, e configuro a leitura do TikTok Shop e da Hotmart.",
    vc:"Me passa sua chave Pix e o acesso das suas lojas."},
   {s:"Semana 4", t:"Testes e no ar",
    eu:"Testo em celular de verdade, publico no seu domínio e gravo o vídeo de treino.",
    vc:"Testa como se fosse cliente e aprova."},
-  {s:"Depois", t:"90 dias de garantia",
-   eu:"Corrijo qualquer defeito que aparecer, sem cobrar.",
-   vc:"Me chama quando precisar."}
+  {s:"Depois", t:"Treinamento e garantia",
+   eu:"Entrego os vídeos de treinamento e corrijo qualquer defeito que aparecer. O suporte a defeitos do site não tem prazo para acabar.",
+   vc:"Assiste aos vídeos e me chama se algo deixar de funcionar."}
+];
+
+var DEPOIS = [
+  {t:"Treinamento completo", d:"Vídeos curtos ensinando cada caminho do painel: cadastrar um serviço, montar a ficha, ver o pedido, acompanhar a execução e receber. Você assiste quando quiser, quantas vezes precisar."},
+  {t:"Suporte a defeitos, para sempre", d:"Se alguma coisa do site parar de funcionar por defeito meu, eu corrijo. Sem prazo para acabar e sem custo, enquanto o site existir."},
+  {t:"Nenhum serviço recorrente", d:"Não há mensalidade minha, pacote de horas nem contrato de manutenção. Terminada a entrega e o treinamento, você não me deve nada."},
+  {t:"Se quiser algo novo", d:"Uma função nova ou uma mudança fora do que está combinado aqui: R$ 200 por hora, sempre orçado e aprovado por você antes de eu começar."}
+];
+
+/* Pesquisa de preços consultada em setembro de 2026. Links conferidos um a um.
+   Só entram fontes de escopo e faixa comparáveis: agenda, pagamento, painel e
+   integrações. Site institucional e plataforma de porte grande ficaram de fora. */
+var FONTES = [
+  {t:"Sistema de agenda sob medida, com pagamento e integrações: R$ 15.000 a R$ 45.000",
+   d:"É só a parte de agenda e pagamento desta proposta, sem o site, sem o painel e sem o resto. Leva de 6 a 12 semanas. Forja de Sistemas, 2026.",
+   u:"https://forjadesistemas.com.br/blog/sistema-agendamento-personalizado-quanto-custa-2026/"},
+  {t:"Plataforma web sob medida: a partir de R$ 30.000",
+   d:"É o degrau de entrada, para uma plataforma com poucas telas. Conta de usuário, painel e integrações sobem a partir daí. KXP Tech, 2026.",
+   u:"https://kxptech.com/quanto-custa-mvp-startup"},
+  {t:"Loja virtual sob medida: a partir de R$ 25.000",
+   d:"Desenvolvimento próprio, com integrações feitas para o negócio, em vez de loja de modelo pronto. Drive Digital, 2026.",
+   u:"https://www.drivedigital.com.br/quanto-custa-um-ecommerce/"},
+  {t:"Manutenção cobrada por agência: R$ 300 a R$ 800 por mês",
+   d:"Cobrada todo mês, para sempre, só para manter o que já está no ar. Aqui você não paga nada disso. Web Pixel, 2026.",
+   u:"https://webpixel.digital/blog/quanto-custa-loja-virtual/"},
+  {t:"Hora de desenvolvedor sênior no Brasil: R$ 90 a R$ 220",
+   d:"É a referência para os R$ 200 por hora de qualquer trabalho novo depois da entrega. Bradata Software House, 2026.",
+   u:"https://www.bradata.com.br/blog/fabrica-de-software-vs-freelancer-vs-agencia"}
 ];
 
 var ESFORCO = [
   {t:"A marca", d:"Logo, cores, letras e os modelos de post. Cerca de 25 horas."},
-  {t:"O site", d:"As onze coisas, todas as páginas, feito para celular. Cerca de 80 horas."},
-  {t:"O painel da casa", d:"Pedidos, fichas, catálogo, agenda e métricas. Cerca de 55 horas."},
+  {t:"O site", d:"Os onze itens, todas as páginas, feito para celular. Cerca de 80 horas."},
+  {t:"O seu painel", d:"Pedidos, fichas, catálogo, agenda e métricas. Cerca de 55 horas."},
   {t:"As ligações", d:"Mercado Pago, TikTok Shop e Hotmart conversando com o site. Cerca de 30 horas."},
   {t:"Contas e servidor", d:"Login dos clientes, servidor, domínio e publicação. Cerca de 30 horas."},
-  {t:"Testes e treino", d:"Celular de verdade, correções e o vídeo ensinando você. Cerca de 20 horas."}
+  {t:"Testes e treinamento", d:"Celular de verdade, correções e os vídeos que ensinam você. Cerca de 20 horas."}
 ];
 
 var CUSTOS = [
@@ -608,9 +656,7 @@ var CUSTOS = [
   {t:"Endereço do site", v:"R$ 40 por ano", free:false,
    d:"O nome que as pessoas digitam para chegar até você."},
   {t:"Certificado de segurança", v:"Grátis", free:true,
-   d:"O cadeado que aparece no navegador. Se renova sozinho."},
-  {t:"E-mail no seu domínio", v:"Grátis", free:true,
-   d:"Opcional, se você quiser um contato@seusite.com.br."}
+   d:"O cadeado que aparece no navegador. Se renova sozinho."}
 ];
 
 (function(){
@@ -649,6 +695,27 @@ var CUSTOS = [
     d.className = "sem"; d.style.setProperty("--i", k);
     d.innerHTML = '<u aria-hidden="true"></u><b>' + c.s + '</b><h3>' + c.t + '</h3><p>' + c.eu + '</p>' +
       '<span class="vc"><b>Sua parte</b>' + c.vc + '</span>';
+    box.appendChild(d);
+  });
+})();
+
+(function(){
+  var box = $("g-fontes");
+  FONTES.forEach(function(f,k){
+    var d = document.createElement("div");
+    d.className = "fo"; d.style.setProperty("--i", k);
+    d.innerHTML = '<b>' + f.t + '</b><span>' + f.d + '</span>' +
+      '<a href="' + f.u + '" target="_blank" rel="noopener">' + f.u.replace(/^https?:\/\//, "") + '</a>';
+    box.appendChild(d);
+  });
+})();
+
+(function(){
+  var box = $("g-depois");
+  DEPOIS.forEach(function(e,k){
+    var d = document.createElement("div");
+    d.className = "ef"; d.style.setProperty("--i", k);
+    d.innerHTML = '<b>' + e.t + '</b><span>' + e.d + '</span>';
     box.appendChild(d);
   });
 })();
