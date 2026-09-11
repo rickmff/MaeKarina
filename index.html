@@ -506,6 +506,10 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
 .conta-ag{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--gold3);background:rgba(201,165,82,.06);padding:14px;margin:16px 0 4px;font-size:13.5px;color:var(--ink2);line-height:1.55}
 .conta-ag u{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;margin-top:6px}
 .conta-ag b{display:block;color:var(--ink);font-weight:600;font-size:14.5px}
+.conta-ag.falta{border-color:var(--tkp);background:rgba(254,44,85,.07)}
+.conta-ag.falta u{background:var(--tkp)}
+.conta-ag .lk{display:block;margin-top:8px}
+.ped-c .tag.falta{border-color:var(--tkp);color:var(--tkp)}
 
 .field{padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
 .field small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-family:var(--display);margin-bottom:2px}
@@ -635,6 +639,7 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
 .chat-fab:hover{background:var(--gold2)}
 .chat-fab u{width:8px;height:8px;border-radius:50%;background:#080808;flex:none;animation:pl 2s ease-in-out infinite}
 .chat-fab.hide{transform:translateY(90px);opacity:0;pointer-events:none}
+body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
 
 .chat{
   position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:85;
@@ -1163,6 +1168,7 @@ function fichaDe(i){ return CAMPOS_BASE.concat(FICHAS[i.g] || []); }
 var CLIENTE = {
   nome:"Ana Paula Siqueira", email:"ana.siqueira@email.com", desde:"março de 2026",
   pedidos:[
+    {t:"Firmeza de proteção", g:"trabalhos", q:"ontem", st:"Falta preencher", ok:false, pend:true},
     {t:"Abertura de caminhos", q:"12 de setembro", st:"Em andamento", ok:false},
     {t:"Consulta com a Mãe Karina", q:"28 de agosto", st:"Concluído", ok:true},
     {t:"Banho de ervas", q:"14 de agosto", st:"Entregue", ok:true},
@@ -1188,6 +1194,9 @@ var PASSOS_SITE = ["Horário","Entrar","Pagamento","Seus dados","Confirmação"]
 /* MOCK: quem já entrou na conta nesta visita. No sistema de verdade é a sessão. */
 var logado = false;
 var escolha = null, cron = null, ultimoFoco = null;
+/* a conversa fica acima do modal (z-index 85 contra 80), então sai de cena
+   sempre que um pedido ou a conta abrem — senão come os cliques.          */
+var fecharConversa = null;
 
 function brl(v){ return "R$ " + v.toLocaleString("pt-BR"); }
 function foto(id,w,h){ return "https://images.unsplash.com/" + id + "?w=" + w + "&h=" + h + "&fit=crop&q=70&auto=format"; }
@@ -1415,6 +1424,7 @@ function shell(passos, atual, corpo){
 }
 function abrir(i, origem){
   ultimoFoco = origem || null;
+  if(fecharConversa) fecharConversa();
   escolha = { item:i, slot:null, pg:null, ficha:null };
   var ov = $("ov");
   ov.hidden = false;
@@ -1455,6 +1465,7 @@ function botao(txt, cls){
    nunca uma checagem feita aqui no navegador, que qualquer pessoa contorna. */
 function login(origem){
   ultimoFoco = origem || null;
+  if(fecharConversa) fecharConversa();
   var ov = $("ov");
   ov.hidden = false;
   requestAnimationFrame(function(){ ov.classList.add("on"); });
@@ -1527,6 +1538,7 @@ function login(origem){
    histórico vem do banco, filtrado pelo cliente logado.                         */
 function contaEntrar(origem, novo){
   ultimoFoco = origem || null;
+  if(fecharConversa) fecharConversa();
   var ov = $("ov");
   ov.hidden = false;
   requestAnimationFrame(function(){ ov.classList.add("on"); });
@@ -1565,12 +1577,18 @@ function contaEntrar(origem, novo){
    aparece só na hora de contratar, e o histórico de gastos fica no painel da
    Mãe Karina, que é quem precisa dele.                                          */
 function contaPainel(){
-  var andando = CLIENTE.pedidos.filter(function(p){ return !p.ok; });
+  var pend = CLIENTE.pedidos.filter(function(p){ return p.pend; });
+  var andando = CLIENTE.pedidos.filter(function(p){ return !p.ok && !p.pend; });
   var html =
     '<div class="conta-h">' +
       '<span class="conta-av" aria-hidden="true">AS</span>' +
       '<span><b>' + CLIENTE.nome + '</b><small>' + CLIENTE.email + ' · desde ' + CLIENTE.desde + '</small></span>' +
     '</div>' +
+    (pend.length
+      ? '<div class="conta-ag falta"><u aria-hidden="true"></u><span><b>Falta preencher para o trabalho começar</b>' +
+        'O pagamento de ' + pend[0].t + ' já entrou, mas a Mãe Karina ainda precisa das suas informações. ' +
+        'Leva um minuto.<button class="lk" type="button" id="c-pend">Preencher agora</button></span></div>'
+      : '') +
     (andando.length
       ? '<div class="conta-ag"><u aria-hidden="true"></u><span><b>' + andando[0].t + '</b>está em andamento agora. Você recebe notícia assim que tiver.</span></div>'
       : '') +
@@ -1578,7 +1596,7 @@ function contaPainel(){
   CLIENTE.pedidos.forEach(function(p){
     html += '<div class="ped-c">' +
       '<div class="l1"><b>' + p.t + '</b></div>' +
-      '<div class="l2"><span class="tag' + (p.ok ? " ok" : "") + '">' + p.st + '</span>' + p.q + '</div>' +
+      '<div class="l2"><span class="tag' + (p.ok ? " ok" : p.pend ? " falta" : "") + '">' + p.st + '</span>' + p.q + '</div>' +
     '</div>';
   });
   html += '<div class="fi-n"><u aria-hidden="true"></u><span>A ficha que você preencheu fica guardada em cada pedido. Na próxima vez, os campos já vêm prontos.</span></div>' +
@@ -1587,6 +1605,42 @@ function contaPainel(){
   $("x").addEventListener("click", fechar);
   $("sheet").scrollTop = 0;
   $("go").addEventListener("click", fechar);
+  var bp = $("c-pend");
+  if(bp) bp.addEventListener("click", function(){ fichaPendente(pend[0]); });
+}
+
+/* ---------- completar a ficha depois ----------
+   Demonstração do caminho de recuperação: quem pagou e fechou o navegador
+   antes de preencher volta por aqui, pela conta. No sistema de verdade o
+   lembrete também sai por e-mail, e o pedido fica parado até ser preenchido. */
+function fichaPendente(ped){
+  var campos = fichaDe({ g: ped.g || "trabalhos" });
+  var html = '<h3>Falta isto para o trabalho começar</h3>' +
+    '<p class="mini">' + ped.t + ' · pago ' + ped.q + '</p><div class="fi">';
+  campos.forEach(function(c,k){
+    var id = "fp-" + k;
+    html += '<div class="fg"><label for="' + id + '">' + c.t + (c.opc ? ' <i>opcional</i>' : '') + '</label>';
+    if(c.tipo === "foto") html += '<div class="drop" id="' + id + '" role="button" tabindex="0"><b>Enviar a foto</b>Toque para escolher do celular</div>';
+    else if(c.tipo === "longo") html += '<textarea class="inp" id="' + id + '">' + c.ex + '</textarea>';
+    else html += '<input class="inp" id="' + id + '" type="' + (c.tipo === "data" ? "date" : "text") + '" value="' + c.ex + '">';
+    html += '</div>';
+  });
+  html += '<div class="fi-n"><u aria-hidden="true"></u><span>O seu pagamento está guardado. Nada se perde: o trabalho começa assim que isto chegar.</span></div></div>' +
+    botao("Enviar para a Mãe Karina");
+  $("sheet").innerHTML = '<button class="x" id="x" type="button" aria-label="Fechar">×</button><div class="sh-body">' + html + '</div>';
+  $("x").addEventListener("click", fechar);
+  $("sheet").scrollTop = 0;
+  var d = $("fp-" + campos.map(function(c){ return c.tipo; }).indexOf("foto"));
+  if(d && d.classList.contains("drop")) d.addEventListener("click", function(){
+    d.classList.add("ok"); d.innerHTML = '<b>foto-ana-paula.jpg</b>enviada · 1,8 MB';
+  });
+  $("go").addEventListener("click", function(){
+    $("go").classList.add("busy");
+    setTimeout(function(){
+      ped.pend = false; ped.st = "Em andamento";
+      contaPainel();
+    }, reduce ? 60 : 800);
+  });
 }
 
 document.addEventListener("click", function(e){
@@ -2239,6 +2293,7 @@ var DIAS = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
     /* a conversa some: nada é guardado */
     setTimeout(function(){ if(!aberto){ corpo.innerHTML = ""; conversa = []; limpar(); } }, 500);
   }
+  fecharConversa = function(){ if(aberto) fechar2(); };
   fab.addEventListener("click", abrir2);
   $("chatx").addEventListener("click", fechar2);
   addEventListener("keydown", function(e){ if(e.key === "Escape" && aberto) fechar2(); });

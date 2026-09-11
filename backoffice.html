@@ -222,6 +222,12 @@ a{color:inherit;text-decoration:none}
 .rs.alerta{border-color:var(--gold3);background:linear-gradient(150deg,rgba(201,165,82,.09),transparent 65%)}
 .rs b{display:block;font-family:var(--display);font-weight:800;font-size:27px;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
 .rs.alerta b{color:var(--gold2)}
+.rs.parado{border-color:var(--tkp);background:linear-gradient(150deg,rgba(254,44,85,.08),transparent 65%)}
+.rs.parado b{color:var(--tkp)}
+.sit.falta{border-color:var(--tkp);color:var(--tkp)}
+.parado-b{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--tkp);background:rgba(254,44,85,.07);padding:16px;font-size:13.5px;color:var(--ink2);line-height:1.6}
+.parado-b u{width:7px;height:7px;border-radius:50%;background:var(--tkp);flex:none;margin-top:7px}
+.parado-b b{display:block;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:3px}
 .rs span{display:block;color:var(--muted);font-size:11px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;margin-top:7px;line-height:1.4}
 @media (max-width:900px){.resumo{grid-template-columns:repeat(2,1fr)}}
 
@@ -927,6 +933,9 @@ var PEDIDOS = [
       ["Foto de corpo inteiro","foto-juliana.jpg"],
       ["O que pede neste trabalho","Cansaço que não passa e tudo dando errado desde que mudei de casa."]
     ]},
+  { n:"Carla Benites", i:"Firmeza de proteção", v:200, q:"ontem",
+    dia:"Amanhã", hr:"11h00", pago:"Pix", tipo:"Trabalho", etapa:0, semFicha:true,
+    ficha:[] },
   { n:"Beatriz Lemos", i:"Leitura de tarot", v:70, q:"há 3 h",
     dia:"Amanhã", hr:"15h00", pago:"Pix", tipo:"Consulta", etapa:0,
     ficha:[
@@ -1183,6 +1192,7 @@ function montarPedidos(){
 function feito(p){ return p.etapa >= etapasDe(p).length; }
 function situacao(p){
   var e = etapasDe(p);
+  if(p.semFicha) return "Falta a ficha";
   if(p.etapa >= e.length) return "Feito";
   if(p.etapa === 0) return "A começar";
   return e[p.etapa];
@@ -1199,11 +1209,12 @@ function montarResumo(){
   var hoje = abertos.filter(function(p){ return p.dia === "Hoje"; });
   var comecar = abertos.filter(function(p){ return p.etapa === 0; });
   var andando = abertos.filter(function(p){ return p.etapa > 0; });
+  var semFicha = abertos.filter(function(p){ return p.semFicha; });
   $("resumo").innerHTML =
     '<div class="rs' + (hoje.length ? " alerta" : "") + '"><b>' + hoje.length + '</b><span>para hoje</span></div>' +
     '<div class="rs"><b>' + comecar.length + '</b><span>ainda a começar</span></div>' +
     '<div class="rs"><b>' + andando.length + '</b><span>em andamento</span></div>' +
-    '<div class="rs"><b>' + (PEDIDOS.length - abertos.length) + '</b><span>concluídos</span></div>';
+    '<div class="rs' + (semFicha.length ? " parado" : "") + '"><b>' + semFicha.length + '</b><span>esperando a ficha</span></div>';
 }
 
 function montarAgenda(){
@@ -1224,7 +1235,7 @@ function montarAgenda(){
       h += '<div class="ag" data-ficha="' + o.k + '" role="button" tabindex="0">' +
         '<div class="hr">' + esc(p.hr) + '<small>' + esc(p.pago) + '</small></div>' +
         '<div><b>' + esc(p.i) + '</b><div class="cli">' + esc(p.n) + '</div>' + barraEtapas(p) + '</div>' +
-        '<div><span class="sit ' + (ok ? "ok" : "faz") + '">' + esc(situacao(p)) + '</span></div>' +
+        '<div><span class="sit ' + (p.semFicha ? "falta" : ok ? "ok" : "faz") + '">' + esc(situacao(p)) + '</span></div>' +
         '<div class="money">' + brl(p.v) + '</div>' +
         '<div><span class="ver">' + (ok ? "Ver a ficha" : "Abrir") + '</span></div>' +
       '</div>';
@@ -1268,14 +1279,33 @@ function abrirFicha(k){
   });
   corpo += '</div>';
 
-  if(!ok){
+  if(p.semFicha){
+    corpo += '<div class="acao">' +
+      '<button class="btn" type="button" id="cobrar"><span>Lembrar a pessoa de preencher</span></button>' +
+      '<button class="btn ghost" type="button" id="sf-x"><span>Fechar</span></button>' +
+    '</div>';
+  } else if(!ok){
     corpo += '<div class="acao">' +
       '<button class="btn" type="button" id="av"><span>' + esc(etapas[p.etapa]) + ' · marcar como feito</span></button>' +
       '<button class="btn ghost" type="button" id="av-x"><span>Fechar</span></button>' +
     '</div>';
   }
 
-  corpo += '<div class="bh" style="padding:22px 0 10px;border:0">O que ela mandou</div><div class="fch">';
+  corpo += '<div class="bh" style="padding:22px 0 10px;border:0">O que ela mandou</div>';
+  if(p.semFicha){
+    corpo += '<div class="parado-b"><u aria-hidden="true"></u><span><b>A pessoa pagou mas ainda não preencheu.</b>' +
+      'Sem o nome, a data de nascimento e a foto você não consegue começar. Ela vê o mesmo aviso na conta dela, e o lembrete sai por e-mail sozinho. O dinheiro já está com você.</span></div>' +
+      '<div class="demo" style="margin-top:18px"><u aria-hidden="true"></u>' +
+      '<span>Nesta demonstração o lembrete é simulado. No sistema de verdade ele sai sozinho, e o pedido fica parado aqui até a ficha chegar.</span></div>';
+    abrirModal(p.i, p.n + " · pedido " + p.q, corpo, function(){
+      var c = $("cobrar");
+      if(c) c.addEventListener("click", function(){ aviso("Lembrete enviado. A pessoa recebe um e-mail com o link para preencher."); });
+      var x = $("sf-x");
+      if(x) x.addEventListener("click", fecharModal);
+    });
+    return;
+  }
+  corpo += '<div class="fch">';
   p.ficha.forEach(function(c){
     var foto = /\.jpg$|\.png$/i.test(c[1]);
     corpo += '<div class="li"><small>' + esc(c[0]) + '</small>' +
