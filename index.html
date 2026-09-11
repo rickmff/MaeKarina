@@ -127,13 +127,13 @@ a{color:inherit;text-decoration:none}
   opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s;
 }
 .sheetnav.on{opacity:1;visibility:visible}
-.sheetnav a{
+.sheetnav a,.sheetnav .lk-conta{
   font-family:var(--display);text-transform:uppercase;font-weight:700;
   font-size:clamp(34px,11vw,60px);letter-spacing:.04em;line-height:1.14;
   border-bottom:1px solid var(--line);padding:14px 0;
   opacity:0;transform:translateY(22px);transition:opacity .5s var(--ease),transform .5s var(--ease);
 }
-.sheetnav.on a{opacity:1;transform:none}
+.sheetnav.on a,.sheetnav.on .lk-conta{opacity:1;transform:none}
 .sheetnav.on a:nth-child(1){transition-delay:.08s}
 .sheetnav.on a:nth-child(2){transition-delay:.14s}
 .sheetnav.on a:nth-child(3){transition-delay:.2s}
@@ -462,6 +462,42 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
 .prod .im img.ok{opacity:1}
 .prod b{font-family:var(--display);text-transform:uppercase;font-size:15px;letter-spacing:.04em;display:block}
 .prod i{color:var(--muted);font-size:12.5px;font-style:normal}
+/* ficha do pedido — campos que cada serviço exige */
+.fi{margin-top:4px}
+.fi .fg{margin-bottom:14px}
+.fi label{display:block;font-family:var(--display);text-transform:uppercase;font-size:11.5px;letter-spacing:.16em;color:var(--muted);margin-bottom:6px}
+.fi label i{font-style:normal;color:var(--gold);margin-left:4px}
+.fi .inp{width:100%;background:var(--bg);border:1px solid var(--line2);color:var(--ink);font-family:var(--sans);font-size:14px;padding:11px 13px;border-radius:2px}
+.fi .inp:focus{outline:none;border-color:var(--gold)}
+.fi textarea.inp{min-height:74px;resize:vertical}
+.fi .drop{border:1px dashed var(--line2);background:var(--bg);padding:16px;text-align:center;color:var(--muted);font-size:12.5px;cursor:pointer;border-radius:2px}
+.fi .drop b{display:block;color:var(--ink2);font-size:13.5px;margin-bottom:3px}
+.fi .drop.ok{border-color:var(--gold3);border-style:solid;color:var(--gold2)}
+.fi .drop.ok b{color:var(--gold2)}
+.fi-n{display:flex;gap:9px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.55}
+.fi-n u{width:6px;height:6px;border-radius:50%;background:var(--gold3);flex:none;margin-top:6px}
+
+/* conta do cliente */
+.lk-conta{font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.15em;font-weight:600;color:var(--ink2);background:none;border:0;cursor:pointer;padding:0;transition:color .3s}
+.lk-conta:hover{color:var(--gold2)}
+.sheetnav .lk-conta{font-size:clamp(23px,7vw,34px);letter-spacing:.02em;text-align:left;color:var(--ink)}
+.conta-h{display:flex;align-items:center;gap:13px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.conta-av{width:46px;height:46px;border-radius:50%;flex:none;background:linear-gradient(150deg,var(--gold),var(--gold3));display:grid;place-items:center;font-family:var(--display);font-weight:800;color:#0A0A0A;font-size:17px}
+.conta-h b{display:block;font-family:var(--display);text-transform:uppercase;font-size:16px;letter-spacing:.06em;line-height:1.2}
+.conta-h small{color:var(--muted);font-size:12px}
+.ped-c{padding:14px 0;border-bottom:1px solid var(--line)}
+.ped-c:last-of-type{border-bottom:0}
+.ped-c .l1{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.ped-c b{font-size:14.5px;color:var(--ink)}
+.ped-c .vl{font-family:var(--display);font-weight:800;font-size:15px;color:var(--gold2);font-variant-numeric:tabular-nums;flex:none}
+.ped-c .l2{display:flex;align-items:center;gap:8px;margin-top:5px;color:var(--muted);font-size:12px}
+.ped-c .tag{border:1px solid var(--line2);border-radius:999px;padding:2px 9px;font-size:10.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.12em}
+.ped-c .tag.ok{border-color:var(--gold3);color:var(--gold2)}
+.conta-r{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:16px 0 4px}
+.conta-r div{border:1px solid var(--line);background:var(--bg);padding:12px;text-align:center}
+.conta-r b{display:block;font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink);font-variant-numeric:tabular-nums}
+.conta-r span{display:block;color:var(--muted);font-size:10.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;margin-top:4px}
+
 .field{padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
 .field small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-family:var(--display);margin-bottom:2px}
 .inst{display:flex;justify-content:space-between;align-items:center;padding:14px 0 4px;font-size:13px;color:var(--muted)}
@@ -810,6 +846,7 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
     <a href="#consultas">Consultas</a>
     <a href="#trabalhos">Trabalhos</a>
     <a href="#lives">Ao vivo</a>
+    <button class="lk-conta" type="button" data-conta>Minha conta</button>
   </nav>
   <a class="wa" href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener"><span>WhatsApp</span></a>
   <button class="burger" id="burger" aria-label="Abrir o menu" aria-expanded="false"><u></u><u></u></button>
@@ -820,6 +857,7 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
   <a href="#consultas">Consultas</a>
   <a href="#trabalhos">Trabalhos</a>
   <a href="#lives">Ao vivo</a>
+  <button class="lk-conta" type="button" data-conta>Minha conta</button>
   <a href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener">WhatsApp</a>
 </nav>
 
@@ -1080,6 +1118,49 @@ var itens = [
   {id:12, g:"cursos",    t:"Umbanda para iniciantes",   p:97,  d:"Fundamentos, 5 aulas",                   canal:"hot",  dor:["aprender"], parc:"6x de R$ 17,55",  img:"photo-1623230951203-1f8fa5298426"}
 ];
 
+/* ---------- a ficha de cada serviço ----------
+   MOCK: é a demonstração da funcionalidade proposta. Cada tipo de serviço pede
+   o que precisa para o trabalho ser feito, e quem monta essa lista é a Mãe
+   Karina, no painel. Aqui os campos são fixos; no sistema de verdade vêm do
+   cadastro do item e a resposta é gravada junto do pedido.                      */
+var CAMPOS_BASE = [
+  {k:"nome",  t:"Seu nome completo", tipo:"texto", ex:"Ana Paula Siqueira"},
+  {k:"nasc",  t:"Data de nascimento", tipo:"data", ex:"1987-03-14"}
+];
+var FICHAS = {
+  consultas: [
+    {k:"assunto", t:"O que está pesando agora", tipo:"longo", ex:"Estou há sete meses sem trabalho e já não sei por onde começar."},
+    {k:"tel",     t:"Telefone para a chamada de vídeo", tipo:"texto", ex:"(51) 99999-0000"}
+  ],
+  trabalhos: [
+    {k:"quem",  t:"Nome completo de quem vai receber o trabalho", tipo:"texto", ex:"Ana Paula Siqueira"},
+    {k:"nascq", t:"Data de nascimento de quem vai receber", tipo:"data", ex:"1987-03-14"},
+    {k:"foto",  t:"Foto de corpo inteiro, recente", tipo:"foto"},
+    {k:"pedido",t:"O que você pede neste trabalho", tipo:"longo", ex:"Quero abrir meu caminho no trabalho e tirar o peso de casa."}
+  ],
+  produtos: [
+    {k:"orixa", t:"Seu orixá de cabeça, se você souber", tipo:"texto", ex:"Não sei", opc:true},
+    {k:"end",   t:"Endereço de entrega", tipo:"texto", ex:"Rua das Flores, 120 · Porto Alegre, RS"}
+  ],
+  cursos: [
+    {k:"email", t:"E-mail para receber o acesso", tipo:"texto", ex:"ana.siqueira@email.com"}
+  ]
+};
+function fichaDe(i){ return CAMPOS_BASE.concat(FICHAS[i.g] || []); }
+
+/* ---------- conta do cliente ----------
+   MOCK: histórico de exemplo, para mostrar o que a pessoa vê ao entrar na conta
+   dela. No sistema de verdade vem do banco, filtrado pelo cliente logado.       */
+var CLIENTE = {
+  nome:"Ana Paula Siqueira", email:"ana.siqueira@email.com", desde:"março de 2026",
+  pedidos:[
+    {t:"Abertura de caminhos", p:250, q:"12 de setembro", st:"Em andamento", ok:false},
+    {t:"Consulta com a Mãe Karina", p:150, q:"28 de agosto", st:"Concluído", ok:true},
+    {t:"Banho de ervas", p:75, q:"14 de agosto", st:"Entregue", ok:true},
+    {t:"Leitura de tarot", p:70, q:"2 de julho", st:"Concluído", ok:true}
+  ]
+};
+
 /* dificuldades pelas quais o site guia — cada uma leva aos serviços que ajudam */
 var DORES = [
   {k:"amor",          t:"Amor e relações",     d:"Relação que travou, alguém que se afastou, ciúme que não passa."},
@@ -1094,6 +1175,7 @@ var CANAL = { site:{n:"Site", cls:"px"}, tk:{n:"TikTok Shop", cls:"tk"}, hot:{n:
 /* fotos que já temos em img/ (9), remapeadas para os serviços atuais */
 var LOCAL = {1:"baralho-cigano",2:"consulta-espiritual",3:"leitura-de-tarot",4:"banho-de-descarrego",5:"abertura-de-caminhos",6:"firmeza-de-protecao",7:"toalha-de-leitura",8:"kit-iniciante-de-tarot",9:"vela-de-sete-dias"};
 var horarios = ["Qui 14h","Qui 16h","Sex 10h","Sex 15h","Sáb 9h","Sáb 11h"];
+var PASSOS_SITE = ["Horário","Seus dados","Pagamento","Confirmação"];
 var escolha = null, cron = null, ultimoFoco = null;
 
 function brl(v){ return "R$ " + v.toLocaleString("pt-BR"); }
@@ -1322,7 +1404,7 @@ function shell(passos, atual, corpo){
 }
 function abrir(i, origem){
   ultimoFoco = origem || null;
-  escolha = { item:i, slot:null, pg:null };
+  escolha = { item:i, slot:null, pg:null, ficha:null };
   var ov = $("ov");
   ov.hidden = false;
   requestAnimationFrame(function(){ ov.classList.add("on"); });
@@ -1427,6 +1509,81 @@ function login(origem){
 
   $("lg-m").focus({preventScroll:true});
 }
+/* ---------- conta do cliente ----------
+   MOCK: duas telas, entrar e criar conta, e depois o histórico da pessoa. Nada
+   é verificado e nada sai do navegador — é a demonstração do fluxo proposto.
+   No sistema de verdade a sessão é um cookie assinado pelo servidor e o
+   histórico vem do banco, filtrado pelo cliente logado.                         */
+function contaEntrar(origem, novo){
+  ultimoFoco = origem || null;
+  var ov = $("ov");
+  ov.hidden = false;
+  requestAnimationFrame(function(){ ov.classList.add("on"); });
+  document.body.classList.add("lock");
+
+  $("sheet").innerHTML =
+    '<button class="x" id="x" type="button" aria-label="Fechar">×</button>' +
+    '<div class="sh-body">' +
+      '<h3>' + (novo ? "Criar a sua conta" : "Entrar na sua conta") + '</h3>' +
+      '<p class="mini">' + (novo
+        ? "Para acompanhar os seus pedidos e não precisar escrever tudo de novo na próxima vez."
+        : "Veja os trabalhos que você já pediu e em que pé está cada um.") + '</p>' +
+      '<div class="fi">' +
+        (novo ? '<div class="fg"><label for="c-n">Seu nome completo</label><input class="inp" id="c-n" type="text" value="Ana Paula Siqueira"></div>' : '') +
+        '<div class="fg"><label for="c-m">E-mail</label><input class="inp" id="c-m" type="email" value="ana.siqueira@email.com"></div>' +
+        '<div class="fg"><label for="c-s">Senha</label><input class="inp" id="c-s" type="password" value="123456"></div>' +
+      '</div>' +
+      botao(novo ? "Criar conta" : "Entrar") +
+      '<p class="mini" style="margin-top:16px"><button class="lk" type="button" id="c-alt">' +
+        (novo ? "Já tenho conta, quero entrar" : "Ainda não tenho conta, quero criar") +
+      '</button></p>' +
+      '<div class="lgnota"><u aria-hidden="true"></u><span>Demonstração: nada é verificado e nada é guardado. Serve para mostrar o fluxo.</span></div>' +
+    '</div>';
+
+  $("x").addEventListener("click", fechar);
+  $("sheet").scrollTop = 0;
+  $("c-alt").addEventListener("click", function(){ contaEntrar(origem, !novo); });
+  $("go").addEventListener("click", function(){
+    $("go").classList.add("busy");
+    setTimeout(function(){ contaPainel(); }, reduce ? 60 : 800);
+  });
+}
+
+function contaPainel(){
+  var gasto = CLIENTE.pedidos.reduce(function(a,p){ return a + p.p; }, 0);
+  var html =
+    '<div class="conta-h">' +
+      '<span class="conta-av" aria-hidden="true">AS</span>' +
+      '<span><b>' + CLIENTE.nome + '</b><small>' + CLIENTE.email + ' · desde ' + CLIENTE.desde + '</small></span>' +
+    '</div>' +
+    '<div class="conta-r">' +
+      '<div><b>' + CLIENTE.pedidos.length + '</b><span>pedidos</span></div>' +
+      '<div><b>' + brl(gasto) + '</b><span>no total</span></div>' +
+      '<div><b>1</b><span>em andamento</span></div>' +
+    '</div>' +
+    '<div class="lbl">Os seus pedidos</div>';
+  CLIENTE.pedidos.forEach(function(p){
+    html += '<div class="ped-c">' +
+      '<div class="l1"><b>' + p.t + '</b><span class="vl">' + brl(p.p) + '</span></div>' +
+      '<div class="l2"><span class="tag' + (p.ok ? " ok" : "") + '">' + p.st + '</span>' + p.q + '</div>' +
+    '</div>';
+  });
+  html += '<div class="fi-n"><u aria-hidden="true"></u><span>A ficha que você preencheu fica guardada em cada pedido. Na próxima vez, os campos já vêm prontos.</span></div>' +
+    botao("Voltar para o site");
+  $("sheet").innerHTML = '<button class="x" id="x" type="button" aria-label="Fechar">×</button><div class="sh-body">' + html + '</div>';
+  $("x").addEventListener("click", fechar);
+  $("sheet").scrollTop = 0;
+  $("go").addEventListener("click", fechar);
+}
+
+document.addEventListener("click", function(e){
+  var b = e.target.closest ? e.target.closest("[data-conta]") : null;
+  if(!b) return;
+  var sn = $("sheetnav");
+  if(sn && sn.classList.contains("on")) sn.classList.remove("on");
+  contaEntrar(b, false);
+});
+
 /* ---------- rota de entrada ----------
    Não existe botão de "Entrar" no site: quem atende é ela, não o visitante.
    A Mãe Karina chega ao painel por um endereço que só ela conhece.
@@ -1480,7 +1637,7 @@ function diarioHTML(canal){
     h += '<div class="di' + (k === 0 ? " ok" : "") + '"><u aria-hidden="true"></u>' +
          '<span>' + e + '</span><b>' + (k === 0 ? "agora" : "") + '</b></div>';
   });
-  return h + '</div><p class="diario-n">Cada passo chega para você por WhatsApp. Não precisa perguntar.</p></div>';
+  return h + '</div><p class="diario-n">Você acompanha cada passo aqui, entrando na sua conta. Não precisa perguntar.</p></div>';
 }
 
 function filaHTML(i){
@@ -1498,12 +1655,8 @@ function modalSite(i){
   var html = '<h3>' + i.t + '</h3><p class="mini">' + i.d + '</p><div class="pr">' + brl(i.p) + '</div>' +
     '<div class="lbl">Escolha um horário</div><div class="slots">';
   horarios.forEach(function(h,k){ html += '<button class="slot" type="button" data-h="' + k + '">' + h + '</button>'; });
-  html += '</div>' + filaHTML(i) +
-    '<div class="lbl">Como você prefere pagar</div><div class="pays">' +
-    '<button class="pay" type="button" data-p="pix"><span class="rd" aria-hidden="true"></span><u style="background:var(--pix)" aria-hidden="true"></u>Pix<small>cai na hora</small></button>' +
-    '<button class="pay" type="button" data-p="mp"><span class="rd" aria-hidden="true"></span><u style="background:var(--mp)" aria-hidden="true"></u>Mercado Pago<small>cartão ou boleto</small></button>' +
-    '</div>' + botao("Continuar");
-  shell(["Horário","Pagamento","Confirmação"], 0, html);
+  html += '</div>' + filaHTML(i) + botao("Continuar");
+  shell(PASSOS_SITE, 0, html);
   var s = $("sheet");
   $("go").disabled = true;
   var fb = s.querySelector(".fila-b i");
@@ -1511,13 +1664,61 @@ function modalSite(i){
   s.querySelectorAll(".slot").forEach(function(el){
     el.addEventListener("click", function(){
       s.querySelectorAll(".slot").forEach(function(x){ x.classList.remove("sel"); });
-      el.classList.add("sel"); escolha.slot = +el.dataset.h; checar();
+      el.classList.add("sel"); escolha.slot = +el.dataset.h;
+      $("go").disabled = false;
     });
   });
+  $("go").addEventListener("click", function(){ modalFicha(i); });
+}
+
+/* ---------- a ficha do serviço ----------
+   MOCK: os campos vêm de FICHAS, por tipo de serviço. Os valores já vêm
+   preenchidos para a demonstração andar rápido; no sistema de verdade a pessoa
+   escreve, e sem isso o pedido não fecha.                                       */
+function modalFicha(i){
+  var campos = fichaDe(i);
+  var html = '<h3>Para este trabalho, preciso de</h3>' +
+    '<p class="mini">' + i.t + ' · ' + horarios[escolha.slot] + '</p><div class="fi">';
+  campos.forEach(function(c,k){
+    var id = "fi-" + k;
+    html += '<div class="fg"><label for="' + id + '">' + c.t + (c.opc ? ' <i>opcional</i>' : '') + '</label>';
+    if(c.tipo === "foto"){
+      html += '<div class="drop" id="' + id + '" role="button" tabindex="0"><b>Enviar a foto</b>Toque para escolher do celular</div>';
+    } else if(c.tipo === "longo"){
+      html += '<textarea class="inp" id="' + id + '">' + c.ex + '</textarea>';
+    } else {
+      html += '<input class="inp" id="' + id + '" type="' + (c.tipo === "data" ? "date" : "text") + '" value="' + c.ex + '">';
+    }
+    html += '</div>';
+  });
+  html += '<div class="fi-n"><u aria-hidden="true"></u><span>Estes campos foram definidos pela Mãe Karina para este serviço. Outro serviço pede outras coisas. O pedido só fecha com tudo preenchido.</span></div></div>' +
+    botao("Continuar");
+  shell(PASSOS_SITE, 1, html);
+  escolha.ficha = campos;
+  var d = $("fi-" + campos.map(function(c){ return c.tipo; }).indexOf("foto"));
+  if(d && d.classList.contains("drop")){
+    d.addEventListener("click", function(){
+      d.classList.add("ok");
+      d.innerHTML = '<b>foto-ana-paula.jpg</b>enviada · 1,8 MB';
+    });
+  }
+  $("go").addEventListener("click", function(){ modalPagamento(i); });
+}
+
+function modalPagamento(i){
+  var html = '<h3>Como você prefere pagar</h3><p class="mini">' + i.t + ' · ' + brl(i.p) + '</p>' +
+    '<div class="pays">' +
+    '<button class="pay" type="button" data-p="pix"><span class="rd" aria-hidden="true"></span><u style="background:var(--pix)" aria-hidden="true"></u>Pix<small>cai na hora</small></button>' +
+    '<button class="pay" type="button" data-p="mp"><span class="rd" aria-hidden="true"></span><u style="background:var(--mp)" aria-hidden="true"></u>Mercado Pago<small>cartão ou boleto</small></button>' +
+    '</div>' + botao("Pagar");
+  shell(PASSOS_SITE, 2, html);
+  var s = $("sheet");
+  $("go").disabled = true;
   s.querySelectorAll(".pay").forEach(function(el){
     el.addEventListener("click", function(){
       s.querySelectorAll(".pay").forEach(function(x){ x.classList.remove("sel"); });
-      el.classList.add("sel"); escolha.pg = el.dataset.p; checar();
+      el.classList.add("sel"); escolha.pg = el.dataset.p;
+      $("go").disabled = false;
     });
   });
   $("go").addEventListener("click", function(){
@@ -1525,16 +1726,11 @@ function modalSite(i){
     setTimeout(escolha.pg === "pix" ? pix : mercadoPago, 550);
   });
 }
-function checar(){
-  $("go").disabled = !(escolha.pg && escolha.slot !== null);
-  var st = document.querySelectorAll(".steps b"), ln = document.querySelectorAll(".steps i");
-  if(escolha.slot !== null && st[1]){ st[1].classList.add("on"); ln[0].classList.add("on"); }
-}
 
 function pix(){
   var i = escolha.item;
   var codigo = "00020126580014BR.GOV.BCB.PIX0136" + Math.random().toString(36).slice(2,14) + "52040000530398654" + ("0" + i.p).slice(-4) + "5802BR6009SAO PAULO";
-  shell(["Horário","Pagamento","Confirmação"], 1,
+  shell(PASSOS_SITE, 2,
     '<h3>Pague com Pix</h3><p class="mini">' + i.t + ' · ' + horarios[escolha.slot] + '</p>' +
     '<div class="pixwrap"><div class="qr" aria-hidden="true"><div class="m"></div><span class="k"></span><span class="scan"></span></div>' +
     '<div class="pixmeta"><span>Valor</span><b>' + brl(i.p) + '</b></div>' +
@@ -1558,7 +1754,7 @@ function pix(){
 
 function mercadoPago(){
   var i = escolha.item;
-  shell(["Horário","Pagamento","Confirmação"], 1,
+  shell(PASSOS_SITE, 2,
     '<h3>Mercado Pago</h3><p class="mini">' + i.t + ' · ' + horarios[escolha.slot] + '</p>' +
     '<div class="ext mp"><div class="eh"><u aria-hidden="true"></u>Mercado Pago<span>pagamento protegido</span></div>' +
     '<div class="eb"><div class="proc"><p>Abrindo o checkout seguro</p><div class="bar"><i id="pb"></i></div></div></div></div>');
@@ -1608,8 +1804,11 @@ function modalTikTok(i){
 function concluir(canal, via){
   var i = escolha.item, passos, etapas;
   if(canal === "site"){
-    etapas = ["Horário","Pagamento","Confirmação"];
-    passos = ["Pagamento aprovado via " + via, "Horário " + horarios[escolha.slot] + " reservado na agenda", "Confirmação enviada para você"];
+    etapas = PASSOS_SITE;
+    passos = ["Pagamento aprovado via " + via,
+              "Horário " + horarios[escolha.slot] + " reservado na agenda",
+              "Sua ficha entregue no painel da Mãe Karina",
+              "Pedido na fila dos trabalhos a fazer"];
   } else if(canal === "hot"){
     etapas = ["Checkout Hotmart","Confirmação"];
     passos = ["Hotmart aprovou a compra", "Acesso ao curso liberado por e-mail", "Aluno registrado"];
