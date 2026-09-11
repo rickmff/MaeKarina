@@ -215,20 +215,6 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .aviso{border:1px solid var(--gold3);background:rgba(201,165,82,.06);padding:22px 24px;margin-top:26px;font-size:17px;color:var(--ink2);line-height:1.65;max-width:62ch}
 .aviso b{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:14px;color:var(--gold2);display:block;margin-bottom:6px}
 
-.fim{border-top:1px solid var(--line);background:var(--bg2);padding:clamp(48px,7vh,92px) var(--pad);text-align:center;position:relative;overflow:hidden}
-.fim .aura{position:absolute;left:50%;top:50%;width:min(700px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(201,165,82,.1),transparent 62%)}
-.fim .in{position:relative;max-width:760px;margin:0 auto}
-.fim p{color:var(--ink2);margin:18px auto 28px;max-width:46ch;font-size:clamp(18px,1.9vw,21px);line-height:1.6}
-.btn{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:16.5px;letter-spacing:.15em;border:1px solid var(--gold);border-radius:999px;padding:14px 30px;position:relative;overflow:hidden;color:var(--gold2);display:inline-flex;align-items:center;gap:11px;transition:color .45s var(--ease)}
-.btn span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:11px}
-.btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .5s var(--ease)}
-.btn:hover{color:#080808}
-.btn:hover::before{transform:translateY(0)}
-.btn svg{width:14px;height:14px}
-.btn.ghost{border-color:var(--line2);color:var(--ink2)}
-.btn.ghost::before{background:var(--ink)}
-.btn.ghost:hover{color:#080808;border-color:var(--ink)}
-.ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);background:var(--bg)}
 .f-in{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 32px;align-items:baseline;justify-content:space-between}
 .f-m{font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.16em;color:var(--ink2)}
@@ -236,7 +222,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 .f-v{color:var(--ink2);font-size:13.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em}
 
 @media print{
-  .nav,.prog,.grain,.ctas{display:none}
+  .nav,.prog,.grain{display:none}
   body{background:#fff;color:#111}
   .preco,.ca,.dfc,.cu,.aviso,.ef,.cp,.fo{border-color:#ccc;background:#fff;break-inside:avoid}
   .fo a,.fontes-t{color:#333}
@@ -397,11 +383,6 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
         <p><b>Sem mensalidade minha:</b> você paga às empresas, não a mim. As contas ficam no seu nome e você cancela quando quiser.</p>
       </div>
     </div>
-
-    <div class="aviso">
-      <b>Sobre as taxas de venda</b>
-      Mercado Pago, Hotmart e TikTok Shop retêm uma parte de cada venda, direto com você. Pix pelo Mercado Pago não tem taxa. Essa relação é entre você e eles: eu não recebo nada dessas taxas.
-    </div>
   </section>
 
   <section class="sec rv" id="valor">
@@ -456,19 +437,6 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 
 </main>
 
-<section class="fim rv">
-  <span class="aura" aria-hidden="true"></span>
-  <div class="in">
-    <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>10 — Para começar</div>
-    <h2 style="text-align:center"><span class="ln"><span>O primeiro passo</span></span></h2>
-    <p>Uma conversa de uma hora para levantar seus serviços, seus valores e as fotos que você já tem. Depois disso, o mês começa.</p>
-    <div class="ctas">
-      <!-- TROCAR: pôr o número no formato 5511999999999 -->
-      <a class="btn" href="https://wa.me/SEUNUMERO"><span>Falar comigo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
-      <a class="btn ghost" href="/" target="_blank" rel="noopener"><span>Ver o site</span></a>
-    </div>
-  </div>
-</section>
 
 <footer style="margin-top:auto">
   <div class="f-in">
@@ -538,8 +506,7 @@ var SIM = [
     "Diário do trabalho: a pessoa acompanha as etapas",
     "Pagamento por Pix e cartão, pelo Mercado Pago",
     "Confirmação de pagamento",
-    "Pedido entregue direto no seu painel",
-    "Retorno depois do atendimento, sem venda junto"
+    "Pedido entregue direto no seu painel"
   ]},
   {g:"Conta do cliente", itens:[
     "Criação de conta e entrada no site",

@@ -216,6 +216,49 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- tabelas / linhas ---------- */
 .rows{border-top:1px solid var(--line)}
+/* agenda dos trabalhos a fazer */
+.ag-d{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.2em;color:var(--gold);padding:20px 0 8px;border-bottom:1px solid var(--line)}
+.ag-d:first-child{padding-top:0}
+.ag{display:grid;grid-template-columns:82px 1fr 150px 130px auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:background .2s}
+.ag:hover{background:var(--surface2)}
+.ag .hr{font-family:var(--display);font-weight:700;font-size:17px;color:var(--ink);letter-spacing:.03em}
+.ag .hr small{display:block;color:var(--muted);font-size:11px;letter-spacing:.12em;margin-top:2px}
+.ag b{display:block;font-size:14.5px;font-weight:600}
+.ag .cli{color:var(--muted);font-size:12px;margin-top:3px}
+.ag .money{font-family:var(--display);font-size:16px;color:var(--gold2);font-variant-numeric:tabular-nums;text-align:right}
+.ag .ver{font-family:var(--display);text-transform:uppercase;font-size:11px;letter-spacing:.16em;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:6px 13px;white-space:nowrap}
+.ag:hover .ver{border-color:var(--gold);color:var(--gold2)}
+@media (max-width:860px){
+  .ag{grid-template-columns:66px 1fr auto;gap:10px}
+  .ag .money,.ag .ver{display:none}
+}
+.sit{font-family:var(--display);text-transform:uppercase;font-size:10.5px;letter-spacing:.14em;border:1px solid var(--line2);border-radius:999px;padding:3px 10px;color:var(--ink2);white-space:nowrap}
+.sit.faz{border-color:var(--gold3);color:var(--gold2)}
+.sit.ok{border-color:rgba(50,188,173,.5);color:var(--pix)}
+
+/* o que este serviço pede, no cadastro do item */
+.cmp{border:1px solid var(--line);background:var(--bg2);padding:14px;margin-top:2px}
+.cmp .it{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink2)}
+.cmp .it:last-of-type{border-bottom:0}
+.cmp .it u{width:7px;height:7px;border-radius:50%;background:var(--gold3);flex:none}
+.cmp .it .tp{margin-left:auto;font-family:var(--display);text-transform:uppercase;font-size:10px;letter-spacing:.14em;color:var(--muted);white-space:nowrap}
+.cmp .add{margin-top:11px;width:100%;border:1px dashed var(--line2);background:none;color:var(--ink2);font-family:var(--display);text-transform:uppercase;font-size:11.5px;letter-spacing:.16em;padding:10px;cursor:pointer;border-radius:2px}
+.cmp .add:hover{border-color:var(--gold);color:var(--gold2)}
+
+/* ficha do pedido, campo a campo */
+.fch{margin-top:4px}
+.fch .li{padding:12px 0;border-bottom:1px solid var(--line)}
+.fch .li:last-child{border-bottom:0}
+.fch small{display:block;font-family:var(--display);text-transform:uppercase;font-size:10.5px;letter-spacing:.16em;color:var(--muted);margin-bottom:4px}
+.fch b{font-weight:500;font-size:14.5px;color:var(--ink);line-height:1.5}
+.fch .foto{display:flex;align-items:center;gap:11px;margin-top:2px}
+.fch .foto u{width:42px;height:52px;flex:none;border:1px solid var(--line2);background:radial-gradient(80% 60% at 50% 30%,rgba(201,165,82,.18),transparent 65%),var(--surface2)}
+.fch .foto a{color:var(--gold2);font-size:13.5px;border-bottom:1px solid var(--gold3)}
+.fch-h{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:baseline;padding:14px 0 16px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.fch-h .money{font-family:var(--display);font-weight:800;font-size:22px;color:var(--gold2);font-variant-numeric:tabular-nums}
+.ped{cursor:pointer}
+.ped:hover .n b{color:var(--gold2)}
+
 .rw{
   display:grid;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);
   opacity:0;transform:translateY(12px);animation:up .55s var(--ease) forwards;
@@ -407,12 +450,15 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
   <!-- ---------- trilho ---------- -->
   <aside class="rail" id="rail">
     <div class="top">
-      <div class="brand"><i aria-hidden="true"></i><span>Mãe Karina<small>Painel da casa</small></span></div>
+      <div class="brand"><i aria-hidden="true"></i><span>Mãe Karina<small>Painel de gestão</small></span></div>
     </div>
 
     <nav id="tabs" aria-label="Seções do painel">
       <button class="tab" type="button" data-pane="metricas" aria-current="page">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 17V9M8 17V4M13 17v-5M18 17V7"/></svg>Métricas
+      </button>
+      <button class="tab" type="button" data-pane="agenda">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 5v5l3 2"/><circle cx="10" cy="10" r="7"/></svg>Agenda<span class="pill" id="na">0</span>
       </button>
       <button class="tab" type="button" data-pane="produtos">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6l7-3 7 3v8l-7 3-7-3z"/><path d="M3 6l7 3 7-3M10 9v8"/></svg>Produtos<span class="pill" id="np">0</span>
@@ -430,7 +476,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
         <div class="av" aria-hidden="true">K</div>
         <div>
           <b>Mãe Karina</b>
-          <small>Dona da casa</small>
+          <small>Mãe de santo</small>
         </div>
       </div>
       <button class="sair" type="button" id="sair">Sair do painel</button>
@@ -443,7 +489,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
       <button class="burger" id="burger" type="button" aria-label="Abrir o menu" aria-expanded="false"><u></u><u></u><u></u></button>
       <div>
         <h1 id="titulo">Métricas</h1>
-        <div class="sub" id="subtitulo">Como a casa está indo nos últimos 30 dias</div>
+        <div class="sub" id="subtitulo">Como o atendimento está indo nos últimos 30 dias</div>
       </div>
       <div class="rt">
         <span class="ver"><u aria-hidden="true"></u>Site no ar</span>
@@ -501,11 +547,27 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
       </section>
 
       <!-- ============ PRODUTOS ============ -->
+      <!-- ============ AGENDA DOS TRABALHOS ============ -->
+      <section class="pane" id="pane-agenda" aria-labelledby="titulo">
+        <div class="box">
+          <div class="bh">
+            Trabalhos a fazer
+            <span class="rt"><span class="chip on"><u aria-hidden="true"></u>Pagos</span></span>
+          </div>
+          <div class="bb" id="agenda"></div>
+        </div>
+
+        <div class="demo">
+          <u aria-hidden="true"></u>
+          <span>Cada linha é um serviço já pago no site. Toque para ver a ficha que a pessoa preencheu — é ali que estão o nome, a data de nascimento, a foto e o que ela pediu. Nesta demonstração os pedidos são de exemplo.</span>
+        </div>
+      </section>
+
       <section class="pane" id="pane-produtos">
         <div class="shead">
           <div>
             <div class="ix"><u aria-hidden="true"></u>Catálogo</div>
-            <h2>O que a casa oferece</h2>
+            <h2>O que Mãe Karina oferece</h2>
             <p>Consultas, trabalhos, produtos e cursos. O canal decide onde a venda acontece: produto que se envia pelo correio vai para o TikTok Shop, serviço fica no site, curso vai para a Hotmart.</p>
           </div>
           <button class="btn" type="button" id="novo-produto">
@@ -718,7 +780,7 @@ var produtos = [
   { id:"p3", t:"Abertura de caminhos", g:"Trabalho", p:350, canal:"site", ativo:true,  img:"abertura-de-caminhos" },
   { id:"p4", t:"Banho de descarrego", g:"Trabalho", p:220, canal:"site", ativo:true,  img:"banho-de-descarrego" },
   { id:"p5", t:"Firmeza de proteção", g:"Trabalho", p:280, canal:"site", ativo:false, img:"firmeza-de-protecao" },
-  { id:"p6", t:"Baralho da casa", g:"Produto", p:190, canal:"tk", ativo:true,  img:"baralho-da-casa" },
+  { id:"p6", t:"Baralho cigano", g:"Produto", p:190, canal:"tk", ativo:true,  img:"baralho-cigano" },
   { id:"p7", t:"Kit iniciante de tarot", g:"Produto", p:240, canal:"tk", ativo:true,  img:"kit-iniciante-de-tarot" },
   { id:"p8", t:"Vela de sete dias", g:"Produto", p:45,  canal:"tk", ativo:true,  img:"vela-de-sete-dias" },
   { id:"p9", t:"Toalha de leitura", g:"Produto", p:130, canal:"tk", ativo:false, img:"toalha-de-leitura" },
@@ -778,12 +840,55 @@ var TOPPROD = [
   { n:"Tarot do zero", v:13, cls:"h" }
 ];
 
+/* ---------- pedidos e a ficha de cada um ----------
+   MOCK: pedidos de exemplo, com a ficha que a pessoa preencheu no site. No
+   sistema de verdade isto vem do banco, gravado no momento do pedido, com os
+   campos que a Mãe Karina definiu para aquele serviço.                          */
 var PEDIDOS = [
-  { n:"Ana Paula S.", i:"Consulta espiritual", v:180, q:"há 12 min" },
-  { n:"Marcos R.", i:"Abertura de caminhos", v:350, q:"há 1 h" },
-  { n:"Juliana T.", i:"Vela de sete dias", v:45, q:"há 2 h" },
-  { n:"Beatriz L.", i:"Tarot do zero", v:397, q:"há 3 h" },
-  { n:"Renata M.", i:"Banho de descarrego", v:220, q:"há 5 h" }
+  { n:"Ana Paula Siqueira", i:"Abertura de caminhos", v:250, q:"há 12 min",
+    dia:"Hoje", hr:"14h00", sit:"A fazer", pago:"Pix",
+    ficha:[
+      ["Nome completo","Ana Paula Siqueira"],
+      ["Data de nascimento","14 de março de 1987"],
+      ["Nome de quem vai receber","Ana Paula Siqueira"],
+      ["Nascimento de quem recebe","14 de março de 1987"],
+      ["Foto de corpo inteiro","foto-ana-paula.jpg"],
+      ["O que pede neste trabalho","Quero abrir meu caminho no trabalho e tirar o peso de casa. Estou há sete meses sem emprego."]
+    ]},
+  { n:"Marcos Rebelo", i:"Consulta com a Mãe Karina", v:150, q:"há 1 h",
+    dia:"Hoje", hr:"16h00", sit:"A fazer", pago:"Mercado Pago",
+    ficha:[
+      ["Nome completo","Marcos Rebelo"],
+      ["Data de nascimento","2 de novembro de 1979"],
+      ["O que está pesando agora","Briga com meu irmão que já dura dois anos. A família toda ficou dividida."],
+      ["Telefone para a chamada","(51) 98888-1212"]
+    ]},
+  { n:"Juliana Tavares", i:"Descarrego à distância", v:180, q:"há 2 h",
+    dia:"Amanhã", hr:"10h00", sit:"A fazer", pago:"Pix",
+    ficha:[
+      ["Nome completo","Juliana Tavares"],
+      ["Data de nascimento","30 de junho de 1994"],
+      ["Nome de quem vai receber","Juliana Tavares"],
+      ["Nascimento de quem recebe","30 de junho de 1994"],
+      ["Foto de corpo inteiro","foto-juliana.jpg"],
+      ["O que pede neste trabalho","Cansaço que não passa e tudo dando errado desde que mudei de casa."]
+    ]},
+  { n:"Beatriz Lemos", i:"Leitura de tarot", v:70, q:"há 3 h",
+    dia:"Amanhã", hr:"15h00", sit:"A fazer", pago:"Pix",
+    ficha:[
+      ["Nome completo","Beatriz Lemos"],
+      ["Data de nascimento","8 de janeiro de 2001"],
+      ["O que está pesando agora","Uma decisão de mudar de cidade. Não sei se vou ou se fico."],
+      ["Telefone para a chamada","(11) 97777-3030"]
+    ]},
+  { n:"Renata Munhoz", i:"Vela de sete dias", v:45, q:"há 5 h",
+    dia:"Sábado", hr:"09h00", sit:"Feito", pago:"Pix",
+    ficha:[
+      ["Nome completo","Renata Munhoz"],
+      ["Data de nascimento","19 de maio de 1968"],
+      ["Orixá de cabeça","Não sei"],
+      ["Endereço de entrega","Rua das Flores, 120 · Porto Alegre, RS"]
+    ]}
 ];
 
 /* ---------- utilidades ---------- */
@@ -823,8 +928,30 @@ function thumb(slug){
 }
 
 /* ---------- navegação entre abas ---------- */
+/* ---------- os campos que cada tipo de serviço pede ----------
+   MOCK: no sistema de verdade esta lista é editável item a item, e é ela que
+   monta a ficha que a pessoa preenche no site.                                  */
+var CAMPOS = {
+  Consulta: [["Nome completo","texto"],["Data de nascimento","data"],["O que está pesando agora","texto longo"],["Telefone para a chamada","texto"]],
+  Trabalho: [["Nome completo","texto"],["Data de nascimento","data"],["Nome de quem vai receber","texto"],["Nascimento de quem recebe","data"],["Foto de corpo inteiro","foto"],["O que pede neste trabalho","texto longo"]],
+  Produto:  [["Nome completo","texto"],["Orixá de cabeça","opcional"],["Endereço de entrega","texto"]],
+  Curso:    [["Nome completo","texto"],["E-mail para o acesso","texto"]]
+};
+function montarCampos(tipo){
+  var box = $("f-cmp");
+  if(!box) return;
+  var lista = CAMPOS[tipo] || CAMPOS.Consulta;
+  box.innerHTML = lista.map(function(c){
+    return '<div class="it"><u aria-hidden="true"></u>' + esc(c[0]) + '<span class="tp">' + esc(c[1]) + '</span></div>';
+  }).join("") + '<button class="add" type="button" id="f-add">+ Pedir mais uma coisa</button>';
+  $("f-add").addEventListener("click", function(){
+    aviso("Nesta demonstração os campos são fixos por tipo de serviço.");
+  });
+}
+
 var TITULOS = {
-  metricas:   ["Métricas", "Como a casa está indo nos últimos 30 dias"],
+  metricas:   ["Métricas", "Como o atendimento está indo nos últimos 30 dias"],
+  agenda:     ["Agenda", "Os trabalhos pagos, na ordem em que precisam ser feitos"],
   produtos:   ["Produtos", "O que está à venda e em qual canal"],
   eventos:    ["Eventos", "Lives, giras e encontros anunciados no site"],
   pagamentos: ["Pagamentos", "Chave Pix e conta do Mercado Pago"]
@@ -965,14 +1092,76 @@ function montarBarras(alvo, lista, sufixo){
 }
 
 function montarPedidos(){
-  $("pedidos").innerHTML = PEDIDOS.map(function(p){
-    return '<div class="ped">' +
+  $("pedidos").innerHTML = PEDIDOS.map(function(p,k){
+    return '<div class="ped" data-ficha="' + k + '" role="button" tabindex="0">' +
       '<div class="av2" aria-hidden="true">' + esc(iniciais(p.n)) + '</div>' +
       '<div class="n"><b>' + esc(p.n) + '</b><small>' + esc(p.i) + ' · ' + esc(p.q) + '</small></div>' +
       '<div class="vl">' + brl(p.v) + '</div>' +
     '</div>';
   }).join("");
 }
+
+/* ---------- agenda dos trabalhos a fazer ----------
+   MOCK: agrupa os pedidos pagos por dia, na ordem de execução. É a tela onde a
+   Mãe Karina toca o dia dela: vê o que tem para fazer e abre a ficha de cada um. */
+function montarAgenda(){
+  var falta = PEDIDOS.filter(function(p){ return p.sit !== "Feito"; }).length;
+  $("na").textContent = falta;
+
+  var dias = [], porDia = {};
+  PEDIDOS.forEach(function(p,k){
+    if(!porDia[p.dia]){ porDia[p.dia] = []; dias.push(p.dia); }
+    porDia[p.dia].push({ p:p, k:k });
+  });
+
+  var h = "";
+  dias.forEach(function(d){
+    h += '<div class="ag-d">' + esc(d) + '</div>';
+    porDia[d].forEach(function(o){
+      var p = o.p, feito = p.sit === "Feito";
+      h += '<div class="ag" data-ficha="' + o.k + '" role="button" tabindex="0">' +
+        '<div class="hr">' + esc(p.hr) + '<small>' + esc(p.pago) + '</small></div>' +
+        '<div><b>' + esc(p.i) + '</b><div class="cli">' + esc(p.n) + '</div></div>' +
+        '<div><span class="sit ' + (feito ? "ok" : "faz") + '">' + esc(p.sit) + '</span></div>' +
+        '<div class="money">' + brl(p.v) + '</div>' +
+        '<div><span class="ver">Ver a ficha</span></div>' +
+      '</div>';
+    });
+  });
+  $("agenda").innerHTML = h;
+}
+
+/* ---------- a ficha que a pessoa preencheu ---------- */
+function abrirFicha(k){
+  var p = PEDIDOS[k];
+  if(!p) return;
+  var corpo =
+    '<div class="fch-h"><span class="sit ' + (p.sit === "Feito" ? "ok" : "faz") + '">' + esc(p.sit) + '</span>' +
+      '<span class="money">' + brl(p.v) + '</span>' +
+      '<span style="color:var(--muted);font-size:12.5px">' + esc(p.dia) + ' às ' + esc(p.hr) + ' · pago por ' + esc(p.pago) + '</span>' +
+    '</div><div class="fch">';
+  p.ficha.forEach(function(c){
+    var foto = /\.jpg$|\.png$/i.test(c[1]);
+    corpo += '<div class="li"><small>' + esc(c[0]) + '</small>' +
+      (foto
+        ? '<div class="foto"><u aria-hidden="true"></u><a href="#" onclick="return false">' + esc(c[1]) + '</a></div>'
+        : '<b>' + esc(c[1]) + '</b>') +
+    '</div>';
+  });
+  corpo += '</div><div class="demo" style="margin-top:18px"><u aria-hidden="true"></u>' +
+    '<span>Estes são os campos que você pediu para este serviço, no cadastro do item. Outro serviço mostra outros campos.</span></div>';
+  abrirModal(p.i, p.n + " · pedido " + p.q, corpo);
+}
+
+document.addEventListener("click", function(e){
+  var el = e.target.closest ? e.target.closest("[data-ficha]") : null;
+  if(el) abrirFicha(+el.dataset.ficha);
+});
+document.addEventListener("keydown", function(e){
+  if(e.key !== "Enter" && e.key !== " ") return;
+  var el = e.target.closest ? e.target.closest("[data-ficha]") : null;
+  if(el){ e.preventDefault(); abrirFicha(+el.dataset.ficha); }
+});
 
 /* ---------- produtos ---------- */
 function montarProdutos(){
@@ -1028,6 +1217,9 @@ function formProduto(p){
         '<textarea class="inp" id="f-d" placeholder="Explique em poucas linhas o que a pessoa recebe.">' + esc(p.d) + '</textarea></div>' +
       '<div class="fg"><label>Foto</label>' +
         '<div class="drop" id="f-img" role="button" tabindex="0"><b>Escolher uma foto</b>Arraste aqui ou clique para procurar no computador</div></div>' +
+      '<div class="fg"><label>O que este serviço pede ao cliente</label>' +
+        '<div class="cmp" id="f-cmp"></div>' +
+        '<span class="hint">Estes campos aparecem para a pessoa no momento do pedido. Sem eles preenchidos, o pedido não fecha.</span></div>' +
       '<div class="frow">' +
         '<button class="btn ghost" type="button" id="f-x"><span>Cancelar</span></button>' +
         '<button class="btn" type="submit"><span>' + (novo ? "Adicionar" : "Salvar") + '</span></button>' +
@@ -1056,8 +1248,9 @@ function formProduto(p){
         }
       }
       sel.addEventListener("change", avisoCanal);
-      $("f-g").addEventListener("change", avisoCanal);
+      $("f-g").addEventListener("change", function(){ avisoCanal(); montarCampos($("f-g").value); });
       avisoCanal();
+      montarCampos($("f-g").value);
 
       $("f-img").addEventListener("click", function(){
         aviso("Nesta demonstração a foto não é enviada.");
@@ -1317,6 +1510,7 @@ montarChart();
 montarBarras("orig", ORIGENS, "%");
 montarBarras("topprod", TOPPROD, "%");
 montarPedidos();
+montarAgenda();
 montarProdutos();
 montarEventos();
 
