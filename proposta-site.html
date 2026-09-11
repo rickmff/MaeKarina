@@ -155,6 +155,7 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .dfc.sim li::before{background:var(--gold)}
 @media (max-width:860px){.df{grid-template-columns:1fr}}
 
+.grupos{display:grid;gap:14px;margin-top:clamp(26px,4vw,42px)}
 .crono{margin-top:clamp(26px,4vw,42px);position:relative;padding-left:26px}
 .crono::before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:1px;background:var(--line2)}
 .sem{position:relative;padding:15px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateX(-10px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:calc(var(--i) * 90ms)}
@@ -224,6 +225,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
     <a href="#marca">A identidade</a>
     <a href="#site">O que tem</a>
     <a href="#combinado">O combinado</a>
+    <a href="#presente">O presente</a>
     <a href="#custo">Custo mensal</a>
   </nav>
 </header>
@@ -332,21 +334,29 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
   <section class="sec rv" id="combinado">
     <div class="ix"><u aria-hidden="true"></u>05 — O combinado</div>
     <h2><span class="ln"><span>Tudo isto</span></span><span class="ln"><span>está incluído</span></span></h2>
+    <p class="lede">Cada linha aqui embaixo é um compromisso desta entrega. O que não estiver escrito, não está incluído.</p>
+    <div class="grupos" id="g-sim"></div>
+  </section>
+
+  <section class="sec rv" id="presente">
+    <div class="ix"><u aria-hidden="true"></u>06 — Um presente</div>
+    <h2><span class="ln"><span>O site da ação</span></span><span class="ln"><span>social, de graça</span></span></h2>
+    <p class="lede">A senhora mantém uma frente de ação social, e isso merece um lugar próprio na internet. Esse segundo site eu faço como presente: não entra no valor da proposta e não atrasa o prazo do site da casa.</p>
     <div class="dfc sim" style="margin-top:clamp(26px,4vw,42px)">
-      <h3><u aria-hidden="true"></u>Está tudo incluído</h3>
-      <ul id="g-sim"></ul>
+      <h3><u aria-hidden="true"></u>Presente · R$ 0</h3>
+      <ul id="g-presente"></ul>
     </div>
   </section>
 
   <section class="sec rv" id="quando">
-    <div class="ix"><u aria-hidden="true"></u>06 — Um mês</div>
+    <div class="ix"><u aria-hidden="true"></u>07 — Um mês</div>
     <h2><span class="ln"><span>Quatro semanas</span></span></h2>
     <p class="lede">O mês começa a contar quando você me enviar a lista de serviços com os valores e as fotos que tiver.</p>
     <div class="crono" id="g-crono"></div>
   </section>
 
   <section class="sec rv" id="custo">
-    <div class="ix"><u aria-hidden="true"></u>07 — Custo para manter</div>
+    <div class="ix"><u aria-hidden="true"></u>08 — Custo para manter</div>
     <h2><span class="ln"><span>Sessenta reais</span></span><span class="ln"><span>por mês</span></span></h2>
     <p class="lede">Este valor não é meu: é o que você paga direto para as empresas, e fica tudo em seu nome. Dá menos que uma consulta por mês.</p>
     <div class="custos" id="g-custos"></div>
@@ -375,7 +385,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 <section class="fim rv">
   <span class="aura" aria-hidden="true"></span>
   <div class="in">
-    <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>08 — Para começar</div>
+    <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>09 — Para começar</div>
     <h2 style="text-align:center"><span class="ln"><span>O primeiro passo</span></span></h2>
     <p>Uma conversa de uma hora para levantar seus serviços, seus valores e as fotos que você já tem. Depois disso, o mês começa.</p>
     <div class="ctas">
@@ -427,33 +437,80 @@ var TEM = [
 ];
 
 var SIM = [
-  "Guia da marca: logo, cores e letras",
-  "Modelos prontos para post e story",
-  "O site inteiro, com todas as páginas",
-  "Seus serviços, valores e fotos",
-  "Guia por dificuldade",
-  "Agenda para a pessoa escolher o horário",
-  "Ficha de pedido customizável por tipo de serviço: você define o que cada um pede",
-  "Campos de documentação do cliente (nome, data de nascimento, foto e o que mais o serviço exigir)",
-  "Pedido só fecha com a ficha preenchida",
-  "Pedidos do site entregues direto no painel",
-  "Criação de conta e login do cliente no site",
-  "Histórico dos pedidos guardado na conta de cada cliente",
-  "Métricas por cliente no painel (quanto comprou, o que comprou, quando)",
-  "Base de clientes pronta para alimentar o CRM depois",
-  "Pagamento por Pix e cartão pelo Mercado Pago",
-  "Confirmação de pagamento",
-  "Atendimento automático pelo chat do site (não inclui automação do WhatsApp)",
-  "Painel com a ficha de cada pedido discriminada, campo por campo",
-  "Agenda e lista dos serviços comprados, para acompanhar a execução de cada um",
-  "Ligações com TikTok, TikTok Shop e Hotmart",
-  "Estante do TikTok Shop puxada para o site sozinha",
-  "Cursos da Hotmart puxados para o site sozinhos",
-  "Sua loja no TikTok Shop e seu produto na Hotmart configurados",
-  "Tratamento das fotos que você enviar",
-  "Configuração dos anúncios",
-  "Publicado no seu domínio, em seu nome",
-  "Treino em vídeo e 90 dias de garantia"
+  {g:"Marca e identidade", itens:[
+    "Guia da marca: logo, cores e letras",
+    "Modelos prontos para post e story",
+    "Tratamento das fotos que você enviar"
+  ]},
+  {g:"O site, página por página", itens:[
+    "O site inteiro, com todas as páginas",
+    "Seus serviços, valores e fotos: consultas, trabalhos, produtos e cursos",
+    "A história da casa, com foto e texto de quem você é",
+    "Guia por dificuldade: a pessoa escolhe o que está sentindo e o site indica",
+    "Depoimentos em áudio, com a voz de quem já foi atendido",
+    "Vitrine dos produtos em carrossel, para passar com o dedo",
+    "Aviso de live: mostra quando você está ao vivo e quando é a próxima",
+    "Botão para a pessoa pedir aviso da próxima live",
+    "Link de bio que abre direto no serviço que você citou no vídeo",
+    "Chat de acolhimento no site, que escuta antes de oferecer e não responde tema delicado com venda (não inclui automação do WhatsApp)",
+    "Feito para o celular, abrindo rápido mesmo com internet fraca"
+  ]},
+  {g:"Pedido, ficha e pagamento", itens:[
+    "Agenda para a pessoa escolher o horário",
+    "Ficha de pedido customizável por tipo de serviço: você define o que cada um pede",
+    "Campos de documentação do cliente (nome, data de nascimento, foto e o que mais o serviço exigir)",
+    "Pedido só fecha com a ficha preenchida",
+    "Fila da semana: a pessoa vê em que lugar entra, em vez de ficar no silêncio",
+    "Diário do trabalho: a pessoa acompanha as etapas do que contratou",
+    "Pagamento por Pix e cartão pelo Mercado Pago",
+    "Confirmação de pagamento",
+    "Pedidos do site entregues direto no painel",
+    "Retorno depois do atendimento, sem venda junto"
+  ]},
+  {g:"Conta do cliente", itens:[
+    "Criação de conta e login do cliente no site",
+    "Histórico dos pedidos guardado na conta de cada cliente",
+    "Métricas por cliente no painel (quanto comprou, o que comprou, quando)",
+    "Base de clientes pronta para alimentar o CRM depois"
+  ]},
+  {g:"Painel da casa", itens:[
+    "Entrada reservada ao painel, por endereço próprio, só sua",
+    "Painel com a ficha de cada pedido discriminada, campo por campo",
+    "Agenda e lista dos serviços comprados, para acompanhar a execução de cada um",
+    "Métricas do mês: faturamento, pedidos pagos, ticket médio e quanto o chat atendeu sozinho",
+    "Gráfico de evolução semana a semana",
+    "De onde chega quem compra: TikTok, busca, indicação",
+    "O que mais sai: seus serviços e produtos em ordem de procura",
+    "Catálogo: incluir, editar, apagar e tirar do ar qualquer item, com foto e canal de venda",
+    "Agenda de lives, giras e encontros, que aparece sozinha no site",
+    "Pagamentos: sua chave Pix e sua conta do Mercado Pago, com a situação de cada meio",
+    "Conta do que entra: quanto cai por Pix e quanto cai por cartão, já com a taxa"
+  ]},
+  {g:"Ligações com as plataformas", itens:[
+    "Ligações com TikTok, TikTok Shop e Hotmart",
+    "Estante do TikTok Shop puxada para o site sozinha",
+    "Cursos da Hotmart puxados para o site sozinhos",
+    "Sua loja no TikTok Shop e seu produto na Hotmart configurados"
+  ]},
+  {g:"Entrega e garantia", itens:[
+    "Configuração dos anúncios",
+    "Publicado no seu domínio, em seu nome",
+    "Treino em vídeo e 90 dias de garantia",
+    "De presente, sem cobrar: o site institucional da sua ação social"
+  ]}
+];
+
+/* TROCAR: conferir com a Mãe Karina o que entra no site da ação social */
+var PRESENTE = [
+  "Site institucional próprio da ação social, em endereço separado",
+  "Quem é a casa, o que a ação faz e quem ela atende",
+  "Espaço para as fotos e as histórias do trabalho já feito",
+  "Página de como ajudar, com Pix para doação",
+  "Formulário de contato para quem quiser apoiar ou ser atendido",
+  "Feito para o celular, como o site principal",
+  "Hospedado no mesmo servidor, sem custo a mais por mês",
+  "Feito depois do site da casa entrar no ar, sem atrasar o prazo de um mês",
+  "Sem cobrança: é presente"
 ];
 
 var CRONO = [
@@ -496,7 +553,11 @@ var CUSTOS = [
 })();
 
 (function(){
-  $("g-sim").innerHTML = SIM.map(function(x){ return "<li>" + x + "</li>"; }).join("");
+  $("g-sim").innerHTML = SIM.map(function(g){
+    return '<div class="dfc sim"><h3><u aria-hidden="true"></u>' + g.g + '</h3><ul>' +
+      g.itens.map(function(x){ return "<li>" + x + "</li>"; }).join("") + '</ul></div>';
+  }).join("");
+  $("g-presente").innerHTML = PRESENTE.map(function(x){ return "<li>" + x + "</li>"; }).join("");
   })();
 
 (function(){
