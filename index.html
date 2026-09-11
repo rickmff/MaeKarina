@@ -489,14 +489,12 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
 .ped-c:last-of-type{border-bottom:0}
 .ped-c .l1{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .ped-c b{font-size:14.5px;color:var(--ink)}
-.ped-c .vl{font-family:var(--display);font-weight:800;font-size:15px;color:var(--gold2);font-variant-numeric:tabular-nums;flex:none}
 .ped-c .l2{display:flex;align-items:center;gap:8px;margin-top:5px;color:var(--muted);font-size:12px}
 .ped-c .tag{border:1px solid var(--line2);border-radius:999px;padding:2px 9px;font-size:10.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.12em}
 .ped-c .tag.ok{border-color:var(--gold3);color:var(--gold2)}
-.conta-r{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:16px 0 4px}
-.conta-r div{border:1px solid var(--line);background:var(--bg);padding:12px;text-align:center}
-.conta-r b{display:block;font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink);font-variant-numeric:tabular-nums}
-.conta-r span{display:block;color:var(--muted);font-size:10.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;margin-top:4px}
+.conta-ag{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--gold3);background:rgba(201,165,82,.06);padding:14px;margin:16px 0 4px;font-size:13.5px;color:var(--ink2);line-height:1.55}
+.conta-ag u{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none;margin-top:6px}
+.conta-ag b{display:block;color:var(--ink);font-weight:600;font-size:14.5px}
 
 .field{padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
 .field small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-family:var(--display);margin-bottom:2px}
@@ -1154,10 +1152,10 @@ function fichaDe(i){ return CAMPOS_BASE.concat(FICHAS[i.g] || []); }
 var CLIENTE = {
   nome:"Ana Paula Siqueira", email:"ana.siqueira@email.com", desde:"março de 2026",
   pedidos:[
-    {t:"Abertura de caminhos", p:250, q:"12 de setembro", st:"Em andamento", ok:false},
-    {t:"Consulta com a Mãe Karina", p:150, q:"28 de agosto", st:"Concluído", ok:true},
-    {t:"Banho de ervas", p:75, q:"14 de agosto", st:"Entregue", ok:true},
-    {t:"Leitura de tarot", p:70, q:"2 de julho", st:"Concluído", ok:true}
+    {t:"Abertura de caminhos", q:"12 de setembro", st:"Em andamento", ok:false},
+    {t:"Consulta com a Mãe Karina", q:"28 de agosto", st:"Concluído", ok:true},
+    {t:"Banho de ervas", q:"14 de agosto", st:"Entregue", ok:true},
+    {t:"Leitura de tarot", q:"2 de julho", st:"Concluído", ok:true}
   ]
 };
 
@@ -1549,22 +1547,24 @@ function contaEntrar(origem, novo){
   });
 }
 
+/* A conta do cliente nunca mostra valor: nem por serviço, nem somado. Quem
+   procura ajuda espiritual não precisa de um extrato na cara ao entrar. Preço
+   aparece só na hora de contratar, e o histórico de gastos fica no painel da
+   Mãe Karina, que é quem precisa dele.                                          */
 function contaPainel(){
-  var gasto = CLIENTE.pedidos.reduce(function(a,p){ return a + p.p; }, 0);
+  var andando = CLIENTE.pedidos.filter(function(p){ return !p.ok; });
   var html =
     '<div class="conta-h">' +
       '<span class="conta-av" aria-hidden="true">AS</span>' +
       '<span><b>' + CLIENTE.nome + '</b><small>' + CLIENTE.email + ' · desde ' + CLIENTE.desde + '</small></span>' +
     '</div>' +
-    '<div class="conta-r">' +
-      '<div><b>' + CLIENTE.pedidos.length + '</b><span>pedidos</span></div>' +
-      '<div><b>' + brl(gasto) + '</b><span>no total</span></div>' +
-      '<div><b>1</b><span>em andamento</span></div>' +
-    '</div>' +
+    (andando.length
+      ? '<div class="conta-ag"><u aria-hidden="true"></u><span><b>' + andando[0].t + '</b>está em andamento agora. Você recebe notícia assim que tiver.</span></div>'
+      : '') +
     '<div class="lbl">Os seus pedidos</div>';
   CLIENTE.pedidos.forEach(function(p){
     html += '<div class="ped-c">' +
-      '<div class="l1"><b>' + p.t + '</b><span class="vl">' + brl(p.p) + '</span></div>' +
+      '<div class="l1"><b>' + p.t + '</b></div>' +
       '<div class="l2"><span class="tag' + (p.ok ? " ok" : "") + '">' + p.st + '</span>' + p.q + '</div>' +
     '</div>';
   });
