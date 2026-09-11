@@ -407,7 +407,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
   <!-- ---------- trilho ---------- -->
   <aside class="rail" id="rail">
     <div class="top">
-      <div class="brand"><i aria-hidden="true"></i><span>Mãe Karina<small>Painel da casa</small></span></div>
+      <div class="brand"><i aria-hidden="true"></i><span>Mãe Karina<small>Painel de gestão</small></span></div>
     </div>
 
     <nav id="tabs" aria-label="Seções do painel">
@@ -430,7 +430,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
         <div class="av" aria-hidden="true">K</div>
         <div>
           <b>Mãe Karina</b>
-          <small>Dona da casa</small>
+          <small>Mãe de santo</small>
         </div>
       </div>
       <button class="sair" type="button" id="sair">Sair do painel</button>
@@ -443,7 +443,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
       <button class="burger" id="burger" type="button" aria-label="Abrir o menu" aria-expanded="false"><u></u><u></u><u></u></button>
       <div>
         <h1 id="titulo">Métricas</h1>
-        <div class="sub" id="subtitulo">Como a casa está indo nos últimos 30 dias</div>
+        <div class="sub" id="subtitulo">Como o atendimento está indo nos últimos 30 dias</div>
       </div>
       <div class="rt">
         <span class="ver"><u aria-hidden="true"></u>Site no ar</span>
@@ -505,7 +505,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
         <div class="shead">
           <div>
             <div class="ix"><u aria-hidden="true"></u>Catálogo</div>
-            <h2>O que a casa oferece</h2>
+            <h2>O que Mãe Karina oferece</h2>
             <p>Consultas, trabalhos, produtos e cursos. O canal decide onde a venda acontece: produto que se envia pelo correio vai para o TikTok Shop, serviço fica no site, curso vai para a Hotmart.</p>
           </div>
           <button class="btn" type="button" id="novo-produto">
@@ -718,7 +718,7 @@ var produtos = [
   { id:"p3", t:"Abertura de caminhos", g:"Trabalho", p:350, canal:"site", ativo:true,  img:"abertura-de-caminhos" },
   { id:"p4", t:"Banho de descarrego", g:"Trabalho", p:220, canal:"site", ativo:true,  img:"banho-de-descarrego" },
   { id:"p5", t:"Firmeza de proteção", g:"Trabalho", p:280, canal:"site", ativo:false, img:"firmeza-de-protecao" },
-  { id:"p6", t:"Baralho da casa", g:"Produto", p:190, canal:"tk", ativo:true,  img:"baralho-da-casa" },
+  { id:"p6", t:"Baralho cigano", g:"Produto", p:190, canal:"tk", ativo:true,  img:"baralho-cigano" },
   { id:"p7", t:"Kit iniciante de tarot", g:"Produto", p:240, canal:"tk", ativo:true,  img:"kit-iniciante-de-tarot" },
   { id:"p8", t:"Vela de sete dias", g:"Produto", p:45,  canal:"tk", ativo:true,  img:"vela-de-sete-dias" },
   { id:"p9", t:"Toalha de leitura", g:"Produto", p:130, canal:"tk", ativo:false, img:"toalha-de-leitura" },
@@ -824,7 +824,7 @@ function thumb(slug){
 
 /* ---------- navegação entre abas ---------- */
 var TITULOS = {
-  metricas:   ["Métricas", "Como a casa está indo nos últimos 30 dias"],
+  metricas:   ["Métricas", "Como o atendimento está indo nos últimos 30 dias"],
   produtos:   ["Produtos", "O que está à venda e em qual canal"],
   eventos:    ["Eventos", "Lives, giras e encontros anunciados no site"],
   pagamentos: ["Pagamentos", "Chave Pix e conta do Mercado Pago"]
