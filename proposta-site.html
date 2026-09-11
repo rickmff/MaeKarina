@@ -425,12 +425,13 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
     <div class="esf" id="g-esforco"></div>
 
     <h2 style="margin-top:clamp(46px,7vw,80px)"><span class="ln"><span>O mesmo trabalho,</span></span><span class="ln"><span>numa agência</span></span></h2>
+    <p class="lede">A comparação é com trabalho do mesmo porte: conta de cliente, painel de gestão, agenda, pagamento e ligação com outras plataformas. Não com site de apresentação, que é bem mais simples e bem mais barato.</p>
     <div class="comp">
       <div class="cp">
-        <div class="num">R$ 15.000 a R$ 45.000</div>
+        <div class="num">R$ 30.000 a R$ 100.000</div>
         <ul>
-          <li>6 a 12 semanas de prazo</li>
-          <li>Manutenção cobrada por fora, todo mês</li>
+          <li>2 a 6 meses de prazo</li>
+          <li>Manutenção de R$ 1.500 a R$ 8.000 por mês</li>
           <li>Identidade, site, painel e ligações orçados à parte</li>
           <li>Você fala com um atendente, não com quem faz</li>
         </ul>
@@ -619,17 +620,22 @@ var DEPOIS = [
   {t:"Se quiser algo novo", d:"Uma função nova ou uma mudança fora do que está combinado aqui: R$ 200 por hora, sempre orçado e aprovado por você antes de eu começar."}
 ];
 
-/* Pesquisa de preços consultada em setembro de 2026. Links conferidos um a um. */
+/* Pesquisa de preços consultada em setembro de 2026. Links conferidos um a um.
+   Só entram fontes de escopo comparável: conta de usuário, painel, agenda,
+   pagamento e integrações. Site institucional ficou de fora de propósito. */
 var FONTES = [
-  {t:"Sistema sob medida com agenda, pagamento e integrações: R$ 15.000 a R$ 45.000",
-   d:"É o trabalho mais parecido com este. A faixa do meio, com vários profissionais, pagamento e integrações, leva de 6 a 9 semanas. Forja de Sistemas, 2026.",
+  {t:"Plataforma com conta de usuário, painel e integrações: R$ 80.000 a R$ 200.000",
+   d:"É a faixa do meio do mercado, com prazo de 8 a 16 semanas. É o escopo mais parecido com o desta proposta. KXP Tech, 2026.",
+   u:"https://kxptech.com/quanto-custa-mvp-startup"},
+  {t:"Sistema de porte médio, com vários perfis de acesso e integrações: R$ 100.000 a R$ 300.000",
+   d:"De 15 a 40 telas, 2 a 4 perfis de usuário, painel de gestão e integrações externas, em 4 a 6 meses. Huios Web, 2026.",
+   u:"https://huiosweb.com.br/blog/quanto-custa-desenvolver-um-software-sob-medida"},
+  {t:"Loja virtual sob medida: R$ 25.000 a R$ 80.000, mais R$ 1.500 a R$ 8.000 por mês",
+   d:"Desenvolvimento próprio, com integrações personalizadas. A mensalidade é cobrada para sempre, à parte. Drive Digital, 2026.",
+   u:"https://www.drivedigital.com.br/quanto-custa-um-ecommerce/"},
+  {t:"Sistema de agenda sob medida, com pagamento e integrações: R$ 15.000 a R$ 45.000",
+   d:"É a parte de agenda e pagamento desta proposta, sozinha, sem o resto. Leva de 6 a 12 semanas. Forja de Sistemas, 2026.",
    u:"https://forjadesistemas.com.br/blog/sistema-agendamento-personalizado-quanto-custa-2026/"},
-  {t:"Site institucional em Blumenau, com painel: a partir de R$ 4.300",
-   d:"Entrega em até 30 dias úteis. É um site de apresentação: não tem agenda, pagamento nem ligação com TikTok Shop e Hotmart. GSouza Web.",
-   u:"https://gsouzaweb.com.br/criacao-de-sites-profissionais-em-blumenau"},
-  {t:"Site institucional em Curitiba: R$ 2.000",
-   d:"Páginas, formulário de contato e botão de WhatsApp, em 7 dias úteis. Também sem agenda e sem pagamento. Criação de Sites Curitiba, 2026.",
-   u:"https://criacaositescuritibapr.com.br/blog/quanto-custa-criar-um-site-em-curitiba"},
   {t:"Hora de desenvolvedor sênior no Brasil: R$ 90 a R$ 220",
    d:"É a referência para os R$ 200 por hora de qualquer trabalho novo depois da entrega. Bradata Software House, 2026.",
    u:"https://www.bradata.com.br/blog/fabrica-de-software-vs-freelancer-vs-agencia"}
