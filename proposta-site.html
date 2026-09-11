@@ -23,7 +23,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{min-height:100svh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{min-height:100svh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--gold);color:#080808}
 :focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
@@ -36,14 +36,14 @@ a{color:inherit;text-decoration:none}
 .brand{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:17px;letter-spacing:.15em;display:flex;align-items:center;gap:10px}
 .brand i{width:7px;height:7px;background:var(--gold);border-radius:50%;flex:none}
 .nav .links{display:flex;gap:24px}
-.nav .links a{font-family:var(--display);text-transform:uppercase;font-size:14px;letter-spacing:.15em;font-weight:600;color:var(--ink2);transition:color .3s}
+.nav .links a{font-family:var(--display);text-transform:uppercase;font-size:15px;letter-spacing:.15em;font-weight:600;color:var(--ink2);transition:color .3s}
 .nav .links a:hover{color:var(--gold2)}
 @media (max-width:940px){.nav .links{display:none}}
 
 .hero{min-height:70svh;display:flex;align-items:flex-end;padding:clamp(100px,15vh,140px) var(--pad) clamp(40px,7vh,70px);position:relative;overflow:hidden}
 .hero .aura{position:absolute;right:-10%;top:-15%;width:min(720px,90vw);aspect-ratio:1;background:radial-gradient(circle,rgba(201,165,82,.12),transparent 62%)}
 .hero .in{position:relative;width:100%;max-width:1400px;margin:0 auto}
-.eyebrow{font-family:var(--display);text-transform:uppercase;font-size:12.5px;letter-spacing:.28em;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.eyebrow{font-family:var(--display);text-transform:uppercase;font-size:14px;letter-spacing:.28em;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .eyebrow u{width:30px;height:1px;background:var(--gold);display:block}
 h1{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(40px,9.5vw,124px);line-height:.92}
 h1 .ln{display:block;overflow:hidden;padding:.1em 0 .18em;margin-bottom:-.22em}
@@ -51,34 +51,34 @@ h1 .ln span{display:block;transform:translateY(106%);transition:transform 1s var
 .hero.in h1 .ln span{transform:none}
 .hero.in h1 .ln:nth-child(2) span{transition-delay:.1s}
 h1 em{font-family:var(--accent);font-style:italic;font-weight:600;text-transform:none;color:var(--gold2);font-size:.92em}
-.hero .sub{font-family:var(--accent);font-style:italic;font-size:clamp(19px,2.4vw,28px);color:var(--ink);max-width:42ch;margin-top:20px;line-height:1.45;opacity:0;transition:opacity .8s var(--ease) .5s}
+.hero .sub{font-family:var(--accent);font-style:italic;font-size:clamp(21px,2.6vw,31px);color:var(--ink);max-width:42ch;margin-top:20px;line-height:1.45;opacity:0;transition:opacity .8s var(--ease) .5s}
 .hero.in .sub{opacity:1}
 .hero .rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:26px 0;transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease) .65s}
 .hero.in .rule{transform:scaleX(1)}
-.hero .meta{display:flex;flex-wrap:wrap;gap:10px 28px;color:var(--muted);font-size:13.5px;opacity:0;transition:opacity .7s .85s}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px 28px;color:var(--muted);font-size:16px;opacity:0;transition:opacity .7s .85s}
 .hero.in .meta{opacity:1}
 .hero .meta b{color:var(--ink2);font-weight:500}
 
 .sec{padding:clamp(52px,8vh,96px) var(--pad);max-width:1400px;margin:0 auto}
-.ix{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.3em;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.ix{font-family:var(--display);text-transform:uppercase;font-size:13.5px;letter-spacing:.3em;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .ix u{width:26px;height:1px;background:var(--gold3);display:block}
 h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(28px,5.2vw,60px);line-height:.97}
 h2 .ln{display:block;overflow:hidden;padding:.1em 0 .18em;margin-bottom:-.22em}
 h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s var(--ease)}
 .rv.in h2 .ln span{transform:none}
 .rv.in h2 .ln:nth-child(2) span{transition-delay:.09s}
-.lede{color:var(--ink2);max-width:64ch;margin-top:16px;font-size:clamp(15px,1.6vw,17.5px)}
+.lede{color:var(--ink2);max-width:60ch;margin-top:18px;font-size:clamp(18px,1.9vw,21px);line-height:1.6}
 .rv .lede,.rv .ix{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .rv.in .lede,.rv.in .ix{opacity:1;transform:none}
 .rv.in .lede{transition-delay:.2s}
 
 .preco{border:1px solid var(--gold3);background:linear-gradient(160deg,rgba(201,165,82,.1),transparent 58%);padding:clamp(26px,4vw,44px);margin-top:clamp(28px,4vw,44px);display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,54px);align-items:center}
-.preco .v span{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.22em;color:var(--muted);display:block}
+.preco .v span{font-family:var(--display);text-transform:uppercase;font-size:14px;letter-spacing:.22em;color:var(--muted);display:block}
 .preco .v b{font-family:var(--display);font-weight:800;font-size:clamp(44px,8vw,84px);letter-spacing:.01em;font-variant-numeric:tabular-nums;color:var(--gold2);display:block;line-height:1;margin-top:8px}
 .preco .v b em{font-style:normal;font-size:.42em;font-weight:600;color:var(--gold3);letter-spacing:.04em;vertical-align:.38em;margin-right:.06em}
-.preco .v .tot{display:block;text-decoration:none;color:var(--ink2);font-size:15px;margin-top:12px;font-family:var(--sans)}
-.preco .v i{font-style:normal;color:var(--muted);font-size:13px;display:block;margin-top:8px;font-family:var(--display);letter-spacing:.14em;text-transform:uppercase}
-.preco .d p{color:var(--ink2);font-size:14.5px;line-height:1.7}
+.preco .v .tot{display:block;text-decoration:none;color:var(--ink2);font-size:18px;margin-top:12px;font-family:var(--sans)}
+.preco .v i{font-style:normal;color:var(--muted);font-size:14.5px;display:block;margin-top:8px;font-family:var(--display);letter-spacing:.14em;text-transform:uppercase}
+.preco .d p{color:var(--ink2);font-size:18px;line-height:1.7}
 .preco .d p+p{margin-top:12px}
 .preco .d b{color:var(--ink)}
 @media (max-width:860px){.preco{grid-template-columns:1fr}}
@@ -90,8 +90,8 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .rv.in .mc{opacity:1;transform:none}
 .rv.in .mc:nth-child(2){transition-delay:.1s}
 .rv.in .mc:nth-child(3){transition-delay:.2s}
-.mc-t{font-family:var(--display);text-transform:uppercase;font-size:11.5px;letter-spacing:.2em;color:var(--muted);display:block}
-.mc p{color:var(--muted);font-size:12.5px;line-height:1.6;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.mc-t{font-family:var(--display);text-transform:uppercase;font-size:13.5px;letter-spacing:.2em;color:var(--muted);display:block}
+.mc p{color:var(--ink2);font-size:16px;line-height:1.6;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
 .mc-logo{display:grid;place-items:center;min-height:104px;margin-top:16px;background:var(--bg);border:1px solid var(--line)}
 .lg{font-family:var(--display);text-transform:uppercase;font-weight:800;font-size:19px;letter-spacing:.1em;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:3px;line-height:1}
 .lg i{width:22px;height:22px;border:1px solid var(--gold);transform:rotate(45deg);margin-bottom:9px;position:relative}
@@ -102,7 +102,7 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .mc-letras{margin-top:16px;min-height:104px;display:flex;flex-direction:column;justify-content:center;gap:7px;background:var(--bg);border:1px solid var(--line);padding:16px}
 .mc-letras b{font-family:var(--display);text-transform:uppercase;font-weight:800;font-size:23px;letter-spacing:.05em;color:var(--ink);line-height:1}
 .mc-letras i{font-family:var(--accent);font-style:italic;font-size:18px;color:var(--gold2)}
-.mc-letras span{font-size:12.5px;color:var(--muted)}
+.mc-letras span{font-size:15px;color:var(--ink2)}
 @media (max-width:900px){.marca{grid-template-columns:1fr}}
 
 .posts{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:14px}
@@ -112,12 +112,12 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .rv.in .po:nth-child(3){transition-delay:.16s}
 .rv.in .po:nth-child(4){transition-delay:.24s}
 .po.alt{background:linear-gradient(160deg,rgba(201,165,82,.16),#0C0C0C 62%);border-color:var(--gold3)}
-.po-l{font-family:var(--display);text-transform:uppercase;font-size:10.5px;letter-spacing:.2em;color:var(--muted)}
+.po-l{font-family:var(--display);text-transform:uppercase;font-size:12.5px;letter-spacing:.2em;color:var(--muted)}
 .po b{font-family:var(--display);text-transform:uppercase;font-weight:800;font-size:clamp(17px,2vw,22px);letter-spacing:.03em;line-height:1.05;color:var(--ink)}
 .po u{position:absolute;right:16px;top:16px;width:15px;height:15px;border:1px solid var(--gold);transform:rotate(45deg)}
 .po.alt u{background:var(--gold);border-color:var(--gold)}
 @media (max-width:820px){.posts{grid-template-columns:repeat(2,1fr)}}
-.mnota{color:var(--muted);font-size:13px;margin-top:18px;max-width:70ch;line-height:1.6}
+.mnota{color:var(--ink2);font-size:17px;margin-top:20px;max-width:62ch;line-height:1.65}
 
 /* três canais */
 .canais{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(28px,4vw,44px)}
@@ -125,10 +125,10 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .rv.in .ca{opacity:1;transform:none}
 .ca-t{display:flex;align-items:center;gap:10px}
 .ca-t u{width:9px;height:9px;border-radius:50%;flex:none}
-.ca-t b{font-family:var(--display);text-transform:uppercase;font-size:15px;letter-spacing:.14em}
+.ca-t b{font-family:var(--display);text-transform:uppercase;font-size:16.5px;letter-spacing:.14em}
 .ca h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(19px,2.4vw,25px);letter-spacing:.03em;line-height:1.1;margin-top:14px}
-.ca p{color:var(--ink2);font-size:13.5px;line-height:1.6;margin-top:10px}
-.ca .porq{color:var(--muted);font-size:12.5px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);line-height:1.55}
+.ca p{color:var(--ink2);font-size:17px;line-height:1.6;margin-top:12px}
+.ca .porq{color:var(--ink2);font-size:15.5px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);line-height:1.55}
 @media (max-width:900px){.canais{grid-template-columns:1fr}}
 
 /* lista simples */
@@ -136,52 +136,79 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 .li{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease);transition-delay:calc(var(--i) * 60ms)}
 .rv.in .li{opacity:1;transform:none}
 .li u{width:9px;height:9px;border-radius:50%;background:var(--gold);margin-top:9px}
-.li b{font-family:var(--display);text-transform:uppercase;font-size:clamp(16px,2vw,19px);letter-spacing:.03em;display:block;line-height:1.2}
-.li span{color:var(--ink2);font-size:13.5px;display:block;margin-top:6px;line-height:1.6;max-width:72ch}
+.li b{font-family:var(--display);text-transform:uppercase;font-size:clamp(19px,2.3vw,23px);letter-spacing:.03em;display:block;line-height:1.2}
+.li span{color:var(--ink2);font-size:17px;display:block;margin-top:7px;line-height:1.6;max-width:62ch}
 
 .df{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(26px,4vw,42px)}
 .dfc{border:1px solid var(--line);background:var(--surface);padding:clamp(20px,2.6vw,28px);opacity:0;transform:translateY(20px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
 .rv.in .dfc{opacity:1;transform:none}
 .rv.in .dfc:nth-child(2){transition-delay:.1s}
 .dfc.sim{border-color:var(--gold3)}
-.dfc h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(17px,2.1vw,22px);letter-spacing:.04em;display:flex;align-items:center;gap:11px}
+.dfc h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(20px,2.4vw,26px);letter-spacing:.04em;display:flex;align-items:center;gap:11px}
 .dfc h3 u{width:9px;height:9px;border-radius:50%;flex:none;background:var(--muted)}
 .dfc.sim h3 u{background:var(--gold)}
-.dfc ul{list-style:none;margin-top:16px;columns:2;column-gap:32px}
-@media (max-width:760px){.dfc ul{columns:1}}
-.dfc li{break-inside:avoid;position:relative;padding:8px 0 8px 22px;font-size:13.5px;color:var(--ink2);border-bottom:1px solid var(--line);line-height:1.5}
+.dfc ul{list-style:none;margin-top:18px;columns:2;column-gap:40px}
+@media (max-width:1040px){.dfc ul{columns:1}}
+.dfc li{break-inside:avoid;position:relative;padding:11px 0 11px 26px;font-size:17px;color:var(--ink2);border-bottom:1px solid var(--line);line-height:1.5}
 .dfc li:last-child{border-bottom:0}
-.dfc li::before{content:"";position:absolute;left:0;top:15px;width:9px;height:2px;background:var(--line2)}
+.dfc li::before{content:"";position:absolute;left:0;top:19px;width:11px;height:2px;background:var(--line2)}
 .dfc.sim li::before{background:var(--gold)}
 @media (max-width:860px){.df{grid-template-columns:1fr}}
 
+.grupos{display:grid;gap:14px;margin-top:clamp(26px,4vw,42px)}
 .crono{margin-top:clamp(26px,4vw,42px);position:relative;padding-left:26px}
 .crono::before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:1px;background:var(--line2)}
 .sem{position:relative;padding:15px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateX(-10px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:calc(var(--i) * 90ms)}
 .rv.in .sem{opacity:1;transform:none}
 .sem:last-child{border-bottom:0}
 .sem u{position:absolute;left:-26px;top:22px;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--bg)}
-.sem b{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.2em;color:var(--gold);display:block}
-.sem h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(16px,2vw,20px);letter-spacing:.03em;margin-top:5px}
-.sem p{color:var(--ink2);font-size:13.5px;margin-top:6px;max-width:72ch}
+.sem b{font-family:var(--display);text-transform:uppercase;font-size:14px;letter-spacing:.2em;color:var(--gold);display:block}
+.sem h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(19px,2.3vw,24px);letter-spacing:.03em;margin-top:5px}
+.sem p{color:var(--ink2);font-size:17px;margin-top:8px;max-width:60ch}
+
+.sem .vc{display:block;margin-top:10px;padding-left:14px;border-left:2px solid var(--gold3);color:var(--gold2);font-size:16.5px;line-height:1.5;max-width:60ch}
+.sem .vc b{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:14px;color:var(--gold);display:block;margin-bottom:2px}
+
+.esf{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:clamp(26px,4vw,42px)}
+@media (max-width:900px){.esf{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.esf{grid-template-columns:1fr}}
+.ef{border:1px solid var(--line);background:var(--surface);padding:22px;opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease);transition-delay:calc(var(--i) * 70ms)}
+.rv.in .ef{opacity:1;transform:none}
+.ef b{font-family:var(--display);text-transform:uppercase;font-size:16.5px;letter-spacing:.05em;display:block;line-height:1.2;color:var(--ink)}
+.ef span{display:block;margin-top:10px;color:var(--ink2);font-size:16.5px;line-height:1.5}
+
+.comp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(26px,4vw,42px)}
+.cp{border:1px solid var(--line);background:var(--surface);padding:clamp(22px,3vw,30px);opacity:0;transform:translateY(20px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rv.in .cp{opacity:1;transform:none}
+.rv.in .cp:nth-child(2){transition-delay:.1s}
+.cp.eu{border-color:var(--gold3);background:linear-gradient(160deg,rgba(201,165,82,.1),transparent 60%)}
+.cp h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(19px,2.3vw,24px);letter-spacing:.04em}
+.cp .num{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.4vw,44px);line-height:1.1;color:var(--ink);margin-top:14px;font-variant-numeric:tabular-nums}
+.cp.eu .num{color:var(--gold2)}
+.cp ul{list-style:none;margin-top:16px}
+.cp li{position:relative;padding:10px 0 10px 26px;font-size:17px;color:var(--ink2);border-bottom:1px solid var(--line);line-height:1.5}
+.cp li:last-child{border-bottom:0}
+.cp li::before{content:"";position:absolute;left:0;top:18px;width:11px;height:2px;background:var(--line2)}
+.cp.eu li::before{background:var(--gold)}
+@media (max-width:860px){.comp{grid-template-columns:1fr}}
 
 .custos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px;margin-top:clamp(26px,4vw,42px)}
 .cu{border:1px solid var(--line);background:var(--surface);padding:20px;opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease);transition-delay:calc(var(--i) * 70ms)}
 .rv.in .cu{opacity:1;transform:none}
 .cu.free{border-color:var(--gold3)}
-.cu b{font-family:var(--display);text-transform:uppercase;font-size:14.5px;letter-spacing:.05em;display:block;line-height:1.2}
-.cu .val{font-family:var(--display);font-weight:800;font-size:25px;letter-spacing:.02em;color:var(--ink);margin-top:11px;display:block;font-variant-numeric:tabular-nums}
+.cu b{font-family:var(--display);text-transform:uppercase;font-size:16.5px;letter-spacing:.05em;display:block;line-height:1.2}
+.cu .val{font-family:var(--display);font-weight:800;font-size:29px;letter-spacing:.02em;color:var(--ink);margin-top:11px;display:block;font-variant-numeric:tabular-nums}
 .cu.free .val{color:var(--gold2)}
-.cu p{color:var(--muted);font-size:12.5px;line-height:1.55;margin-top:9px}
+.cu p{color:var(--ink2);font-size:16px;line-height:1.55;margin-top:11px}
 
-.aviso{border:1px solid var(--gold3);background:rgba(201,165,82,.06);padding:18px 20px;margin-top:24px;font-size:13.5px;color:var(--ink2);line-height:1.65}
-.aviso b{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--gold2);display:block;margin-bottom:6px}
+.aviso{border:1px solid var(--gold3);background:rgba(201,165,82,.06);padding:22px 24px;margin-top:26px;font-size:17px;color:var(--ink2);line-height:1.65;max-width:62ch}
+.aviso b{font-family:var(--display);text-transform:uppercase;letter-spacing:.16em;font-size:14px;color:var(--gold2);display:block;margin-bottom:6px}
 
 .fim{border-top:1px solid var(--line);background:var(--bg2);padding:clamp(48px,7vh,92px) var(--pad);text-align:center;position:relative;overflow:hidden}
 .fim .aura{position:absolute;left:50%;top:50%;width:min(700px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(201,165,82,.1),transparent 62%)}
 .fim .in{position:relative;max-width:760px;margin:0 auto}
-.fim p{color:var(--ink2);margin:16px auto 26px;max-width:52ch}
-.btn{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:15px;letter-spacing:.15em;border:1px solid var(--gold);border-radius:999px;padding:14px 30px;position:relative;overflow:hidden;color:var(--gold2);display:inline-flex;align-items:center;gap:11px;transition:color .45s var(--ease)}
+.fim p{color:var(--ink2);margin:18px auto 28px;max-width:46ch;font-size:clamp(18px,1.9vw,21px);line-height:1.6}
+.btn{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:16.5px;letter-spacing:.15em;border:1px solid var(--gold);border-radius:999px;padding:14px 30px;position:relative;overflow:hidden;color:var(--gold2);display:inline-flex;align-items:center;gap:11px;transition:color .45s var(--ease)}
 .btn span{position:relative;z-index:1;display:inline-flex;align-items:center;gap:11px}
 .btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .5s var(--ease)}
 .btn:hover{color:#080808}
@@ -194,20 +221,22 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
 footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);background:var(--bg)}
 .f-in{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 32px;align-items:baseline;justify-content:space-between}
 .f-m{font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.16em;color:var(--ink2)}
-.f-d{color:var(--muted);font-size:12.5px}
-.f-v{color:var(--muted);font-size:12px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em}
+.f-d{color:var(--ink2);font-size:15px}
+.f-v{color:var(--ink2);font-size:13.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em}
 
 @media print{
   .nav,.prog,.grain,.ctas{display:none}
   body{background:#fff;color:#111}
-  .preco,.ca,.dfc,.cu,.aviso{border-color:#ccc;background:#fff;break-inside:avoid}
+  .preco,.ca,.dfc,.cu,.aviso,.ef,.cp{border-color:#ccc;background:#fff;break-inside:avoid}
+  .sec{break-before:page}
+  .sem .vc{border-left-color:#999;color:#333}
   h1,h2,.preco .v b{color:#111}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   h1 .ln span,h2 .ln span{transform:none!important}
-  .hero .sub,.hero .meta,.rv .lede,.rv .ix,.ca,.li,.dfc,.sem,.cu,.mc,.po{opacity:1!important;transform:none!important}
+  .hero .sub,.hero .meta,.rv .lede,.rv .ix,.ca,.li,.dfc,.sem,.cu,.mc,.po,.ef,.cp{opacity:1!important;transform:none!important}
   .hero .rule{transform:scaleX(1)!important}
 }
 </style>
@@ -220,11 +249,11 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 <header class="nav" id="nav">
   <a class="brand" href="#topo"><i aria-hidden="true"></i>Proposta</a>
   <nav class="links" aria-label="Seções">
-    <a href="#canais">Onde vende</a>
-    <a href="#marca">A identidade</a>
     <a href="#site">O que tem</a>
     <a href="#combinado">O combinado</a>
-    <a href="#custo">Custo mensal</a>
+    <a href="#presente">O presente</a>
+    <a href="#quando">Como é feito</a>
+    <a href="#valor">O valor</a>
   </nav>
 </header>
 
@@ -238,7 +267,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
         <span class="ln"><span>O site</span></span>
         <span class="ln"><span>da <em>casa</em>.</span></span>
       </h1>
-      <p class="sub">Um lugar seu na internet, ligado ao seu TikTok, para quem chega dos vídeos saber o que você faz e como pagar.</p>
+      <p class="sub">Um lugar seu na internet. Quem vê seus vídeos entra, entende o que você faz e paga ali mesmo.</p>
       <div class="rule" aria-hidden="true"></div>
       <div class="meta">
         <span>Para <b>Mãe Karina de Iemanjá</b></span>
@@ -247,39 +276,21 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
     </div>
   </section>
 
-  <section class="sec rv" id="valor">
-    <div class="ix"><u aria-hidden="true"></u>01 — Valor e prazo</div>
-    <h2><span class="ln"><span>Em três vezes,</span></span><span class="ln"><span>pronto em um mês</span></span></h2>
-    <div class="preco">
-      <div class="v">
-        <span>Site completo</span>
-        <b>3<em>x</em> R$ 5.000</b>
-        <u class="tot">R$ 15.000 no total</u>
-        <i>Pronto em 1 mês</i>
-      </div>
-      <div class="d">
-        <p><b>Pagamento:</b> três parcelas de R$ 5.000 — a primeira para começar, a segunda no meio do trabalho e a última quando o site estiver no ar e você aprovar.</p>
-        <p><b>Para manter no ar:</b> cerca de R$ 65 por mês, pagos direto ao servidor e ao registro do domínio. Não tem mensalidade minha.</p>
-        <p><b>Garantia:</b> 90 dias para corrigir qualquer defeito, sem cobrar.</p>
-      </div>
-    </div>
-  </section>
-
   <section class="sec rv" id="canais">
-    <div class="ix"><u aria-hidden="true"></u>02 — Onde cada coisa vende</div>
+    <div class="ix"><u aria-hidden="true"></u>01 — Onde cada coisa vende</div>
     <h2><span class="ln"><span>Três lugares,</span></span><span class="ln"><span>um site só</span></span></h2>
-    <p class="lede">Cada tipo de coisa que você vende tem o lugar certo. O site organiza isso e leva a pessoa direto para onde ela compra.</p>
+    <p class="lede">Cada coisa que você vende tem o seu lugar. O site leva a pessoa direto para lá.</p>
     <div class="canais" id="g-canais"></div>
     <div class="aviso">
       <b>Por que os produtos vão pelo TikTok Shop</b>
-      No Brasil, o TikTok Shop só aceita produto físico — banho, vela, guia. Serviço e curso são proibidos por lá. Por isso as consultas ficam no site e os cursos na Hotmart. Não é escolha: é a regra deles.
+      No Brasil, o TikTok Shop só aceita produto físico: banho, vela, guia. Serviço e curso são proibidos lá. Por isso a consulta fica no site e o curso na Hotmart. É regra deles, não escolha minha.
     </div>
   </section>
 
   <section class="sec rv" id="marca">
-    <div class="ix"><u aria-hidden="true"></u>03 — A identidade</div>
+    <div class="ix"><u aria-hidden="true"></u>02 — A identidade</div>
     <h2><span class="ln"><span>A cara</span></span><span class="ln"><span>da casa</span></span></h2>
-    <p class="lede">Antes do site, a marca. Um jeito próprio de aparecer, que se repete no site, nos posts e em tudo o que você publicar.</p>
+    <p class="lede">Antes do site, a marca. Um jeito de aparecer que se repete em tudo o que você publicar.</p>
 
     <div class="marca">
       <div class="mc">
@@ -287,7 +298,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
         <div class="mc-logo">
           <span class="lg"><i aria-hidden="true"></i>Mãe Karina<em>de Iemanjá</em></span>
         </div>
-        <p>Um símbolo simples, que funciona pequeno na foto de perfil e grande numa arte.</p>
+        <p>Funciona pequeno na foto de perfil e grande numa arte.</p>
       </div>
 
       <div class="mc">
@@ -299,7 +310,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
           <span style="background:#F3EFE6" title="Creme"></span>
           <span style="background:#8A7136" title="Ouro escuro"></span>
         </div>
-        <p>Preto e ouro: sóbrio, sem cara de banca de rua. Cada cor com o lugar dela.</p>
+        <p>Preto e ouro. Sóbrio, com cara de casa séria.</p>
       </div>
 
       <div class="mc">
@@ -307,9 +318,9 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
         <div class="mc-letras">
           <b>ABCDEFG</b>
           <i>Consulta e escuta</i>
-          <span>Texto comum, para ler sem esforço.</span>
+          <span>Letra grande, para ler sem esforço.</span>
         </div>
-        <p>Duas letras que combinam: uma forte para títulos, uma elegante para as frases.</p>
+        <p>Uma letra forte para títulos, uma elegante para as frases.</p>
       </div>
     </div>
 
@@ -319,54 +330,111 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
       <div class="po"><span class="po-l">Post</span><b>Banho de<br>descarrego</b><u aria-hidden="true"></u></div>
       <div class="po alt"><span class="po-l">Capa</span><b>Cursos<br>da casa</b><u aria-hidden="true"></u></div>
     </div>
-    <p class="mnota">Modelos prontos que você preenche com sua foto e seu texto. Não precisa saber desenhar nem pagar designer para cada post.</p>
+    <p class="mnota">Modelos prontos: você põe sua foto e seu texto. Não precisa pagar designer para cada post.</p>
   </section>
 
   <section class="sec rv" id="site">
-    <div class="ix"><u aria-hidden="true"></u>04 — O que o site tem</div>
-    <h2><span class="ln"><span>Sete coisas</span></span></h2>
-    <p class="lede">Nada de enfeite. Cada uma existe para a pessoa entender o que você faz e conseguir pagar.</p>
+    <div class="ix"><u aria-hidden="true"></u>03 — O que o site tem</div>
+    <h2><span class="ln"><span>Onze coisas</span></span></h2>
+    <p class="lede">Nada de enfeite. Cada uma serve para a pessoa entender e conseguir pagar.</p>
     <div class="lista" id="g-lista"></div>
   </section>
 
   <section class="sec rv" id="combinado">
-    <div class="ix"><u aria-hidden="true"></u>05 — O combinado</div>
+    <div class="ix"><u aria-hidden="true"></u>04 — O combinado</div>
     <h2><span class="ln"><span>Tudo isto</span></span><span class="ln"><span>está incluído</span></span></h2>
+    <p class="lede">Cada linha é um compromisso. O que não estiver escrito aqui, não está incluído.</p>
+    <div class="grupos" id="g-sim"></div>
+  </section>
+
+  <section class="sec rv" id="presente">
+    <div class="ix"><u aria-hidden="true"></u>05 — Um presente</div>
+    <h2><span class="ln"><span>O site da ação</span></span><span class="ln"><span>social, de graça</span></span></h2>
+    <p class="lede">Você mantém uma frente de ação social. Esse segundo site é meu presente: não entra no valor e não atrasa o prazo.</p>
     <div class="dfc sim" style="margin-top:clamp(26px,4vw,42px)">
-      <h3><u aria-hidden="true"></u>Está tudo incluído</h3>
-      <ul id="g-sim"></ul>
+      <h3><u aria-hidden="true"></u>Presente · R$ 0</h3>
+      <ul id="g-presente"></ul>
     </div>
   </section>
 
   <section class="sec rv" id="quando">
-    <div class="ix"><u aria-hidden="true"></u>06 — Um mês</div>
-    <h2><span class="ln"><span>Quatro semanas</span></span></h2>
-    <p class="lede">O mês começa a contar quando você me enviar a lista de serviços com os valores e as fotos que tiver.</p>
+    <div class="ix"><u aria-hidden="true"></u>06 — Como vai ser feito</div>
+    <h2><span class="ln"><span>Um mês,</span></span><span class="ln"><span>passo a passo</span></span></h2>
+    <p class="lede">O mês começa a contar quando você me mandar a lista de serviços com os valores. Em cada passo você sabe o que eu faço e o que preciso de você.</p>
     <div class="crono" id="g-crono"></div>
   </section>
 
   <section class="sec rv" id="custo">
     <div class="ix"><u aria-hidden="true"></u>07 — Custo para manter</div>
     <h2><span class="ln"><span>Sessenta reais</span></span><span class="ln"><span>por mês</span></span></h2>
-    <p class="lede">Este valor não é meu: é o que você paga direto para as empresas, e fica tudo em seu nome. Dá menos que uma consulta por mês.</p>
+    <p class="lede">Não é meu. É o que você paga direto às empresas, em seu nome. Dá menos que uma consulta por mês.</p>
     <div class="custos" id="g-custos"></div>
     <div class="preco" style="margin-top:14px">
       <div class="v">
-        <span>Total para manter no ar</span>
+        <span>Para manter no ar</span>
         <b>R$ 65<em>/mês</em></b>
         <u class="tot">Cerca de R$ 780 por ano</u>
         <i>Pago direto por você</i>
       </div>
       <div class="d">
-        <p><b>O que é:</b> R$ 60 do servidor e R$ 40 por ano do endereço do site, que dá pouco mais de R$ 3 por mês.</p>
-        <p><b>Por que precisa de servidor:</b> a agenda, os pagamentos e a busca automática dos seus produtos no TikTok Shop e na Hotmart precisam de um computador ligado o tempo todo. É ele.</p>
-        <p><b>Sem mensalidade minha:</b> você paga às empresas, não a mim. As contas ficam em seu nome e você pode cancelar quando quiser.</p>
+        <p><b>Por que precisa de servidor:</b> a agenda, os pagamentos e a busca dos seus produtos precisam de um computador ligado o tempo todo. É ele.</p>
+        <p><b>Sem mensalidade minha:</b> você paga às empresas, não a mim. As contas ficam em seu nome.</p>
       </div>
     </div>
 
     <div class="aviso">
       <b>Sobre as taxas de venda</b>
-      Mercado Pago, Hotmart e TikTok Shop cobram uma parte de cada venda, direto com você. Pix pelo Mercado Pago não tem taxa. Isso é entre você e eles: eu não recebo nada dessas taxas.
+      Mercado Pago, Hotmart e TikTok Shop ficam com uma parte de cada venda. Pix não tem taxa. Isso é entre você e eles: eu não recebo nada disso.
+    </div>
+  </section>
+
+  <section class="sec rv" id="valor">
+    <div class="ix"><u aria-hidden="true"></u>08 — O valor</div>
+    <h2><span class="ln"><span>Quinze mil,</span></span><span class="ln"><span>em três vezes</span></span></h2>
+    <p class="lede">Um mês de trabalho, cerca de 240 horas. Abaixo, onde elas vão.</p>
+
+    <div class="preco">
+      <div class="v">
+        <span>Site completo</span>
+        <b>3<em>x</em> R$ 5.000</b>
+        <u class="tot">R$ 15.000 no total</u>
+        <i>Pronto em 1 mês</i>
+      </div>
+      <div class="d">
+        <p><b>Como paga:</b> uma parcela para começar, uma no meio e a última quando o site estiver no ar e você aprovar.</p>
+        <p><b>Garantia:</b> 90 dias para corrigir qualquer defeito, sem cobrar nada.</p>
+      </div>
+    </div>
+
+    <div class="esf" id="g-esforco"></div>
+
+    <h2 style="margin-top:clamp(46px,7vw,80px)"><span class="ln"><span>O mesmo trabalho,</span></span><span class="ln"><span>numa agência</span></span></h2>
+    <div class="comp">
+      <div class="cp">
+        <h3>Numa agência</h3>
+        <div class="num">R$ 35.000 a R$ 80.000</div>
+        <ul>
+          <li>3 a 5 meses de espera</li>
+          <li>Mensalidade de R$ 500 a R$ 1.500 para manter</li>
+          <li>Marca, site, painel e ligações cobrados à parte</li>
+          <li>Você fala com atendente, não com quem faz</li>
+        </ul>
+      </div>
+      <div class="cp eu">
+        <h3>Comigo</h3>
+        <div class="num">R$ 15.000</div>
+        <ul>
+          <li>1 mês, com data marcada</li>
+          <li>Sem mensalidade minha: só os R$ 65 das empresas</li>
+          <li>Tudo junto, num preço só</li>
+          <li>Você fala direto comigo, do começo ao fim</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="aviso">
+      <b>De onde vem essa conta</b>
+      Os valores de agência são a faixa cobrada no mercado por um trabalho deste tamanho. Estão aqui só para você comparar.
     </div>
   </section>
 
@@ -375,7 +443,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 <section class="fim rv">
   <span class="aura" aria-hidden="true"></span>
   <div class="in">
-    <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>08 — Para começar</div>
+    <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>09 — Para começar</div>
     <h2 style="text-align:center"><span class="ln"><span>O primeiro passo</span></span></h2>
     <p>Uma conversa de uma hora para levantar seus serviços, seus valores e as fotos que você já tem. Depois disso, o mês começa.</p>
     <div class="ctas">
@@ -402,63 +470,145 @@ var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 var CANAIS = [
   {c:"var(--pix)", n:"No site", t:"Consultas e trabalhos",
-   d:"A pessoa escolhe o serviço e o horário, e você recebe o pedido pronto no WhatsApp. O pagamento é por Pix ou cartão, pelo link do Mercado Pago.",
-   p:"Pix pelo Mercado Pago não tem taxa. Cartão tem a taxa deles."},
+   d:"A pessoa escolhe o serviço e o horário, preenche o que aquele serviço pede e paga por Pix ou cartão. O pedido cai no seu painel.",
+   p:"Pix não tem taxa. Cartão tem a taxa do Mercado Pago."},
   {c:"var(--tkp)", n:"TikTok Shop", t:"Banhos, velas e guias",
-   d:"Você cadastra na sua loja do TikTok Shop, como já faz. O site lê de lá todos os dias e mostra sozinho, com foto e preço atualizados.",
-   p:"Você não cadastra duas vezes: mexe só no TikTok, e o site acompanha."},
+   d:"Você cadastra na sua loja do TikTok, como já faz. O site lê de lá todo dia e mostra sozinho.",
+   p:"Você mexe só no TikTok. O site acompanha."},
   {c:"var(--hot)", n:"Hotmart", t:"Cursos",
-   d:"O curso é vendido na Hotmart e o site também lê de lá sozinho. Compra aprovada, o aluno recebe o acesso por e-mail.",
-   p:"Criou curso novo na Hotmart? Ele aparece no site no dia seguinte."}
+   d:"O curso é vendido na Hotmart e o site lê de lá sozinho. Compra aprovada, o aluno recebe o acesso.",
+   p:"Curso novo na Hotmart aparece no site no dia seguinte."}
 ];
 
 var TEM = [
-  {t:"Identidade da casa", d:"Logo, cores, letras e modelos prontos para os seus posts. Um guia simples para tudo o que você publicar ter a mesma cara."},
-  {t:"Seus serviços organizados", d:"Consultas, trabalhos, produtos e cursos, cada um com nome, descrição e preço. O preço aparece ao abrir o serviço, como você pediu."},
-  {t:"Guia para quem não sabe pedir", d:"Quem chega perdido escolhe o que está sentindo — amor, dinheiro, um peso que não sai — e o site mostra o que costuma ajudar."},
-  {t:"Pedido pronto no WhatsApp", d:"A pessoa escolhe o serviço e o horário que prefere, e o WhatsApp abre com tudo escrito. Você só confirma."},
-  {t:"Pagamento por Pix e cartão", d:"O botão leva para o link de pagamento do Mercado Pago, no seu nome. Aceita Pix, cartão e parcelamento."},
-  {t:"Ligado ao seu TikTok", d:"Mostra quando você está ao vivo e leva direto para a live. Você pode pôr um link na bio que abre no serviço que citou no vídeo."},
-  {t:"Estante que se atualiza sozinha", d:"Você cadastra o produto no TikTok Shop e o curso na Hotmart, como já faz. O site lê de lá todos os dias e mostra sozinho — sem você mexer no site."},
-  {t:"Loja e cursos no lugar certo", d:"Os produtos apontam para o TikTok Shop e os cursos para a Hotmart, sem a pessoa se perder."},
-  {t:"Feito para o celular", d:"Quase todo mundo chega pelo telefone. O site abre rápido mesmo com internet fraca."}
+  {t:"Identidade da casa", d:"Logo, cores, letras e modelos prontos para os seus posts."},
+  {t:"Seus serviços organizados", d:"Consultas, trabalhos, produtos e cursos, cada um com preço à vista."},
+  {t:"Guia para quem não sabe pedir", d:"A pessoa escolhe o que está sentindo e o site mostra o que costuma ajudar."},
+  {t:"Cada serviço pede o que precisa", d:"Você define o que a pessoa tem de enviar. Sem isso o pedido não fecha."},
+  {t:"Pedido cai direto no painel", d:"Com o serviço, o horário e a ficha preenchida, na agenda dos trabalhos a fazer."},
+  {t:"Conta do cliente no site", d:"A pessoa entra na conta dela e vê os pedidos que já fez. Você fica com a ficha de cada cliente."},
+  {t:"Pagamento por Pix e cartão", d:"Pelo Mercado Pago, no seu nome. Aceita parcelamento."},
+  {t:"Ligado ao seu TikTok", d:"Mostra quando você está ao vivo e leva direto para a live."},
+  {t:"Estante que se atualiza sozinha", d:"Você cadastra no TikTok Shop e na Hotmart. O site lê de lá todo dia."},
+  {t:"Loja e cursos no lugar certo", d:"Produto vai para o TikTok Shop, curso para a Hotmart. Ninguém se perde."},
+  {t:"Feito para o celular", d:"Quase todo mundo chega pelo telefone. Abre rápido mesmo com internet fraca."}
 ];
 
 var SIM = [
-  "Guia da marca: logo, cores e letras",
-  "Modelos prontos para post e story",
-  "O site inteiro, com todas as páginas",
-  "Seus serviços, valores e fotos",
-  "Guia por dificuldade",
-  "Agenda para a pessoa escolher o horário",
-  "Pagamento por Pix e cartão pelo Mercado Pago",
-  "Confirmação de pagamento",
-  "Atendimento automático no WhatsApp",
-  "Painel para acompanhar os pedidos",
-  "Ligações com TikTok, TikTok Shop e Hotmart",
-  "Estante do TikTok Shop puxada para o site sozinha",
-  "Cursos da Hotmart puxados para o site sozinhos",
-  "Sua loja no TikTok Shop e seu produto na Hotmart configurados",
-  "Tratamento das fotos que você enviar",
-  "Configuração dos anúncios",
-  "Publicado no seu domínio, em seu nome",
-  "Treino em vídeo e 90 dias de garantia"
+  {g:"Marca e identidade", itens:[
+    "Logo, cores e letras da casa",
+    "Modelos prontos para post e story",
+    "Tratamento das fotos que você enviar"
+  ]},
+  {g:"O site", itens:[
+    "O site inteiro, com todas as páginas",
+    "Seus serviços, valores e fotos",
+    "A história da casa, com foto e texto",
+    "Guia por dificuldade, para quem não sabe o que pedir",
+    "Depoimentos em áudio de quem já foi atendido",
+    "Vitrine dos produtos, de passar com o dedo",
+    "Aviso de live: agora e a próxima",
+    "Botão para pedir aviso da próxima live",
+    "Link de bio que abre no serviço que você citou",
+    "Chat que acolhe quem chega (não é robô de WhatsApp)",
+    "Feito para o celular, abre rápido"
+  ]},
+  {g:"Pedido, ficha e pagamento", itens:[
+    "Agenda para a pessoa escolher o horário",
+    "Ficha própria para cada serviço, montada por você",
+    "Documentos do cliente: nome, nascimento, foto, o que o serviço pedir",
+    "Pedido só fecha com a ficha preenchida",
+    "Fila da semana: a pessoa vê em que lugar entra",
+    "Diário do trabalho: a pessoa acompanha as etapas",
+    "Pagamento por Pix e cartão, pelo Mercado Pago",
+    "Confirmação de pagamento",
+    "Pedido entregue direto no seu painel",
+    "Retorno depois do atendimento, sem venda junto"
+  ]},
+  {g:"Conta do cliente", itens:[
+    "Criação de conta e entrada no site",
+    "Histórico dos pedidos de cada cliente",
+    "Quanto cada um comprou, o quê e quando",
+    "Base de clientes pronta para o CRM depois"
+  ]},
+  {g:"Painel da casa", itens:[
+    "Entrada só sua, por endereço próprio",
+    "Ficha de cada pedido, campo por campo",
+    "Agenda dos serviços comprados, para tocar a execução",
+    "Faturamento, pedidos pagos e ticket médio do mês",
+    "Quanto o chat atendeu sozinho",
+    "Evolução semana a semana",
+    "De onde chega quem compra",
+    "O que mais sai",
+    "Catálogo: incluir, editar, apagar e tirar do ar",
+    "Agenda de lives, giras e encontros",
+    "Sua chave Pix e sua conta do Mercado Pago",
+    "Quanto cai por Pix e quanto por cartão, já com a taxa"
+  ]},
+  {g:"Ligações com as plataformas", itens:[
+    "TikTok, TikTok Shop e Hotmart ligados ao site",
+    "Estante do TikTok Shop puxada sozinha",
+    "Cursos da Hotmart puxados sozinhos",
+    "Sua loja e seu curso configurados"
+  ]},
+  {g:"Entrega e garantia", itens:[
+    "Configuração dos anúncios",
+    "No ar, no seu domínio e em seu nome",
+    "Treino em vídeo e 90 dias de garantia",
+    "De presente: o site da sua ação social"
+  ]}
+];
+
+/* TROCAR: conferir com a Mãe Karina o que entra no site da ação social */
+var PRESENTE = [
+  "Site próprio da ação social, em endereço separado",
+  "Quem é a casa, o que a ação faz e quem ela atende",
+  "Espaço para as fotos e as histórias do trabalho",
+  "Página de como ajudar, com Pix para doação",
+  "Contato para quem quiser apoiar",
+  "Feito para o celular",
+  "No mesmo servidor, sem custo a mais",
+  "Feito depois do site da casa, sem atrasar o prazo",
+  "Sem cobrança: é presente"
 ];
 
 var CRONO = [
-  {s:"Semana 1", t:"Identidade e serviços", d:"Fecho o logo, as cores e as letras da casa, e coloco seus serviços com nomes e valores reais."},
-  {s:"Semana 2", t:"Ligações e estante automática", d:"Ligo o site ao seu TikTok e ao seu link de pagamento, e configuro a leitura diária dos produtos do TikTok Shop e dos cursos da Hotmart."},
-  {s:"Semana 3", t:"Testes e correções", d:"Abro em celulares de verdade e corrijo o que aparecer. Você testa como se fosse cliente."},
-  {s:"Semana 4", t:"No ar e treino", d:"Publico no seu domínio e gravo um vídeo curto ensinando você a mexer."}
+  {s:"Antes de começar", t:"Uma conversa de uma hora",
+   eu:"Anoto seus serviços, seus valores e vejo as fotos que você já tem.",
+   vc:"Me manda a lista dos serviços com os preços, e as fotos que tiver."},
+  {s:"Semana 1", t:"A marca e seus serviços",
+   eu:"Fecho o logo, as cores e as letras da casa. Monto a ficha de cada serviço: o que a pessoa precisa enviar.",
+   vc:"Olha a marca e me diz se ficou com a cara da casa."},
+  {s:"Semana 2", t:"O site e o painel",
+   eu:"Monto as páginas do site e o painel onde os pedidos vão cair.",
+   vc:"Nada. Esta semana é minha."},
+  {s:"Semana 3", t:"Pagamento e ligações",
+   eu:"Ligo o Pix e o Mercado Pago, e configuro a leitura do TikTok Shop e da Hotmart.",
+   vc:"Me passa sua chave Pix e o acesso das suas lojas."},
+  {s:"Semana 4", t:"Testes e no ar",
+   eu:"Testo em celular de verdade, publico no seu domínio e gravo o vídeo de treino.",
+   vc:"Testa como se fosse cliente e aprova."},
+  {s:"Depois", t:"90 dias de garantia",
+   eu:"Corrijo qualquer defeito que aparecer, sem cobrar.",
+   vc:"Me chama quando precisar."}
+];
+
+var ESFORCO = [
+  {t:"A marca", d:"Logo, cores, letras e os modelos de post. Cerca de 25 horas."},
+  {t:"O site", d:"As onze coisas, todas as páginas, feito para celular. Cerca de 80 horas."},
+  {t:"O painel da casa", d:"Pedidos, fichas, catálogo, agenda e métricas. Cerca de 55 horas."},
+  {t:"As ligações", d:"Mercado Pago, TikTok Shop e Hotmart conversando com o site. Cerca de 30 horas."},
+  {t:"Contas e servidor", d:"Login dos clientes, servidor, domínio e publicação. Cerca de 30 horas."},
+  {t:"Testes e treino", d:"Celular de verdade, correções e o vídeo ensinando você. Cerca de 20 horas."}
 ];
 
 var CUSTOS = [
   {t:"Servidor (VPS)", v:"R$ 60 por mês", free:false,
-   d:"Onde ficam o site, o banco de dados e a rotina que busca seus produtos. Hostinger, com servidor em São Paulo e suporte em português."},
+   d:"O computador ligado o tempo todo onde o site mora. Em São Paulo, com suporte em português."},
   {t:"Endereço do site", v:"R$ 40 por ano", free:false,
-   d:"O nome que as pessoas digitam. Registrado no órgão oficial brasileiro."},
+   d:"O nome que as pessoas digitam para chegar até você."},
   {t:"Certificado de segurança", v:"Grátis", free:true,
-   d:"O cadeado que aparece no navegador. Renovado sozinho."},
+   d:"O cadeado que aparece no navegador. Se renova sozinho."},
   {t:"E-mail no seu domínio", v:"Grátis", free:true,
    d:"Opcional, se você quiser um contato@seusite.com.br."}
 ];
@@ -485,7 +635,11 @@ var CUSTOS = [
 })();
 
 (function(){
-  $("g-sim").innerHTML = SIM.map(function(x){ return "<li>" + x + "</li>"; }).join("");
+  $("g-sim").innerHTML = SIM.map(function(g){
+    return '<div class="dfc sim"><h3><u aria-hidden="true"></u>' + g.g + '</h3><ul>' +
+      g.itens.map(function(x){ return "<li>" + x + "</li>"; }).join("") + '</ul></div>';
+  }).join("");
+  $("g-presente").innerHTML = PRESENTE.map(function(x){ return "<li>" + x + "</li>"; }).join("");
   })();
 
 (function(){
@@ -493,7 +647,18 @@ var CUSTOS = [
   CRONO.forEach(function(c,k){
     var d = document.createElement("div");
     d.className = "sem"; d.style.setProperty("--i", k);
-    d.innerHTML = '<u aria-hidden="true"></u><b>' + c.s + '</b><h3>' + c.t + '</h3><p>' + c.d + '</p>';
+    d.innerHTML = '<u aria-hidden="true"></u><b>' + c.s + '</b><h3>' + c.t + '</h3><p>' + c.eu + '</p>' +
+      '<span class="vc"><b>Sua parte</b>' + c.vc + '</span>';
+    box.appendChild(d);
+  });
+})();
+
+(function(){
+  var box = $("g-esforco");
+  ESFORCO.forEach(function(e,k){
+    var d = document.createElement("div");
+    d.className = "ef"; d.style.setProperty("--i", k);
+    d.innerHTML = '<b>' + e.t + '</b><span>' + e.d + '</span>';
     box.appendChild(d);
   });
 })();
