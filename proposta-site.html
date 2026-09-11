@@ -324,7 +324,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 
   <section class="sec rv" id="site">
     <div class="ix"><u aria-hidden="true"></u>04 — O que o site tem</div>
-    <h2><span class="ln"><span>Sete coisas</span></span></h2>
+    <h2><span class="ln"><span>Dez coisas</span></span></h2>
     <p class="lede">Nada de enfeite. Cada uma existe para a pessoa entender o que você faz e conseguir pagar.</p>
     <div class="lista" id="g-lista"></div>
   </section>
@@ -402,7 +402,7 @@ var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 var CANAIS = [
   {c:"var(--pix)", n:"No site", t:"Consultas e trabalhos",
-   d:"A pessoa escolhe o serviço e o horário, e você recebe o pedido pronto no WhatsApp. O pagamento é por Pix ou cartão, pelo link do Mercado Pago.",
+   d:"A pessoa escolhe o serviço e o horário, preenche o que aquele serviço pede e paga por Pix ou cartão, pelo link do Mercado Pago. O pedido cai direto no seu painel.",
    p:"Pix pelo Mercado Pago não tem taxa. Cartão tem a taxa deles."},
   {c:"var(--tkp)", n:"TikTok Shop", t:"Banhos, velas e guias",
    d:"Você cadastra na sua loja do TikTok Shop, como já faz. O site lê de lá todos os dias e mostra sozinho, com foto e preço atualizados.",
@@ -416,7 +416,8 @@ var TEM = [
   {t:"Identidade da casa", d:"Logo, cores, letras e modelos prontos para os seus posts. Um guia simples para tudo o que você publicar ter a mesma cara."},
   {t:"Seus serviços organizados", d:"Consultas, trabalhos, produtos e cursos, cada um com nome, descrição e preço. O preço aparece ao abrir o serviço, como você pediu."},
   {t:"Guia para quem não sabe pedir", d:"Quem chega perdido escolhe o que está sentindo — amor, dinheiro, um peso que não sai — e o site mostra o que costuma ajudar."},
-  {t:"Pedido pronto no WhatsApp", d:"A pessoa escolhe o serviço e o horário que prefere, e o WhatsApp abre com tudo escrito. Você só confirma."},
+  {t:"Cada serviço pede o que precisa", d:"Cada tipo de serviço tem a sua ficha: você define o que a pessoa precisa enviar para o trabalho ser feito. Sem isso o pedido não fecha."},
+  {t:"Pedido cai direto no painel", d:"O pedido entra no painel com o serviço, o horário e a ficha preenchida, e aparece na agenda dos trabalhos a fazer."},
   {t:"Pagamento por Pix e cartão", d:"O botão leva para o link de pagamento do Mercado Pago, no seu nome. Aceita Pix, cartão e parcelamento."},
   {t:"Ligado ao seu TikTok", d:"Mostra quando você está ao vivo e leva direto para a live. Você pode pôr um link na bio que abre no serviço que citou no vídeo."},
   {t:"Estante que se atualiza sozinha", d:"Você cadastra o produto no TikTok Shop e o curso na Hotmart, como já faz. O site lê de lá todos os dias e mostra sozinho — sem você mexer no site."},
@@ -431,10 +432,15 @@ var SIM = [
   "Seus serviços, valores e fotos",
   "Guia por dificuldade",
   "Agenda para a pessoa escolher o horário",
+  "Ficha de pedido customizável por tipo de serviço: você define o que cada um pede",
+  "Campos de documentação do cliente (nome, data de nascimento, foto e o que mais o serviço exigir)",
+  "Pedido só fecha com a ficha preenchida",
+  "Pedidos do site entregues direto no painel",
   "Pagamento por Pix e cartão pelo Mercado Pago",
   "Confirmação de pagamento",
   "Atendimento automático pelo chat do site (não inclui automação do WhatsApp)",
-  "Painel para acompanhar os pedidos",
+  "Painel com a ficha de cada pedido discriminada, campo por campo",
+  "Agenda e lista dos serviços comprados, para acompanhar a execução de cada um",
   "Ligações com TikTok, TikTok Shop e Hotmart",
   "Estante do TikTok Shop puxada para o site sozinha",
   "Cursos da Hotmart puxados para o site sozinhos",
@@ -446,7 +452,7 @@ var SIM = [
 ];
 
 var CRONO = [
-  {s:"Semana 1", t:"Identidade e serviços", d:"Fecho o logo, as cores e as letras da casa, e coloco seus serviços com nomes e valores reais."},
+  {s:"Semana 1", t:"Identidade e serviços", d:"Fecho o logo, as cores e as letras da casa, coloco seus serviços com nomes e valores reais e monto a ficha de cada um: o que a pessoa precisa enviar para o trabalho ser feito."},
   {s:"Semana 2", t:"Ligações e estante automática", d:"Ligo o site ao seu TikTok e ao seu link de pagamento, e configuro a leitura diária dos produtos do TikTok Shop e dos cursos da Hotmart."},
   {s:"Semana 3", t:"Testes e correções", d:"Abro em celulares de verdade e corrijo o que aparecer. Você testa como se fosse cliente."},
   {s:"Semana 4", t:"No ar e treino", d:"Publico no seu domínio e gravo um vídeo curto ensinando você a mexer."}
