@@ -216,6 +216,46 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- tabelas / linhas ---------- */
 .rows{border-top:1px solid var(--line)}
+/* resumo do dia, no topo da agenda */
+.resumo{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:clamp(14px,2vw,20px)}
+.rs{border:1px solid var(--line);background:var(--surface);padding:15px 17px}
+.rs.alerta{border-color:var(--gold3);background:linear-gradient(150deg,rgba(201,165,82,.09),transparent 65%)}
+.rs b{display:block;font-family:var(--display);font-weight:800;font-size:27px;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.rs.alerta b{color:var(--gold2)}
+.rs.parado{border-color:var(--tkp);background:linear-gradient(150deg,rgba(254,44,85,.08),transparent 65%)}
+.rs.parado b{color:var(--tkp)}
+.sit.falta{border-color:var(--tkp);color:var(--tkp)}
+.parado-b{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--tkp);background:rgba(254,44,85,.07);padding:16px;font-size:13.5px;color:var(--ink2);line-height:1.6}
+.parado-b u{width:7px;height:7px;border-radius:50%;background:var(--tkp);flex:none;margin-top:7px}
+.parado-b b{display:block;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:3px}
+.rs span{display:block;color:var(--muted);font-size:11px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;margin-top:7px;line-height:1.4}
+@media (max-width:900px){.resumo{grid-template-columns:repeat(2,1fr)}}
+
+/* etapas de execução de cada trabalho */
+.etp{display:flex;align-items:center;gap:5px;margin-top:7px}
+.etp u{height:3px;flex:1;background:var(--line2);border-radius:2px}
+.etp u.ok{background:var(--gold)}
+.etp small{color:var(--muted);font-size:10.5px;font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;white-space:nowrap;margin-left:4px}
+.pass{margin:4px 0 2px}
+.pass .p{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+.pass .p:last-child{border-bottom:0}
+.pass .p u{width:17px;height:17px;border-radius:50%;border:1px solid var(--line2);flex:none;display:grid;place-items:center}
+.pass .p.ok{color:var(--ink)}
+.pass .p.ok u{background:var(--gold);border-color:var(--gold)}
+.pass .p.ok u::after{content:"";width:5px;height:9px;border:solid #0A0A0A;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.pass .p.agora{color:var(--gold2)}
+.pass .p.agora u{border-color:var(--gold)}
+.pass .p .qd{margin-left:auto;font-size:11.5px;color:var(--muted);font-family:var(--display);letter-spacing:.1em;text-transform:uppercase}
+.acao{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+
+/* clientes */
+.rw.cli{grid-template-columns:40px 1fr 150px 110px 110px}
+.rw.cli .av2{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line2);font-family:var(--display);font-size:14px;color:var(--ink2)}
+@media (max-width:900px){
+  .rw.cli{grid-template-columns:36px 1fr auto;gap:11px}
+  .rw.cli .qnd,.rw.cli .ult{display:none}
+}
+
 /* agenda dos trabalhos a fazer */
 .ag-d{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.2em;color:var(--gold);padding:20px 0 8px;border-bottom:1px solid var(--line)}
 .ag-d:first-child{padding-top:0}
@@ -454,14 +494,17 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
     </div>
 
     <nav id="tabs" aria-label="Seções do painel">
-      <button class="tab" type="button" data-pane="metricas" aria-current="page">
+      <button class="tab" type="button" data-pane="metricas">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 17V9M8 17V4M13 17v-5M18 17V7"/></svg>Métricas
       </button>
-      <button class="tab" type="button" data-pane="agenda">
+      <button class="tab" type="button" data-pane="agenda" aria-current="page">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 5v5l3 2"/><circle cx="10" cy="10" r="7"/></svg>Agenda<span class="pill" id="na">0</span>
       </button>
       <button class="tab" type="button" data-pane="produtos">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6l7-3 7 3v8l-7 3-7-3z"/><path d="M3 6l7 3 7-3M10 9v8"/></svg>Produtos<span class="pill" id="np">0</span>
+      </button>
+      <button class="tab" type="button" data-pane="clientes">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="7" r="3.2"/><path d="M4 17c0-3.3 2.7-5 6-5s6 1.7 6 5"/></svg>Clientes<span class="pill" id="nc">0</span>
       </button>
       <button class="tab" type="button" data-pane="eventos">
         <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="13"/><path d="M3 8h14M7 2v4M13 2v4"/></svg>Eventos<span class="pill" id="ne">0</span>
@@ -500,7 +543,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
     <div class="body">
 
       <!-- ============ MÉTRICAS ============ -->
-      <section class="pane on" id="pane-metricas" aria-labelledby="titulo">
+      <section class="pane" id="pane-metricas" aria-labelledby="titulo">
         <div class="kpis" id="kpis"></div>
 
         <div class="two">
@@ -548,7 +591,9 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
 
       <!-- ============ PRODUTOS ============ -->
       <!-- ============ AGENDA DOS TRABALHOS ============ -->
-      <section class="pane" id="pane-agenda" aria-labelledby="titulo">
+      <section class="pane on" id="pane-agenda" aria-labelledby="titulo">
+        <div class="resumo" id="resumo"></div>
+
         <div class="box">
           <div class="bh">
             Trabalhos a fazer
@@ -560,6 +605,21 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
         <div class="demo">
           <u aria-hidden="true"></u>
           <span>Cada linha é um serviço já pago no site. Toque para ver a ficha que a pessoa preencheu — é ali que estão o nome, a data de nascimento, a foto e o que ela pediu. Nesta demonstração os pedidos são de exemplo.</span>
+        </div>
+      </section>
+
+      <!-- ============ CLIENTES ============ -->
+      <section class="pane" id="pane-clientes" aria-labelledby="titulo">
+        <div class="box">
+          <div class="bh">Quem já comprou<span class="rt"><span class="chip on"><u aria-hidden="true"></u>Com conta no site</span></span></div>
+          <div class="bb">
+            <div class="rw hd cli"><span></span><span>Cliente</span><span>O que já pediu</span><span class="qnd">Pedidos</span><span class="ult">Último</span></div>
+            <div id="lista-clientes"></div>
+          </div>
+        </div>
+        <div class="demo">
+          <u aria-hidden="true"></u>
+          <span>Cada pessoa que cria conta no site entra nesta lista, com o que já pediu e quando. É daqui que sai a base para o CRM, quando você quiser usar um. Nesta demonstração os clientes são de exemplo.</span>
         </div>
       </section>
 
@@ -846,7 +906,7 @@ var TOPPROD = [
    campos que a Mãe Karina definiu para aquele serviço.                          */
 var PEDIDOS = [
   { n:"Ana Paula Siqueira", i:"Abertura de caminhos", v:250, q:"há 12 min",
-    dia:"Hoje", hr:"14h00", sit:"A fazer", pago:"Pix",
+    dia:"Hoje", hr:"14h00", pago:"Pix", tipo:"Trabalho", etapa:1,
     ficha:[
       ["Nome completo","Ana Paula Siqueira"],
       ["Data de nascimento","14 de março de 1987"],
@@ -856,7 +916,7 @@ var PEDIDOS = [
       ["O que pede neste trabalho","Quero abrir meu caminho no trabalho e tirar o peso de casa. Estou há sete meses sem emprego."]
     ]},
   { n:"Marcos Rebelo", i:"Consulta com a Mãe Karina", v:150, q:"há 1 h",
-    dia:"Hoje", hr:"16h00", sit:"A fazer", pago:"Mercado Pago",
+    dia:"Hoje", hr:"16h00", pago:"Mercado Pago", tipo:"Consulta", etapa:1,
     ficha:[
       ["Nome completo","Marcos Rebelo"],
       ["Data de nascimento","2 de novembro de 1979"],
@@ -864,7 +924,7 @@ var PEDIDOS = [
       ["Telefone para a chamada","(51) 98888-1212"]
     ]},
   { n:"Juliana Tavares", i:"Descarrego à distância", v:180, q:"há 2 h",
-    dia:"Amanhã", hr:"10h00", sit:"A fazer", pago:"Pix",
+    dia:"Amanhã", hr:"10h00", pago:"Pix", tipo:"Trabalho", etapa:0,
     ficha:[
       ["Nome completo","Juliana Tavares"],
       ["Data de nascimento","30 de junho de 1994"],
@@ -873,8 +933,11 @@ var PEDIDOS = [
       ["Foto de corpo inteiro","foto-juliana.jpg"],
       ["O que pede neste trabalho","Cansaço que não passa e tudo dando errado desde que mudei de casa."]
     ]},
+  { n:"Carla Benites", i:"Firmeza de proteção", v:200, q:"ontem",
+    dia:"Amanhã", hr:"11h00", pago:"Pix", tipo:"Trabalho", etapa:0, semFicha:true,
+    ficha:[] },
   { n:"Beatriz Lemos", i:"Leitura de tarot", v:70, q:"há 3 h",
-    dia:"Amanhã", hr:"15h00", sit:"A fazer", pago:"Pix",
+    dia:"Amanhã", hr:"15h00", pago:"Pix", tipo:"Consulta", etapa:0,
     ficha:[
       ["Nome completo","Beatriz Lemos"],
       ["Data de nascimento","8 de janeiro de 2001"],
@@ -882,13 +945,34 @@ var PEDIDOS = [
       ["Telefone para a chamada","(11) 97777-3030"]
     ]},
   { n:"Renata Munhoz", i:"Vela de sete dias", v:45, q:"há 5 h",
-    dia:"Sábado", hr:"09h00", sit:"Feito", pago:"Pix",
+    dia:"Sábado", hr:"09h00", pago:"Pix", tipo:"Produto", etapa:4,
     ficha:[
       ["Nome completo","Renata Munhoz"],
       ["Data de nascimento","19 de maio de 1968"],
       ["Orixá de cabeça","Não sei"],
       ["Endereço de entrega","Rua das Flores, 120 · Porto Alegre, RS"]
     ]}
+];
+
+/* ---------- as etapas de cada trabalho ----------
+   MOCK: é a mesma lista que a pessoa vê do outro lado, no diário do pedido.
+   Marcar uma etapa aqui é o que faz o cliente ver que o trabalho andou.        */
+var ETAPAS = {
+  Consulta: ["Pedido recebido","Horário confirmado","Consulta feita","Retorno enviado"],
+  Trabalho: ["Pedido recebido","Trabalho começado","Foto da oferenda enviada","Retorno enviado"],
+  Produto:  ["Pedido recebido","Preparado","Postado com rastreio","Entregue"],
+  Curso:    ["Compra aprovada","Acesso liberado","Primeira aula vista"]
+};
+function etapasDe(p){ return ETAPAS[p.tipo] || ETAPAS.Trabalho; }
+
+/* ---------- clientes ----------
+   MOCK: quem criou conta no site. Vira a base para o CRM depois.               */
+var CLIENTES = [
+  { n:"Ana Paula Siqueira", e:"ana.siqueira@email.com", q:4, ult:"há 12 min", itens:"Abertura de caminhos, consulta, banho, tarot" },
+  { n:"Marcos Rebelo", e:"marcos.rebelo@email.com", q:2, ult:"há 1 h", itens:"Consulta, firmeza de proteção" },
+  { n:"Juliana Tavares", e:"ju.tavares@email.com", q:3, ult:"há 2 h", itens:"Descarrego, banho de ervas, vela" },
+  { n:"Beatriz Lemos", e:"bia.lemos@email.com", q:1, ult:"há 3 h", itens:"Leitura de tarot" },
+  { n:"Renata Munhoz", e:"renata.m@email.com", q:5, ult:"há 5 h", itens:"Vela de sete dias, guia, curso, consulta" }
 ];
 
 /* ---------- utilidades ---------- */
@@ -952,13 +1036,14 @@ function montarCampos(tipo){
 var TITULOS = {
   metricas:   ["Métricas", "Como o atendimento está indo nos últimos 30 dias"],
   agenda:     ["Agenda", "Os trabalhos pagos, na ordem em que precisam ser feitos"],
+  clientes:   ["Clientes", "Quem já comprou, o que pediu e quando"],
   produtos:   ["Produtos", "O que está à venda e em qual canal"],
   eventos:    ["Eventos", "Lives, giras e encontros anunciados no site"],
   pagamentos: ["Pagamentos", "Chave Pix e conta do Mercado Pago"]
 };
 
 function irPara(nome){
-  if(!TITULOS[nome]) nome = "metricas";
+  if(!TITULOS[nome]) nome = "agenda";
   Array.prototype.forEach.call(document.querySelectorAll(".pane"), function(p){
     p.classList.toggle("on", p.id === "pane-" + nome);
   });
@@ -1102,11 +1187,39 @@ function montarPedidos(){
 }
 
 /* ---------- agenda dos trabalhos a fazer ----------
-   MOCK: agrupa os pedidos pagos por dia, na ordem de execução. É a tela onde a
-   Mãe Karina toca o dia dela: vê o que tem para fazer e abre a ficha de cada um. */
+   Agrupa os pedidos pagos por dia, na ordem de execução, e mostra em que
+   etapa cada um está. É a tela onde a Mãe Karina toca o dia dela.              */
+function feito(p){ return p.etapa >= etapasDe(p).length; }
+function situacao(p){
+  var e = etapasDe(p);
+  if(p.semFicha) return "Falta a ficha";
+  if(p.etapa >= e.length) return "Feito";
+  if(p.etapa === 0) return "A começar";
+  return e[p.etapa];
+}
+function barraEtapas(p){
+  var e = etapasDe(p), h = '<div class="etp">';
+  for(var k = 0; k < e.length; k++) h += '<u class="' + (k < p.etapa ? "ok" : "") + '"></u>';
+  h += '<small>' + Math.min(p.etapa, e.length) + ' de ' + e.length + '</small></div>';
+  return h;
+}
+
+function montarResumo(){
+  var abertos = PEDIDOS.filter(function(p){ return !feito(p); });
+  var hoje = abertos.filter(function(p){ return p.dia === "Hoje"; });
+  var comecar = abertos.filter(function(p){ return p.etapa === 0; });
+  var andando = abertos.filter(function(p){ return p.etapa > 0; });
+  var semFicha = abertos.filter(function(p){ return p.semFicha; });
+  $("resumo").innerHTML =
+    '<div class="rs' + (hoje.length ? " alerta" : "") + '"><b>' + hoje.length + '</b><span>para hoje</span></div>' +
+    '<div class="rs"><b>' + comecar.length + '</b><span>ainda a começar</span></div>' +
+    '<div class="rs"><b>' + andando.length + '</b><span>em andamento</span></div>' +
+    '<div class="rs' + (semFicha.length ? " parado" : "") + '"><b>' + semFicha.length + '</b><span>esperando a ficha</span></div>';
+}
+
 function montarAgenda(){
-  var falta = PEDIDOS.filter(function(p){ return p.sit !== "Feito"; }).length;
-  $("na").textContent = falta;
+  montarResumo();
+  $("na").textContent = PEDIDOS.filter(function(p){ return !feito(p); }).length;
 
   var dias = [], porDia = {};
   PEDIDOS.forEach(function(p,k){
@@ -1118,28 +1231,81 @@ function montarAgenda(){
   dias.forEach(function(d){
     h += '<div class="ag-d">' + esc(d) + '</div>';
     porDia[d].forEach(function(o){
-      var p = o.p, feito = p.sit === "Feito";
+      var p = o.p, ok = feito(p);
       h += '<div class="ag" data-ficha="' + o.k + '" role="button" tabindex="0">' +
         '<div class="hr">' + esc(p.hr) + '<small>' + esc(p.pago) + '</small></div>' +
-        '<div><b>' + esc(p.i) + '</b><div class="cli">' + esc(p.n) + '</div></div>' +
-        '<div><span class="sit ' + (feito ? "ok" : "faz") + '">' + esc(p.sit) + '</span></div>' +
+        '<div><b>' + esc(p.i) + '</b><div class="cli">' + esc(p.n) + '</div>' + barraEtapas(p) + '</div>' +
+        '<div><span class="sit ' + (p.semFicha ? "falta" : ok ? "ok" : "faz") + '">' + esc(situacao(p)) + '</span></div>' +
         '<div class="money">' + brl(p.v) + '</div>' +
-        '<div><span class="ver">Ver a ficha</span></div>' +
+        '<div><span class="ver">' + (ok ? "Ver a ficha" : "Abrir") + '</span></div>' +
       '</div>';
     });
   });
   $("agenda").innerHTML = h;
 }
 
-/* ---------- a ficha que a pessoa preencheu ---------- */
+function montarClientes(){
+  $("nc").textContent = CLIENTES.length;
+  $("lista-clientes").innerHTML = CLIENTES.map(function(c,i){
+    return '<div class="rw cli" style="--i:' + i + '">' +
+      '<div class="av2" aria-hidden="true">' + esc(iniciais(c.n)) + '</div>' +
+      '<div><h3>' + esc(c.n) + '</h3><div class="d">' + esc(c.e) + '</div></div>' +
+      '<div class="d">' + esc(c.itens) + '</div>' +
+      '<div class="qnd money" style="text-align:right">' + c.q + '</div>' +
+      '<div class="ult d" style="text-align:right">' + esc(c.ult) + '</div>' +
+    '</div>';
+  }).join("");
+}
+
+/* ---------- a ficha e a execução do trabalho ----------
+   Uma tela só: o que a pessoa preencheu, em que etapa está e o botão que
+   avança. Avançar aqui é o que o cliente vê mudar no diário do pedido dele.   */
 function abrirFicha(k){
   var p = PEDIDOS[k];
   if(!p) return;
+  var etapas = etapasDe(p), ok = feito(p);
+
   var corpo =
-    '<div class="fch-h"><span class="sit ' + (p.sit === "Feito" ? "ok" : "faz") + '">' + esc(p.sit) + '</span>' +
+    '<div class="fch-h"><span class="sit ' + (ok ? "ok" : "faz") + '">' + esc(situacao(p)) + '</span>' +
       '<span class="money">' + brl(p.v) + '</span>' +
       '<span style="color:var(--muted);font-size:12.5px">' + esc(p.dia) + ' às ' + esc(p.hr) + ' · pago por ' + esc(p.pago) + '</span>' +
-    '</div><div class="fch">';
+    '</div>';
+
+  corpo += '<div class="bh" style="padding:18px 0 10px;border:0">Como está o trabalho</div><div class="pass">';
+  etapas.forEach(function(e,idx){
+    var passou = idx < p.etapa, agora = idx === p.etapa;
+    corpo += '<div class="p' + (passou ? " ok" : agora ? " agora" : "") + '"><u aria-hidden="true"></u>' + esc(e) +
+      '<span class="qd">' + (passou ? "feito" : agora ? "agora" : "") + '</span></div>';
+  });
+  corpo += '</div>';
+
+  if(p.semFicha){
+    corpo += '<div class="acao">' +
+      '<button class="btn" type="button" id="cobrar"><span>Lembrar a pessoa de preencher</span></button>' +
+      '<button class="btn ghost" type="button" id="sf-x"><span>Fechar</span></button>' +
+    '</div>';
+  } else if(!ok){
+    corpo += '<div class="acao">' +
+      '<button class="btn" type="button" id="av"><span>' + esc(etapas[p.etapa]) + ' · marcar como feito</span></button>' +
+      '<button class="btn ghost" type="button" id="av-x"><span>Fechar</span></button>' +
+    '</div>';
+  }
+
+  corpo += '<div class="bh" style="padding:22px 0 10px;border:0">O que ela mandou</div>';
+  if(p.semFicha){
+    corpo += '<div class="parado-b"><u aria-hidden="true"></u><span><b>A pessoa pagou mas ainda não preencheu.</b>' +
+      'Sem o nome, a data de nascimento e a foto você não consegue começar. Ela vê o mesmo aviso na conta dela, e o lembrete sai por e-mail sozinho. O dinheiro já está com você.</span></div>' +
+      '<div class="demo" style="margin-top:18px"><u aria-hidden="true"></u>' +
+      '<span>Nesta demonstração o lembrete é simulado. No sistema de verdade ele sai sozinho, e o pedido fica parado aqui até a ficha chegar.</span></div>';
+    abrirModal(p.i, p.n + " · pedido " + p.q, corpo, function(){
+      var c = $("cobrar");
+      if(c) c.addEventListener("click", function(){ aviso("Lembrete enviado. A pessoa recebe um e-mail com o link para preencher."); });
+      var x = $("sf-x");
+      if(x) x.addEventListener("click", fecharModal);
+    });
+    return;
+  }
+  corpo += '<div class="fch">';
   p.ficha.forEach(function(c){
     var foto = /\.jpg$|\.png$/i.test(c[1]);
     corpo += '<div class="li"><small>' + esc(c[0]) + '</small>' +
@@ -1149,8 +1315,24 @@ function abrirFicha(k){
     '</div>';
   });
   corpo += '</div><div class="demo" style="margin-top:18px"><u aria-hidden="true"></u>' +
-    '<span>Estes são os campos que você pediu para este serviço, no cadastro do item. Outro serviço mostra outros campos.</span></div>';
-  abrirModal(p.i, p.n + " · pedido " + p.q, corpo);
+    '<span>Os campos acima são os que você pediu para este serviço, no cadastro do item. Cada etapa que você marca aqui aparece para a pessoa, no acompanhamento do pedido dela.</span></div>';
+
+  abrirModal(p.i, p.n + " · pedido " + p.q, corpo, function(){
+    var b = $("av");
+    if(b) b.addEventListener("click", function(){
+      p.etapa++;
+      montarAgenda();
+      if(feito(p)){
+        fecharModal();
+        aviso("Trabalho concluído. A pessoa foi avisada.");
+      } else {
+        abrirFicha(k);
+        aviso("Etapa marcada. A pessoa já vê isso no pedido dela.");
+      }
+    });
+    var x = $("av-x");
+    if(x) x.addEventListener("click", fecharModal);
+  });
 }
 
 document.addEventListener("click", function(e){
@@ -1511,12 +1693,13 @@ montarBarras("orig", ORIGENS, "%");
 montarBarras("topprod", TOPPROD, "%");
 montarPedidos();
 montarAgenda();
+montarClientes();
 montarProdutos();
 montarEventos();
 
 /* a aba pode vir pela âncora: backoffice.html#produtos */
 var inicial = (location.hash || "").replace("#", "");
-if(TITULOS[inicial]) irPara(inicial);
+irPara(TITULOS[inicial] ? inicial : "agenda");
 
 })();
 </script>
