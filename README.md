@@ -21,6 +21,7 @@ O botão "Entrar" do site é a conta do cliente. O painel não tem botão: a ent
 - **Cursos** — vendidos na Hostinger; o site mostra e leva até lá
 - **Pagamentos** — Stripe: cartão, boleto e Pix (o Pix na Stripe Brasil é liberado por convite)
 - **Atendimento** — botão que abre a conversa no WhatsApp
+- **Link de pagamento** — no painel, a Mãe Karina cadastra o cliente, escolhe o serviço ou produto e manda o link pelo WhatsApp; o pedido entra no histórico do cliente
 
 O site guia por dificuldade em vez de catálogo: a pessoa escolhe o que está sentindo e vê o que costuma ajudar.
 
