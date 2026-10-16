@@ -18,7 +18,7 @@ O botão "Entrar" do site é a conta do cliente. O painel não tem botão: a ent
 
 - **Consultas e trabalhos** — vendidos no site. Depois de pagar, a pessoa preenche a ficha do serviço
 - **Produtos** — vendidos no site. Preço e estoque vêm da Bling, que distribui para as outras lojas
-- **Cursos** — vendidos na Hostinger; o site mostra e leva até lá
+- **Cursos** — vendidos na Hotmart; o site mostra e leva até lá
 - **Pagamentos** — Stripe: cartão, boleto e Pix (o Pix na Stripe Brasil é liberado por convite)
 - **Atendimento** — botão que abre a conversa no WhatsApp
 - **Link de pagamento** — no painel, a Mãe Karina cadastra o cliente, escolhe o serviço ou produto e manda o link pelo WhatsApp; o pedido entra no histórico do cliente
