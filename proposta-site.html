@@ -368,7 +368,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 
   <section class="sec rv" id="custo">
     <div class="ix"><u aria-hidden="true"></u>08 — Custo para manter</div>
-    <h2><span class="ln"><span>Sessenta reais</span></span><span class="ln"><span>por mês</span></span></h2>
+    <h2><span class="ln"><span>Sessenta e cinco reais</span></span><span class="ln"><span>por mês</span></span></h2>
     <p class="lede">Este valor não é meu. É o que você paga direto às empresas que hospedam e registram o site, com as contas no seu nome.</p>
     <div class="custos" id="g-custos"></div>
     <div class="preco" style="margin-top:14px">
@@ -398,7 +398,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
         <i>Pronto em 1 mês</i>
       </div>
       <div class="d">
-        <p><b>Como paga:</b> uma parcela para começar, uma no meio do trabalho e a última quando o site estiver no ar e você aprovar.</p>
+        <p><b>Como paga:</b> 5 parcelas mensais de R$ 3.000. A primeira para começar o trabalho.</p>
         <p><b>Garantia:</b> 90 dias para ajustar o que não tiver ficado como combinado. Defeitos do site eu corrijo sempre, sem prazo e sem custo.</p>
       </div>
     </div>
@@ -455,7 +455,7 @@ var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 var CANAIS = [
   {c:"var(--pix)", n:"No site", t:"Consultas e trabalhos",
    d:"A pessoa escolhe o serviço e o horário, preenche o que aquele serviço pede e paga por Pix ou cartão. O pedido cai no seu painel.",
-   p:"Pix não tem taxa. Cartão tem a taxa da Stripe: 2,9% + R$ 0,30."},
+   p:"A Stripe fica com 3,99% + R$ 0,39 no cartão e 1,19% no Pix."},
   {c:"var(--tkp)", n:"Bling", t:"Produtos",
    d:"Você cadastra os produtos na Bling. O site lê de lá todo dia e mostra sozinho.",
    p:"Você mexe só na Bling. O site acompanha."},
@@ -471,7 +471,7 @@ var TEM = [
   {t:"Cada serviço pede o que precisa", d:"Você define o que a pessoa tem de enviar. Sem isso o pedido não fecha."},
   {t:"Pedido cai direto no painel", d:"Com o serviço, o horário e a ficha preenchida, na agenda dos trabalhos a fazer."},
   {t:"Conta do cliente no site", d:"A pessoa entra na conta dela e vê os pedidos que já fez. Você fica com a ficha de cada cliente."},
-  {t:"Pagamento por Pix e cartão", d:"Pela Stripe, no seu nome. Pix sem taxa, cartão com taxa da Stripe."},
+  {t:"Pagamento por Pix e cartão", d:"Pela Stripe, no seu nome. Sem mensalidade: ela só cobra quando você vende."},
   {t:"Ligado ao seu TikTok", d:"Mostra quando você está ao vivo e leva direto para a live."},
   {t:"Estante que se atualiza sozinha", d:"Você cadastra na Bling e na Hostinger. O site lê de lá todo dia."},
   {t:"Loja e cursos no lugar certo", d:"Produto vai para a Bling, curso para a Hostinger. Ninguém se perde."},
@@ -504,7 +504,7 @@ var SIM = [
     "Pedido só fecha com a ficha preenchida",
     "Fila da semana: a pessoa vê em que lugar entra",
     "Diário do trabalho: a pessoa acompanha as etapas",
-    "Pagamento por Pix e cartão, pela Stripe. Pix sem taxa, cartão com taxa da Stripe.",
+    "Pagamento por Pix, cartão e boleto, pela Stripe",
     "Confirmação de pagamento",
     "Pedido entregue direto no seu painel",
     "Lembrete automático se o cliente pagar e não preencher a ficha"
@@ -526,7 +526,7 @@ var SIM = [
     "O que mais sai",
     "Catálogo: incluir, editar, apagar e tirar do ar",
     "Agenda de lives, giras e encontros",
-    "Sua chave Pix e sua conta da Stripe",
+    "Sua conta da Stripe, no seu nome",
     "Quanto cai por Pix e quanto por cartão, já com a taxa"
   ]},
   {g:"Ligações com as plataformas", itens:[
@@ -571,8 +571,8 @@ var CRONO = [
    eu:"Monto as páginas do site e o painel onde os pedidos vão cair.",
    vc:"Nesta semana não preciso de nada. O trabalho é meu."},
   {s:"Semana 3", t:"Pagamento e ligações",
-   eu:"Ligo o Pix e a Stripe, e configuro a leitura da Bling e da Hostinger.",
-   vc:"Me passa sua chave Pix, sua chave de API da Stripe, e o acesso das suas contas."},
+   eu:"Ligo a Stripe ao site e configuro a leitura da Bling e da Hostinger.",
+   vc:"Abre sua conta na Stripe comigo e me dá acesso à Bling e à Hostinger."},
   {s:"Semana 4", t:"Testes e no ar",
    eu:"Testo em celular de verdade, publico no seu domínio e gravo o vídeo de treino.",
    vc:"Testa como se fosse cliente e aprova."},
@@ -624,7 +624,9 @@ var CUSTOS = [
   {t:"Endereço do site", v:"R$ 40 por ano", free:false,
    d:"O nome que as pessoas digitam para chegar até você."},
   {t:"Certificado de segurança", v:"Grátis", free:true,
-   d:"O cadeado que aparece no navegador. Se renova sozinho."}
+   d:"O cadeado que aparece no navegador. Se renova sozinho."},
+  {t:"Stripe (pagamentos)", v:"Sem mensalidade", free:true,
+   d:"Cobra só quando você vende. Cartão: 3,99% + R$ 0,39. Pix: 1,19%. Boleto: R$ 3,45. Numa consulta de R$ 100 no cartão, ficam R$ 95,62 para você."}
 ];
 
 (function(){
