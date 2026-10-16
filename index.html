@@ -1019,6 +1019,9 @@ var LOCAL = {1:"baralho-cigano",2:"consulta-espiritual",3:"leitura-de-tarot",4:"
 var horarios = ["Qui 14h","Qui 16h","Sex 10h","Sex 15h","Sáb 9h","Sáb 11h"];
 var PASSOS_SITE = ["Horário","Entrar","Pagamento","Seus dados","Confirmação"];
 var PASSOS_LOJA = ["Produto","Entrar","Pagamento","Confirmação"];
+/* pedido que chega pelo link que a Mãe Karina mandou: sem escolher horário */
+var PASSOS_LINK = ["Seu pedido","Entrar","Pagamento","Seus dados","Confirmação"];
+var PASSOS_LINK_LOJA = ["Seu pedido","Entrar","Pagamento","Confirmação"];
 /* MOCK: no sistema de verdade o frete é calculado pelo CEP, pela Bling. */
 var FRETE = { v:19, prazo:"chega em 5 a 8 dias úteis" };
 /* MOCK: quem já entrou na conta nesta visita. No sistema de verdade é a sessão. */
@@ -1249,16 +1252,18 @@ function shell(passos, atual, corpo){
   var f = $("sheet").querySelector("button:not(.x), .slot");
   (f || $("x")).focus({preventScroll:true});
 }
-function abrir(i, origem){
+function abrir(i, origem, link){
   ultimoFoco = origem || null;
-  escolha = { item:i, slot:null, pg:null, via:null, ficha:null,
-              passos: i.canal === "loja" ? PASSOS_LOJA : PASSOS_SITE,
-              total: i.p + (i.canal === "loja" ? FRETE.v : 0) };
+  var loja = i.canal === "loja";
+  escolha = { item:i, slot:null, pg:null, via:null, ficha:null, link:link || null,
+              passos: link ? (loja ? PASSOS_LINK_LOJA : PASSOS_LINK) : (loja ? PASSOS_LOJA : PASSOS_SITE),
+              total: i.p + (loja ? FRETE.v : 0) };
   var ov = $("ov");
   ov.hidden = false;
   requestAnimationFrame(function(){ ov.classList.add("on"); });
   document.body.classList.add("lock");
-  if(i.canal === "site") modalSite(i);
+  if(link && i.canal === "site") modalLink(i);
+  else if(i.canal === "site") modalSite(i);
   else if(i.canal === "curso") modalCurso(i);
   else modalProduto(i);
 }
@@ -1547,10 +1552,27 @@ function modalSite(i){
   });
 }
 
+/* ---------- pedido pelo link de pagamento ----------
+   A Mãe Karina cadastra a pessoa no painel, escolhe o serviço ou produto e
+   manda o link pelo WhatsApp. O horário já foi combinado na conversa.        */
+function avisoLink(){
+  return '<div class="fi-n" style="margin:0 0 14px;padding:0 0 14px;border-top:0;border-bottom:1px solid var(--line)"><u aria-hidden="true"></u>' +
+    '<span>' + (escolha.link.nome ? escolha.link.nome + ", a" : "A") + ' Mãe Karina te mandou este pedido, como vocês combinaram.</span></div>';
+}
+function modalLink(i){
+  var html = avisoLink() + '<h3>' + i.t + '</h3><p class="mini">' + i.d + '</p><div class="pr">' + brl(i.p) + '</div>' +
+    botao("Continuar para o pagamento");
+  shell(escolha.passos, 0, html);
+  $("go").addEventListener("click", function(){
+    if(logado) modalPagamento(i); else modalLoginCompra(i);
+  });
+}
+
 /* ---------- entrar antes de fechar a compra ----------
    MOCK: a conta é exigida para o pedido ficar amarrado a alguém — é dela que
    saem o histórico do cliente e a base para o CRM. Nada é verificado aqui.     */
 function modalLoginCompra(i, novo){
+  if(escolha.link && novo === undefined) return modalConvite(i);
   var html = '<h3>' + (novo ? "Criar a sua conta" : "Entrar para continuar") + '</h3>' +
     '<p class="mini">' + (novo
       ? "É rápido. A conta guarda os seus pedidos e o que você já preencheu."
@@ -1571,6 +1593,24 @@ function modalLoginCompra(i, novo){
   });
 }
 
+/* quem foi cadastrado no painel já tem conta: só cria a senha */
+function modalConvite(i){
+  var html = '<h3>Sua conta já está pronta</h3>' +
+    '<p class="mini">A Mãe Karina cadastrou você. Crie uma senha para acompanhar este pedido e os próximos.</p>' +
+    '<div class="fi">' +
+      '<div class="fg"><label for="cv-m">E-mail</label><input class="inp" id="cv-m" type="email" value="ana.siqueira@email.com"></div>' +
+      '<div class="fg"><label for="cv-s">Crie uma senha</label><input class="inp" id="cv-s" type="password" value="123456"></div>' +
+    '</div>' + botao("Criar senha e continuar") +
+    '<p class="mini" style="margin-top:16px"><button class="lk" type="button" id="cv-alt">Já tenho senha, quero entrar</button></p>' +
+    '<div class="fi-n"><u aria-hidden="true"></u><span>Demonstração: nada é verificado. No sistema de verdade, o link já sabe quem é a pessoa.</span></div>';
+  shell(escolha.passos, 1, html);
+  $("cv-alt").addEventListener("click", function(){ modalLoginCompra(i, false); });
+  $("go").addEventListener("click", function(){
+    $("go").classList.add("busy");
+    setTimeout(function(){ logado = true; modalPagamento(i); }, reduce ? 60 : 700);
+  });
+}
+
 /* ---------- a ficha do serviço ----------
    MOCK: os campos vêm de FICHAS, por tipo de serviço. Os valores já vêm
    preenchidos para a demonstração andar rápido; no sistema de verdade a pessoa
@@ -1578,7 +1618,7 @@ function modalLoginCompra(i, novo){
 function modalFicha(i){
   var campos = fichaDe(i);
   var html = '<h3>Pagamento confirmado. Agora, para o trabalho</h3>' +
-    '<p class="mini">' + i.t + ' · ' + horarios[escolha.slot] + ' · a Mãe Karina precisa destas informações</p><div class="fi">';
+    '<p class="mini">' + resumo(i) + ' · a Mãe Karina precisa destas informações</p><div class="fi">';
   campos.forEach(function(c,k){
     var id = "fi-" + k;
     html += '<div class="fg"><label for="' + id + '">' + c.t + (c.opc ? ' <i>opcional</i>' : '') + '</label>';
@@ -1593,7 +1633,7 @@ function modalFicha(i){
   });
   html += '<div class="fi-n"><u aria-hidden="true"></u><span>Estes campos foram definidos pela Mãe Karina para este serviço. Outro serviço pede outras coisas. Sem eles, ela não consegue começar o trabalho.</span></div></div>' +
     botao("Enviar e concluir");
-  shell(PASSOS_SITE, 3, html);
+  shell(escolha.passos, 3, html);
   escolha.ficha = campos;
   var d = $("fi-" + campos.map(function(c){ return c.tipo; }).indexOf("foto"));
   if(d && d.classList.contains("drop")){
@@ -1613,7 +1653,8 @@ function modalFicha(i){
    o estoque em todas as lojas e gera a nota e a etiqueta.                       */
 function modalProduto(i){
   var campos = FICHAS.produtos;
-  var html = '<div class="prod"><span class="im"><span class="ph" aria-hidden="true"></span><img alt="" decoding="async"></span>' +
+  var html = (escolha.link ? avisoLink() : '') +
+    '<div class="prod"><span class="im"><span class="ph" aria-hidden="true"></span><img alt="" decoding="async"></span>' +
     '<div><b>' + i.t + '</b><i>' + i.d + '</i></div></div><div class="fi">';
   campos.forEach(function(c,k){
     html += '<div class="fg"><label for="pd-' + k + '">' + c.t + (c.opc ? ' <i>opcional</i>' : '') + '</label>' +
@@ -1624,7 +1665,7 @@ function modalProduto(i){
     '<p class="inst"><span>Total</span><b>' + brl(escolha.total) + '</b></p>' +
     '<div class="fi-n"><u aria-hidden="true"></u><span>Em estoque. Preço e estoque vêm da loja da Mãe Karina na Bling.</span></div>' +
     botao("Continuar");
-  shell(PASSOS_LOJA, 0, html);
+  shell(escolha.passos, 0, html);
   encadear($("sheet").querySelector(".prod img"), fontes(i,120,150));
   $("go").addEventListener("click", function(){
     if(logado) modalPagamento(i); else modalLoginCompra(i);
@@ -1712,7 +1753,7 @@ function boleto(){
     '<button class="copy" id="bcp" type="button">Copiar código</button>' +
     '<div class="fi-n"><u aria-hidden="true"></u><span>' + (i.canal === "loja"
       ? "O pedido sai assim que o boleto compensar, em até 2 dias úteis."
-      : "O seu horário fica guardado até o boleto compensar, em até 2 dias úteis.") + '</span></div>' +
+      : (escolha.slot !== null ? "O seu horário" : "O seu pedido") + " fica guardado até o boleto compensar, em até 2 dias úteis.") + '</span></div>' +
     botao("Continuar"));
   $("bcp").addEventListener("click", function(){
     var b = $("bcp");
@@ -1747,9 +1788,9 @@ function concluir(canal, via){
   var i = escolha.item, passos, etapas;
   var pago = via === "boleto" ? "Boleto gerado: confirma quando compensar" : "Pagamento aprovado no " + via + ", pela Stripe";
   if(canal === "site"){
-    etapas = PASSOS_SITE;
+    etapas = escolha.passos;
     passos = [pago,
-              "Horário " + horarios[escolha.slot] + " reservado na agenda",
+              escolha.slot !== null ? "Horário " + horarios[escolha.slot] + " reservado na agenda" : "Pedido ligado ao seu cadastro com a Mãe Karina",
               "Suas informações entregues no painel da Mãe Karina",
               "Pedido na fila dos trabalhos a fazer",
               "Tudo guardado na sua conta"];
@@ -1757,7 +1798,7 @@ function concluir(canal, via){
     etapas = ["Hostinger","Confirmação"];
     passos = ["Hostinger aprovou a compra", "Acesso ao curso liberado por e-mail", "Aluno registrado"];
   } else {
-    etapas = PASSOS_LOJA;
+    etapas = escolha.passos;
     passos = [pago,
               "Pedido registrado na Bling, que baixa o estoque em todas as lojas",
               "Nota e etiqueta de envio geradas",
@@ -1879,6 +1920,24 @@ var VOZES = [
 /* ---------- botão do WhatsApp ----------
    Aparece depois que a página assenta, para não brigar com a primeira tela. */
 setTimeout(function(){ $("fab").classList.add("on"); }, reduce ? 300 : 2600);
+
+/* ---------- link de pagamento ----------
+   MOCK: o link traz o pedido na própria URL para a demonstração andar sem
+   servidor. No sistema de verdade é um código curto, e o pedido, o valor e a
+   pessoa vêm do banco.                                                        */
+(function(){
+  var q = new URLSearchParams(location.search);
+  if(!q.get("pagar")) return;
+  var g = q.get("g") || "Trabalho";
+  var item = {
+    id:900, t:q.get("s") || "Pedido", p:Math.max(0, Math.round(Number(q.get("v")) || 0)),
+    g: g === "Produto" ? "produtos" : g === "Consulta" ? "consultas" : "trabalhos",
+    canal: g === "Produto" ? "loja" : "site",
+    d: g === "Produto" ? "Preparado por ela e enviado para você" : "Combinado com você pelo WhatsApp",
+    img:""
+  };
+  setTimeout(function(){ abrir(item, null, { nome:q.get("n") || "" }); }, reduce ? 100 : 1700);
+})();
 
 $("ano").textContent = new Date().getFullYear();
 preloader();

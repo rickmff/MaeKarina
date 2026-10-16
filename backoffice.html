@@ -250,11 +250,16 @@ a{color:inherit;text-decoration:none}
 
 /* clientes */
 .rw.cli{grid-template-columns:40px 1fr 150px 110px 110px}
+.rw.cli{cursor:pointer;transition:background .2s}
+.rw.cli:hover{background:rgba(201,165,82,.05)}
 .rw.cli .av2{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line2);font-family:var(--display);font-size:14px;color:var(--ink2)}
 @media (max-width:900px){
   .rw.cli{grid-template-columns:36px 1fr auto;gap:11px}
   .rw.cli .qnd,.rw.cli .ult{display:none}
 }
+
+.cli-h{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.2em;color:var(--gold);margin:22px 0 4px}
+.linkbox{display:block;width:100%;margin-top:6px;background:var(--bg);border:1px solid var(--line2);padding:12px 13px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--ink2);word-break:break-all;line-height:1.5}
 
 /* agenda dos trabalhos a fazer */
 .ag-d{font-family:var(--display);text-transform:uppercase;font-size:12px;letter-spacing:.2em;color:var(--gold);padding:20px 0 8px;border-bottom:1px solid var(--line)}
@@ -609,8 +614,18 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
 
       <!-- ============ CLIENTES ============ -->
       <section class="pane" id="pane-clientes" aria-labelledby="titulo">
+        <div class="shead">
+          <div>
+            <div class="ix"><u aria-hidden="true"></u>Clientes</div>
+            <h2>Seus clientes</h2>
+            <p>Quem criou conta no site e quem você cadastrou. Toque em um cliente para ver o histórico e mandar um link de pagamento.</p>
+          </div>
+          <button class="btn" type="button" id="novo-cliente">
+            <span>Novo cliente <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></span>
+          </button>
+        </div>
         <div class="box">
-          <div class="bh">Quem já comprou<span class="rt"><span class="chip on"><u aria-hidden="true"></u>Com conta no site</span></span></div>
+          <div class="bh">Cadastro de clientes</div>
           <div class="bb">
             <div class="rw hd cli"><span></span><span>Cliente</span><span>O que já pediu</span><span class="qnd">Pedidos</span><span class="ult">Último</span></div>
             <div id="lista-clientes"></div>
@@ -618,7 +633,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
         </div>
         <div class="demo">
           <u aria-hidden="true"></u>
-          <span>Cada pessoa que cria conta no site entra nesta lista, com o que já pediu e quando. É daqui que sai a base para o CRM, quando você quiser usar um. Nesta demonstração os clientes são de exemplo.</span>
+          <span>Quem cria conta no site entra nesta lista sozinho. Quem fala com você pelo WhatsApp, você cadastra aqui e manda o link de pagamento. É daqui que sai a base para o CRM, quando você quiser usar um. Nesta demonstração os clientes são de exemplo.</span>
         </div>
       </section>
 
@@ -913,13 +928,28 @@ var ETAPAS = {
 function etapasDe(p){ return ETAPAS[p.tipo] || ETAPAS.Trabalho; }
 
 /* ---------- clientes ----------
-   MOCK: quem criou conta no site. Vira a base para o CRM depois.               */
+   MOCK: quem criou conta no site ou foi cadastrado no painel, com os pedidos de
+   cada um. No sistema de verdade vem do banco. Vira a base para o CRM depois.  */
 var CLIENTES = [
-  { n:"Ana Paula Siqueira", e:"ana.siqueira@email.com", q:4, ult:"há 12 min", itens:"Abertura de caminhos, consulta, banho, tarot" },
-  { n:"Marcos Rebelo", e:"marcos.rebelo@email.com", q:2, ult:"há 1 h", itens:"Consulta, firmeza de proteção" },
-  { n:"Juliana Tavares", e:"ju.tavares@email.com", q:3, ult:"há 2 h", itens:"Descarrego, banho de ervas, vela" },
-  { n:"Beatriz Lemos", e:"bia.lemos@email.com", q:1, ult:"há 3 h", itens:"Leitura de tarot" },
-  { n:"Renata Munhoz", e:"renata.m@email.com", q:5, ult:"há 5 h", itens:"Vela de sete dias, guia, curso, consulta" }
+  { n:"Ana Paula Siqueira", e:"ana.siqueira@email.com", w:"(51) 99999-0000", desde:"março de 2026", origem:"site", ped:[
+    { i:"Abertura de caminhos", v:250, q:"hoje", st:"Em andamento" },
+    { i:"Consulta com a Mãe Karina", v:150, q:"28 ago", st:"Concluído" },
+    { i:"Banho de ervas", v:75, q:"14 ago", st:"Entregue" },
+    { i:"Leitura de tarot", v:70, q:"2 jul", st:"Concluído" } ]},
+  { n:"Marcos Rebelo", e:"marcos.rebelo@email.com", w:"(51) 98888-1212", desde:"agosto de 2026", origem:"painel", ped:[
+    { i:"Consulta com a Mãe Karina", v:150, q:"hoje", st:"Pago pelo link" },
+    { i:"Firmeza de proteção", v:200, q:"3 set", st:"Concluído" } ]},
+  { n:"Juliana Tavares", e:"ju.tavares@email.com", w:"(11) 97777-3434", desde:"junho de 2026", origem:"site", ped:[
+    { i:"Descarrego à distância", v:180, q:"hoje", st:"A começar" },
+    { i:"Banho de ervas", v:75, q:"20 ago", st:"Entregue" },
+    { i:"Vela de sete dias", v:45, q:"20 ago", st:"Entregue" } ]},
+  { n:"Beatriz Lemos", e:"", w:"(21) 96666-5656", desde:"ontem", origem:"painel", ped:[
+    { i:"Leitura de tarot", v:70, q:"ontem", st:"Aguardando pagamento" } ]},
+  { n:"Renata Munhoz", e:"renata.m@email.com", w:"(47) 95555-7878", desde:"abril de 2026", origem:"site", ped:[
+    { i:"Vela de sete dias", v:45, q:"há 5 h", st:"Preparando" },
+    { i:"Guia de proteção", v:120, q:"2 set", st:"Entregue" },
+    { i:"Tarot do zero", v:397, q:"15 jul", st:"Acesso liberado" },
+    { i:"Consulta com a Mãe Karina", v:150, q:"30 mai", st:"Concluído" } ]}
 ];
 
 /* ---------- utilidades ---------- */
@@ -983,7 +1013,7 @@ function montarCampos(tipo){
 var TITULOS = {
   metricas:   ["Métricas", "Como o atendimento está indo nos últimos 30 dias"],
   agenda:     ["Agenda", "Os trabalhos pagos, na ordem em que precisam ser feitos"],
-  clientes:   ["Clientes", "Quem já comprou, o que pediu e quando"],
+  clientes:   ["Clientes", "Cadastro, histórico e link de pagamento"],
   produtos:   ["Produtos", "O que está à venda e em qual canal"],
   eventos:    ["Eventos", "Giras e encontros marcados"],
   pagamentos: ["Pagamentos", "Sua conta da Stripe"]
@@ -1193,16 +1223,159 @@ function montarAgenda(){
 
 function montarClientes(){
   $("nc").textContent = CLIENTES.length;
+  if(!CLIENTES.length){
+    $("lista-clientes").innerHTML = '<div class="vazio"><b>Nenhum cliente ainda</b>Clique em "Novo cliente" para cadastrar o primeiro.</div>';
+    return;
+  }
   $("lista-clientes").innerHTML = CLIENTES.map(function(c,i){
-    return '<div class="rw cli" style="--i:' + i + '">' +
+    var itens = c.ped.map(function(p){ return p.i; }).join(", ") || "Nenhum pedido ainda";
+    return '<div class="rw cli" style="--i:' + i + '" data-cli="' + i + '" role="button" tabindex="0" aria-label="Abrir ' + esc(c.n) + '">' +
       '<div class="av2" aria-hidden="true">' + esc(iniciais(c.n)) + '</div>' +
-      '<div><h3>' + esc(c.n) + '</h3><div class="d">' + esc(c.e) + '</div></div>' +
-      '<div class="d">' + esc(c.itens) + '</div>' +
-      '<div class="qnd money" style="text-align:right">' + c.q + '</div>' +
-      '<div class="ult d" style="text-align:right">' + esc(c.ult) + '</div>' +
+      '<div><h3>' + esc(c.n) + '</h3><div class="d">' + esc(c.w) +
+        (c.origem === "painel" ? ' · cadastrado por você' : ' · conta no site') + '</div></div>' +
+      '<div class="d">' + esc(itens) + '</div>' +
+      '<div class="qnd money" style="text-align:right">' + c.ped.length + '</div>' +
+      '<div class="ult d" style="text-align:right">' + esc(c.ped.length ? c.ped[0].q : "—") + '</div>' +
     '</div>';
   }).join("");
 }
+
+/* ---------- ficha do cliente: histórico e cobrança ---------- */
+var PAGO = ["Concluído","Entregue","Em andamento","Pago pelo link","A começar","Preparando","Acesso liberado"];
+
+function abrirCliente(k){
+  var c = CLIENTES[k];
+  if(!c) return;
+  var total = c.ped.reduce(function(s, p){ return s + (PAGO.indexOf(p.st) > -1 ? p.v : 0); }, 0);
+  var hist = c.ped.length ? c.ped.map(function(p){
+    var cls = p.st === "Aguardando pagamento" ? "" : (PAGO.indexOf(p.st) > -1 ? "on" : "off");
+    return '<div class="kv"><div><small>' + esc(p.q) + '</small><b>' + esc(p.i) + ' · ' + brl(p.v) + '</b></div>' +
+      '<span class="chip ' + cls + '"><u aria-hidden="true"></u>' + esc(p.st) + '</span></div>';
+  }).join("") : '<div class="vazio" style="padding:20px 0"><b>Nenhum pedido ainda</b>Mande um link de pagamento para o primeiro.</div>';
+
+  var corpo =
+    '<div class="kv"><div><small>WhatsApp</small><b>' + esc(c.w) + '</b></div></div>' +
+    '<div class="kv"><div><small>E-mail</small><b>' + esc(c.e || "—") + '</b></div></div>' +
+    '<div class="kv"><div><small>Cliente desde</small><b>' + esc(c.desde) + '</b></div>' +
+      '<span class="chip"><u aria-hidden="true"></u>' + (c.origem === "painel" ? "Cadastrado por você" : "Criou conta no site") + '</span></div>' +
+    '<div class="cli-h">Histórico de pedidos</div>' + hist +
+    (total ? '<div class="kv"><div><small>Total já pago</small><b>' + brl(total) + '</b></div></div>' : '') +
+    '<div class="frow">' +
+      '<button class="btn" type="button" id="cl-cobrar"><span>Mandar link de pagamento</span></button>' +
+      '<button class="btn ghost" type="button" id="cl-x"><span>Fechar</span></button>' +
+    '</div>';
+
+  abrirModal(c.n, (c.ped.length ? c.ped.length + (c.ped.length === 1 ? " pedido" : " pedidos") : "Sem pedidos") + " · só você vê estes valores", corpo, function(){
+    $("cl-cobrar").addEventListener("click", function(){ formCobranca(k); });
+    $("cl-x").addEventListener("click", fecharModal);
+  });
+}
+
+function formCliente(){
+  var corpo =
+    '<form class="form" id="fc" novalidate>' +
+      '<div class="fg"><label for="c-n">Nome</label>' +
+        '<input class="inp" id="c-n" type="text" placeholder="Como a pessoa se chama"></div>' +
+      '<div class="fg"><label for="c-w">WhatsApp</label>' +
+        '<input class="inp" id="c-w" type="tel" inputmode="tel" placeholder="(51) 99999-0000">' +
+        '<span class="hint">É para este número que o link de pagamento vai.</span></div>' +
+      '<div class="fg"><label for="c-e">E-mail <span class="hint">opcional</span></label>' +
+        '<input class="inp" id="c-e" type="email" placeholder="pessoa@email.com"></div>' +
+      '<div class="frow">' +
+        '<button class="btn ghost" type="button" id="c-x"><span>Cancelar</span></button>' +
+        '<button class="btn" type="submit"><span>Cadastrar</span></button>' +
+      '</div>' +
+    '</form>';
+  abrirModal("Novo cliente", "Para quem fala com você pelo WhatsApp e ainda não tem conta no site.", corpo, function(){
+    $("c-x").addEventListener("click", fecharModal);
+    $("fc").addEventListener("submit", function(e){
+      e.preventDefault();
+      var n = $("c-n").value.trim(), w = $("c-w").value.trim();
+      if(!n){ $("c-n").focus(); aviso("Falta o nome."); return; }
+      if(w.replace(/\D/g, "").length < 10){ $("c-w").focus(); aviso("Confira o WhatsApp, com DDD."); return; }
+      CLIENTES.unshift({ n:n, e:$("c-e").value.trim(), w:w, desde:"hoje", origem:"painel", ped:[] });
+      montarClientes();
+      aviso("Cliente cadastrado.");
+      abrirCliente(0);
+    });
+  });
+}
+
+/* o link carrega o pedido para a demonstração andar sozinha; no sistema de
+   verdade é um código curto e o pedido fica guardado no servidor            */
+function linkPagamento(c, item, v){
+  var base = /^https?:/.test(location.protocol) ? location.origin + "/" : new URL("index.html", location.href).href;
+  return base + "?pagar=" + Math.random().toString(36).slice(2, 8) +
+    "&s=" + encodeURIComponent(item.t) + "&g=" + encodeURIComponent(item.g) +
+    "&v=" + v + "&n=" + encodeURIComponent(c.n.split(" ")[0]);
+}
+
+function formCobranca(k){
+  var c = CLIENTES[k];
+  var lista = produtos.filter(function(p){ return p.ativo && p.canal !== "host"; });
+  var corpo =
+    '<form class="form" id="fq" novalidate>' +
+      '<div class="fg"><label for="q-i">Serviço ou produto</label><select class="inp" id="q-i">' +
+        lista.map(function(p, j){ return '<option value="' + j + '">' + esc(p.t) + ' · ' + esc(p.g) + '</option>'; }).join("") +
+      '</select></div>' +
+      '<div class="fg"><label for="q-v">Valor (R$)</label>' +
+        '<input class="inp" id="q-v" type="number" min="1" step="1" value="' + (lista[0] ? lista[0].p : "") + '">' +
+        '<span class="hint">Vem o preço do catálogo. Mude se combinou outro valor com a pessoa.</span></div>' +
+      '<div class="frow">' +
+        '<button class="btn ghost" type="button" id="q-x"><span>Voltar</span></button>' +
+        '<button class="btn" type="submit"><span>Gerar link</span></button>' +
+      '</div>' +
+    '</form>';
+  abrirModal("Link de pagamento", "Para " + c.n + ". Ela abre, paga e preenche o que o serviço pede.", corpo, function(){
+    $("q-i").addEventListener("change", function(){ $("q-v").value = lista[+$("q-i").value].p; });
+    $("q-x").addEventListener("click", function(){ abrirCliente(k); });
+    $("fq").addEventListener("submit", function(e){
+      e.preventDefault();
+      var item = lista[+$("q-i").value], v = Math.round(Number($("q-v").value));
+      if(!item){ aviso("Cadastre um item no catálogo primeiro."); return; }
+      if(!(v > 0)){ $("q-v").focus(); aviso("Falta o valor."); return; }
+      c.ped.unshift({ i:item.t, v:v, q:"agora", st:"Aguardando pagamento" });
+      montarClientes();
+      linkPronto(k, item, v, linkPagamento(c, item, v));
+    });
+  });
+}
+
+function linkPronto(k, item, v, url){
+  var c = CLIENTES[k];
+  var fone = c.w.replace(/\D/g, "");
+  if(fone.length <= 11) fone = "55" + fone;
+  var msg = "Oi, " + c.n.split(" ")[0] + "! Aqui está o link para pagar " + item.t + " (" + brl(v) + "): " + url;
+  var corpo =
+    '<div class="kv"><div><small>Pedido</small><b>' + esc(item.t) + ' · ' + brl(v) + '</b></div>' +
+      '<span class="chip"><u aria-hidden="true"></u>Aguardando pagamento</span></div>' +
+    '<label class="cli-h" for="q-l" style="display:block">O link</label>' +
+    '<textarea class="linkbox" id="q-l" readonly rows="3">' + esc(url) + '</textarea>' +
+    '<div class="frow">' +
+      '<a class="btn" id="q-w" href="https://wa.me/' + fone + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener"><span>Enviar pelo WhatsApp</span></a>' +
+      '<button class="btn ghost" type="button" id="q-c"><span>Copiar link</span></button>' +
+    '</div>' +
+    '<div class="note" style="margin-top:18px"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 7v4M10 14h.01"/><circle cx="10" cy="10" r="7.5"/></svg>' +
+      '<span>Quando ela pagar, o pedido entra na agenda e no histórico dela. Se for serviço, ela preenche a ficha logo depois de pagar.</span></div>';
+  abrirModal("Link pronto", "Para " + c.n + " · " + c.w, corpo, function(){
+    $("q-c").addEventListener("click", function(){
+      var t = $("q-l");
+      try{ navigator.clipboard.writeText(url); }catch(err){ t.select(); }
+      aviso("Link copiado.");
+    });
+  });
+}
+
+$("novo-cliente").addEventListener("click", formCliente);
+document.addEventListener("click", function(e){
+  var el = e.target.closest ? e.target.closest("[data-cli]") : null;
+  if(el) abrirCliente(+el.dataset.cli);
+});
+document.addEventListener("keydown", function(e){
+  if(e.key !== "Enter" && e.key !== " ") return;
+  var el = e.target.closest ? e.target.closest("[data-cli]") : null;
+  if(el){ e.preventDefault(); abrirCliente(+el.dataset.cli); }
+});
 
 /* ---------- a ficha e a execução do trabalho ----------
    Uma tela só: o que a pessoa preencheu, em que etapa está e o botão que
