@@ -35,9 +35,10 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 }
 .q.cima{transform:translateY(-40px)}
 .q.on{opacity:1;visibility:visible;transform:none}
-.q .in{width:100%;max-width:640px;margin:0 auto}
-@media (max-width:640px){.q{align-items:flex-start;padding-top:clamp(64px,14svh,120px)}}
+.q .in{width:100%;max-width:640px;margin:auto}
+@media (max-width:640px){.q{align-items:flex-start;padding-top:clamp(56px,10svh,100px)}}
 
+.sec-t{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin-bottom:6px}
 .n{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:600;color:var(--gold);margin-bottom:12px}
 .n svg{width:14px;height:14px}
 .q h2{font-size:clamp(23px,5vw,32px);font-weight:500;line-height:1.3;letter-spacing:-.015em}
@@ -53,7 +54,14 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .campo:focus{outline:none;border-bottom-color:var(--gold)}
 textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;overflow-y:auto}
 
-.ops{display:grid;gap:10px;margin-top:30px;max-width:340px}
+/* vários campos na mesma tela */
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin-top:10px}
+.grade label{display:block;font-size:15px;font-weight:500;color:var(--ink2);margin-top:22px}
+.grade .campo{margin-top:4px;font-size:clamp(19px,4vw,24px)}
+.grade .larga{grid-column:1 / -1}
+@media (max-width:480px){.grade{grid-template-columns:1fr}}
+
+.ops{display:grid;gap:10px;margin-top:30px;max-width:380px}
 .op{
   display:flex;align-items:center;gap:14px;text-align:left;width:100%;
   border:1px solid var(--line2);background:var(--card);border-radius:10px;padding:13px 16px;font-size:19px;
@@ -64,6 +72,23 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
 .op[aria-checked="true"]{border-color:var(--gold);background:var(--gold-bg)}
 .op[aria-checked="true"] kbd{background:var(--gold);border-color:var(--gold);color:#fff}
 
+/* lista de serviços */
+.servs{display:grid;gap:14px;margin-top:26px}
+.sv{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px 18px}
+.sv-h{display:flex;align-items:center;justify-content:space-between;font-size:15px;font-weight:600;color:var(--gold)}
+.sv-x{font-size:15px;color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
+.sv label{display:block;font-size:15px;font-weight:500;color:var(--ink2);margin-top:14px}
+.sv .inp{display:block;width:100%;font:inherit;font-size:19px;color:var(--ink);background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:10px 12px;margin-top:5px}
+.sv .inp:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-bg)}
+.sv textarea.inp{min-height:76px;resize:vertical;line-height:1.45}
+.sv .dois{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media (max-width:480px){.sv .dois{grid-template-columns:1fr 1fr}.sv .dois > div:last-child{grid-column:1 / -1}}
+.tipos{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.tipos button{border:1px solid var(--line2);background:var(--bg);border-radius:999px;padding:8px 16px;font-size:17px}
+.tipos button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.mais{margin-top:14px;border:1px dashed var(--line2);border-radius:12px;padding:14px;width:100%;font-size:18px;font-weight:500;color:var(--ink2)}
+.mais:hover{border-color:var(--gold);color:var(--gold)}
+
 .acao{display:flex;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap}
 .ok{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;font-size:18px;font-weight:600;border-radius:10px;padding:12px 22px;transition:opacity .2s}
 .ok:hover{opacity:.88}
@@ -72,13 +97,9 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
 .tecla b{font-weight:600}
 @media (hover:none),(pointer:coarse){.tecla{display:none}}
 
-/* abertura e final */
 .fim .eyebrow{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 .fim h1{font-size:clamp(34px,7.5vw,52px);font-weight:600;line-height:1.1;letter-spacing:-.025em;margin-top:12px}
 .fim p{color:var(--ink2);font-size:19px;margin-top:16px;max-width:30em}
-.lista{list-style:none;margin-top:18px}
-.lista li{padding:5px 0 5px 22px;position:relative;color:var(--ink2)}
-.lista li::before{content:"";position:absolute;left:4px;top:15px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .fim .acao{flex-direction:column;align-items:stretch;max-width:360px}
 .fim .ok{justify-content:center;padding:16px 22px}
 .sec{font-size:16px;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;align-self:center}
@@ -103,118 +124,203 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
 
 <main class="palco" id="palco">
 
-  <section class="q" data-k="nome" data-rotulo="Nome no site" data-grupo="Você">
+  <!-- ===== serviços ===== -->
+  <section class="q" data-k="servicos" data-grupo="Consultas e trabalhos" data-tipo="lista">
     <div class="in">
-      <label for="nome"><h2>Qual nome você quer que apareça no site?</h2></label>
-      <input class="campo" id="nome" type="text" placeholder="Mãe Karina de Iemanjá" autocomplete="off">
+      <div class="sec-t">Consultas e trabalhos</div>
+      <h2>Quais <em>consultas e trabalhos</em> você faz, e quanto cobra?</h2>
+      <p class="dica">Um cartão para cada. Se for mais fácil, pule e me mande um áudio no WhatsApp.</p>
+      <div class="servs" id="servs"></div>
+      <button class="mais" type="button" id="mais">+ Adicionar outro</button>
     </div>
   </section>
 
-  <section class="q" data-k="email" data-rotulo="E-mail" data-grupo="Você">
+  <!-- ===== Bling ===== -->
+  <section class="q" data-k="bling" data-rotulo="E-mail da Bling" data-grupo="Bling">
     <div class="in">
-      <label for="email"><h2>Qual o seu <em>e-mail</em>?</h2></label>
-      <p class="dica">As contas do site ficam nele.</p>
-      <input class="campo" id="email" type="email" inputmode="email" placeholder="voce@email.com" autocomplete="email">
+      <div class="sec-t">Bling</div>
+      <label for="bling"><h2>Qual o e-mail da sua conta na <em>Bling</em>?</h2></label>
+      <p class="dica">Depois eu te peço para me adicionar como usuário. Não mande a senha.</p>
+      <input class="campo" id="bling" type="email" inputmode="email" placeholder="voce@email.com" autocomplete="off">
     </div>
   </section>
 
-  <section class="q" data-k="whats" data-rotulo="WhatsApp do site" data-grupo="Você">
+  <!-- ===== Hotmart ===== -->
+  <section class="q" data-k="hotmart" data-rotulo="E-mail da Hotmart" data-grupo="Hotmart">
     <div class="in">
-      <label for="whats"><h2>Qual WhatsApp vai no botão do site?</h2></label>
-      <p class="dica">É o número que os seus clientes vão chamar.</p>
-      <input class="campo" id="whats" type="tel" inputmode="tel" placeholder="(47) 99999-9999" autocomplete="tel">
+      <div class="sec-t">Hotmart</div>
+      <label for="hotmart"><h2>Qual o e-mail da sua conta na <em>Hotmart</em>?</h2></label>
+      <p class="dica">Depois eu te peço para me colocar como colaborador. Não mande a senha.</p>
+      <input class="campo" id="hotmart" type="email" inputmode="email" placeholder="voce@email.com" autocomplete="off">
     </div>
   </section>
 
-  <section class="q" data-k="redes" data-rotulo="Instagram e TikTok" data-grupo="Você">
+  <!-- ===== WhatsApp Business ===== -->
+  <section class="q" data-k="whats" data-rotulo="Número" data-grupo="WhatsApp Business">
     <div class="in">
-      <label for="redes"><h2>Qual o seu Instagram e o seu TikTok?</h2></label>
-      <input class="campo" id="redes" type="text" placeholder="@maekarina" autocomplete="off">
+      <div class="sec-t">WhatsApp Business</div>
+      <label for="whats"><h2>Qual o número do seu <em>WhatsApp Business</em>?</h2></label>
+      <p class="dica">É o número que vai no botão do site. Com o código do país.</p>
+      <input class="campo" id="whats" type="tel" inputmode="tel" placeholder="+55 47 99999-9999" autocomplete="tel">
     </div>
   </section>
 
-  <section class="q" data-k="dominio" data-rotulo="Endereço do site" data-grupo="Endereço do site">
+  <section class="q" data-k="wapp" data-rotulo="Usa o app WhatsApp Business" data-grupo="WhatsApp Business" data-tipo="escolha">
     <div class="in">
-      <label for="dominio"><h2>Que <em>endereço</em> você quer para o site?</h2></label>
-      <p class="dica">Mande até 3 opções, da que mais gosta para a que menos gosta.</p>
-      <input class="campo" id="dominio" type="text" placeholder="maekarina.com.br" autocomplete="off">
+      <div class="sec-t">WhatsApp Business</div>
+      <h2 id="h-wapp">Nesse número você já usa o app <em>WhatsApp Business</em>?</h2>
+      <p class="dica">É o app verde-escuro, com o “B” no ícone.</p>
+      <div class="ops" role="radiogroup" aria-labelledby="h-wapp">
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Sim"><kbd>A</kbd>Sim</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Não, uso o WhatsApp normal"><kbd>B</kbd>Não, uso o normal</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Não sei"><kbd>C</kbd>Não sei</button>
+      </div>
     </div>
   </section>
 
-  <section class="q" data-k="servicos" data-rotulo="Serviços" data-grupo="Consultas e trabalhos">
+  <!-- ===== Stripe (Brasil) ===== -->
+  <section class="q" data-k="stripeTipo" data-rotulo="Vai receber como" data-grupo="Stripe (Brasil)" data-tipo="escolha">
     <div class="in">
-      <label for="servicos"><h2>Quais <em>consultas e trabalhos</em> você faz?</h2></label>
-      <p class="dica">Um por linha: nome, preço e quanto tempo leva.</p>
-      <textarea class="campo" id="servicos" rows="2" placeholder="Jogo de búzios · R$ 150 · 40 min"></textarea>
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <h2 id="h-stipo">Agora os dados para abrir a sua conta na <em>Stripe</em>. Você vai receber como:</h2>
+      <p class="dica">A foto do documento e a selfie a Stripe pede na hora. Isso você faz no celular, comigo junto.</p>
+      <div class="ops" role="radiogroup" aria-labelledby="h-stipo">
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Pessoa física (CPF)"><kbd>A</kbd>Pessoa física, com CPF</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Empresa (CNPJ ou MEI)"><kbd>B</kbd>Empresa, com CNPJ ou MEI</button>
+      </div>
     </div>
   </section>
 
-  <section class="q" data-k="horarios" data-rotulo="Horários" data-grupo="Consultas e trabalhos">
+  <section class="q" data-k="nomeDoc" data-rotulo="Nome completo" data-grupo="Stripe (Brasil)">
     <div class="in">
-      <label for="horarios"><h2>Em que dias e horários você atende?</h2></label>
-      <input class="campo" id="horarios" type="text" placeholder="Segunda a sexta, das 10h às 18h" autocomplete="off">
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <label for="nomeDoc"><h2>Seu <em>nome completo</em>, igual ao documento</h2></label>
+      <input class="campo" id="nomeDoc" type="text" autocomplete="name">
     </div>
   </section>
 
-  <section class="q" data-k="ficha" data-rotulo="O que preciso saber" data-grupo="Consultas e trabalhos">
+  <section class="q" data-k="cpf" data-rotulo="CPF" data-grupo="Stripe (Brasil)">
     <div class="in">
-      <label for="ficha"><h2>O que você precisa saber da pessoa <em>em cada serviço</em>?</h2></label>
-      <p class="dica">É o que ela vai preencher depois de pagar.</p>
-      <textarea class="campo" id="ficha" rows="2" placeholder="Trabalho de amor: nome dos dois, nascimento e uma foto"></textarea>
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <label for="cpf"><h2>Seu <em>CPF</em></h2></label>
+      <p class="dica">Ele precisa estar regular na Receita Federal.</p>
+      <input class="campo" id="cpf" type="text" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" data-mascara="cpf">
     </div>
   </section>
 
-  <section class="q" data-k="emailBling" data-rotulo="E-mail da Bling" data-grupo="Produtos e cursos">
+  <section class="q" data-k="cnpj" data-rotulo="CNPJ" data-grupo="Stripe (Brasil)" data-se="stripeTipo=Empresa (CNPJ ou MEI)">
     <div class="in">
-      <label for="emailBling"><h2>Qual o e-mail da sua conta na <em>Bling</em>?</h2></label>
-      <p class="dica">É de lá que o site puxa os seus produtos.</p>
-      <input class="campo" id="emailBling" type="email" inputmode="email" placeholder="voce@email.com" autocomplete="off">
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <label for="cnpj"><h2>O <em>CNPJ</em> da empresa ou do MEI</h2></label>
+      <input class="campo" id="cnpj" type="text" inputmode="numeric" maxlength="18" placeholder="00.000.000/0000-00" data-mascara="cnpj">
     </div>
   </section>
 
-  <section class="q" data-k="cursos" data-rotulo="Cursos na Hostinger" data-grupo="Produtos e cursos">
+  <section class="q" data-k="nasc" data-rotulo="Nascimento" data-grupo="Stripe (Brasil)">
     <div class="in">
-      <label for="cursos"><h2>Quais <em>cursos</em> você tem na Hostinger?</h2></label>
-      <p class="dica">O link de cada um, ou só o nome.</p>
-      <textarea class="campo" id="cursos" rows="2" placeholder="Umbanda para iniciantes"></textarea>
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <label for="nasc"><h2>Sua <em>data de nascimento</em></h2></label>
+      <input class="campo" id="nasc" type="text" inputmode="numeric" maxlength="10" placeholder="dd/mm/aaaa" data-mascara="data">
     </div>
   </section>
 
-  <section class="q" data-k="stripe" data-rotulo="Tem conta na Stripe" data-grupo="Pagamentos" data-tipo="escolha">
+  <section class="q" data-k="endBR" data-rotulo="Endereço no Brasil" data-grupo="Stripe (Brasil)">
     <div class="in">
-      <h2 id="h-stripe">Você já tem conta na <em>Stripe</em>?</h2>
-      <p class="dica">É por ela que o site recebe. Os dados do banco você coloca direto lá, comigo junto. Não mande aqui.</p>
-      <div class="ops" role="radiogroup" aria-labelledby="h-stripe">
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <label for="endBR"><h2>Seu <em>endereço no Brasil</em></h2></label>
+      <p class="dica">Rua, número, bairro, cidade, estado e CEP.</p>
+      <textarea class="campo" id="endBR" rows="2" placeholder="Rua das Flores, 120 · Centro · Blumenau, SC · 89010-000"></textarea>
+    </div>
+  </section>
+
+  <section class="q" data-k="foneSup" data-rotulo="Telefone de atendimento" data-grupo="Stripe (Brasil)">
+    <div class="in">
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <label for="foneSup"><h2>Qual <em>telefone</em> aparece para os clientes, em caso de dúvida no pagamento?</h2></label>
+      <p class="dica">Pode ser o mesmo do WhatsApp.</p>
+      <input class="campo" id="foneSup" type="tel" inputmode="tel" placeholder="(47) 99999-9999">
+    </div>
+  </section>
+
+  <section class="q" data-k="renda" data-rotulo="Renda bruta mensal" data-grupo="Stripe (Brasil)" data-tipo="escolha">
+    <div class="in">
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <h2 id="h-renda">Quanto você <em>fatura por mês</em>, mais ou menos?</h2>
+      <p class="dica">A Stripe pergunta isso por regra do Banco Central.</p>
+      <div class="ops" role="radiogroup" aria-labelledby="h-renda">
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Negócio novo, sem faturamento"><kbd>A</kbd>Estou começando agora</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Menos de R$ 5.000"><kbd>B</kbd>Menos de R$ 5.000</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="R$ 5.000 a R$ 10.000"><kbd>C</kbd>R$ 5.000 a R$ 10.000</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="R$ 10.000 a R$ 20.000"><kbd>D</kbd>R$ 10.000 a R$ 20.000</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Mais de R$ 20.000"><kbd>E</kbd>Mais de R$ 20.000</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="q" data-k="banco" data-grupo="Stripe (Brasil)" data-tipo="grade">
+    <div class="in">
+      <div class="sec-t">Stripe · conta no Brasil</div>
+      <h2>Em que <em>conta bancária</em> o dinheiro cai?</h2>
+      <p class="dica">Tem que estar no mesmo CPF (ou CNPJ) da conta na Stripe.</p>
+      <div class="grade">
+        <div class="larga"><label for="bBanco">Banco</label><input class="campo" id="bBanco" type="text" data-r="Banco" placeholder="Nubank, Caixa, Itaú…"></div>
+        <div><label for="bAg">Agência</label><input class="campo" id="bAg" type="text" inputmode="numeric" data-r="Agência" placeholder="0001"></div>
+        <div><label for="bConta">Conta, com dígito</label><input class="campo" id="bConta" type="text" inputmode="numeric" data-r="Conta" placeholder="123456-7"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MB WAY ===== -->
+  <section class="q" data-k="pt" data-rotulo="Mora ou tem atividade em Portugal" data-grupo="MB WAY (Portugal)" data-tipo="escolha">
+    <div class="in">
+      <div class="sec-t">MB WAY</div>
+      <h2 id="h-pt">Para receber por <em>MB WAY</em>: você mora ou tem atividade aberta em Portugal?</h2>
+      <p class="dica">O MB WAY só funciona numa conta da Stripe aberta em Portugal, em euro. A conta do Brasil não recebe MB WAY.</p>
+      <div class="ops" role="radiogroup" aria-labelledby="h-pt">
         <button class="op" type="button" role="radio" aria-checked="false" data-v="Sim"><kbd>A</kbd>Sim</button>
         <button class="op" type="button" role="radio" aria-checked="false" data-v="Não"><kbd>B</kbd>Não</button>
       </div>
     </div>
   </section>
 
-  <section class="q" data-k="historia" data-rotulo="História" data-grupo="Sua história">
+  <section class="q" data-k="nif" data-rotulo="NIF" data-grupo="MB WAY (Portugal)" data-se="pt=Sim">
     <div class="in">
-      <label for="historia"><h2>Conta pra mim: <em>quem é você</em> e como começou?</h2></label>
-      <p class="dica">Do seu jeito, em poucas linhas. Eu arrumo o texto.</p>
-      <textarea class="campo" id="historia" rows="3"></textarea>
+      <div class="sec-t">MB WAY · conta em Portugal</div>
+      <label for="nif"><h2>Seu <em>NIF</em> em Portugal</h2></label>
+      <input class="campo" id="nif" type="text" inputmode="numeric" maxlength="11" placeholder="000 000 000">
     </div>
   </section>
 
+  <section class="q" data-k="endPT" data-rotulo="Morada em Portugal" data-grupo="MB WAY (Portugal)" data-se="pt=Sim">
+    <div class="in">
+      <div class="sec-t">MB WAY · conta em Portugal</div>
+      <label for="endPT"><h2>Sua <em>morada</em> em Portugal</h2></label>
+      <p class="dica">Rua, número, código postal e localidade.</p>
+      <textarea class="campo" id="endPT" rows="2" placeholder="Rua de Santa Catarina, 100 · 4000-447 Porto"></textarea>
+    </div>
+  </section>
+
+  <section class="q" data-k="iban" data-rotulo="IBAN" data-grupo="MB WAY (Portugal)" data-se="pt=Sim">
+    <div class="in">
+      <div class="sec-t">MB WAY · conta em Portugal</div>
+      <label for="iban"><h2>O <em>IBAN</em> da conta em euro onde o MB WAY cai</h2></label>
+      <p class="dica">Também no seu nome.</p>
+      <input class="campo" id="iban" type="text" placeholder="PT50 0000 0000 0000 0000 0000 0" autocomplete="off">
+    </div>
+  </section>
+
+  <!-- ===== final ===== -->
   <section class="q fim" data-tipo="fim">
     <div class="in">
       <div class="eyebrow">Pronto</div>
       <h1>Obrigado!</h1>
-      <p>Agora é só enviar. Depois, me mande pelo WhatsApp:</p>
-      <ul class="lista">
-        <li>Sua logo, se tiver</li>
-        <li>Fotos suas e do seu trabalho</li>
-        <li>Áudios de clientes falando do atendimento</li>
-      </ul>
+      <p>Agora é só enviar. As respostas vão direto para o meu WhatsApp.</p>
       <div class="acao">
         <button class="ok" type="button" id="enviar">Enviar pelo WhatsApp</button>
         <button class="sec" type="button" id="copiar">Copiar as respostas</button>
         <p class="msg" id="msg" aria-live="polite"></p>
       </div>
-      <p class="aviso">Nunca mande senhas. Quando eu precisar entrar em alguma conta, peço para você me convidar.</p>
+      <p class="aviso">Nunca mande senhas. Quando eu precisar entrar na Bling ou na Hotmart, peço para você me convidar.</p>
     </div>
   </section>
 
@@ -236,58 +342,137 @@ var $ = function(id){ return document.getElementById(id); };
 var toque = matchMedia("(hover:none),(pointer:coarse)").matches;
 var telas = Array.prototype.slice.call(document.querySelectorAll(".q"));
 var perguntas = telas.filter(function(t){ return t.dataset.k; });
+var porChave = {};
+perguntas.forEach(function(t){ porChave[t.dataset.k] = t; });
 var atual = 0;
 
 var SETA = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
 var CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
+var LETRAS = "abcde";
 
-/* número, botão OK e dica de tecla em cada pergunta */
-perguntas.forEach(function(t, k){
+/* ---------- lista de serviços ---------- */
+var nServ = 0;
+function cartaoServico(){
+  nServ++;
+  var id = "s" + nServ;
+  var d = document.createElement("div");
+  d.className = "sv";
+  d.innerHTML =
+    '<div class="sv-h"><span class="sv-n"></span><button class="sv-x" type="button">Tirar</button></div>' +
+    '<label for="' + id + 'n">Nome</label><input class="inp" id="' + id + 'n" data-c="nome" type="text" placeholder="Ex.: Jogo de búzios">' +
+    '<label id="' + id + 'tl">É uma</label><div class="tipos" role="group" aria-labelledby="' + id + 'tl">' +
+      '<button type="button" aria-pressed="true" data-t="Consulta">Consulta</button>' +
+      '<button type="button" aria-pressed="false" data-t="Trabalho">Trabalho</button></div>' +
+    '<div class="dois">' +
+      '<div><label for="' + id + 'p">Preço (R$)</label><input class="inp" id="' + id + 'p" data-c="preco" type="text" inputmode="decimal" placeholder="Ex.: 150"></div>' +
+      '<div><label for="' + id + 'e">Preço (€)</label><input class="inp" id="' + id + 'e" data-c="euro" type="text" inputmode="decimal" placeholder="Se atende fora"></div>' +
+      '<div><label for="' + id + 'd">Tempo</label><input class="inp" id="' + id + 'd" data-c="tempo" type="text" placeholder="Ex.: 40 min"></div>' +
+    '</div>' +
+    '<label for="' + id + 'f">O que você precisa saber da pessoa</label>' +
+    '<textarea class="inp" id="' + id + 'f" data-c="ficha" placeholder="Ex.: nome completo, data de nascimento e uma foto"></textarea>';
+  d.querySelectorAll(".tipos button").forEach(function(b){
+    b.addEventListener("click", function(){
+      d.querySelectorAll(".tipos button").forEach(function(o){ o.setAttribute("aria-pressed", String(o === b)); });
+    });
+  });
+  d.querySelector(".sv-x").addEventListener("click", function(){
+    d.remove();
+    if(!$("servs").children.length) cartaoServico();
+    numerar(); rotularOk(porChave.servicos);
+  });
+  d.addEventListener("input", function(){ rotularOk(porChave.servicos); });
+  $("servs").appendChild(d);
+  numerar();
+  return d;
+}
+function numerar(){
+  var cs = $("servs").children;
+  Array.prototype.forEach.call(cs, function(c, k){
+    c.querySelector(".sv-n").textContent = "Serviço " + (k + 1);
+    c.querySelector(".sv-x").hidden = cs.length === 1;
+  });
+}
+function servicos(){
+  return Array.prototype.map.call($("servs").children, function(c){
+    var v = function(k){ return c.querySelector('[data-c="' + k + '"]').value.trim(); };
+    return { nome:v("nome"), tipo:c.querySelector('.tipos [aria-pressed="true"]').dataset.t,
+             preco:v("preco"), euro:v("euro"), tempo:v("tempo"), ficha:v("ficha") };
+  }).filter(function(s){ return s.nome || s.preco; });
+}
+cartaoServico();
+$("mais").addEventListener("click", function(){
+  var c = cartaoServico();
+  c.querySelector(".inp").focus();
+  c.scrollIntoView({behavior:"smooth", block:"center"});
+});
+
+/* ---------- máscaras ---------- */
+var MASCARA = {
+  cpf: function(d){ d = d.slice(0,11); return d.replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})(\d)/,"$1.$2").replace(/(\d{3})(\d{1,2})$/,"$1-$2"); },
+  cnpj: function(d){ d = d.slice(0,14); return d.replace(/^(\d{2})(\d)/,"$1.$2").replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3").replace(/\.(\d{3})(\d)/,".$1/$2").replace(/(\d{4})(\d)/,"$1-$2"); },
+  data: function(d){ d = d.slice(0,8); return d.replace(/(\d{2})(\d)/,"$1/$2").replace(/(\d{2})(\d)/,"$1/$2"); }
+};
+document.querySelectorAll("[data-mascara]").forEach(function(el){
+  el.addEventListener("input", function(){ el.value = MASCARA[el.dataset.mascara](el.value.replace(/\D/g, "")); });
+});
+
+/* ---------- montagem de cada pergunta ---------- */
+perguntas.forEach(function(t){
   var dentro = t.querySelector(".in");
   var n = document.createElement("div");
   n.className = "n";
-  n.innerHTML = (k + 1) + " " + SETA;
-  dentro.insertBefore(n, dentro.firstChild);
+  dentro.insertBefore(n, dentro.querySelector("h2") ? dentro.querySelector("h2").closest("label") || dentro.querySelector("h2") : null);
 
-  var area = t.querySelector("textarea");
+  var area = t.querySelector("textarea.campo");
   var acao = document.createElement("div");
   acao.className = "acao";
   acao.innerHTML = '<button class="ok" type="button" data-ok></button>' +
-    '<span class="tecla">' + (area ? "<b>Shift + Enter</b> pula linha" : "ou aperte <b>Enter ↵</b>") + '</span>';
+    '<span class="tecla">' + (area ? "<b>Shift + Enter</b> pula linha" : t.dataset.tipo === "lista" ? "" : "ou aperte <b>Enter ↵</b>") + '</span>';
   dentro.appendChild(acao);
 
-  if(t.dataset.tipo === "escolha") return;
-  t.querySelector(".campo").addEventListener("input", function(){
-    rotularOk(t);
-    if(area){ area.style.height = "auto"; area.style.height = area.scrollHeight + "px"; }
+  if(t.dataset.tipo === "escolha"){
+    t.querySelectorAll(".op").forEach(function(op){ op.addEventListener("click", function(){ escolher(t, op); }); });
+    return;
+  }
+  t.querySelectorAll(".campo").forEach(function(c){
+    c.addEventListener("input", function(){
+      rotularOk(t);
+      if(c.tagName === "TEXTAREA"){ c.style.height = "auto"; c.style.height = c.scrollHeight + "px"; }
+    });
   });
 });
 
 function valor(t){
-  if(t.dataset.tipo === "escolha"){
+  var tipo = t.dataset.tipo;
+  if(tipo === "escolha"){
     var m = t.querySelector('.op[aria-checked="true"]');
     return m ? m.dataset.v : "";
   }
+  if(tipo === "lista") return servicos().length ? "ok" : "";
+  if(tipo === "grade"){
+    return Array.prototype.some.call(t.querySelectorAll(".campo"), function(c){ return c.value.trim(); }) ? "ok" : "";
+  }
   return t.querySelector(".campo").value.trim();
 }
-/* nada é obrigatório: vazio, o botão diz "Pular", para ficar claro que pode */
+/* nada é obrigatório: vazio, o botão diz "Pular" */
 function rotularOk(t){
-  var b = t.querySelector("[data-ok]");
-  b.innerHTML = valor(t) ? "OK " + CHECK : "Pular " + SETA;
+  t.querySelector("[data-ok]").innerHTML = valor(t) ? "OK " + CHECK : "Pular " + SETA;
 }
 perguntas.forEach(rotularOk);
 
-/* escolha: clique ou tecla A/B, e já passa para a próxima */
-perguntas.filter(function(t){ return t.dataset.tipo === "escolha"; }).forEach(function(t){
-  t.querySelectorAll(".op").forEach(function(op){
-    op.addEventListener("click", function(){ escolher(t, op); });
-  });
-});
 function escolher(t, op){
   t.querySelectorAll(".op").forEach(function(o){ o.setAttribute("aria-checked", String(o === op)); });
   rotularOk(t);
   setTimeout(avancar, 350);
 }
+
+/* pergunta que depende de outra resposta (ex.: CNPJ só para empresa) */
+function visivel(t){
+  if(!t.dataset.se) return true;
+  var p = t.dataset.se.split("=");
+  return valor(porChave[p[0]]) === p[1];
+}
+function ativas(){ return perguntas.filter(visivel); }
 
 function mostrar(i){
   telas.forEach(function(t, k){
@@ -297,54 +482,76 @@ function mostrar(i){
     if("inert" in t) t.inert = k !== i;
   });
   atual = i;
-  var feitas = telas[i].dataset.tipo === "fim" ? perguntas.length : Math.max(0, perguntas.indexOf(telas[i]));
-  $("barra").style.width = (feitas / perguntas.length * 100) + "%";
+  var lista = ativas();
+  lista.forEach(function(t, k){ t.querySelector(".n").innerHTML = (k + 1) + " " + SETA; });
+  var feitas = telas[i].dataset.tipo === "fim" ? lista.length : Math.max(0, lista.indexOf(telas[i]));
+  $("barra").style.width = (feitas / lista.length * 100) + "%";
   $("voltar").disabled = i === 0;
   $("avancar").disabled = i >= telas.length - 1;
   /* na escolha o foco vai no "Pular": Enter não pode responder por ela */
-  var alvo = telas[i].querySelector(".campo") || telas[i].querySelector("#enviar") || telas[i].querySelector("[data-ok]");
+  var alvo = telas[i].querySelector(".campo, .sv .inp") || telas[i].querySelector("#enviar") || telas[i].querySelector("[data-ok]");
   if(alvo) setTimeout(function(){ alvo.focus({preventScroll:true}); }, 420);
 }
 function avancar(){
-  if(atual < telas.length - 1) mostrar(atual + 1);
+  for(var i = atual + 1; i < telas.length; i++){
+    if(!telas[i].dataset.k || visivel(telas[i])) return mostrar(i);
+  }
 }
-function voltar(){ if(atual > 0) mostrar(atual - 1); }
+function voltar(){
+  for(var i = atual - 1; i >= 0; i--){
+    if(visivel(telas[i])) return mostrar(i);
+  }
+}
 
-document.addEventListener("click", function(e){
-  if(e.target.closest("[data-ok]")) avancar();
-});
+document.addEventListener("click", function(e){ if(e.target.closest("[data-ok]")) avancar(); });
 $("avancar").addEventListener("click", avancar);
 $("voltar").addEventListener("click", voltar);
 
 document.addEventListener("keydown", function(e){
-  var t = telas[atual];
+  var t = telas[atual], alvo = e.target;
   if(e.key === "Enter"){
-    var alvo = e.target;
-    if(alvo.tagName === "TEXTAREA" && (e.shiftKey || toque)) return;   /* no celular, Enter pula linha */
-    if(alvo.tagName === "BUTTON" && !alvo.hasAttribute("data-ok")) return; /* o botão faz o próprio clique */
-    if(alvo.hasAttribute && alvo.hasAttribute("data-ok")) return;
+    if(alvo.tagName === "TEXTAREA" && (e.shiftKey || toque || alvo.classList.contains("inp"))) return;
+    if(alvo.tagName === "BUTTON") return;                       /* o botão faz o próprio clique */
+    if(alvo.closest && alvo.closest(".sv")) return;              /* nos cartões, Enter não avança */
     e.preventDefault();
     if(t.dataset.tipo !== "fim") avancar();
     return;
   }
   if(t.dataset.tipo === "escolha" && !e.metaKey && !e.ctrlKey && !e.altKey){
-    var ops = t.querySelectorAll(".op"), k = "ab".indexOf(e.key.toLowerCase());
+    var ops = t.querySelectorAll(".op"), k = LETRAS.indexOf(e.key.toLowerCase());
     if(k > -1 && ops[k]){ e.preventDefault(); escolher(t, ops[k]); }
   }
 });
 
 /* ---------- a mensagem ---------- */
+function linhas(t){
+  var tipo = t.dataset.tipo;
+  if(tipo === "lista"){
+    return servicos().map(function(s, k){
+      var l = (k + 1) + ". " + (s.nome || "Sem nome") + " (" + s.tipo + ")" +
+        (s.preco ? " · R$ " + s.preco : "") + (s.euro ? " · € " + s.euro : "") + (s.tempo ? " · " + s.tempo : "");
+      return s.ficha ? l + "\n   Precisa saber: " + s.ficha : l;
+    });
+  }
+  if(tipo === "grade"){
+    return Array.prototype.filter.call(t.querySelectorAll(".campo"), function(c){ return c.value.trim(); })
+      .map(function(c){ return c.dataset.r + ": " + c.value.trim(); });
+  }
+  var v = valor(t);
+  if(!v) return [];
+  return [v.indexOf("\n") > -1 ? t.dataset.rotulo + ":\n" + v : t.dataset.rotulo + ": " + v];
+}
 function montar(){
   var txt = "*Dados para o site*\n", branco = [], grupos = [];
-  perguntas.forEach(function(t){ if(grupos.indexOf(t.dataset.grupo) < 0) grupos.push(t.dataset.grupo); });
+  ativas().forEach(function(t){ if(grupos.indexOf(t.dataset.grupo) < 0) grupos.push(t.dataset.grupo); });
   grupos.forEach(function(g){
-    var linhas = [];
-    perguntas.filter(function(t){ return t.dataset.grupo === g; }).forEach(function(t){
-      var v = valor(t), r = t.dataset.rotulo;
-      if(!v){ branco.push(r); return; }
-      linhas.push(v.indexOf("\n") > -1 ? r + ":\n" + v : r + ": " + v);
+    var todas = [];
+    ativas().filter(function(t){ return t.dataset.grupo === g; }).forEach(function(t){
+      var l = linhas(t);
+      if(!l.length) branco.push(t.dataset.rotulo || (t.dataset.tipo === "grade" ? "Conta bancária" : g));
+      todas = todas.concat(l);
     });
-    if(linhas.length) txt += "\n*" + g + "*\n" + linhas.join("\n") + "\n";
+    if(todas.length) txt += "\n*" + g + "*\n" + todas.join("\n") + "\n";
   });
   if(branco.length) txt += "\n_Em branco: " + branco.join(", ") + "_";
   return txt;
