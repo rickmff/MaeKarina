@@ -561,7 +561,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
               <div class="leg">
                 <span><u class="s" aria-hidden="true"></u>Consultas e trabalhos</span>
                 <span><u class="t" aria-hidden="true"></u>Produtos (Bling)</span>
-                <span><u class="h" aria-hidden="true"></u>Cursos (Hostinger)</span>
+                <span><u class="h" aria-hidden="true"></u>Cursos (Hotmart)</span>
               </div>
             </div>
           </div>
@@ -589,7 +589,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
 
         <div class="demo">
           <u aria-hidden="true"></u>
-          <span>Os números desta tela são exemplos para você ver o formato do painel. Quando o sistema estiver ligado às vendas de verdade, eles passam a vir sozinhos do site, da Stripe, da Bling e da Hostinger.</span>
+          <span>Os números desta tela são exemplos para você ver o formato do painel. Quando o sistema estiver ligado às vendas de verdade, eles passam a vir sozinhos do site, da Stripe, da Bling e da Hotmart.</span>
         </div>
       </section>
 
@@ -642,7 +642,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
           <div>
             <div class="ix"><u aria-hidden="true"></u>Catálogo</div>
             <h2>O que Mãe Karina oferece</h2>
-            <p>Consultas, trabalhos e produtos são vendidos no site. O produto vem da sua loja na Bling, com preço e estoque. O curso fica na Hostinger.</p>
+            <p>Consultas, trabalhos e produtos são vendidos no site. O produto vem da sua loja na Bling, com preço e estoque. O curso fica na Hotmart.</p>
           </div>
           <button class="btn" type="button" id="novo-produto">
             <span>Novo item <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></span>
@@ -754,7 +754,7 @@ select.inp{appearance:none;cursor:pointer;background-image:url("data:image/svg+x
                 <span class="chip on"><u aria-hidden="true"></u>Ligado</span>
               </div>
               <div class="kv">
-                <div><small>Hostinger</small><b>Cursos</b></div>
+                <div><small>Hotmart</small><b>Cursos</b></div>
                 <span class="chip on"><u aria-hidden="true"></u>Ligado</span>
               </div>
             </div>
@@ -793,7 +793,7 @@ var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
 var CANAL = {
   site:  { n:"Site", cls:"px" },
   bling: { n:"Bling", cls:"bl" },
-  host:  { n:"Hostinger", cls:"hot" }
+  hotmart: { n:"Hotmart", cls:"hot" }
 };
 
 var produtos = [
@@ -806,8 +806,8 @@ var produtos = [
   { id:"p7", t:"Kit iniciante de tarot", g:"Produto", p:240, canal:"bling", ativo:true,  img:"kit-iniciante-de-tarot" },
   { id:"p8", t:"Vela de sete dias", g:"Produto", p:45,  canal:"bling", ativo:true,  img:"vela-de-sete-dias" },
   { id:"p9", t:"Toalha de leitura", g:"Produto", p:130, canal:"bling", ativo:false, img:"toalha-de-leitura" },
-  { id:"p10", t:"Tarot do zero", g:"Curso", p:397, canal:"host", ativo:true, img:"" },
-  { id:"p11", t:"Banhos e ervas", g:"Curso", p:297, canal:"host", ativo:true, img:"" }
+  { id:"p10", t:"Tarot do zero", g:"Curso", p:397, canal:"hotmart", ativo:true, img:"" },
+  { id:"p11", t:"Banhos e ervas", g:"Curso", p:297, canal:"hotmart", ativo:true, img:"" }
 ];
 
 var eventos = [
@@ -1312,7 +1312,7 @@ function linkPagamento(c, item, v){
 
 function formCobranca(k){
   var c = CLIENTES[k];
-  var lista = produtos.filter(function(p){ return p.ativo && p.canal !== "host"; });
+  var lista = produtos.filter(function(p){ return p.ativo && p.canal !== "hotmart"; });
   var corpo =
     '<form class="form" id="fq" novalidate>' +
       '<div class="fg"><label for="q-i">Serviço ou produto</label><select class="inp" id="q-i">' +
@@ -1513,7 +1513,7 @@ function formProduto(p){
       '<div class="fg"><label for="f-c">Onde vende</label><select class="inp" id="f-c">' +
         '<option value="site"' + (p.canal === "site" ? " selected" : "") + '>Site · consultas e trabalhos</option>' +
         '<option value="bling"' + (p.canal === "bling" ? " selected" : "") + '>Bling · produtos, com estoque</option>' +
-        '<option value="host"' + (p.canal === "host" ? " selected" : "") + '>Hostinger · cursos</option>' +
+        '<option value="hotmart"' + (p.canal === "hotmart" ? " selected" : "") + '>Hotmart · cursos</option>' +
       '</select><span class="hint" id="f-ch"></span></div>' +
       '<div class="fg"><label for="f-d">Descrição</label>' +
         '<textarea class="inp" id="f-d" placeholder="Explique em poucas linhas o que a pessoa recebe.">' + esc(p.d) + '</textarea></div>' +
@@ -1539,16 +1539,16 @@ function formProduto(p){
         if(sel.value === "bling" && g !== "Produto"){
           dica.className = "hint warn";
           dica.textContent = "A Bling é para produto com estoque. " + g + " fica no site.";
-        } else if(sel.value === "host" && g !== "Curso"){
+        } else if(sel.value === "hotmart" && g !== "Curso"){
           dica.className = "hint warn";
-          dica.textContent = "A Hostinger é para cursos. Para " + g.toLowerCase() + ", use o site.";
+          dica.textContent = "A Hotmart é para cursos. Para " + g.toLowerCase() + ", use o site.";
         } else {
           dica.className = "hint";
           dica.textContent = sel.value === "site"
             ? "A pessoa paga por Pix, cartão ou boleto dentro do próprio site, pela Stripe."
             : sel.value === "bling"
               ? "Vendido no site. Preço e estoque vêm da Bling, que manda também para as suas outras lojas."
-              : "A venda acontece na Hostinger. O site mostra o curso e leva a pessoa até lá.";
+              : "A venda acontece na Hotmart. O site mostra o curso e leva a pessoa até lá.";
         }
       }
       sel.addEventListener("change", avisoCanal);

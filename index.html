@@ -874,7 +874,7 @@ body.lock .wa-fab{transform:translateY(90px);opacity:0;pointer-events:none}
         <div class="ix"><u aria-hidden="true"></u>07 — Cursos</div>
         <h2><span class="ln"><span>Para quem quer</span></span><span class="ln"><span>entender</span></span></h2>
       </div>
-      <div class="chips"><span class="chip hot"><u aria-hidden="true"></u>Hostinger</span></div>
+      <div class="chips"><span class="chip hot"><u aria-hidden="true"></u>Hotmart</span></div>
     </div>
     <p class="lede">Compra aprovada, acesso liberado no e-mail. Sem link mandado à mão.</p>
     <div class="rows" id="g-cursos"></div>
@@ -1013,7 +1013,7 @@ var DORES = [
   {k:"aprender",      t:"Quero aprender",      d:"Vontade de entender a Umbanda e a linha de Iemanjá."}
 ];
 /* produto é comprado no site; só o curso sai para outra plataforma */
-var CANAL = { curso:{n:"Hostinger", cls:"hot"} };
+var CANAL = { curso:{n:"Hotmart", cls:"hot"} };
 /* fotos que já temos em img/ (9), remapeadas para os serviços atuais */
 var LOCAL = {1:"baralho-cigano",2:"consulta-espiritual",3:"leitura-de-tarot",4:"banho-de-descarrego",5:"abertura-de-caminhos",6:"firmeza-de-protecao",7:"toalha-de-leitura",8:"kit-iniciante-de-tarot",9:"vela-de-sete-dias"};
 var horarios = ["Qui 14h","Qui 16h","Sex 10h","Sex 15h","Sáb 9h","Sáb 11h"];
@@ -1765,9 +1765,9 @@ function boleto(){
 }
 
 function modalCurso(i){
-  shell(["Hostinger","Confirmação"], 0,
-    '<h3>' + i.t + '</h3><p class="mini">Você vai para a página do curso na Hostinger, já com os seus dados.</p>' +
-    '<div class="ext hot"><div class="eh"><u aria-hidden="true"></u>Hostinger<span>compra segura</span></div><div class="eb">' +
+  shell(["Hotmart","Confirmação"], 0,
+    '<h3>' + i.t + '</h3><p class="mini">Você vai para o checkout da Hotmart, já com os seus dados.</p>' +
+    '<div class="ext hot"><div class="eh"><u aria-hidden="true"></u>Hotmart<span>compra segura</span></div><div class="eb">' +
     '<div class="prod"><span class="im"><span class="ph" aria-hidden="true"></span><img alt="" decoding="async"></span><div><b>' + i.t + '</b><i>' + i.d + '</i></div></div>' +
     '<div class="field"><small>Nome</small>Cliente</div>' +
     '<div class="field"><small>E-mail para o acesso</small>cliente@email.com</div>' +
@@ -1777,9 +1777,9 @@ function modalCurso(i){
   $("go").addEventListener("click", function(){
     $("go").classList.add("busy");
     setTimeout(function(){
-      $("sheet").querySelector(".eb").innerHTML = '<div class="proc"><p>Processando na Hostinger</p><div class="bar"><i id="pb"></i></div></div>';
+      $("sheet").querySelector(".eb").innerHTML = '<div class="proc"><p>Processando na Hotmart</p><div class="bar"><i id="pb"></i></div></div>';
       requestAnimationFrame(function(){ var b = $("pb"); if(b) b.style.width = "100%"; });
-      setTimeout(function(){ concluir("curso","Hostinger"); }, 2100);
+      setTimeout(function(){ concluir("curso","Hotmart"); }, 2100);
     }, 500);
   });
 }
@@ -1795,8 +1795,8 @@ function concluir(canal, via){
               "Pedido na fila dos trabalhos a fazer",
               "Tudo guardado na sua conta"];
   } else if(canal === "curso"){
-    etapas = ["Hostinger","Confirmação"];
-    passos = ["Hostinger aprovou a compra", "Acesso ao curso liberado por e-mail", "Aluno registrado"];
+    etapas = ["Hotmart","Confirmação"];
+    passos = ["Hotmart aprovou a compra", "Acesso ao curso liberado por e-mail", "Aluno registrado"];
   } else {
     etapas = escolha.passos;
     passos = [pago,
