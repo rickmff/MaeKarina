@@ -1,27 +1,28 @@
 # Mãe Karina de Iemanjá
 
-Site da casa e painel de gestão. Atendimento espiritual online: consultas, trabalhos à distância, produtos e cursos.
+Site de Mãe Karina de Iemanjá e painel de gestão. Atendimento espiritual online: consultas, trabalhos à distância, produtos e cursos.
 
 ## Rotas
 
 | Rota | O que é |
 |---|---|
 | `/` | O site |
-| `/login` | Entrada da casa — abre o acesso ao painel |
+| `/login` | Entrada da Mãe Karina — abre o acesso ao painel |
 | `/painel` | Painel de gestão |
 | `/proposta` | Proposta comercial |
+| `/dados` | Formulário com os dados que a cliente manda para montar o site |
 
-Não existe botão de login no site: a entrada é por endereço direto.
+O botão "Entrar" do site é a conta do cliente. O painel não tem botão: a entrada é por endereço direto.
 
 ## Como funciona
 
-Três canais, cada um com o seu lugar:
+- **Consultas e trabalhos** — vendidos no site. Depois de pagar, a pessoa preenche a ficha do serviço
+- **Produtos** — vendidos no site. Preço e estoque vêm da Bling, que distribui para as outras lojas
+- **Cursos** — vendidos na Hostinger; o site mostra e leva até lá
+- **Pagamentos** — Stripe: cartão, boleto e Pix (o Pix na Stripe Brasil é liberado por convite)
+- **Atendimento** — botão que abre a conversa no WhatsApp
 
-- **Consultas e trabalhos** — no site, pagamento por Pix ou cartão pelo Mercado Pago
-- **Produtos físicos** — TikTok Shop (no Brasil, a plataforma só aceita produto físico)
-- **Cursos** — Hotmart, com liberação automática do acesso
-
-O site guia por dificuldade em vez de catálogo: a pessoa escolhe o que está sentindo e vê o que costuma ajudar. Em assunto delicado — doença, luto, dívida, violência — o atendimento para de sugerir serviço e encaminha para a Mãe Karina.
+O site guia por dificuldade em vez de catálogo: a pessoa escolhe o que está sentindo e vê o que costuma ajudar.
 
 ## Desenvolvimento
 
@@ -49,4 +50,4 @@ Vercel, a partir da raiz. O `vercel.json` cuida das rotas limpas e dos cabeçalh
 - Trocar `[SEU WHATSAPP]` pelo número real, no formato `5511999999999`
 - Confirmar nomes, descrições e preços reais dos serviços (os atuais são provisórios)
 - Substituir os depoimentos de exemplo por áudios reais com autorização
-- Ajustar os horários das lives em `LIVES`
+- Colocar o número em `MEU_WHATSAPP`, no `dados.html`
