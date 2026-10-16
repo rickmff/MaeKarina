@@ -46,6 +46,8 @@ Verifica ids duplicados, ids usados no JS que não existem no HTML, e uso de sto
 
 Vercel, a partir da raiz. O `vercel.json` cuida das rotas limpas e dos cabeçalhos.
 
+Essa é a demonstração. O site de verdade fica na Hostinger (plano Single), na conta da cliente, junto com o banco de dados.
+
 ## Pendências
 
 - Trocar `[SEU WHATSAPP]` pelo número real, no formato `5511999999999`

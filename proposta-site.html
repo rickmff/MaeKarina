@@ -259,18 +259,19 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
 
   <section class="sec rv" id="custo">
     <div class="ix"><u aria-hidden="true"></u>05 — Custo para manter</div>
-    <h2><span class="ln"><span>Quarenta reais</span></span><span class="ln"><span>por ano</span></span></h2>
-    <p class="lede">Este valor não é meu. É o que você paga direto pelo endereço do site, com a conta no seu nome.</p>
+    <h2><span class="ln"><span>Menos de dez reais</span></span><span class="ln"><span>por mês</span></span></h2>
+    <p class="lede">Este valor não é meu. É o que você paga direto à Hostinger e pelo endereço do site, com as contas no seu nome.</p>
     <div class="custos" id="g-custos"></div>
     <div class="preco" style="margin-top:14px">
       <div class="v">
         <span>Para manter no ar</span>
-        <b>R$ 40<em>/ano</em></b>
-        <u class="tot">Sem mensalidade</u>
+        <b>R$ 9<em>/mês</em></b>
+        <u class="tot">Cerca disso, somando hospedagem e endereço</u>
         <i>Pago direto por você</i>
       </div>
       <div class="d">
-        <p><b>Sem mensalidade:</b> você não paga nada por mês, nem a mim. O endereço e a Stripe ficam no seu nome.</p>
+        <p><b>Por que a Hostinger:</b> o banco de dados, com os seus clientes, pedidos e fichas, fica numa conta sua. Se um dia você trocar de programador, os dados continuam com você.</p>
+        <p><b>Sem mensalidade minha:</b> você paga à Hostinger, não a mim. A hospedagem, o endereço e a Stripe ficam no seu nome.</p>
       </div>
     </div>
   </section>
@@ -311,7 +312,7 @@ footer{padding:clamp(26px,4vw,38px) var(--pad);border-top:1px solid var(--line);
         <div class="num">R$ 15.000</div>
         <ul>
           <li>4 semanas, com data marcada</li>
-          <li>Sem mensalidade: só R$ 40 por ano do endereço</li>
+          <li>Sem mensalidade minha: só hospedagem e endereço, menos de R$ 10 por mês</li>
           <li>Identidade, site, painel e ligações num preço só</li>
           <li>Você fala direto comigo, do começo ao fim</li>
           <li>Treinamento e suporte a defeitos inclusos</li>
@@ -415,6 +416,7 @@ var SIM = [
   {g:"Entrega, treinamento e suporte", itens:[
     "Configuração dos anúncios",
     "No ar, no seu domínio e em seu nome",
+    "Banco de dados com clientes e pedidos, na sua conta da Hostinger",
     "Treinamento em vídeo de todos os caminhos do painel",
     "Suporte a defeitos do site para sempre, sem custo",
     "Nenhum serviço recorrente: nada a me pagar depois da entrega",
@@ -473,13 +475,13 @@ var ESFORCO = [
   {t:"O site", d:"Os onze itens, todas as páginas, feito para celular. Cerca de 80 horas."},
   {t:"O seu painel", d:"Pedidos, fichas, catálogo, agenda, clientes, links de pagamento e métricas. Cerca de 55 horas."},
   {t:"As ligações", d:"Stripe, Bling e Hostinger conversando com o site. Cerca de 30 horas."},
-  {t:"Contas e publicação", d:"Login dos clientes, hospedagem, domínio e publicação. Cerca de 30 horas."},
+  {t:"Contas e publicação", d:"Login dos clientes, banco de dados, hospedagem, domínio e publicação. Cerca de 30 horas."},
   {t:"Testes e treinamento", d:"Celular de verdade, correções e os vídeos que ensinam você. Cerca de 20 horas."}
 ];
 
 var CUSTOS = [
-  {t:"Hospedagem (Vercel)", v:"Sem custo para você", free:true,
-   d:"Onde o site fica no ar, rápido em todo o Brasil."},
+  {t:"Hospedagem (Hostinger)", v:"R$ 5,99 por mês", free:false,
+   d:"Plano Single, onde o site e o banco de dados ficam. Pago de uma vez por 4 anos: R$ 287,52. Depois, renova por R$ 23,99 por mês."},
   {t:"Endereço do site", v:"R$ 40 por ano", free:false,
    d:"O nome que as pessoas digitam para chegar até você."},
   {t:"Certificado de segurança", v:"Grátis", free:true,
