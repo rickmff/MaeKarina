@@ -23,7 +23,7 @@
       ]
     },
     {
-      "source": "/(painel|backoffice|proposta|proposta-site)",
+      "source": "/(painel|backoffice|proposta|proposta-site|dados)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
       ]

@@ -4,7 +4,7 @@
 cd "$(dirname "$0")"
 falhou=0
 
-for f in index.html backoffice.html proposta-site.html; do
+for f in index.html backoffice.html proposta-site.html dados.html; do
   [ -f "$f" ] || continue
   echo "── $f"
 

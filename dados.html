@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Dados para o site · Mãe Karina de Iemanjá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F4; --card:#FFFFFF; --ink:#1A1814; --ink2:#5E594F; --line:#E2DDD3; --line2:#C9C2B4;
+  --gold:#8A7136; --gold-bg:#F4EEDF; --erro:#B3261E;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden}
+::selection{background:var(--gold);color:#fff}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+.barra{position:fixed;top:0;left:0;right:0;height:4px;background:var(--line);z-index:5}
+.barra i{display:block;height:100%;width:0;background:var(--gold);transition:width .5s var(--ease)}
+
+.palco{position:relative;height:100svh}
+.q{
+  position:absolute;inset:0;display:flex;align-items:center;overflow-y:auto;
+  padding:72px 20px 110px;
+  opacity:0;visibility:hidden;transform:translateY(40px);
+  transition:opacity .45s var(--ease),transform .55s var(--ease),visibility .55s;
+}
+.q.cima{transform:translateY(-40px)}
+.q.on{opacity:1;visibility:visible;transform:none}
+.q .in{width:100%;max-width:640px;margin:0 auto}
+@media (max-width:640px){.q{align-items:flex-start;padding-top:clamp(64px,14svh,120px)}}
+
+.n{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:600;color:var(--gold);margin-bottom:12px}
+.n svg{width:14px;height:14px}
+.q h2{font-size:clamp(23px,5vw,32px);font-weight:500;line-height:1.3;letter-spacing:-.015em}
+.q h2 em{font-style:normal;color:var(--gold)}
+.dica{color:var(--ink2);font-size:17px;margin-top:10px}
+
+.campo{
+  display:block;width:100%;margin-top:32px;font:inherit;font-size:clamp(21px,4.4vw,28px);color:var(--ink);
+  background:transparent;border:0;border-bottom:2px solid var(--line2);border-radius:0;
+  padding:6px 0 10px;caret-color:var(--gold);transition:border-color .25s;
+}
+.campo::placeholder{color:#C6BFB1}
+.campo:focus{outline:none;border-bottom-color:var(--gold)}
+textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;overflow-y:auto}
+
+.ops{display:grid;gap:10px;margin-top:30px;max-width:340px}
+.op{
+  display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+  border:1px solid var(--line2);background:var(--card);border-radius:10px;padding:13px 16px;font-size:19px;
+  transition:border-color .2s,background .2s;
+}
+.op:hover{border-color:var(--gold)}
+.op kbd{font:inherit;font-size:14px;font-weight:600;width:26px;height:26px;display:grid;place-items:center;border:1px solid var(--line2);border-radius:5px;background:var(--bg);flex:none}
+.op[aria-checked="true"]{border-color:var(--gold);background:var(--gold-bg)}
+.op[aria-checked="true"] kbd{background:var(--gold);border-color:var(--gold);color:#fff}
+
+.acao{display:flex;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap}
+.ok{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;font-size:18px;font-weight:600;border-radius:10px;padding:12px 22px;transition:opacity .2s}
+.ok:hover{opacity:.88}
+.ok svg{width:16px;height:16px}
+.tecla{color:var(--ink2);font-size:15px}
+.tecla b{font-weight:600}
+.erro{color:var(--erro);font-size:16px;margin-top:14px;min-height:1.5em}
+@media (hover:none),(pointer:coarse){.tecla{display:none}}
+
+/* abertura e final */
+.capa .eyebrow{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.capa h1{font-size:clamp(34px,7.5vw,52px);font-weight:600;line-height:1.1;letter-spacing:-.025em;margin-top:12px}
+.capa p{color:var(--ink2);font-size:19px;margin-top:16px;max-width:30em}
+.lista{list-style:none;margin-top:18px}
+.lista li{padding:5px 0 5px 22px;position:relative;color:var(--ink2)}
+.lista li::before{content:"";position:absolute;left:4px;top:15px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.fim .acao{flex-direction:column;align-items:stretch;max-width:360px}
+.fim .ok{justify-content:center;padding:16px 22px}
+.sec{font-size:16px;color:var(--ink2);text-decoration:underline;text-underline-offset:3px;align-self:center}
+.aviso{font-size:15px;color:var(--ink2);margin-top:22px;max-width:30em}
+.msg{color:var(--gold);font-size:16px;min-height:1.5em;text-align:center}
+
+.nav{position:fixed;right:20px;bottom:20px;display:flex;gap:2px;z-index:5}
+.nav button{width:46px;height:42px;display:grid;place-items:center;background:var(--ink);color:#fff;transition:opacity .2s}
+.nav button:first-child{border-radius:8px 0 0 8px}
+.nav button:last-child{border-radius:0 8px 8px 0}
+.nav button:disabled{opacity:.3;cursor:default}
+.nav svg{width:18px;height:18px}
+.nav[hidden]{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  .q,.barra i{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="barra" aria-hidden="true"><i id="barra"></i></div>
+
+<main class="palco" id="palco">
+
+  <section class="q capa" data-tipo="capa">
+    <div class="in">
+      <div class="eyebrow">Mãe Karina de Iemanjá</div>
+      <h1>Dados para o seu site</h1>
+      <p>Uma pergunta por vez, uns 5 minutos. Não sabe alguma? Pode pular, a gente vê junto.</p>
+      <div class="acao">
+        <button class="ok" type="button" data-ok>Começar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+        <span class="tecla">ou aperte <b>Enter ↵</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="q" data-k="nome" data-rotulo="Nome no site" data-grupo="Você" data-obrig>
+    <div class="in">
+      <label for="nome"><h2>Qual nome você quer que apareça no site?</h2></label>
+      <input class="campo" id="nome" type="text" placeholder="Mãe Karina de Iemanjá" autocomplete="off">
+    </div>
+  </section>
+
+  <section class="q" data-k="email" data-rotulo="E-mail" data-grupo="Você" data-tipo="email">
+    <div class="in">
+      <label for="email"><h2>Qual o seu <em>e-mail</em>?</h2></label>
+      <p class="dica">As contas do site ficam nele.</p>
+      <input class="campo" id="email" type="email" inputmode="email" placeholder="voce@email.com" autocomplete="email">
+    </div>
+  </section>
+
+  <section class="q" data-k="whats" data-rotulo="WhatsApp do site" data-grupo="Você">
+    <div class="in">
+      <label for="whats"><h2>Qual WhatsApp vai no botão do site?</h2></label>
+      <p class="dica">É o número que os seus clientes vão chamar.</p>
+      <input class="campo" id="whats" type="tel" inputmode="tel" placeholder="(47) 99999-9999" autocomplete="tel">
+    </div>
+  </section>
+
+  <section class="q" data-k="redes" data-rotulo="Instagram e TikTok" data-grupo="Você">
+    <div class="in">
+      <label for="redes"><h2>Qual o seu Instagram e o seu TikTok?</h2></label>
+      <input class="campo" id="redes" type="text" placeholder="@maekarina" autocomplete="off">
+    </div>
+  </section>
+
+  <section class="q" data-k="dominio" data-rotulo="Endereço do site" data-grupo="Endereço do site">
+    <div class="in">
+      <label for="dominio"><h2>Que <em>endereço</em> você quer para o site?</h2></label>
+      <p class="dica">Mande até 3 opções, da que mais gosta para a que menos gosta.</p>
+      <input class="campo" id="dominio" type="text" placeholder="maekarina.com.br" autocomplete="off">
+    </div>
+  </section>
+
+  <section class="q" data-k="servicos" data-rotulo="Serviços" data-grupo="Consultas e trabalhos">
+    <div class="in">
+      <label for="servicos"><h2>Quais <em>consultas e trabalhos</em> você faz?</h2></label>
+      <p class="dica">Um por linha: nome, preço e quanto tempo leva.</p>
+      <textarea class="campo" id="servicos" rows="2" placeholder="Jogo de búzios · R$ 150 · 40 min"></textarea>
+    </div>
+  </section>
+
+  <section class="q" data-k="horarios" data-rotulo="Horários" data-grupo="Consultas e trabalhos">
+    <div class="in">
+      <label for="horarios"><h2>Em que dias e horários você atende?</h2></label>
+      <input class="campo" id="horarios" type="text" placeholder="Segunda a sexta, das 10h às 18h" autocomplete="off">
+    </div>
+  </section>
+
+  <section class="q" data-k="ficha" data-rotulo="O que preciso saber" data-grupo="Consultas e trabalhos">
+    <div class="in">
+      <label for="ficha"><h2>O que você precisa saber da pessoa <em>em cada serviço</em>?</h2></label>
+      <p class="dica">É o que ela vai preencher depois de pagar.</p>
+      <textarea class="campo" id="ficha" rows="2" placeholder="Trabalho de amor: nome dos dois, nascimento e uma foto"></textarea>
+    </div>
+  </section>
+
+  <section class="q" data-k="emailBling" data-rotulo="E-mail da Bling" data-grupo="Produtos e cursos" data-tipo="email">
+    <div class="in">
+      <label for="emailBling"><h2>Qual o e-mail da sua conta na <em>Bling</em>?</h2></label>
+      <p class="dica">É de lá que o site puxa os seus produtos.</p>
+      <input class="campo" id="emailBling" type="email" inputmode="email" placeholder="voce@email.com" autocomplete="off">
+    </div>
+  </section>
+
+  <section class="q" data-k="cursos" data-rotulo="Cursos na Hostinger" data-grupo="Produtos e cursos">
+    <div class="in">
+      <label for="cursos"><h2>Quais <em>cursos</em> você tem na Hostinger?</h2></label>
+      <p class="dica">O link de cada um, ou só o nome.</p>
+      <textarea class="campo" id="cursos" rows="2" placeholder="Umbanda para iniciantes"></textarea>
+    </div>
+  </section>
+
+  <section class="q" data-k="stripe" data-rotulo="Tem conta na Stripe" data-grupo="Pagamentos" data-tipo="escolha">
+    <div class="in">
+      <h2 id="h-stripe">Você já tem conta na <em>Stripe</em>?</h2>
+      <p class="dica">É por ela que o site recebe. Os dados do banco você coloca direto lá, comigo junto. Não mande aqui.</p>
+      <div class="ops" role="radiogroup" aria-labelledby="h-stripe">
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Sim"><kbd>A</kbd>Sim</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Não"><kbd>B</kbd>Não</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="q" data-k="historia" data-rotulo="História" data-grupo="Sua história">
+    <div class="in">
+      <label for="historia"><h2>Conta pra mim: <em>quem é você</em> e como começou?</h2></label>
+      <p class="dica">Do seu jeito, em poucas linhas. Eu arrumo o texto.</p>
+      <textarea class="campo" id="historia" rows="3"></textarea>
+    </div>
+  </section>
+
+  <section class="q capa fim" data-tipo="fim">
+    <div class="in">
+      <div class="eyebrow">Pronto</div>
+      <h1>Obrigado!</h1>
+      <p>Agora é só enviar. Depois, me mande pelo WhatsApp:</p>
+      <ul class="lista">
+        <li>Sua logo, se tiver</li>
+        <li>Fotos suas e do seu trabalho</li>
+        <li>Áudios de clientes falando do atendimento</li>
+      </ul>
+      <div class="acao">
+        <button class="ok" type="button" id="enviar">Enviar pelo WhatsApp</button>
+        <button class="sec" type="button" id="copiar">Copiar as respostas</button>
+        <p class="msg" id="msg" aria-live="polite"></p>
+      </div>
+      <p class="aviso">Nunca mande senhas. Quando eu precisar entrar em alguma conta, peço para você me convidar.</p>
+    </div>
+  </section>
+
+</main>
+
+<nav class="nav" id="nav" aria-label="Navegar entre as perguntas" hidden>
+  <button type="button" id="voltar" aria-label="Pergunta anterior"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10l4-4 4 4"/></svg></button>
+  <button type="button" id="avancar" aria-label="Próxima pergunta"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></button>
+</nav>
+
+<script>
+/* TROCAR: seu WhatsApp com DDI e DDD, só números (ex.: 5547999999999).
+   Vazio, o WhatsApp abre pedindo para escolher o contato. */
+var MEU_WHATSAPP = "";
+
+(function(){
+"use strict";
+var $ = function(id){ return document.getElementById(id); };
+var toque = matchMedia("(hover:none),(pointer:coarse)").matches;
+var telas = Array.prototype.slice.call(document.querySelectorAll(".q"));
+var perguntas = telas.filter(function(t){ return t.dataset.k; });
+var atual = 0;
+
+var SETA = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+var CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
+
+/* número, botão OK, dica de tecla e linha de erro em cada pergunta */
+perguntas.forEach(function(t, k){
+  var dentro = t.querySelector(".in");
+  var n = document.createElement("div");
+  n.className = "n";
+  n.innerHTML = (k + 1) + " " + SETA;
+  dentro.insertBefore(n, dentro.firstChild);
+
+  var area = t.querySelector("textarea");
+  var acao = document.createElement("div");
+  acao.className = "acao";
+  acao.innerHTML = '<button class="ok" type="button" data-ok></button>' +
+    '<span class="tecla">' + (area ? "<b>Shift + Enter</b> pula linha" : "ou aperte <b>Enter ↵</b>") + '</span>';
+  dentro.appendChild(acao);
+
+  var erro = document.createElement("p");
+  erro.className = "erro"; erro.setAttribute("aria-live", "polite");
+  dentro.appendChild(erro);
+
+  if(t.dataset.tipo === "escolha") return;
+  t.querySelector(".campo").addEventListener("input", function(){
+    erro.textContent = "";
+    rotularOk(t);
+    if(area){ area.style.height = "auto"; area.style.height = area.scrollHeight + "px"; }
+  });
+});
+
+function valor(t){
+  if(t.dataset.tipo === "escolha"){
+    var m = t.querySelector('.op[aria-checked="true"]');
+    return m ? m.dataset.v : "";
+  }
+  return t.querySelector(".campo").value.trim();
+}
+/* vazio e opcional: o botão diz "Pular", para ficar claro que pode */
+function rotularOk(t){
+  var b = t.querySelector("[data-ok]");
+  b.innerHTML = valor(t) || t.hasAttribute("data-obrig") ? "OK " + CHECK : "Pular " + SETA;
+}
+perguntas.forEach(rotularOk);
+
+/* escolha: clique ou tecla A/B, e já passa para a próxima */
+perguntas.filter(function(t){ return t.dataset.tipo === "escolha"; }).forEach(function(t){
+  t.querySelectorAll(".op").forEach(function(op){
+    op.addEventListener("click", function(){ escolher(t, op); });
+  });
+});
+function escolher(t, op){
+  t.querySelectorAll(".op").forEach(function(o){ o.setAttribute("aria-checked", String(o === op)); });
+  rotularOk(t);
+  setTimeout(avancar, 350);
+}
+
+function valida(t){
+  var v = valor(t), erro = t.querySelector(".erro");
+  if(t.hasAttribute("data-obrig") && !v){ erro.textContent = "Esta é a única obrigatória."; return false; }
+  if(v && t.dataset.tipo === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ erro.textContent = "Esse e-mail parece incompleto."; return false; }
+  return true;
+}
+
+function mostrar(i){
+  telas.forEach(function(t, k){
+    t.classList.toggle("on", k === i);
+    t.classList.toggle("cima", k < i);
+    t.setAttribute("aria-hidden", k === i ? "false" : "true");
+    if("inert" in t) t.inert = k !== i;
+  });
+  atual = i;
+  var feitas = telas[i].dataset.tipo === "fim" ? perguntas.length : Math.max(0, perguntas.indexOf(telas[i]));
+  $("barra").style.width = (feitas / perguntas.length * 100) + "%";
+  $("nav").hidden = telas[i].dataset.tipo === "capa" && i === 0;
+  $("voltar").disabled = i <= 1;
+  $("avancar").disabled = i >= telas.length - 1;
+  var alvo = telas[i].querySelector(".campo, .op, #enviar, [data-ok]");
+  if(alvo) setTimeout(function(){ alvo.focus({preventScroll:true}); }, 420);
+}
+function avancar(){
+  var t = telas[atual];
+  if(t.dataset.k && !valida(t)) return;
+  if(atual < telas.length - 1) mostrar(atual + 1);
+}
+function voltar(){ if(atual > 1) mostrar(atual - 1); }
+
+document.addEventListener("click", function(e){
+  if(e.target.closest("[data-ok]")) avancar();
+});
+$("avancar").addEventListener("click", avancar);
+$("voltar").addEventListener("click", voltar);
+
+document.addEventListener("keydown", function(e){
+  var t = telas[atual];
+  if(e.key === "Enter"){
+    var alvo = e.target;
+    if(alvo.tagName === "TEXTAREA" && (e.shiftKey || toque)) return;   /* no celular, Enter pula linha */
+    if(alvo.tagName === "BUTTON" && !alvo.hasAttribute("data-ok")) return; /* o botão faz o próprio clique */
+    if(alvo.hasAttribute && alvo.hasAttribute("data-ok")) return;
+    e.preventDefault();
+    if(t.dataset.tipo !== "fim") avancar();
+    return;
+  }
+  if(t.dataset.tipo === "escolha" && !e.metaKey && !e.ctrlKey && !e.altKey){
+    var ops = t.querySelectorAll(".op"), k = "ab".indexOf(e.key.toLowerCase());
+    if(k > -1 && ops[k]){ e.preventDefault(); escolher(t, ops[k]); }
+  }
+});
+
+/* ---------- a mensagem ---------- */
+function montar(){
+  var txt = "*Dados para o site*\n", branco = [], grupos = [];
+  perguntas.forEach(function(t){ if(grupos.indexOf(t.dataset.grupo) < 0) grupos.push(t.dataset.grupo); });
+  grupos.forEach(function(g){
+    var linhas = [];
+    perguntas.filter(function(t){ return t.dataset.grupo === g; }).forEach(function(t){
+      var v = valor(t), r = t.dataset.rotulo;
+      if(!v){ branco.push(r); return; }
+      linhas.push(v.indexOf("\n") > -1 ? r + ":\n" + v : r + ": " + v);
+    });
+    if(linhas.length) txt += "\n*" + g + "*\n" + linhas.join("\n") + "\n";
+  });
+  if(branco.length) txt += "\n_Em branco: " + branco.join(", ") + "_";
+  return txt;
+}
+
+$("enviar").addEventListener("click", function(){
+  var num = MEU_WHATSAPP.replace(/\D/g, "");
+  window.open("https://wa.me/" + num + "?text=" + encodeURIComponent(montar()), "_blank", "noopener");
+});
+$("copiar").addEventListener("click", function(){
+  (navigator.clipboard ? navigator.clipboard.writeText(montar()) : Promise.reject())
+    .then(function(){ $("msg").textContent = "Copiado. Agora é só colar no WhatsApp."; })
+    .catch(function(){ $("msg").textContent = "Não deu para copiar. Use o botão de enviar."; });
+});
+
+mostrar(0);
+})();
+</script>
+</body>
+</html>

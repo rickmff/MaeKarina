@@ -14,7 +14,7 @@
   --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16);
   --ink:#F3EFE6; --ink2:#B9B3A6; --muted:#7D786E;
   --gold:#C9A552; --gold2:#E6C77A; --gold3:#8A7136;
-  --hot:#F26A2E; --tkp:#FE2C55; --pix:#32BCAD; --mp:#009EE3;
+  --hot:#F26A2E; --tkp:#FE2C55; --pix:#32BCAD; --stripe:#635BFF; --bling:#4CB648;
   --display:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
   --accent:"Cormorant Garamond",Georgia,serif;
   --sans:"Inter",system-ui,sans-serif;
@@ -243,7 +243,7 @@ h2 .ln span{display:block;transform:translateY(106%);transition:transform .9s va
   display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
 }
 .chip u{width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none}
-.chip.tk u{background:var(--tkp)} .chip.hot u{background:var(--hot)} .chip.px u{background:var(--pix)}
+.chip.st u{background:var(--stripe)} .chip.bl u{background:var(--bling)} .chip.hot u{background:var(--hot)} .chip.px u{background:var(--pix)}
 
 /* ---------- manifesto ---------- */
 .manif{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,72px);align-items:center}
@@ -430,7 +430,6 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
 .go.busy .lb{display:none} .go.busy .sp{display:block} .go.busy{color:#080808} .go.busy::before{transform:translateY(0)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .go.hot{border-color:var(--hot);color:var(--hot)} .go.hot::before{background:var(--hot)}
-.go.tk{border-color:var(--tkp);color:var(--tkp)} .go.tk::before{background:var(--tkp)}
 
 .pixwrap{margin-top:18px}
 .qr{width:170px;height:170px;margin:0 auto;background:#fff;padding:10px;position:relative;overflow:hidden}
@@ -453,8 +452,7 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
 .eh u{width:8px;height:8px;border-radius:50%;flex:none;background:var(--gold)}
 .eh span{margin-left:auto;font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:11.5px;color:var(--muted);font-weight:400}
 .ext.hot .eh u{background:var(--hot)} .ext.hot .eh{color:var(--hot)}
-.ext.tk .eh u{background:var(--tkp)} .ext.tk .eh{color:var(--tkp)}
-.ext.mp .eh u{background:var(--mp)} .ext.mp .eh{color:var(--mp)}
+.ext.st .eh u{background:var(--stripe)} .ext.st .eh{color:var(--stripe)}
 .eb{padding:15px}
 .prod{display:flex;gap:12px;align-items:center;padding-bottom:13px;border-bottom:1px solid var(--line);margin-bottom:13px}
 .prod .im{width:52px;height:65px;flex:none;position:relative;overflow:hidden}
@@ -598,36 +596,8 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
 .lk:hover{color:var(--gold);border-color:var(--gold)}
 .lk-b{display:inline-block;margin-top:20px;font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.16em}
 
-/* ---------- lives ---------- */
-.live-box{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
-.live-when{
-  display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:10px 16px;
-  border:1px solid var(--line);background:var(--surface);font-size:13.5px;color:var(--ink2);
-}
-.live-when b{color:var(--ink);font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:14px}
-.live-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-.live-card{border:1px solid var(--line);background:var(--surface);overflow:hidden;transition:border-color .5s}
-.live-card.ao-vivo{border-color:var(--tkp)}
-.live-top{display:flex;align-items:center;gap:9px;padding:13px 15px;border-bottom:1px solid var(--line)}
-.live-dot{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none;transition:background .4s}
-.live-card.ao-vivo .live-dot{background:var(--tkp);animation:pl 1.5s ease-in-out infinite}
-.live-st{font-family:var(--display);text-transform:uppercase;font-size:12.5px;letter-spacing:.18em;font-weight:600;color:var(--ink2)}
-.live-card.ao-vivo .live-st{color:var(--tkp)}
-.live-ph{position:relative;aspect-ratio:9/13;overflow:hidden}
-.live-ph .ph{position:absolute;inset:0}
-.live-play{
-  position:absolute;left:50%;top:50%;width:56px;height:56px;transform:translate(-50%,-50%);
-  border:1px solid var(--line2);border-radius:50%;
-}
-.live-play::after{content:"";position:absolute;left:53%;top:50%;transform:translate(-50%,-50%);border-left:13px solid var(--ink2);border-block:8px solid transparent}
-.live-card.ao-vivo .live-play{border-color:var(--tkp)}
-.live-card.ao-vivo .live-play::after{border-left-color:var(--tkp)}
-.live-meta{padding:13px 15px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.live-meta b{font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.08em}
-.live-meta span{color:var(--muted);font-size:12px}
-
-/* ---------- chat de acolhimento ---------- */
-.chat-fab{
+/* ---------- botão do WhatsApp ---------- */
+.wa-fab{
   position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:70;
   display:flex;align-items:center;gap:11px;padding:13px 20px;border-radius:999px;
   background:var(--gold);color:#080808;font-family:var(--display);text-transform:uppercase;
@@ -635,58 +605,11 @@ footer{padding:clamp(48px,7vw,80px) var(--pad) 0;max-width:1400px;margin:0 auto;
   box-shadow:0 18px 40px -18px rgba(0,0,0,.9);
   transform:translateY(90px);opacity:0;transition:transform .6s var(--spring),opacity .5s var(--ease),background .3s;
 }
-.chat-fab.on{transform:none;opacity:1}
-.chat-fab:hover{background:var(--gold2)}
-.chat-fab u{width:8px;height:8px;border-radius:50%;background:#080808;flex:none;animation:pl 2s ease-in-out infinite}
-.chat-fab.hide{transform:translateY(90px);opacity:0;pointer-events:none}
-body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
-
-.chat{
-  position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:85;
-  width:min(392px,calc(100vw - 32px));height:min(620px,calc(100svh - 32px));
-  background:var(--surface);border:1px solid var(--line2);display:flex;flex-direction:column;
-  opacity:0;visibility:hidden;transform:translateY(22px) scale(.98);transform-origin:bottom right;
-  transition:opacity .4s var(--ease),transform .45s var(--ease),visibility .45s;
-  box-shadow:0 30px 70px -30px rgba(0,0,0,.95);
-}
-.chat.on{opacity:1;visibility:visible;transform:none}
-.chat-h{display:flex;align-items:center;gap:12px;padding:15px 16px;border-bottom:1px solid var(--line);flex:none}
-.chat-av{width:38px;height:38px;border-radius:50%;flex:none;background:linear-gradient(150deg,var(--gold),var(--gold3));display:grid;place-items:center;font-family:var(--display);font-weight:800;color:#080808;font-size:15px}
-.chat-h b{font-family:var(--display);text-transform:uppercase;font-size:14.5px;letter-spacing:.1em;display:block;line-height:1.2}
-.chat-h small{color:var(--muted);font-size:11.5px}
-.chat-x{margin-left:auto;width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--ink2);font-size:18px;line-height:1;transition:border-color .3s,color .3s;flex:none}
-.chat-x:hover{border-color:var(--gold);color:var(--gold)}
-.chat-b{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:11px;scroll-behavior:smooth}
-.msg{max-width:86%;padding:11px 14px;font-size:14px;line-height:1.55;animation:msgIn .45s var(--ease)}
-@keyframes msgIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
-.msg.dela{background:var(--surface2);border:1px solid var(--line);align-self:flex-start;color:var(--ink)}
-.msg.eu{background:var(--gold);color:#080808;align-self:flex-end;font-weight:500}
-.msg.aviso{background:rgba(201,165,82,.08);border:1px solid var(--gold3);align-self:stretch;max-width:100%;color:var(--ink2);font-size:13px}
-.msg.aviso b{color:var(--gold2);display:block;margin-bottom:4px;font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-size:12px}
-.dig{display:flex;gap:4px;align-self:flex-start;padding:13px 15px;background:var(--surface2);border:1px solid var(--line)}
-.dig u{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:dig 1.3s ease-in-out infinite}
-.dig u:nth-child(2){animation-delay:.18s} .dig u:nth-child(3){animation-delay:.36s}
-@keyframes dig{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
-.chat-op{padding:12px 16px 16px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;flex:none}
-.op{
-  border:1px solid var(--line2);background:var(--surface2);padding:9px 14px;font-size:13.5px;
-  cursor:pointer;text-align:left;transition:border-color .3s,background .3s,transform .3s var(--spring);
-  animation:msgIn .4s var(--ease) backwards;
-}
-.op:nth-child(2){animation-delay:.06s} .op:nth-child(3){animation-delay:.12s} .op:nth-child(4){animation-delay:.18s}
-.op:hover{border-color:var(--gold);background:rgba(201,165,82,.1);transform:translateY(-2px)}
-.op.forte{border-color:var(--gold);color:var(--gold2)}
-.chat-pv{padding:9px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.5;flex:none;display:flex;align-items:center;gap:7px}
-.chat-pv u{width:5px;height:5px;border-radius:50%;background:var(--gold3);flex:none}
-
-@media (max-width:940px){
-  .live-box{grid-template-columns:1fr}
-  .live-r{max-width:340px}
-}
-@media (max-width:560px){
-  .chat{right:0;bottom:0;width:100vw;height:100svh;border:0}
-  .chat-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px}
-}
+.wa-fab.on{transform:none;opacity:1}
+.wa-fab:hover{background:var(--gold2)}
+.wa-fab u{width:8px;height:8px;border-radius:50%;background:#080808;flex:none;animation:pl 2s ease-in-out infinite}
+body.lock .wa-fab{transform:translateY(90px);opacity:0;pointer-events:none}
+@media (max-width:560px){.wa-fab{right:14px;bottom:14px;padding:12px 18px;font-size:13px}}
 
 /* ---------- vozes (depoimentos em áudio) ---------- */
 .vozes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(28px,4vw,46px)}
@@ -757,20 +680,6 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
 .veio-x{width:24px;height:24px;display:grid;place-items:center;color:var(--muted);font-size:17px;line-height:1;flex:none;transition:color .3s}
 .veio-x:hover{color:var(--ink)}
 
-/* ---------- retorno silencioso ---------- */
-.ret{border:1px solid var(--line);background:var(--surface);padding:clamp(20px,3vw,30px);margin-top:clamp(28px,4vw,44px)}
-.ret-h{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;justify-content:space-between}
-.ret-h h3{font-family:var(--display);text-transform:uppercase;font-weight:700;font-size:clamp(19px,2.5vw,26px);letter-spacing:.03em;line-height:1.1}
-.ret-h p{color:var(--ink2);font-size:14px;margin-top:8px;max-width:52ch}
-.ret-c{display:flex;flex-direction:column;gap:9px;margin-top:20px;min-height:8px}
-.ret-go{
-  font-family:var(--display);text-transform:uppercase;font-size:13px;letter-spacing:.16em;font-weight:700;
-  border:1px solid var(--gold);color:var(--gold2);padding:11px 20px;border-radius:999px;flex:none;
-  transition:background .35s var(--ease),color .35s;
-}
-.ret-go:hover{background:var(--gold);color:#080808}
-.ret-n{color:var(--muted);font-size:12.5px;margin-top:16px;line-height:1.6}
-
 /* ---------- cursor ---------- */
 .cur,.cur2{position:fixed;top:0;left:0;z-index:95;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
 .cur{width:6px;height:6px;background:#fff;margin:-3px 0 0 -3px}
@@ -819,10 +728,8 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
   .rv .lede,.rv .ix,.rv .shead .chips{opacity:1!important;transform:none!important}
   .card,.row,.step,.dor,.voz{opacity:1!important;transform:none!important}
   .fila-b i{transition:none!important}
-  .chat-fab{opacity:1!important;transform:none!important}
-  .chat-fab.hide{opacity:0!important}
+  .wa-fab{opacity:1!important;transform:none!important}
   .sug{animation:none}
-  .msg,.op{animation:none!important}
   .dor .go2{opacity:1!important;transform:none!important}
   .step::before{width:100%!important}
   .manif .fig .wipe{transform:scaleY(0)!important}
@@ -859,7 +766,7 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
     <a href="#guia">Começar</a>
     <a href="#consultas">Consultas</a>
     <a href="#trabalhos">Trabalhos</a>
-    <a href="#lives">Ao vivo</a>
+    <a href="#produtos">Produtos</a>
   </nav>
   <button class="entrar" type="button" data-conta><span>Entrar</span></button>
   <a class="wa" href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener"><span>WhatsApp</span></a>
@@ -870,7 +777,7 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
   <a href="#guia">Começar</a>
   <a href="#consultas">Consultas</a>
   <a href="#trabalhos">Trabalhos</a>
-  <a href="#lives">Ao vivo</a>
+  <a href="#produtos">Produtos</a>
   <button class="lk-conta" type="button" data-conta>Minha conta</button>
   <a href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener">WhatsApp</a>
 </nav>
@@ -892,7 +799,7 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
       <div class="rule" aria-hidden="true"></div>
       <div class="ctas">
         <a class="btn mag" href="#guia"><span>Ver o que pode ajudar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
-        <button class="btn ghost mag" type="button" data-abrechat><span>Conversar primeiro</span></button>
+        <a class="btn ghost mag" href="https://wa.me/[SEU WHATSAPP]?text=Oi%2C%20M%C3%A3e%20Karina.%20Vim%20pelo%20site." target="_blank" rel="noopener"><span>Falar no WhatsApp</span></a>
       </div>
     </div>
     <div class="cue" aria-hidden="true"><u></u>Role</div>
@@ -912,7 +819,7 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
       </div>
       <p class="sug-d" id="sugd"></p>
       <div class="grid" id="sugg"></div>
-      <p class="sug-n">Se preferir conversar antes de escolher, <button class="lk" type="button" data-abrechat>fale com a Mãe Karina</button>. Sem compromisso.</p>
+      <p class="sug-n">Se preferir conversar antes de escolher, <a class="lk" href="https://wa.me/[SEU WHATSAPP]?text=Oi%2C%20M%C3%A3e%20Karina.%20Vim%20pelo%20site." target="_blank" rel="noopener">fale com a Mãe Karina no WhatsApp</a>. Sem compromisso.</p>
     </div>
   </section>
 
@@ -921,7 +828,7 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
       <div class="txt">
         <div class="ix"><u aria-hidden="true"></u>02 — Quem atende</div>
         <h2><span class="ln"><span>Quem</span></span><span class="ln"><span>te atende</span></span></h2>
-        <p class="big">Você não vai falar com um robô o tempo todo.</p>
+        <p class="big">Do outro lado da conversa, é ela.</p>
         <p>Mãe Karina de Iemanjá atende online, de onde você estiver. Cada trabalho é feito por ela, com o tempo que ele pede, e você recebe foto da oferenda quando é o caso.</p>
         <p>Assunto delicado não passa por atendente: quem responde é ela.</p>
         <a class="lk lk-b" href="https://www.tiktok.com/@maekarinadeiemanja333" target="_blank" rel="noopener">Ver o TikTok dela</a>
@@ -940,18 +847,6 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
     <p class="lede">Pessoas que autorizaram a publicação. Só o primeiro nome, e nada do que foi conversado em particular.</p>
     <div class="vozes" id="g-vozes"></div>
     <p class="voz-nota">Cada história é uma história. O que ajudou uma pessoa pode não ser o seu caminho — por isso a Mãe Karina olha antes.</p>
-
-    <div class="ret" id="retorno">
-      <div class="ret-h">
-        <div>
-          <h3>Ela lembra de você</h3>
-          <p>Uns dias depois do trabalho terminar, chega uma mensagem. Não é oferta, não é promoção: é só para saber como você está.</p>
-        </div>
-        <button class="ret-go" type="button">Ver a mensagem</button>
-      </div>
-      <div class="ret-c"></div>
-      <p class="ret-n" hidden>Foi isso. Nenhum link, nenhum preço, nenhuma oferta. Quem quiser voltar, volta — e quem não quiser fica em paz.</p>
-    </div>
   </section>
 
   <section class="sec rv" id="consultas">
@@ -962,7 +857,8 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
       </div>
       <div class="chips">
         <span class="chip px"><u aria-hidden="true"></u>Pix</span>
-        <span class="chip"><u aria-hidden="true"></u>Mercado Pago</span>
+        <span class="chip st"><u aria-hidden="true"></u>Cartão</span>
+        <span class="chip"><u aria-hidden="true"></u>Boleto</span>
       </div>
     </div>
     <p class="lede">Tudo por vídeo, de onde você estiver. Escolha o horário e pague na hora: a vaga fica reservada assim que o pagamento entra.</p>
@@ -975,7 +871,7 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
         <div class="ix"><u aria-hidden="true"></u>05 — Trabalhos</div>
         <h2><span class="ln"><span>Feitos por ela,</span></span><span class="ln"><span>à distância</span></span></h2>
       </div>
-      <div class="chips"><span class="chip px"><u aria-hidden="true"></u>Pix e Mercado Pago</span></div>
+      <div class="chips"><span class="chip px"><u aria-hidden="true"></u>Pix, cartão e boleto</span></div>
     </div>
     <p class="lede">Você não precisa estar presente. O trabalho é feito pela Mãe Karina e você acompanha por mensagem, com foto da oferenda quando é o caso.</p>
     <div class="grid" id="g-trabalhos"></div>
@@ -989,9 +885,9 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
             <div class="ix"><u aria-hidden="true"></u>06 — Enviado para você</div>
             <h2><span class="ln"><span>Preparados</span></span><span class="ln"><span>e enviados</span></span></h2>
           </div>
-          <div class="chips"><span class="chip tk"><u aria-hidden="true"></u>TikTok Shop</span></div>
+          <div class="chips"><span class="chip bl"><u aria-hidden="true"></u>Entrega com rastreio</span></div>
         </div>
-        <p class="lede">Banhos, velas e guias preparados por ela. A compra é feita pelo TikTok Shop, com frete e rastreio por lá.</p>
+        <p class="lede">Banhos, velas e guias preparados por ela. Você compra aqui mesmo e recebe em casa, com rastreio.</p>
       </div>
       <div class="htrack" id="g-produtos"></div>
       <div class="hbar" aria-hidden="true"><u><i id="hbar"></i></u></div>
@@ -1004,49 +900,20 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
         <div class="ix"><u aria-hidden="true"></u>07 — Cursos</div>
         <h2><span class="ln"><span>Para quem quer</span></span><span class="ln"><span>entender</span></span></h2>
       </div>
-      <div class="chips"><span class="chip hot"><u aria-hidden="true"></u>Hotmart</span></div>
+      <div class="chips"><span class="chip hot"><u aria-hidden="true"></u>Hostinger</span></div>
     </div>
     <p class="lede">Compra aprovada, acesso liberado no e-mail. Sem link mandado à mão.</p>
     <div class="rows" id="g-cursos"></div>
   </section>
 
-  <section class="sec rv" id="lives">
-    <div class="live-box" id="livebox">
-      <div class="live-l">
-        <div class="ix"><u aria-hidden="true"></u>08 — Ao vivo</div>
-        <h2><span class="ln"><span>Encontre ela</span></span><span class="ln"><span>ao vivo</span></span></h2>
-        <p class="lede">Mãe Karina faz lives no TikTok. É lá que ela responde perguntas, joga para quem está assistindo e conversa com a comunidade.</p>
-        <div class="live-when" id="livewhen"></div>
-        <div class="live-cta">
-          <a class="btn mag" id="livego" href="https://www.tiktok.com/@maekarinadeiemanja333/live" target="_blank" rel="noopener"><span id="livegot">Ver no TikTok <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
-          <button class="btn ghost mag" id="liveav" type="button"><span>Avisar quando abrir</span></button>
-        </div>
-      </div>
-      <div class="live-r">
-        <div class="live-card" id="livecard">
-          <div class="live-top">
-            <span class="live-dot" id="livedot" aria-hidden="true"></span>
-            <span class="live-st" id="livest">verificando…</span>
-          </div>
-          <div class="live-ph"><span class="ph" aria-hidden="true"></span><span class="live-play" aria-hidden="true"></span></div>
-          <div class="live-meta">
-            <b>@maekarinadeiemanja333</b>
-            <span id="livesub">TikTok</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="band rv" id="ajuda">
     <span class="aura" aria-hidden="true"></span>
     <div class="in">
-      <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>09 — Fale com ela</div>
+      <div class="ix" style="justify-content:center"><u aria-hidden="true"></u>08 — Fale com ela</div>
       <h2><span class="ln"><span>Não sabe</span></span><span class="ln"><span>por onde começar?</span></span></h2>
       <p>Conte o que está acontecendo. Ela escuta primeiro e só depois fala em trabalho.</p>
       <div class="ctas" style="justify-content:center">
-        <button class="btn mag" type="button" data-abrechat><span>Conversar agora <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></button>
-        <a class="btn ghost mag" href="https://wa.me/[SEU WHATSAPP]" target="_blank" rel="noopener"><span>Falar no WhatsApp</span></a>
+        <a class="btn mag" href="https://wa.me/[SEU WHATSAPP]?text=Oi%2C%20M%C3%A3e%20Karina.%20Vim%20pelo%20site." target="_blank" rel="noopener"><span>Falar no WhatsApp <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
       </div>
     </div>
   </section>
@@ -1065,7 +932,7 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
       <a href="#guia">Por onde começar</a>
       <a href="#consultas">Consultas</a>
       <a href="#trabalhos">Trabalhos</a>
-      <a href="#lives">Lives no TikTok</a>
+      <a href="#produtos">Produtos</a>
     </div>
     <div class="col">
       <h4>Contato</h4>
@@ -1082,23 +949,8 @@ body.lock .chat-fab{transform:translateY(90px);opacity:0;pointer-events:none}
 
 <div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Detalhe do item" hidden><div class="sheet" id="sheet"></div></div>
 
-<button class="chat-fab" id="fab" type="button" aria-label="Abrir a conversa">
-  <u aria-hidden="true"></u>Conversar
-</button>
 
-<div class="chat" id="chat" role="dialog" aria-modal="false" aria-label="Conversa com a Mãe Karina">
-  <div class="chat-h">
-    <span class="chat-av" aria-hidden="true">K</span>
-    <span>
-      <b>Mãe Karina</b>
-      <small id="chatst">atendimento on-line</small>
-    </span>
-    <button class="chat-x" id="chatx" type="button" aria-label="Fechar a conversa">×</button>
-  </div>
-  <div class="chat-b" id="chatb" role="log" aria-live="polite"></div>
-  <div class="chat-op" id="chatop"></div>
-  <div class="chat-pv"><u aria-hidden="true"></u><span>Esta conversa não fica guardada no seu aparelho. Ao fechar, some.</span></div>
-</div>
+<a class="wa-fab" id="fab" href="https://wa.me/[SEU WHATSAPP]?text=Oi%2C%20M%C3%A3e%20Karina.%20Vim%20pelo%20site." target="_blank" rel="noopener" aria-label="Falar com a Mãe Karina no WhatsApp"><u aria-hidden="true"></u>WhatsApp</a>
 
 <div class="cur" id="cur" aria-hidden="true"></div>
 <div class="cur2" id="cur2" aria-hidden="true"><span id="curtxt"></span></div>
@@ -1115,7 +967,7 @@ var ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-w
    ATENÇÃO — PROVISÓRIO: nomes, descrições e preços abaixo são típicos de um atendimento
    de Iemanjá que atende online. NÃO foram confirmados com a Mãe Karina.
    Trocar por serviços e valores reais antes de mostrar para a cliente.
-   O campo `dor` liga o serviço à dificuldade: alimenta o guia e o bot.
+   O campo `dor` liga o serviço à dificuldade: alimenta o guia.
    Tudo é atendimento online e à distância — não há atendimento presencial.  */
 var itens = [
   {id:1,  g:"consultas", t:"Jogo de búzios",            p:90,  d:"Leitura completa por vídeo, 40 minutos", canal:"site", dor:["encruzilhada","tudo"],            img:"photo-1706922122654-e209628fdd48"},
@@ -1125,11 +977,11 @@ var itens = [
   {id:5,  g:"trabalhos", t:"Abertura de caminhos",      p:250, d:"Trabalho completo, com consulta junto",  canal:"site", dor:["dinheiro","encruzilhada"],       img:"photo-1489101960932-eb71762e6bc8"},
   {id:6,  g:"trabalhos", t:"Firmeza de proteção",       p:200, d:"Para você, a família ou o negócio",         canal:"site", dor:["peso","medo"],                   img:"photo-1518528802892-ec2191995c99"},
   {id:7,  g:"trabalhos", t:"Trabalho de Iemanjá",       p:280, d:"Para a família e a vida amorosa",        canal:"site", dor:["amor","familia"],                img:"photo-1602523961358-f9f03dd557db"},
-  {id:8,  g:"produtos",  t:"Banho de ervas",            p:75,  d:"Preparado e enviado pronto para usar",   canal:"tk",   dor:["peso","saude"],                  img:"photo-1509156396595-449e10c5cd3e"},
-  {id:9,  g:"produtos",  t:"Vela de sete dias",         p:45,  d:"Firmada por ela e enviada",              canal:"tk",   dor:["medo","peso"],                   img:"photo-1664743680476-f3ee2680c8c5"},
-  {id:10, g:"produtos",  t:"Guia de proteção",          p:120, d:"Feito à mão, na cor do seu orixá",       canal:"tk",   dor:["medo"],                          img:"photo-1637757969279-c4d028905131"},
-  {id:11, g:"cursos",    t:"Iemanjá e as águas",        p:197, d:"8 aulas sobre a linha de Iemanjá",       canal:"hot",  dor:["aprender"], parc:"12x de R$ 19,70", img:"photo-1600429753199-5376c2738737"},
-  {id:12, g:"cursos",    t:"Umbanda para iniciantes",   p:97,  d:"Fundamentos, 5 aulas",                   canal:"hot",  dor:["aprender"], parc:"6x de R$ 17,55",  img:"photo-1623230951203-1f8fa5298426"}
+  {id:8,  g:"produtos",  t:"Banho de ervas",            p:75,  d:"Preparado e enviado pronto para usar",   canal:"loja", dor:["peso","saude"],                  img:"photo-1509156396595-449e10c5cd3e"},
+  {id:9,  g:"produtos",  t:"Vela de sete dias",         p:45,  d:"Firmada por ela e enviada",              canal:"loja", dor:["medo","peso"],                   img:"photo-1664743680476-f3ee2680c8c5"},
+  {id:10, g:"produtos",  t:"Guia de proteção",          p:120, d:"Feito à mão, na cor do seu orixá",       canal:"loja", dor:["medo"],                          img:"photo-1637757969279-c4d028905131"},
+  {id:11, g:"cursos",    t:"Iemanjá e as águas",        p:197, d:"8 aulas sobre a linha de Iemanjá",       canal:"curso",dor:["aprender"], parc:"12x de R$ 19,70", img:"photo-1600429753199-5376c2738737"},
+  {id:12, g:"cursos",    t:"Umbanda para iniciantes",   p:97,  d:"Fundamentos, 5 aulas",                   canal:"curso",dor:["aprender"], parc:"6x de R$ 17,55",  img:"photo-1623230951203-1f8fa5298426"}
 ];
 
 /* ---------- a ficha de cada serviço ----------
@@ -1186,17 +1038,18 @@ var DORES = [
   {k:"encruzilhada",  t:"Não sei o que fazer", d:"Uma decisão grande na frente e nenhuma certeza."},
   {k:"aprender",      t:"Quero aprender",      d:"Vontade de entender a Umbanda e a linha de Iemanjá."}
 ];
-var CANAL = { site:{n:"Site", cls:"px"}, tk:{n:"TikTok Shop", cls:"tk"}, hot:{n:"Hotmart", cls:"hot"} };
+/* produto é comprado no site; só o curso sai para outra plataforma */
+var CANAL = { curso:{n:"Hostinger", cls:"hot"} };
 /* fotos que já temos em img/ (9), remapeadas para os serviços atuais */
 var LOCAL = {1:"baralho-cigano",2:"consulta-espiritual",3:"leitura-de-tarot",4:"banho-de-descarrego",5:"abertura-de-caminhos",6:"firmeza-de-protecao",7:"toalha-de-leitura",8:"kit-iniciante-de-tarot",9:"vela-de-sete-dias"};
 var horarios = ["Qui 14h","Qui 16h","Sex 10h","Sex 15h","Sáb 9h","Sáb 11h"];
 var PASSOS_SITE = ["Horário","Entrar","Pagamento","Seus dados","Confirmação"];
+var PASSOS_LOJA = ["Produto","Entrar","Pagamento","Confirmação"];
+/* MOCK: no sistema de verdade o frete é calculado pelo CEP, pela Bling. */
+var FRETE = { v:19, prazo:"chega em 5 a 8 dias úteis" };
 /* MOCK: quem já entrou na conta nesta visita. No sistema de verdade é a sessão. */
 var logado = false;
 var escolha = null, cron = null, ultimoFoco = null;
-/* a conversa fica acima do modal (z-index 85 contra 80), então sai de cena
-   sempre que um pedido ou a conta abrem — senão come os cliques.          */
-var fecharConversa = null;
 
 function brl(v){ return "R$ " + v.toLocaleString("pt-BR"); }
 function foto(id,w,h){ return "https://images.unsplash.com/" + id + "?w=" + w + "&h=" + h + "&fit=crop&q=70&auto=format"; }
@@ -1242,14 +1095,14 @@ function arrancar(){
 
 /* ---------- ticker ---------- */
 (function(){
-  var t = ["Consulta espiritual","Abertura de caminhos","Banho de descarrego","Firmeza de proteção","Leitura de tarot","Baralho cigano","Cursos pela Hotmart","Produtos no TikTok Shop","Pix e Mercado Pago"];
+  var t = ["Consulta espiritual","Abertura de caminhos","Banho de descarrego","Firmeza de proteção","Leitura de tarot","Baralho cigano","Cursos on-line","Produtos enviados para você","Pix, cartão e boleto"];
   var h = t.map(function(x){ return "<b>" + x + "</b>"; }).join("");
   $("tick").innerHTML = h + h;
 })();
 
 /* ---------- cards ---------- */
 function cardHTML(i){
-  var tag = i.canal !== "site" ? '<span class="chip ' + CANAL[i.canal].cls + ' tag"><u aria-hidden="true"></u>' + CANAL[i.canal].n + '</span>' : '';
+  var tag = CANAL[i.canal] ? '<span class="chip ' + CANAL[i.canal].cls + ' tag"><u aria-hidden="true"></u>' + CANAL[i.canal].n + '</span>' : '';
   return tag +
     '<div class="fig"><span class="ph" aria-hidden="true"></span>' +
     '<img alt="" loading="lazy" decoding="async">' +
@@ -1424,15 +1277,16 @@ function shell(passos, atual, corpo){
 }
 function abrir(i, origem){
   ultimoFoco = origem || null;
-  if(fecharConversa) fecharConversa();
-  escolha = { item:i, slot:null, pg:null, ficha:null };
+  escolha = { item:i, slot:null, pg:null, via:null, ficha:null,
+              passos: i.canal === "loja" ? PASSOS_LOJA : PASSOS_SITE,
+              total: i.p + (i.canal === "loja" ? FRETE.v : 0) };
   var ov = $("ov");
   ov.hidden = false;
   requestAnimationFrame(function(){ ov.classList.add("on"); });
   document.body.classList.add("lock");
   if(i.canal === "site") modalSite(i);
-  else if(i.canal === "hot") modalHotmart(i);
-  else modalTikTok(i);
+  else if(i.canal === "curso") modalCurso(i);
+  else modalProduto(i);
 }
 function fechar(){
   var ov = $("ov");
@@ -1465,7 +1319,6 @@ function botao(txt, cls){
    nunca uma checagem feita aqui no navegador, que qualquer pessoa contorna. */
 function login(origem){
   ultimoFoco = origem || null;
-  if(fecharConversa) fecharConversa();
   var ov = $("ov");
   ov.hidden = false;
   requestAnimationFrame(function(){ ov.classList.add("on"); });
@@ -1538,7 +1391,6 @@ function login(origem){
    histórico vem do banco, filtrado pelo cliente logado.                         */
 function contaEntrar(origem, novo){
   ultimoFoco = origem || null;
-  if(fecharConversa) fecharConversa();
   var ov = $("ov");
   ov.hidden = false;
   requestAnimationFrame(function(){ ov.classList.add("on"); });
@@ -1693,9 +1545,9 @@ var FILA = { max:8 };
    Reduz a ansiedade de quem pagou e não sabe se está andando — é o que mais
    gera mensagem de "e aí, como está?" no WhatsApp.                              */
 var DIARIO = {
-  site: ["Pedido recebido","Trabalho começado","Foto da oferenda enviada","Retorno da Mãe Karina"],
-  hot:  ["Compra aprovada","Acesso liberado no e-mail","Primeira aula disponível"],
-  tk:   ["Pedido confirmado","Preparado por ela","Postado com rastreio","A caminho de você"]
+  site:  ["Pedido recebido","Trabalho começado","Foto da oferenda enviada","Trabalho concluído"],
+  curso: ["Compra aprovada","Acesso liberado no e-mail","Primeira aula disponível"],
+  loja:  ["Pedido confirmado","Preparado por ela","Postado com rastreio","A caminho de você"]
 };
 function diarioHTML(canal){
   var etapas = DIARIO[canal] || DIARIO.site;
@@ -1756,7 +1608,7 @@ function modalLoginCompra(i, novo){
     '<p class="mini" style="margin-top:16px"><button class="lk" type="button" id="lc-alt">' +
       (novo ? "Já tenho conta, quero entrar" : "Ainda não tenho conta, quero criar") + '</button></p>' +
     '<div class="fi-n"><u aria-hidden="true"></u><span>Demonstração: nada é verificado. No sistema de verdade, é a conta que liga o pedido à pessoa.</span></div>';
-  shell(PASSOS_SITE, 1, html);
+  shell(escolha.passos, 1, html);
   $("lc-alt").addEventListener("click", function(){ modalLoginCompra(i, !novo); });
   $("go").addEventListener("click", function(){
     $("go").classList.add("busy");
@@ -1797,17 +1649,50 @@ function modalFicha(i){
   }
   $("go").addEventListener("click", function(){
     $("go").classList.add("busy");
-    setTimeout(function(){ concluir("site", escolha.pg === "pix" ? "Pix" : "Mercado Pago"); }, reduce ? 60 : 700);
+    setTimeout(function(){ concluir("site", escolha.via); }, reduce ? 60 : 700);
   });
 }
 
+/* ---------- produto: comprado aqui, enviado pela Bling ----------
+   MOCK: preço e estoque vêm da Bling. Vendeu aqui, o pedido entra lá, que baixa
+   o estoque em todas as lojas e gera a nota e a etiqueta.                       */
+function modalProduto(i){
+  var campos = FICHAS.produtos;
+  var html = '<div class="prod"><span class="im"><span class="ph" aria-hidden="true"></span><img alt="" decoding="async"></span>' +
+    '<div><b>' + i.t + '</b><i>' + i.d + '</i></div></div><div class="fi">';
+  campos.forEach(function(c,k){
+    html += '<div class="fg"><label for="pd-' + k + '">' + c.t + (c.opc ? ' <i>opcional</i>' : '') + '</label>' +
+      '<input class="inp" id="pd-' + k + '" type="text" value="' + c.ex + '"></div>';
+  });
+  html += '</div>' +
+    '<div class="field"><small>Frete</small>' + brl(FRETE.v) + ' · ' + FRETE.prazo + '</div>' +
+    '<p class="inst"><span>Total</span><b>' + brl(escolha.total) + '</b></p>' +
+    '<div class="fi-n"><u aria-hidden="true"></u><span>Em estoque. Preço e estoque vêm da loja da Mãe Karina na Bling.</span></div>' +
+    botao("Continuar");
+  shell(PASSOS_LOJA, 0, html);
+  encadear($("sheet").querySelector(".prod img"), fontes(i,120,150));
+  $("go").addEventListener("click", function(){
+    if(logado) modalPagamento(i); else modalLoginCompra(i);
+  });
+}
+
+function resumo(i){ return i.t + (escolha.slot !== null ? ' · ' + horarios[escolha.slot] : ''); }
+/* depois de pagar: serviço pede a ficha, produto já fecha */
+function depoisDoPagamento(i){
+  if(i.canal === "loja") concluir("loja", escolha.via);
+  else modalFicha(i);
+}
+
 function modalPagamento(i){
-  var html = '<h3>Como você prefere pagar</h3><p class="mini">' + i.t + ' · ' + brl(i.p) + '</p>' +
+  var html = '<h3>Como você prefere pagar</h3><p class="mini">' + i.t + ' · ' + brl(escolha.total) + '</p>' +
     '<div class="pays">' +
     '<button class="pay" type="button" data-p="pix"><span class="rd" aria-hidden="true"></span><u style="background:var(--pix)" aria-hidden="true"></u>Pix<small>cai na hora</small></button>' +
-    '<button class="pay" type="button" data-p="mp"><span class="rd" aria-hidden="true"></span><u style="background:var(--mp)" aria-hidden="true"></u>Mercado Pago<small>cartão ou boleto</small></button>' +
-    '</div>' + botao("Pagar");
-  shell(PASSOS_SITE, 2, html);
+    '<button class="pay" type="button" data-p="cartao"><span class="rd" aria-hidden="true"></span><u style="background:var(--stripe)" aria-hidden="true"></u>Cartão de crédito<small>aprova na hora</small></button>' +
+    '<button class="pay" type="button" data-p="boleto"><span class="rd" aria-hidden="true"></span><u style="background:var(--muted)" aria-hidden="true"></u>Boleto<small>compensa em até 2 dias úteis</small></button>' +
+    '</div>' +
+    '<div class="fi-n"><u aria-hidden="true"></u><span>Pagamento seguro pela Stripe, direto na conta da Mãe Karina.</span></div>' +
+    botao("Pagar");
+  shell(escolha.passos, 2, html);
   var s = $("sheet");
   $("go").disabled = true;
   s.querySelectorAll(".pay").forEach(function(el){
@@ -1819,17 +1704,18 @@ function modalPagamento(i){
   });
   $("go").addEventListener("click", function(){
     $("go").classList.add("busy");
-    setTimeout(escolha.pg === "pix" ? pix : mercadoPago, 550);
+    setTimeout(escolha.pg === "pix" ? pix : escolha.pg === "boleto" ? boleto : cartao, 550);
   });
 }
 
 function pix(){
   var i = escolha.item;
   var codigo = "00020126580014BR.GOV.BCB.PIX0136" + Math.random().toString(36).slice(2,14) + "52040000530398654" + ("0" + i.p).slice(-4) + "5802BR6009SAO PAULO";
-  shell(PASSOS_SITE, 2,
-    '<h3>Pague com Pix</h3><p class="mini">' + i.t + ' · ' + horarios[escolha.slot] + '</p>' +
+  escolha.via = "Pix";
+  shell(escolha.passos, 2,
+    '<h3>Pague com Pix</h3><p class="mini">' + resumo(i) + '</p>' +
     '<div class="pixwrap"><div class="qr" aria-hidden="true"><div class="m"></div><span class="k"></span><span class="scan"></span></div>' +
-    '<div class="pixmeta"><span>Valor</span><b>' + brl(i.p) + '</b></div>' +
+    '<div class="pixmeta"><span>Valor</span><b>' + brl(escolha.total) + '</b></div>' +
     '<div class="pixmeta"><span>Expira em</span><b id="cd">10:00</b></div>' +
     '<div class="code" id="cod">' + codigo + '</div>' +
     '<button class="copy" id="cp" type="button">Copiar código</button>' +
@@ -1845,23 +1731,47 @@ function pix(){
     b.textContent = "Copiado"; b.classList.add("ok");
     setTimeout(function(){ b.textContent = "Copiar código"; b.classList.remove("ok"); }, 1600);
   });
-  setTimeout(function(){ clearInterval(cron); modalFicha(i); }, 3400);
+  setTimeout(function(){ clearInterval(cron); depoisDoPagamento(i); }, 3400);
 }
 
-function mercadoPago(){
+function cartao(){
   var i = escolha.item;
-  shell(PASSOS_SITE, 2,
-    '<h3>Mercado Pago</h3><p class="mini">' + i.t + ' · ' + horarios[escolha.slot] + '</p>' +
-    '<div class="ext mp"><div class="eh"><u aria-hidden="true"></u>Mercado Pago<span>pagamento protegido</span></div>' +
-    '<div class="eb"><div class="proc"><p>Abrindo o checkout seguro</p><div class="bar"><i id="pb"></i></div></div></div></div>');
+  escolha.via = "cartão";
+  shell(escolha.passos, 2,
+    '<h3>Cartão de crédito</h3><p class="mini">' + resumo(i) + '</p>' +
+    '<div class="ext st"><div class="eh"><u aria-hidden="true"></u>Stripe<span>pagamento protegido</span></div>' +
+    '<div class="eb"><div class="proc"><p>Aprovando o pagamento</p><div class="bar"><i id="pb"></i></div></div></div></div>');
   requestAnimationFrame(function(){ var b = $("pb"); if(b) b.style.width = "100%"; });
-  setTimeout(function(){ modalFicha(i); }, 2100);
+  setTimeout(function(){ depoisDoPagamento(i); }, 2100);
 }
 
-function modalHotmart(i){
-  shell(["Checkout Hotmart","Confirmação"], 0,
-    '<h3>' + i.t + '</h3><p class="mini">Você vai para o checkout da Hotmart, já com os seus dados.</p>' +
-    '<div class="ext hot"><div class="eh"><u aria-hidden="true"></u>Hotmart<span>compra segura</span></div><div class="eb">' +
+function boleto(){
+  var i = escolha.item;
+  var codigo = "23793.38128 60000.000003 " + ("0000" + i.id).slice(-5) + "0.000000 1 0000" + ("000000" + escolha.total * 100).slice(-8);
+  escolha.via = "boleto";
+  shell(escolha.passos, 2,
+    '<h3>Boleto</h3><p class="mini">' + resumo(i) + '</p>' +
+    '<div class="pixmeta"><span>Valor</span><b>' + brl(escolha.total) + '</b></div>' +
+    '<div class="pixmeta"><span>Vence em</span><b>3 dias</b></div>' +
+    '<div class="code" id="bcod">' + codigo + '</div>' +
+    '<button class="copy" id="bcp" type="button">Copiar código</button>' +
+    '<div class="fi-n"><u aria-hidden="true"></u><span>' + (i.canal === "loja"
+      ? "O pedido sai assim que o boleto compensar, em até 2 dias úteis."
+      : "O seu horário fica guardado até o boleto compensar, em até 2 dias úteis.") + '</span></div>' +
+    botao("Continuar"));
+  $("bcp").addEventListener("click", function(){
+    var b = $("bcp");
+    try{ navigator.clipboard.writeText(codigo); }catch(e){}
+    b.textContent = "Copiado"; b.classList.add("ok");
+    setTimeout(function(){ b.textContent = "Copiar código"; b.classList.remove("ok"); }, 1600);
+  });
+  $("go").addEventListener("click", function(){ depoisDoPagamento(i); });
+}
+
+function modalCurso(i){
+  shell(["Hostinger","Confirmação"], 0,
+    '<h3>' + i.t + '</h3><p class="mini">Você vai para a página do curso na Hostinger, já com os seus dados.</p>' +
+    '<div class="ext hot"><div class="eh"><u aria-hidden="true"></u>Hostinger<span>compra segura</span></div><div class="eb">' +
     '<div class="prod"><span class="im"><span class="ph" aria-hidden="true"></span><img alt="" decoding="async"></span><div><b>' + i.t + '</b><i>' + i.d + '</i></div></div>' +
     '<div class="field"><small>Nome</small>Cliente</div>' +
     '<div class="field"><small>E-mail para o acesso</small>cliente@email.com</div>' +
@@ -1871,51 +1781,36 @@ function modalHotmart(i){
   $("go").addEventListener("click", function(){
     $("go").classList.add("busy");
     setTimeout(function(){
-      $("sheet").querySelector(".eb").innerHTML = '<div class="proc"><p>Processando na Hotmart</p><div class="bar"><i id="pb"></i></div></div>';
+      $("sheet").querySelector(".eb").innerHTML = '<div class="proc"><p>Processando na Hostinger</p><div class="bar"><i id="pb"></i></div></div>';
       requestAnimationFrame(function(){ var b = $("pb"); if(b) b.style.width = "100%"; });
-      setTimeout(function(){ concluir("hot","Hotmart"); }, 2100);
-    }, 500);
-  });
-}
-
-function modalTikTok(i){
-  shell(["TikTok Shop","Confirmação"], 0,
-    '<h3>' + i.t + '</h3><p class="mini">Produto físico: a compra é feita no TikTok Shop, com frete e etiqueta por lá.</p>' +
-    '<div class="ext tk"><div class="eh"><u aria-hidden="true"></u>TikTok Shop<span>loja oficial</span></div><div class="eb">' +
-    '<div class="prod"><span class="im"><span class="ph" aria-hidden="true"></span><img alt="" decoding="async"></span><div><b>' + i.t + '</b><i>' + i.d + '</i></div></div>' +
-    '<div class="field"><small>Entregar em</small>Rua das Flores, 120 · Porto Alegre, RS</div>' +
-    '<div class="field"><small>Frete</small>Grátis · chega em 4 a 7 dias</div>' +
-    '<p class="inst"><span>Total</span><b>' + brl(i.p) + '</b></p>' + botao("Comprar agora","tk") + '</div></div>');
-  encadear($("sheet").querySelector(".prod img"), fontes(i,120,150));
-  $("go").addEventListener("click", function(){
-    $("go").classList.add("busy");
-    setTimeout(function(){
-      $("sheet").querySelector(".eb").innerHTML = '<div class="proc"><p>Confirmando no TikTok Shop</p><div class="bar"><i id="pb"></i></div></div>';
-      requestAnimationFrame(function(){ var b = $("pb"); if(b) b.style.width = "100%"; });
-      setTimeout(function(){ concluir("tk","TikTok Shop"); }, 2100);
+      setTimeout(function(){ concluir("curso","Hostinger"); }, 2100);
     }, 500);
   });
 }
 
 function concluir(canal, via){
   var i = escolha.item, passos, etapas;
+  var pago = via === "boleto" ? "Boleto gerado: confirma quando compensar" : "Pagamento aprovado no " + via + ", pela Stripe";
   if(canal === "site"){
     etapas = PASSOS_SITE;
-    passos = ["Pagamento aprovado via " + via,
+    passos = [pago,
               "Horário " + horarios[escolha.slot] + " reservado na agenda",
               "Suas informações entregues no painel da Mãe Karina",
               "Pedido na fila dos trabalhos a fazer",
               "Tudo guardado na sua conta"];
-  } else if(canal === "hot"){
-    etapas = ["Checkout Hotmart","Confirmação"];
-    passos = ["Hotmart aprovou a compra", "Acesso ao curso liberado por e-mail", "Aluno registrado"];
+  } else if(canal === "curso"){
+    etapas = ["Hostinger","Confirmação"];
+    passos = ["Hostinger aprovou a compra", "Acesso ao curso liberado por e-mail", "Aluno registrado"];
   } else {
-    etapas = ["TikTok Shop","Confirmação"];
-    passos = ["TikTok Shop confirmou o pedido", "Etiqueta de envio gerada", "Pedido na fila de postagem"];
+    etapas = PASSOS_LOJA;
+    passos = [pago,
+              "Pedido registrado na Bling, que baixa o estoque em todas as lojas",
+              "Nota e etiqueta de envio geradas",
+              "Tudo guardado na sua conta"];
   }
   var html = '<div class="okwrap"><svg viewBox="0 0 74 74" fill="none" aria-hidden="true"><circle class="c" cx="37" cy="37" r="33" stroke="#C9A552" stroke-width="1.5"/>' +
     '<path class="t" d="M23 38l9 9 19-20" stroke="#C9A552" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-    '<h3>Pronto</h3><p class="mini">' + i.t + ' · ' + brl(i.p) + '</p><div class="flow" id="flow"><span class="ln" aria-hidden="true"></span>';
+    '<h3>Pronto</h3><p class="mini">' + i.t + ' · ' + brl(escolha.total) + '</p><div class="flow" id="flow"><span class="ln" aria-hidden="true"></span>';
   passos.forEach(function(p){ html += '<div class="st"><u aria-hidden="true"></u>' + p + '</div>'; });
   html += '</div>' + diarioHTML(canal) + botao("Voltar para o site") + '</div>';
   shell(etapas, etapas.length - 1, html);
@@ -2026,289 +1921,9 @@ var VOZES = [
   });
 })();
 
-/* ---------- lives do TikTok ----------
-   A API pública do TikTok não diz se um perfil está ao vivo sem chave de acesso.
-   Enquanto não houver integração real, ela informa o horário combinado e o
-   botão leva direto para o perfil. Trocar `AO_VIVO` por uma checagem real
-   (webhook próprio, ou TikTok Display API) quando existir.               */
-var LIVES = { dias:[2,4,6], hora:20, fim:22, tz:"America/Sao_Paulo" };
-var DIAS = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
-(function(){
-  var card = $("livecard"), st = $("livest"), sub = $("livesub"), quando = $("livewhen");
-  var agora = new Date();
-  var d = agora.getDay(), h = agora.getHours();
-  var aoVivo = LIVES.dias.indexOf(d) >= 0 && h >= LIVES.hora && h < LIVES.fim;
-
-  if(aoVivo){
-    card.classList.add("ao-vivo");
-    st.textContent = "ao vivo agora";
-    sub.textContent = "entre na live";
-    $("livegot").innerHTML = 'Entrar na live ' + ARROW;
-    $("liveav").hidden = true;
-  } else {
-    st.textContent = "fora do ar";
-    sub.textContent = "próxima live";
-  }
-  var prox = null;
-  for(var i = 0; i < 8 && prox === null; i++){
-    var dia = (d + i) % 7;
-    if(LIVES.dias.indexOf(dia) >= 0 && (i > 0 || h < LIVES.hora)) prox = {dia:dia, dias:i};
-  }
-  quando.innerHTML = aoVivo
-    ? '<b>Ao vivo</b><span>agora no TikTok</span>'
-    : '<b>' + (prox ? (prox.dias === 0 ? "Hoje" : prox.dias === 1 ? "Amanhã" : DIAS[prox.dia]) : DIAS[LIVES.dias[0]]) +
-      ' às ' + LIVES.hora + 'h</b><span>horário de Brasília</span>';
-
-  $("liveav").addEventListener("click", function(){
-    var b = $("liveav");
-    b.querySelector("span").textContent = "Te avisamos pelo WhatsApp";
-    setTimeout(function(){ window.open("https://wa.me/[SEU WHATSAPP]?text=" + encodeURIComponent("Oi! Quero ser avisada quando a Mãe Karina abrir a live."), "_blank", "noopener"); }, 500);
-  });
-})();
-
-/* ---------- chat de acolhimento ----------
-   Regras, nesta ordem:
-   1. Escuta antes de vender.
-   2. Tema delicado (doença, luto, dívida, violência, ideia de morte) NÃO recebe
-      oferta de serviço: acolhe e passa para a Mãe Karina.
-   3. Nunca promete cura, resultado ou prazo.
-   4. A conversa vive só em memória. Ao fechar, some. Nada em localStorage.      */
-(function(){
-  var fab = $("fab"), cx = $("chat"), corpo = $("chatb"), ops = $("chatop");
-  var conversa = [];        /* só em memória, nunca persistido */
-  var aberto = false, ocupado = false;
-
-  var DELICADO = ["doenca","luto","divida","violencia","desespero"];
-
-  var ARVORE = {
-    inicio: {
-      fala: ["Oi. Que bom que você veio.", "Me conta: o que está pesando mais agora?"],
-      ops: [
-        {t:"Amor e relações", v:"amor"},
-        {t:"Trabalho e dinheiro", v:"dinheiro"},
-        {t:"Sinto um peso, não sei explicar", v:"peso"},
-        {t:"Família", v:"familia"},
-        {t:"Estou passando por algo difícil", v:"desespero", forte:true}
-      ]
-    },
-    amor: {
-      fala: ["Entendo. Amor mexe com a gente de um jeito que nada mexe.", "É uma relação que travou, alguém que se afastou, ou uma dúvida sobre continuar?"],
-      ops: [
-        {t:"Travou, não anda", v:"amor2"},
-        {t:"Alguém se afastou", v:"amor2"},
-        {t:"Não sei se continuo", v:"amor2"},
-        {t:"É mais grave que isso", v:"violencia", forte:true}
-      ]
-    },
-    amor2: {
-      fala: ["Obrigada por confiar isso aqui.", "Nesses casos a Mãe Karina costuma começar com uma leitura, para enxergar o que está por trás. Depois ela diz se cabe um trabalho ou não — e às vezes diz que não cabe."],
-      sugere: "amor"
-    },
-    dinheiro: {
-      fala: ["Isso aperta o peito, eu sei.", "É emprego que não vem, dívida que está sufocando, ou negócio parado?"],
-      ops: [
-        {t:"Emprego não vem", v:"dinheiro2"},
-        {t:"Negócio parado", v:"dinheiro2"},
-        {t:"Dívida me sufocando", v:"divida", forte:true}
-      ]
-    },
-    dinheiro2: {
-      fala: ["Certo.", "Para caminho travado, ela costuma indicar uma leitura primeiro e, se fizer sentido, uma abertura de caminhos."],
-      sugere: "dinheiro"
-    },
-    peso: {
-      fala: ["Esse cansaço que não passa, tudo dando errado sem motivo.", "Isso começou depois de alguma coisa, ou foi chegando aos poucos?"],
-      ops: [
-        {t:"Foi chegando aos poucos", v:"peso2"},
-        {t:"Depois de um acontecimento", v:"peso2"},
-        {t:"Estou muito mal mesmo", v:"desespero", forte:true}
-      ]
-    },
-    peso2: {
-      fala: ["Entendi.", "Nesses casos ela costuma começar com um descarrego ou um banho, e a leitura mostra se precisa de mais."],
-      sugere: "peso"
-    },
-    familia: {
-      fala: ["Família dividida cansa mais que trabalho.", "É briga que não acaba, um filho que preocupa, ou distância entre vocês?"],
-      ops: [
-        {t:"Briga que não acaba", v:"familia2"},
-        {t:"Filho que preocupa", v:"familia2"},
-        {t:"Perdi alguém da família", v:"luto", forte:true}
-      ]
-    },
-    familia2: {
-      fala: ["Obrigada por contar.", "Para família, a Mãe Karina costuma trabalhar na linha de Iemanjá, que é a mãe. Mas ela olha primeiro."],
-      sugere: "familia"
-    }
-  };
-
-  /* temas delicados: nunca oferecem serviço, sempre encaminham */
-  var CUIDADO = {
-    desespero: {
-      fala: ["Sinto muito que você esteja passando por isso.",
-             "Não vou te oferecer nada agora. Isso aqui não é hora de falar em trabalho.",
-             "Quem precisa te escutar é a Mãe Karina, direto. Ela responde pessoalmente."],
-      cvv: true
-    },
-    luto: {
-      fala: ["Sinto muito pela sua perda.",
-             "Perder alguém não é coisa que se resolve com serviço nenhum, e eu não vou fingir que resolve.",
-             "A Mãe Karina conversa com você sobre isso, sem pressa e sem cobrança."]
-    },
-    doenca: {
-      fala: ["Sinto muito.",
-             "Preciso ser honesta com você: ela acompanha e ampara, mas nunca substitui médico nem tratamento.",
-             "A Mãe Karina fala com você diretamente sobre isso."]
-    },
-    divida: {
-      fala: ["Dívida sufocando é desespero de verdade, e eu não vou te empurrar um serviço agora.",
-             "Se você está no aperto, gastar com trabalho espiritual não é a primeira coisa.",
-             "Fale com a Mãe Karina. Ela vai te escutar antes de qualquer outra coisa."]
-    },
-    violencia: {
-      fala: ["Sua segurança vem antes de tudo.",
-             "Se você está em perigo, procure ajuda: Central da Mulher 180, Polícia 190.",
-             "A Mãe Karina também está aqui para te escutar, mas isso primeiro."]
-    }
-  };
-
-  function limpar(){ ops.innerHTML = ""; }
-  function bolha(txt, tipo){
-    var d = document.createElement("div");
-    d.className = "msg " + tipo;
-    d.textContent = txt;
-    corpo.appendChild(d);
-    corpo.scrollTop = corpo.scrollHeight;
-    conversa.push({de:tipo, txt:txt});
-  }
-  function aviso(titulo, txt){
-    var d = document.createElement("div");
-    d.className = "msg aviso";
-    d.innerHTML = "<b>" + titulo + "</b>" + txt;
-    corpo.appendChild(d);
-    corpo.scrollTop = corpo.scrollHeight;
-  }
-  function digitando(){
-    var d = document.createElement("div");
-    d.className = "dig"; d.id = "dig";
-    d.innerHTML = "<u></u><u></u><u></u>";
-    corpo.appendChild(d);
-    corpo.scrollTop = corpo.scrollHeight;
-  }
-  function pararDigitar(){ var d = $("dig"); if(d) d.remove(); }
-
-  /* fala em sequência, com pausa: dá tempo de ler e parece gente */
-  function falar(linhas, depois){
-    ocupado = true; limpar();
-    var k = 0;
-    (function proxima(){
-      if(k >= linhas.length){ ocupado = false; if(depois) depois(); return; }
-      digitando();
-      setTimeout(function(){
-        pararDigitar();
-        bolha(linhas[k], "dela");
-        k++;
-        setTimeout(proxima, 320);
-      }, reduce ? 60 : Math.min(1100, 380 + linhas[k].length * 16));
-    })();
-  }
-  function opcoes(lista){
-    limpar();
-    lista.forEach(function(o){
-      var b = document.createElement("button");
-      b.className = "op" + (o.forte ? " forte" : "");
-      b.type = "button"; b.textContent = o.t;
-      b.addEventListener("click", function(){
-        if(ocupado) return;
-        bolha(o.t, "eu");
-        ir(o.v);
-      });
-      ops.appendChild(b);
-    });
-  }
-  function botaoWhats(txt){
-    limpar();
-    var resumo = conversa.filter(function(m){ return m.de === "eu"; }).map(function(m){ return m.txt; }).join(" · ");
-    var msg = "Oi, Mãe Karina. Vim pelo site." + (resumo ? " Falei sobre: " + resumo : "");
-    var a = document.createElement("a");
-    a.className = "op forte"; a.href = "https://wa.me/[SEU WHATSAPP]?text=" + encodeURIComponent(msg);
-    a.target = "_blank"; a.rel = "noopener"; a.textContent = txt || "Falar com a Mãe Karina";
-    ops.appendChild(a);
-    var b = document.createElement("button");
-    b.className = "op"; b.type = "button"; b.textContent = "Começar de novo";
-    b.addEventListener("click", function(){ reiniciar(); });
-    ops.appendChild(b);
-  }
-
-  function ir(chave){
-    if(CUIDADO[chave]){
-      var c = CUIDADO[chave];
-      falar(c.fala, function(){
-        if(c.cvv) aviso("Se a dor for grande demais", "O CVV atende de graça, 24 horas, no 188. Ligar não custa nada e não é fraqueza.");
-        botaoWhats("Falar agora com a Mãe Karina");
-      });
-      return;
-    }
-    var n = ARVORE[chave];
-    if(!n){ reiniciar(); return; }
-    falar(n.fala, function(){
-      if(n.ops) return opcoes(n.ops);
-      if(n.sugere){
-        var achados = itens.filter(function(i){ return i.dor && i.dor.indexOf(n.sugere) >= 0; }).slice(0,3);
-        limpar();
-        achados.forEach(function(i){
-          var b = document.createElement("button");
-          b.className = "op"; b.type = "button";
-          b.textContent = i.t + " · " + brl(i.p);
-          b.addEventListener("click", function(){
-            bolha("Quero saber sobre " + i.t, "eu");
-            fechar2();
-            abrir(i, null);
-          });
-          ops.appendChild(b);
-        });
-        var w = document.createElement("button");
-        w.className = "op forte"; w.type = "button"; w.textContent = "Prefiro falar com ela antes";
-        w.addEventListener("click", function(){ bolha("Prefiro falar antes", "eu"); botaoWhats(); });
-        ops.appendChild(w);
-      }
-    });
-  }
-  function reiniciar(){
-    corpo.innerHTML = ""; conversa = [];
-    ir("inicio");
-  }
-  function abrir2(){
-    if(aberto) return;
-    aberto = true;
-    cx.classList.add("on");
-    fab.classList.add("hide");
-    if(!corpo.children.length) reiniciar();
-    setTimeout(function(){ $("chatx").focus({preventScroll:true}); }, 420);
-  }
-  function fechar2(){
-    aberto = false;
-    cx.classList.remove("on");
-    fab.classList.remove("hide");
-    /* a conversa some: nada é guardado */
-    setTimeout(function(){ if(!aberto){ corpo.innerHTML = ""; conversa = []; limpar(); } }, 500);
-  }
-  fecharConversa = function(){ if(aberto) fechar2(); };
-  fab.addEventListener("click", abrir2);
-  $("chatx").addEventListener("click", fechar2);
-  addEventListener("keydown", function(e){ if(e.key === "Escape" && aberto) fechar2(); });
-  document.querySelectorAll("[data-abrechat]").forEach(function(b){
-    b.addEventListener("click", function(e){ e.preventDefault(); abrir2(); });
-  });
-  /* A conversa abre sozinha quando a pessoa chega: quem procura ajuda quase
-     nunca sabe o nome do trabalho, e esperar que ela clique num balão custa
-     visita. Fecha no × e não volta a abrir sozinha nesta visita.               */
-  setTimeout(function(){ if(!aberto) fab.classList.add("on"); }, reduce ? 300 : 2600);
-  setTimeout(function(){
-    var ov = $("ov");
-    if(!aberto && (!ov || ov.hidden)) abrir2();
-  }, reduce ? 600 : 3200);
-})();
+/* ---------- botão do WhatsApp ----------
+   Aparece depois que a página assenta, para não brigar com a primeira tela. */
+setTimeout(function(){ $("fab").classList.add("on"); }, reduce ? 300 : 2600);
 
 /* ---------- veio do TikTok ----------
    Ela põe na bio um link com ?v=<id do serviço> e o site abre já naquele serviço,
@@ -2340,22 +1955,6 @@ var DIAS = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
       if(bt) setTimeout(function(){ bt.click(); }, reduce ? 0 : 700);
     }
   }, reduce ? 100 : 1700);
-})();
-
-/* ---------- retorno silencioso ----------
-   Quem já foi atendido recebe um "como você está?" sem venda nenhuma.
-   Aqui é só a demonstração: no sistema real, quem dispara é a Fase 1 pelo
-   WhatsApp, alguns dias depois do trabalho terminar.                            */
-(function(){
-  var box = $("retorno");
-  if(!box) return;
-  box.querySelector(".ret-go").addEventListener("click", function(){
-    var c = box.querySelector(".ret-c");
-    c.innerHTML = '<div class="msg dela">Oi. Faz uns dias que a gente conversou.</div>' +
-      '<div class="msg dela">Não é para vender nada. Só queria saber como você está.</div>';
-    box.querySelector(".ret-go").hidden = true;
-    box.querySelector(".ret-n").hidden = false;
-  });
 })();
 
 $("ano").textContent = new Date().getFullYear();
