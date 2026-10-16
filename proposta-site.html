@@ -455,13 +455,13 @@ var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 var CANAIS = [
   {c:"var(--pix)", n:"No site", t:"Consultas e trabalhos",
    d:"A pessoa escolhe o serviço e o horário, preenche o que aquele serviço pede e paga por Pix ou cartão. O pedido cai no seu painel.",
-   p:"Pix não tem taxa. Cartão tem a taxa do Mercado Pago."},
-  {c:"var(--tkp)", n:"TikTok Shop", t:"Banhos, velas e guias",
-   d:"Você cadastra na sua loja do TikTok, como já faz. O site lê de lá todo dia e mostra sozinho.",
-   p:"Você mexe só no TikTok. O site acompanha."},
-  {c:"var(--hot)", n:"Hotmart", t:"Cursos",
-   d:"O curso é vendido na Hotmart e o site lê de lá sozinho. Compra aprovada, o aluno recebe o acesso.",
-   p:"Curso novo na Hotmart aparece no site no dia seguinte."}
+   p:"Pix não tem taxa. Cartão tem a taxa da Stripe: 2,9% + R$ 0,30."},
+  {c:"var(--tkp)", n:"Bling", t:"Produtos",
+   d:"Você cadastra os produtos na Bling. O site lê de lá todo dia e mostra sozinho.",
+   p:"Você mexe só na Bling. O site acompanha."},
+  {c:"var(--hot)", n:"Hostinger", t:"Cursos",
+   d:"O curso é vendido na Hostinger e o site lê de lá sozinho. Compra aprovada, o aluno recebe o acesso.",
+   p:"Curso novo na Hostinger aparece no site no dia seguinte."}
 ];
 
 var TEM = [
@@ -471,10 +471,10 @@ var TEM = [
   {t:"Cada serviço pede o que precisa", d:"Você define o que a pessoa tem de enviar. Sem isso o pedido não fecha."},
   {t:"Pedido cai direto no painel", d:"Com o serviço, o horário e a ficha preenchida, na agenda dos trabalhos a fazer."},
   {t:"Conta do cliente no site", d:"A pessoa entra na conta dela e vê os pedidos que já fez. Você fica com a ficha de cada cliente."},
-  {t:"Pagamento por Pix e cartão", d:"Pelo Mercado Pago, no seu nome. Aceita parcelamento."},
+  {t:"Pagamento por Pix e cartão", d:"Pela Stripe, no seu nome. Pix sem taxa, cartão com taxa da Stripe."},
   {t:"Ligado ao seu TikTok", d:"Mostra quando você está ao vivo e leva direto para a live."},
-  {t:"Estante que se atualiza sozinha", d:"Você cadastra no TikTok Shop e na Hotmart. O site lê de lá todo dia."},
-  {t:"Loja e cursos no lugar certo", d:"Produto vai para o TikTok Shop, curso para a Hotmart. Ninguém se perde."},
+  {t:"Estante que se atualiza sozinha", d:"Você cadastra na Bling e na Hostinger. O site lê de lá todo dia."},
+  {t:"Loja e cursos no lugar certo", d:"Produto vai para a Bling, curso para a Hostinger. Ninguém se perde."},
   {t:"Feito para o celular", d:"Quase todo mundo chega pelo telefone. Abre rápido mesmo com internet fraca."}
 ];
 
@@ -504,7 +504,7 @@ var SIM = [
     "Pedido só fecha com a ficha preenchida",
     "Fila da semana: a pessoa vê em que lugar entra",
     "Diário do trabalho: a pessoa acompanha as etapas",
-    "Pagamento por Pix e cartão, pelo Mercado Pago",
+    "Pagamento por Pix e cartão, pela Stripe. Pix sem taxa, cartão com taxa da Stripe.",
     "Confirmação de pagamento",
     "Pedido entregue direto no seu painel",
     "Lembrete automático se o cliente pagar e não preencher a ficha"
@@ -526,13 +526,13 @@ var SIM = [
     "O que mais sai",
     "Catálogo: incluir, editar, apagar e tirar do ar",
     "Agenda de lives, giras e encontros",
-    "Sua chave Pix e sua conta do Mercado Pago",
+    "Sua chave Pix e sua conta da Stripe",
     "Quanto cai por Pix e quanto por cartão, já com a taxa"
   ]},
   {g:"Ligações com as plataformas", itens:[
-    "TikTok, TikTok Shop e Hotmart ligados ao site",
-    "Estante do TikTok Shop puxada sozinha",
-    "Cursos da Hotmart puxados sozinhos",
+    "TikTok, Bling e Hostinger ligados ao site",
+    "Estante da Bling puxada sozinha",
+    "Cursos da Hostinger puxados sozinhos",
     "Sua loja e seu curso configurados"
   ]},
   {g:"Entrega, treinamento e garantia", itens:[
@@ -571,8 +571,8 @@ var CRONO = [
    eu:"Monto as páginas do site e o painel onde os pedidos vão cair.",
    vc:"Nesta semana não preciso de nada. O trabalho é meu."},
   {s:"Semana 3", t:"Pagamento e ligações",
-   eu:"Ligo o Pix e o Mercado Pago, e configuro a leitura do TikTok Shop e da Hotmart.",
-   vc:"Me passa sua chave Pix e o acesso das suas lojas."},
+   eu:"Ligo o Pix e a Stripe, e configuro a leitura da Bling e da Hostinger.",
+   vc:"Me passa sua chave Pix, sua chave de API da Stripe, e o acesso das suas contas."},
   {s:"Semana 4", t:"Testes e no ar",
    eu:"Testo em celular de verdade, publico no seu domínio e gravo o vídeo de treino.",
    vc:"Testa como se fosse cliente e aprova."},
@@ -613,7 +613,7 @@ var ESFORCO = [
   {t:"A marca", d:"Logo, cores, letras e os modelos de post. Cerca de 25 horas."},
   {t:"O site", d:"Os onze itens, todas as páginas, feito para celular. Cerca de 80 horas."},
   {t:"O seu painel", d:"Pedidos, fichas, catálogo, agenda e métricas. Cerca de 55 horas."},
-  {t:"As ligações", d:"Mercado Pago, TikTok Shop e Hotmart conversando com o site. Cerca de 30 horas."},
+  {t:"As ligações", d:"Stripe, Bling e Hostinger conversando com o site. Cerca de 30 horas."},
   {t:"Contas e servidor", d:"Login dos clientes, servidor, domínio e publicação. Cerca de 30 horas."},
   {t:"Testes e treinamento", d:"Celular de verdade, correções e os vídeos que ensinam você. Cerca de 20 horas."}
 ];
