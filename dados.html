@@ -11,7 +11,7 @@
 <style>
 :root{
   --bg:#FAF8F4; --card:#FFFFFF; --ink:#1A1814; --ink2:#5E594F; --line:#E2DDD3; --line2:#C9C2B4;
-  --gold:#8A7136; --gold-bg:#F4EEDF; --erro:#B3261E;
+  --gold:#8A7136; --gold-bg:#F4EEDF;
   --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
@@ -70,13 +70,12 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
 .ok svg{width:16px;height:16px}
 .tecla{color:var(--ink2);font-size:15px}
 .tecla b{font-weight:600}
-.erro{color:var(--erro);font-size:16px;margin-top:14px;min-height:1.5em}
 @media (hover:none),(pointer:coarse){.tecla{display:none}}
 
 /* abertura e final */
-.capa .eyebrow{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
-.capa h1{font-size:clamp(34px,7.5vw,52px);font-weight:600;line-height:1.1;letter-spacing:-.025em;margin-top:12px}
-.capa p{color:var(--ink2);font-size:19px;margin-top:16px;max-width:30em}
+.fim .eyebrow{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.fim h1{font-size:clamp(34px,7.5vw,52px);font-weight:600;line-height:1.1;letter-spacing:-.025em;margin-top:12px}
+.fim p{color:var(--ink2);font-size:19px;margin-top:16px;max-width:30em}
 .lista{list-style:none;margin-top:18px}
 .lista li{padding:5px 0 5px 22px;position:relative;color:var(--ink2)}
 .lista li::before{content:"";position:absolute;left:4px;top:15px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
@@ -92,7 +91,6 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
 .nav button:last-child{border-radius:0 8px 8px 0}
 .nav button:disabled{opacity:.3;cursor:default}
 .nav svg{width:18px;height:18px}
-.nav[hidden]{display:none}
 
 @media (prefers-reduced-motion:reduce){
   .q,.barra i{transition:none}
@@ -105,26 +103,14 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
 
 <main class="palco" id="palco">
 
-  <section class="q capa" data-tipo="capa">
-    <div class="in">
-      <div class="eyebrow">Mãe Karina de Iemanjá</div>
-      <h1>Dados para o seu site</h1>
-      <p>Uma pergunta por vez, uns 5 minutos. Não sabe alguma? Pode pular, a gente vê junto.</p>
-      <div class="acao">
-        <button class="ok" type="button" data-ok>Começar <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
-        <span class="tecla">ou aperte <b>Enter ↵</b></span>
-      </div>
-    </div>
-  </section>
-
-  <section class="q" data-k="nome" data-rotulo="Nome no site" data-grupo="Você" data-obrig>
+  <section class="q" data-k="nome" data-rotulo="Nome no site" data-grupo="Você">
     <div class="in">
       <label for="nome"><h2>Qual nome você quer que apareça no site?</h2></label>
       <input class="campo" id="nome" type="text" placeholder="Mãe Karina de Iemanjá" autocomplete="off">
     </div>
   </section>
 
-  <section class="q" data-k="email" data-rotulo="E-mail" data-grupo="Você" data-tipo="email">
+  <section class="q" data-k="email" data-rotulo="E-mail" data-grupo="Você">
     <div class="in">
       <label for="email"><h2>Qual o seu <em>e-mail</em>?</h2></label>
       <p class="dica">As contas do site ficam nele.</p>
@@ -178,7 +164,7 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
     </div>
   </section>
 
-  <section class="q" data-k="emailBling" data-rotulo="E-mail da Bling" data-grupo="Produtos e cursos" data-tipo="email">
+  <section class="q" data-k="emailBling" data-rotulo="E-mail da Bling" data-grupo="Produtos e cursos">
     <div class="in">
       <label for="emailBling"><h2>Qual o e-mail da sua conta na <em>Bling</em>?</h2></label>
       <p class="dica">É de lá que o site puxa os seus produtos.</p>
@@ -213,7 +199,7 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
     </div>
   </section>
 
-  <section class="q capa fim" data-tipo="fim">
+  <section class="q fim" data-tipo="fim">
     <div class="in">
       <div class="eyebrow">Pronto</div>
       <h1>Obrigado!</h1>
@@ -234,7 +220,7 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
 
 </main>
 
-<nav class="nav" id="nav" aria-label="Navegar entre as perguntas" hidden>
+<nav class="nav" id="nav" aria-label="Navegar entre as perguntas">
   <button type="button" id="voltar" aria-label="Pergunta anterior"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 10l4-4 4 4"/></svg></button>
   <button type="button" id="avancar" aria-label="Próxima pergunta"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg></button>
 </nav>
@@ -255,7 +241,7 @@ var atual = 0;
 var SETA = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
 var CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
 
-/* número, botão OK, dica de tecla e linha de erro em cada pergunta */
+/* número, botão OK e dica de tecla em cada pergunta */
 perguntas.forEach(function(t, k){
   var dentro = t.querySelector(".in");
   var n = document.createElement("div");
@@ -270,13 +256,8 @@ perguntas.forEach(function(t, k){
     '<span class="tecla">' + (area ? "<b>Shift + Enter</b> pula linha" : "ou aperte <b>Enter ↵</b>") + '</span>';
   dentro.appendChild(acao);
 
-  var erro = document.createElement("p");
-  erro.className = "erro"; erro.setAttribute("aria-live", "polite");
-  dentro.appendChild(erro);
-
   if(t.dataset.tipo === "escolha") return;
   t.querySelector(".campo").addEventListener("input", function(){
-    erro.textContent = "";
     rotularOk(t);
     if(area){ area.style.height = "auto"; area.style.height = area.scrollHeight + "px"; }
   });
@@ -289,10 +270,10 @@ function valor(t){
   }
   return t.querySelector(".campo").value.trim();
 }
-/* vazio e opcional: o botão diz "Pular", para ficar claro que pode */
+/* nada é obrigatório: vazio, o botão diz "Pular", para ficar claro que pode */
 function rotularOk(t){
   var b = t.querySelector("[data-ok]");
-  b.innerHTML = valor(t) || t.hasAttribute("data-obrig") ? "OK " + CHECK : "Pular " + SETA;
+  b.innerHTML = valor(t) ? "OK " + CHECK : "Pular " + SETA;
 }
 perguntas.forEach(rotularOk);
 
@@ -308,13 +289,6 @@ function escolher(t, op){
   setTimeout(avancar, 350);
 }
 
-function valida(t){
-  var v = valor(t), erro = t.querySelector(".erro");
-  if(t.hasAttribute("data-obrig") && !v){ erro.textContent = "Esta é a única obrigatória."; return false; }
-  if(v && t.dataset.tipo === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ erro.textContent = "Esse e-mail parece incompleto."; return false; }
-  return true;
-}
-
 function mostrar(i){
   telas.forEach(function(t, k){
     t.classList.toggle("on", k === i);
@@ -325,18 +299,16 @@ function mostrar(i){
   atual = i;
   var feitas = telas[i].dataset.tipo === "fim" ? perguntas.length : Math.max(0, perguntas.indexOf(telas[i]));
   $("barra").style.width = (feitas / perguntas.length * 100) + "%";
-  $("nav").hidden = telas[i].dataset.tipo === "capa" && i === 0;
-  $("voltar").disabled = i <= 1;
+  $("voltar").disabled = i === 0;
   $("avancar").disabled = i >= telas.length - 1;
-  var alvo = telas[i].querySelector(".campo, .op, #enviar, [data-ok]");
+  /* na escolha o foco vai no "Pular": Enter não pode responder por ela */
+  var alvo = telas[i].querySelector(".campo") || telas[i].querySelector("#enviar") || telas[i].querySelector("[data-ok]");
   if(alvo) setTimeout(function(){ alvo.focus({preventScroll:true}); }, 420);
 }
 function avancar(){
-  var t = telas[atual];
-  if(t.dataset.k && !valida(t)) return;
   if(atual < telas.length - 1) mostrar(atual + 1);
 }
-function voltar(){ if(atual > 1) mostrar(atual - 1); }
+function voltar(){ if(atual > 0) mostrar(atual - 1); }
 
 document.addEventListener("click", function(e){
   if(e.target.closest("[data-ok]")) avancar();
