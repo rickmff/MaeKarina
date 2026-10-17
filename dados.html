@@ -129,7 +129,7 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
     <div class="in">
       <div class="sec-t">Consultas e trabalhos</div>
       <h2>Quais <em>consultas e trabalhos</em> você faz, e quanto cobra?</h2>
-      <p class="dica">Um cartão para cada. Se for mais fácil, pule e me mande um áudio no WhatsApp.</p>
+      <p class="dica">Um cartão para cada. O preço em euro é o de quem paga de Portugal, por MB WAY. Se for mais fácil, pule e me mande um áudio no WhatsApp.</p>
       <div class="servs" id="servs"></div>
       <button class="mais" type="button" id="mais">+ Adicionar outro</button>
     </div>
@@ -155,8 +155,21 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
     </div>
   </section>
 
+  <section class="q" data-k="hotmartServ" data-rotulo="Hotmart aceita consultas e trabalhos" data-grupo="Hotmart" data-tipo="escolha">
+    <div class="in">
+      <div class="sec-t">Hotmart · MB WAY</div>
+      <h2 id="h-hserv">A Hotmart aceita vender as suas <em>consultas e trabalhos</em>?</h2>
+      <p class="dica">O MB WAY de quem está em Portugal passa pela Hotmart. Pergunte ao suporte dela se pode vender consulta e trabalho como produto.</p>
+      <div class="ops" role="radiogroup" aria-labelledby="h-hserv">
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Sim, aceita"><kbd>A</kbd>Sim, aceita</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Não aceita"><kbd>B</kbd>Não aceita</button>
+        <button class="op" type="button" role="radio" aria-checked="false" data-v="Ainda não perguntei"><kbd>C</kbd>Ainda não perguntei</button>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== WhatsApp Business ===== -->
-  <section class="q" data-k="whats" data-rotulo="Número" data-grupo="WhatsApp Business">
+  <section class="q" data-k="whats" data-rotulo="Número do WhatsApp" data-grupo="WhatsApp Business">
     <div class="in">
       <div class="sec-t">WhatsApp Business</div>
       <label for="whats"><h2>Qual o número do seu <em>WhatsApp Business</em>?</h2></label>
@@ -270,45 +283,6 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
     </div>
   </section>
 
-  <!-- ===== MB WAY ===== -->
-  <section class="q" data-k="pt" data-rotulo="Mora ou tem atividade em Portugal" data-grupo="MB WAY (Portugal)" data-tipo="escolha">
-    <div class="in">
-      <div class="sec-t">MB WAY</div>
-      <h2 id="h-pt">Para receber por <em>MB WAY</em>: você mora ou tem atividade aberta em Portugal?</h2>
-      <p class="dica">O MB WAY só funciona numa conta da Stripe aberta em Portugal, em euro. A conta do Brasil não recebe MB WAY.</p>
-      <div class="ops" role="radiogroup" aria-labelledby="h-pt">
-        <button class="op" type="button" role="radio" aria-checked="false" data-v="Sim"><kbd>A</kbd>Sim</button>
-        <button class="op" type="button" role="radio" aria-checked="false" data-v="Não"><kbd>B</kbd>Não</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="q" data-k="nif" data-rotulo="NIF" data-grupo="MB WAY (Portugal)" data-se="pt=Sim">
-    <div class="in">
-      <div class="sec-t">MB WAY · conta em Portugal</div>
-      <label for="nif"><h2>Seu <em>NIF</em> em Portugal</h2></label>
-      <input class="campo" id="nif" type="text" inputmode="numeric" maxlength="11" placeholder="000 000 000">
-    </div>
-  </section>
-
-  <section class="q" data-k="endPT" data-rotulo="Morada em Portugal" data-grupo="MB WAY (Portugal)" data-se="pt=Sim">
-    <div class="in">
-      <div class="sec-t">MB WAY · conta em Portugal</div>
-      <label for="endPT"><h2>Sua <em>morada</em> em Portugal</h2></label>
-      <p class="dica">Rua, número, código postal e localidade.</p>
-      <textarea class="campo" id="endPT" rows="2" placeholder="Rua de Santa Catarina, 100 · 4000-447 Porto"></textarea>
-    </div>
-  </section>
-
-  <section class="q" data-k="iban" data-rotulo="IBAN" data-grupo="MB WAY (Portugal)" data-se="pt=Sim">
-    <div class="in">
-      <div class="sec-t">MB WAY · conta em Portugal</div>
-      <label for="iban"><h2>O <em>IBAN</em> da conta em euro onde o MB WAY cai</h2></label>
-      <p class="dica">Também no seu nome.</p>
-      <input class="campo" id="iban" type="text" placeholder="PT50 0000 0000 0000 0000 0000 0" autocomplete="off">
-    </div>
-  </section>
-
   <!-- ===== final ===== -->
   <section class="q fim" data-tipo="fim">
     <div class="in">
@@ -320,7 +294,7 @@ textarea.campo{resize:none;min-height:3.4em;max-height:40svh;line-height:1.4;ove
         <button class="sec" type="button" id="copiar">Copiar as respostas</button>
         <p class="msg" id="msg" aria-live="polite"></p>
       </div>
-      <p class="aviso">Nunca mande senhas. Quando eu precisar entrar na Bling ou na Hotmart, peço para você me convidar.</p>
+      <p class="aviso">Nunca mande senhas. Quando eu precisar entrar na Bling, na Hotmart ou na Hostinger, peço para você me convidar.</p>
     </div>
   </section>
 
@@ -365,7 +339,7 @@ function cartaoServico(){
       '<button type="button" aria-pressed="false" data-t="Trabalho">Trabalho</button></div>' +
     '<div class="dois">' +
       '<div><label for="' + id + 'p">Preço (R$)</label><input class="inp" id="' + id + 'p" data-c="preco" type="text" inputmode="decimal" placeholder="Ex.: 150"></div>' +
-      '<div><label for="' + id + 'e">Preço (€)</label><input class="inp" id="' + id + 'e" data-c="euro" type="text" inputmode="decimal" placeholder="Se atende fora"></div>' +
+      '<div><label for="' + id + 'e">Preço (€)</label><input class="inp" id="' + id + 'e" data-c="euro" type="text" inputmode="decimal" placeholder="Portugal"></div>' +
       '<div><label for="' + id + 'd">Tempo</label><input class="inp" id="' + id + 'd" data-c="tempo" type="text" placeholder="Ex.: 40 min"></div>' +
     '</div>' +
     '<label for="' + id + 'f">O que você precisa saber da pessoa</label>' +
